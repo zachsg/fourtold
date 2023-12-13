@@ -50,9 +50,7 @@ struct ContentView: View {
                 }
                 .tag(FTTabItem.settings)
         }
-        .onAppear(perform: {
-            NotificationController.requestAuthorization()
-        })
+        .onAppear(perform: NotificationController.requestAuthorization)
     }
 }
 
