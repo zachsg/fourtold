@@ -48,16 +48,35 @@ struct MindView: View {
                         ForEach(todayActivities, id: \.id) { activity in
                             if let meditate = activity as? FTMeditate {
                                 NavigationLink(value: meditate) {
-                                    Label {
+                                    VStack(alignment: .leading) {
                                         HStack {
-                                            Text("\(meditate.type.rawValue.capitalized) meditation")
-                                            Spacer()
-                                            Text(meditate.startDate, format: .dateTime.hour().minute())
-                                                .font(.footnote)
-                                                .foregroundStyle(.secondary)
+                                            Label {
+                                                Text("Meditation")
+                                                    .foregroundColor(.accentColor)
+                                                Spacer()
+                                                Text(meditate.startDate, format: .dateTime.hour().minute())
+                                                    .foregroundStyle(.secondary)
+                                            } icon: {
+                                                Image(systemName: meditateSystemImage)
+                                                    .foregroundColor(.accentColor)
+                                                    
+                                            }
                                         }
-                                    } icon: {
-                                        Image(systemName: meditateSystemImage)
+                                        .font(.caption)
+                                        
+                                        HStack {
+                                            Label {
+                                                HStack {
+                                                    Text(meditate.type == .open ? "Open-ended:" : "Timed:")
+                                                    Text("\(TimeInterval(meditate.duration).secondsAsTime(units: .short))")
+                                                }
+                                            } icon: {
+                                                Image(systemName: meditate.type == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
+                                            }
+                                        }
+                                        .foregroundStyle(.primary)
+                                        .fontWeight(.semibold)
+                                        .padding(.top, 4)
                                     }
                                 }
                             }
@@ -83,16 +102,35 @@ struct MindView: View {
                         ForEach(olderActivities, id: \.id) { activity in
                             if let meditate = activity as? FTMeditate {
                                 NavigationLink(value: meditate) {
-                                    Label {
+                                    VStack(alignment: .leading) {
                                         HStack {
-                                            Text("\(meditate.type.rawValue.capitalized) meditation")
-                                            Spacer()
-                                            Text(meditate.startDate, format: .dateTime.day().month())
-                                                .font(.footnote)
-                                                .foregroundStyle(.secondary)
+                                            Label {
+                                                Text("Meditation")
+                                                    .foregroundColor(.accentColor)
+                                                Spacer()
+                                                Text(meditate.startDate, format: .dateTime.day().month())
+                                                    .foregroundStyle(.secondary)
+                                            } icon: {
+                                                Image(systemName: meditateSystemImage)
+                                                    .foregroundColor(.accentColor)
+                                                
+                                            }
                                         }
-                                    } icon: {
-                                        Image(systemName: meditateSystemImage)
+                                        .font(.caption)
+                                        
+                                        HStack {
+                                            Label {
+                                                HStack {
+                                                    Text(meditate.type == .open ? "Open-ended:" : "Timed:")
+                                                    Text("\(TimeInterval(meditate.duration).secondsAsTime(units: .short))")
+                                                }
+                                            } icon: {
+                                                Image(systemName: meditate.type == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
+                                            }
+                                        }
+                                        .foregroundStyle(.primary)
+                                        .fontWeight(.semibold)
+                                        .padding(.top, 4)
                                     }
                                 }
                             }
