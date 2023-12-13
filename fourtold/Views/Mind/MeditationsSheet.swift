@@ -10,20 +10,20 @@ import SwiftUI
 
 struct MeditationsSheet: View {
     @Environment(\.modelContext) var modelContext
-    @Query(sort: \FTMeditation.startDate, order: .reverse) var meditations: [FTMeditation]
+    @Query(sort: \FTMeditate.startDate, order: .reverse) var meditations: [FTMeditate]
     
     @AppStorage(meditateGoalKey) var meditateGoal: Int = 600
     
     @Binding var showingSheet: Bool
     
-    @State private var meditationType: FTMeditationType = .timed
+    @State private var meditationType: FTMeditateType = .timed
     @State private var startDate: Date = .now
     
     var body: some View {
         NavigationStack {
             Form {
                 Picker(selection: $meditationType, label: Text("Meditation type")) {
-                    ForEach(FTMeditationType.allCases, id: \.self) { type in
+                    ForEach(FTMeditateType.allCases, id: \.self) { type in
                         Text(type.rawValue.capitalized)
                     }
                 }
@@ -55,7 +55,7 @@ struct MeditationsSheet: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
-                        MeditatingView(meditationType: $meditationType, meditationGoal: $meditateGoal, startDate: $startDate, showingSheet: $showingSheet)
+                        MeditatingView(meditateType: $meditationType, meditateGoal: $meditateGoal, startDate: $startDate, showingSheet: $showingSheet)
                     }
                 }
             }
@@ -65,5 +65,5 @@ struct MeditationsSheet: View {
 
 #Preview {
     MeditationsSheet(showingSheet: .constant(true))
-        .modelContainer(for: FTMeditation.self)
+        .modelContainer(for: FTMeditate.self)
 }

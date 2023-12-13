@@ -24,8 +24,8 @@
 		5975509F2B226FA00070F60E /* FTTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975509E2B226FA00070F60E /* FTTabItem.swift */; };
 		597550A52B2542820070F60E /* SettingsLifeGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550A42B2542820070F60E /* SettingsLifeGroup.swift */; };
 		597550A72B27A1800070F60E /* FTActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550A62B27A1800070F60E /* FTActivity.swift */; };
-		597550A92B27A1D50070F60E /* FTMeditation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550A82B27A1D50070F60E /* FTMeditation.swift */; };
-		597550AD2B27A2580070F60E /* FTMeditationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550AC2B27A2580070F60E /* FTMeditationType.swift */; };
+		597550A92B27A1D50070F60E /* FTMeditate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550A82B27A1D50070F60E /* FTMeditate.swift */; };
+		597550AD2B27A2580070F60E /* FTMeditateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550AC2B27A2580070F60E /* FTMeditateType.swift */; };
 		598117942B27D22B003FAEB0 /* MeditationsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117932B27D22B003FAEB0 /* MeditationsSheet.swift */; };
 		598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117952B27F462003FAEB0 /* MeditatingView.swift */; };
 		598117982B27F61C003FAEB0 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117972B27F61C003FAEB0 /* TimerView.swift */; };
@@ -60,8 +60,8 @@
 		5975509E2B226FA00070F60E /* FTTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTabItem.swift; sourceTree = "<group>"; };
 		597550A42B2542820070F60E /* SettingsLifeGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLifeGroup.swift; sourceTree = "<group>"; };
 		597550A62B27A1800070F60E /* FTActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTActivity.swift; sourceTree = "<group>"; };
-		597550A82B27A1D50070F60E /* FTMeditation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMeditation.swift; sourceTree = "<group>"; };
-		597550AC2B27A2580070F60E /* FTMeditationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMeditationType.swift; sourceTree = "<group>"; };
+		597550A82B27A1D50070F60E /* FTMeditate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMeditate.swift; sourceTree = "<group>"; };
+		597550AC2B27A2580070F60E /* FTMeditateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMeditateType.swift; sourceTree = "<group>"; };
 		598117932B27D22B003FAEB0 /* MeditationsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationsSheet.swift; sourceTree = "<group>"; };
 		598117952B27F462003FAEB0 /* MeditatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditatingView.swift; sourceTree = "<group>"; };
 		598117972B27F61C003FAEB0 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -195,8 +195,8 @@
 				597550922B1FC3620070F60E /* FTGender.swift */,
 				5975509E2B226FA00070F60E /* FTTabItem.swift */,
 				597550A62B27A1800070F60E /* FTActivity.swift */,
-				597550A82B27A1D50070F60E /* FTMeditation.swift */,
-				597550AC2B27A2580070F60E /* FTMeditationType.swift */,
+				597550A82B27A1D50070F60E /* FTMeditate.swift */,
+				597550AC2B27A2580070F60E /* FTMeditateType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,7 +305,7 @@
 				59DC47C62B1E6A1E00737EDE /* SettingsView.swift in Sources */,
 				5975509C2B20E16B0070F60E /* LifeView.swift in Sources */,
 				59D28FD52B1E84D9002799C4 /* BarChart.swift in Sources */,
-				597550A92B27A1D50070F60E /* FTMeditation.swift in Sources */,
+				597550A92B27A1D50070F60E /* FTMeditate.swift in Sources */,
 				590432AB2B1FC1370012F0FA /* SettingsUserInfoGroup.swift in Sources */,
 				59D28FE32B1EACDC002799C4 /* SettingsBodyGroup.swift in Sources */,
 				5912D1972B1BB78D00E78D6E /* ContentView.swift in Sources */,
@@ -317,7 +317,7 @@
 				5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */,
 				598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */,
 				5975509A2B20E1650070F60E /* MindView.swift in Sources */,
-				597550AD2B27A2580070F60E /* FTMeditationType.swift in Sources */,
+				597550AD2B27A2580070F60E /* FTMeditateType.swift in Sources */,
 				59D28FD82B1E8564002799C4 /* SettingsMindGroup.swift in Sources */,
 				59D28FD32B1E829E002799C4 /* HomeStepsToday.swift in Sources */,
 				5912D1952B1BB78D00E78D6E /* fourtoldApp.swift in Sources */,

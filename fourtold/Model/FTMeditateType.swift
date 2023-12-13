@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum FTMeditationType: String, Codable, CaseIterable {
+enum FTMeditateType: String, Codable, CaseIterable {
     case open, timed
 }

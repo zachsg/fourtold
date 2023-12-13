@@ -10,8 +10,8 @@ import SwiftUI
 struct MeditatingView: View {
     @Environment(\.modelContext) var modelContext
     
-    @Binding var meditationType: FTMeditationType
-    @Binding var meditationGoal: Int
+    @Binding var meditateType: FTMeditateType
+    @Binding var meditateGoal: Int
     @Binding var startDate: Date
     @Binding var showingSheet: Bool
     
@@ -20,7 +20,7 @@ struct MeditatingView: View {
     
     var body: some View {
         VStack {
-            TimerView(meditationType: $meditationType, meditationGoal: $meditationGoal, showingAlert: $showingAlert, elapsed: $elapsed)
+            TimerView(meditationType: $meditateType, meditateGoal: $meditateGoal, showingAlert: $showingAlert, elapsed: $elapsed)
         }
         .navigationTitle("Meditating")
         .navigationBarTitleDisplayMode(.inline)
@@ -38,14 +38,14 @@ struct MeditatingView: View {
             Button("Save") {
                 NotificationController.cancelAllPending()
                 
-                let mediation = FTMeditation(startDate: startDate, type: meditationType, duration: Int(TimeInterval(elapsed)))
+                let mediation = FTMeditate(startDate: startDate, type: meditateType, duration: Int(TimeInterval(elapsed)))
                 modelContext.insert(mediation)
                 showingAlert.toggle()
                 showingSheet.toggle()
             }
         } message: {
-            if meditationType == .timed {
-                Text("You meditated for \(elapsed.secondsAsTime(units: .full)) (\((elapsed / Double(meditationGoal) * 100).rounded() / 100, format: .percent) of your goal).")
+            if meditateType == .timed {
+                Text("You meditated for \(elapsed.secondsAsTime(units: .full)) (\((elapsed / Double(meditateGoal) * 100).rounded() / 100, format: .percent) of your goal).")
             } else {
                 Text("You meditated for \(elapsed.secondsAsTime(units: .full)).")
             }
@@ -54,5 +54,5 @@ struct MeditatingView: View {
 }
 
 #Preview {
-    MeditatingView(meditationType: .constant(.timed), meditationGoal: .constant(300), startDate: .constant(.now), showingSheet: .constant(true))
+    MeditatingView(meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), showingSheet: .constant(true))
 }

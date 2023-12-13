@@ -14,6 +14,6 @@ struct fourtoldApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: FTMeditation.self)
+        .modelContainer(for: FTMeditate.self)
     }
 }

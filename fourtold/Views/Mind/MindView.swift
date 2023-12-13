@@ -10,11 +10,11 @@ import SwiftUI
 
 struct MindView: View {
     @Environment(\.modelContext) var modelContext
-    @Query(sort: \FTMeditation.startDate) var meditations: [FTMeditation]
+    @Query(sort: \FTMeditate.startDate) var meditations: [FTMeditate]
     
     @State private var path = NavigationPath()
     
-    @State private var meditationSheetIsShowing = false
+    @State private var meditateSheetIsShowing = false
     @State private var breathworkSheetIsShowing = false
     @State private var journalSheetIsShowing = false
     
@@ -46,13 +46,13 @@ struct MindView: View {
                 if !todayActivities.isEmpty {
                     Section("Today") {
                         ForEach(todayActivities, id: \.id) { activity in
-                            if let meditation = activity as? FTMeditation {
-                                NavigationLink(value: meditation) {
+                            if let meditate = activity as? FTMeditate {
+                                NavigationLink(value: meditate) {
                                     Label {
                                         HStack {
-                                            Text("\(meditation.type.rawValue.capitalized) meditation")
+                                            Text("\(meditate.type.rawValue.capitalized) meditation")
                                             Spacer()
-                                            Text(meditation.startDate, format: .dateTime.hour().minute())
+                                            Text(meditate.startDate, format: .dateTime.hour().minute())
                                                 .font(.footnote)
                                                 .foregroundStyle(.secondary)
                                         }
@@ -81,13 +81,13 @@ struct MindView: View {
                 if !olderActivities.isEmpty {
                     Section(isExpanded: $showOldActivities) {
                         ForEach(olderActivities, id: \.id) { activity in
-                            if let meditation = activity as? FTMeditation {
-                                NavigationLink(value: meditation) {
+                            if let meditate = activity as? FTMeditate {
+                                NavigationLink(value: meditate) {
                                     Label {
                                         HStack {
-                                            Text("\(meditation.type.rawValue.capitalized) meditation")
+                                            Text("\(meditate.type.rawValue.capitalized) meditation")
                                             Spacer()
-                                            Text(meditation.startDate, format: .dateTime.day().month())
+                                            Text(meditate.startDate, format: .dateTime.day().month())
                                                 .font(.footnote)
                                                 .foregroundStyle(.secondary)
                                         }
@@ -122,8 +122,8 @@ struct MindView: View {
                 }
             }
             .navigationTitle(mindTitle)
-            .navigationDestination(for: FTMeditation.self) { meditation in
-                Text("You just did a \(meditation.type.rawValue) meditation for \(meditation.duration) seconds")
+            .navigationDestination(for: FTMeditate.self) { meditate in
+                Text("You just did a \(meditate.type.rawValue) meditation for \(meditate.duration) seconds")
             }
             .toolbar {
                 Button("Journal", systemImage: journalSystemImage) {
@@ -137,7 +137,7 @@ struct MindView: View {
                 }
                 
                 Button("Meditate", systemImage: meditateSystemImage) {
-                    meditationSheetIsShowing.toggle()
+                    meditateSheetIsShowing.toggle()
                 }
             }
             .sheet(isPresented: $journalSheetIsShowing) {
@@ -146,8 +146,8 @@ struct MindView: View {
             .sheet(isPresented: $breathworkSheetIsShowing) {
                 Text("Breathwork sheet")
             }
-            .sheet(isPresented: $meditationSheetIsShowing) {
-                MeditationsSheet(showingSheet: $meditationSheetIsShowing)
+            .sheet(isPresented: $meditateSheetIsShowing) {
+                MeditationsSheet(showingSheet: $meditateSheetIsShowing)
             }
         }
     }
@@ -159,5 +159,5 @@ struct MindView: View {
 
 #Preview {
     MindView()
-        .modelContainer(for: FTMeditation.self)
+        .modelContainer(for: FTMeditate.self)
 }

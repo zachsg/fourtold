@@ -10,8 +10,8 @@ import SwiftUI
 import UIKit
 
 struct TimerView: View {
-    @Binding var meditationType: FTMeditationType
-    @Binding var meditationGoal: Int
+    @Binding var meditationType: FTMeditateType
+    @Binding var meditateGoal: Int
     @Binding var showingAlert: Bool
     @Binding var elapsed: TimeInterval
     
@@ -21,7 +21,7 @@ struct TimerView: View {
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var progress: CGFloat {
-        CGFloat(elapsed) / CGFloat(meditationGoal)
+        CGFloat(elapsed) / CGFloat(meditateGoal)
     }
     
     var body: some View {
@@ -50,7 +50,7 @@ struct TimerView: View {
                         if isTimerRunning {
                             elapsed = Date().timeIntervalSince(startTime)
                             
-                            let elapsedTemp = meditationType == .open ? Date().timeIntervalSince(startTime) : Double(meditationGoal) - Date().timeIntervalSince(startTime)
+                            let elapsedTemp = meditationType == .open ? Date().timeIntervalSince(startTime) : Double(meditateGoal) - Date().timeIntervalSince(startTime)
                             
                             let tempTimerString = elapsedTemp.secondsAsTime(units: .short)
                             timerString = tempTimerString.replacingOccurrences(of: ", ", with: "\n")
@@ -80,7 +80,7 @@ struct TimerView: View {
         }
         .onAppear(perform: {
             if meditationType == .timed {
-                NotificationController.scheduleNotification(title: "Meditation Done", subtitle: "You completed your mediation goal.", timeInSeconds: meditationGoal)
+                NotificationController.scheduleNotification(title: "Meditation Done", subtitle: "You completed your mediation goal.", timeInSeconds: meditateGoal)
             }
         })
     }
@@ -107,5 +107,5 @@ struct TimerView: View {
 }
 
 #Preview {
-    TimerView(meditationType: .constant(.timed), meditationGoal: .constant(300), showingAlert: .constant(false), elapsed: .constant(0))
+    TimerView(meditationType: .constant(.timed), meditateGoal: .constant(300), showingAlert: .constant(false), elapsed: .constant(0))
 }
