@@ -49,7 +49,7 @@ let mobilityTitle = "Mobility"
 let mindTitle = "Mind"
 let mindSystemImage = "brain.filled.head.profile"
 let meditateOpenSystemImage = "stopwatch"
-let meditateTimedSystemImage = "clock"
+let meditateTimedSystemImage = "alarm"
 
 // MARK: - Life
 let lifeTitle = "Life"

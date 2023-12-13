@@ -34,11 +34,13 @@ class HealthKitController {
         let toRead = Set([
             HKObjectType.quantityType(forIdentifier: .stepCount)!,
             HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-            HKObjectType.quantityType(forIdentifier: .vo2Max)!
+            HKObjectType.quantityType(forIdentifier: .vo2Max)!,
+            HKObjectType.categoryType(forIdentifier: .mindfulSession)!
         ])
         let toShare = Set([
             HKObjectType.quantityType(forIdentifier: .stepCount)!,
-            HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
+            HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+            HKObjectType.categoryType(forIdentifier: .mindfulSession)!
         ])
             
         guard HKHealthStore.isHealthDataAvailable() else {
