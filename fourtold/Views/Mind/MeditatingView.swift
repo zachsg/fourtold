@@ -43,6 +43,12 @@ struct MeditatingView: View {
                 showingAlert.toggle()
                 showingSheet.toggle()
             }
+        } message: {
+            if meditationType == .timed {
+                Text("You meditated for \(elapsed.secondsAsTime(units: .full)) (\((elapsed / Double(meditationGoal) * 100).rounded() / 100, format: .percent) of your goal).")
+            } else {
+                Text("You meditated for \(elapsed.secondsAsTime(units: .full)).")
+            }
         }
     }
 }

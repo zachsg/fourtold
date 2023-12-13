@@ -5,6 +5,7 @@
 //  Created by Zach Gottlieb on 12/11/23.
 //
 
+import AVFoundation
 import SwiftUI
 import UIKit
 
@@ -50,20 +51,15 @@ struct TimerView: View {
                             elapsed = Date().timeIntervalSince(startTime)
                             
                             let elapsedTemp = meditationType == .open ? Date().timeIntervalSince(startTime) : Double(meditationGoal) - Date().timeIntervalSince(startTime)
-                            let formatter = DateComponentsFormatter()
-                            formatter.allowedUnits = [.hour, .minute, .second]
-                            formatter.unitsStyle = .short
                             
-                            let tempTimerString = formatter.string(from: TimeInterval(elapsedTemp))
-                            
-                            if let tempTimerString {
-                                timerString = tempTimerString.replacingOccurrences(of: ", ", with: "\n")
-                            }
+                            let tempTimerString = elapsedTemp.secondsAsTime(units: .short)
+                            timerString = tempTimerString.replacingOccurrences(of: ", ", with: "\n")
                             
                             if meditationType == .timed {
                                 if elapsedTemp < 0 {
                                     stopTimer()
                                     showingAlert.toggle()
+                                    AudioServicesPlaySystemSound(1007)
                                 }
                             }
                         }
