@@ -18,19 +18,19 @@ struct MeditationsSheet: View {
     
     @Binding var showingSheet: Bool
     
-    @State private var meditationType: FTMeditateType = .timed
+    @State private var meditateType: FTMeditateType = .timed
     @State private var startDate: Date = .now
     
     var body: some View {
         NavigationStack {
             Form {
-                Picker(selection: $meditationType, label: Text("Meditation type")) {
+                Picker(selection: $meditateType, label: Text("Meditation type")) {
                     ForEach(FTMeditateType.allCases, id: \.self) { type in
                         Text(type.rawValue.capitalized)
                     }
                 }
                 
-                if meditationType == .timed {
+                if meditateType == .timed {
                     Stepper(value: $meditateGoal, in: 60...5400, step: 60) {
                         Label(
                             title: {
@@ -41,7 +41,7 @@ struct MeditationsSheet: View {
                                     Text("min")
                                 }
                             }, icon: {
-                                Image(systemName: "clock")
+                                Image(systemName: meditateType == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
                             }
                         )
                     }
@@ -57,7 +57,7 @@ struct MeditationsSheet: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
-                        MeditatingView(healthKitController: healthKitController, meditateType: $meditationType, meditateGoal: $meditateGoal, startDate: $startDate, showingSheet: $showingSheet)
+                        MeditatingView(healthKitController: healthKitController, meditateType: $meditateType, meditateGoal: $meditateGoal, startDate: $startDate, showingSheet: $showingSheet)
                     }
                 }
             }
