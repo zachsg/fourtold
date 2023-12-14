@@ -13,6 +13,7 @@ struct MindView: View {
         
     @Environment(\.modelContext) var modelContext    
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
+    @Query(sort: \FTRead.startDate) var reads: [FTRead]
     
     @State private var path = NavigationPath()
     
@@ -27,8 +28,10 @@ struct MindView: View {
         var activities: [any FTActivity] = []
         
         let todayMeditates = meditates.filter { isToday(date: $0.startDate) }
+        let todayReads = reads.filter { isToday(date: $0.startDate) }
         
         activities.append(contentsOf: todayMeditates)
+        activities.append(contentsOf: todayReads)
         
         return activities.sorted { $0.startDate > $1.startDate }
     }
@@ -37,8 +40,10 @@ struct MindView: View {
         var activities: [any FTActivity] = []
         
         let olderMeditates = meditates.filter { !isToday(date: $0.startDate) }
+        let olderReads = reads.filter { !isToday(date: $0.startDate) }
         
         activities.append(contentsOf: olderMeditates)
+        activities.append(contentsOf: olderReads)
         
         return activities.sorted { $0.startDate > $1.startDate }
     }
@@ -54,9 +59,14 @@ struct MindView: View {
                                     VStack(alignment: .leading) {
                                         HStack {
                                             Label {
-                                                Text("Meditation")
-                                                    .foregroundColor(.accentColor)
+                                                HStack(spacing: 0) {
+                                                    Text("Meditated for ")
+                                                    Text("\(TimeInterval(meditate.duration).secondsAsTime(units: .short))")
+                                                }
+                                                .foregroundColor(.accentColor)
+                                                
                                                 Spacer()
+                                                
                                                 Text(meditate.startDate, format: .dateTime.hour().minute())
                                                     .foregroundStyle(.secondary)
                                             } icon: {
@@ -70,11 +80,48 @@ struct MindView: View {
                                         HStack {
                                             Label {
                                                 HStack {
-                                                    Text(meditate.type == .open ? "Open-ended:" : "Timed:")
-                                                    Text("\(TimeInterval(meditate.duration).secondsAsTime(units: .short))")
+                                                    Text(meditate.type == .open ? "Open-ended session" : "Timed session")
                                                 }
                                             } icon: {
                                                 Image(systemName: meditate.type == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
+                                            }
+                                        }
+                                        .foregroundStyle(.primary)
+                                        .fontWeight(.semibold)
+                                        .padding(.top, 4)
+                                    }
+                                }
+                            } else if let read = activity as? FTRead {
+                                NavigationLink(value: read) {
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Label {
+                                                HStack(spacing: 0) {
+                                                    Text("Read for ")
+                                                    Text("\(TimeInterval(read.duration).secondsAsTime(units: .short))")
+                                                }
+                                                .foregroundColor(.accentColor)
+                                                
+                                                Spacer()
+                                                
+                                                Text(read.startDate, format: .dateTime.hour().minute())
+                                                    .foregroundStyle(.secondary)
+                                            } icon: {
+                                                Image(systemName: readSystemImage)
+                                                    .foregroundColor(.accentColor)
+                                                
+                                            }
+                                        }
+                                        .font(.caption)
+                                        
+                                        HStack {
+                                            Label {
+                                                HStack {
+                                                    Text("\(read.type.rawValue.capitalized):")
+                                                    Text(read.title.isEmpty ? read.type.rawValue.capitalized : read.title)
+                                                }
+                                            } icon: {
+                                                Image(systemName: read.isTimed ? readTimedSystemImage : readOpenSystemImage)
                                             }
                                         }
                                         .foregroundStyle(.primary)
@@ -108,9 +155,14 @@ struct MindView: View {
                                     VStack(alignment: .leading) {
                                         HStack {
                                             Label {
-                                                Text("Meditation")
-                                                    .foregroundColor(.accentColor)
+                                                HStack(spacing: 0) {
+                                                    Text("Meditated for ")
+                                                    Text("\(TimeInterval(meditate.duration).secondsAsTime(units: .short))")
+                                                }
+                                                .foregroundColor(.accentColor)
+                                                
                                                 Spacer()
+                                                
                                                 Text(meditate.startDate, format: .dateTime.day().month())
                                                     .foregroundStyle(.secondary)
                                             } icon: {
@@ -124,11 +176,46 @@ struct MindView: View {
                                         HStack {
                                             Label {
                                                 HStack {
-                                                    Text(meditate.type == .open ? "Open-ended:" : "Timed:")
-                                                    Text("\(TimeInterval(meditate.duration).secondsAsTime(units: .short))")
+                                                    Text(meditate.type == .open ? "Open-ended session" : "Timed session")
                                                 }
                                             } icon: {
                                                 Image(systemName: meditate.type == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
+                                            }
+                                        }
+                                        .foregroundStyle(.primary)
+                                        .fontWeight(.semibold)
+                                        .padding(.top, 4)
+                                    }
+                                }
+                            } else if let read = activity as? FTRead {
+                                NavigationLink(value: read) {
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Label {
+                                                HStack(spacing: 0) {
+                                                    Text("Read for ")
+                                                    Text("\(TimeInterval(read.duration).secondsAsTime(units: .short))")
+                                                }
+                                                .foregroundColor(.accentColor)
+                                                Spacer()
+                                                Text(read.startDate, format: .dateTime.day().month())
+                                                    .foregroundStyle(.secondary)
+                                            } icon: {
+                                                Image(systemName: readSystemImage)
+                                                    .foregroundColor(.accentColor)
+                                                
+                                            }
+                                        }
+                                        .font(.caption)
+                                        
+                                        HStack {
+                                            Label {
+                                                HStack {
+                                                    Text("\(read.type.rawValue.capitalized):")
+                                                    Text(read.title.isEmpty ? read.type.rawValue.capitalized : read.title)
+                                                }
+                                            } icon: {
+                                                Image(systemName: read.isTimed ? readTimedSystemImage : readOpenSystemImage)
                                             }
                                         }
                                         .foregroundStyle(.primary)
@@ -166,6 +253,9 @@ struct MindView: View {
             .navigationDestination(for: FTMeditate.self) { meditate in
                 MeditationDetailView(meditate: meditate)
             }
+            .navigationDestination(for: FTRead.self) { read in
+                ReadDetailView(read: read)
+            }
             .toolbar {
                 ToolbarItemGroup {
                     Button(readTitle, systemImage: readSystemImage) {
@@ -189,7 +279,8 @@ struct MindView: View {
                 }
             }
             .sheet(isPresented: $readSheetIsShowing) {
-                Text("Read sheet")
+                ReadSheet(healthKitController: healthKitController, showingSheet: $readSheetIsShowing)
+                    .interactiveDismissDisabled()
             }
             .sheet(isPresented: $journalSheetIsShowing) {
                 Text("Journal sheet")
@@ -217,5 +308,5 @@ struct MindView: View {
     let healthKitController = HealthKitController()
     
     return MindView(healthKitController: healthKitController)
-        .modelContainer(for: FTMeditate.self)
+        .modelContainer(for: [FTMeditate.self, FTRead.self])
 }

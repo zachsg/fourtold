@@ -5,14 +5,10 @@
 //  Created by Zach Gottlieb on 12/11/23.
 //
 
-import SwiftData
 import SwiftUI
 
 struct MeditationsSheet: View {
     @Bindable var healthKitController: HealthKitController
-    
-    @Environment(\.modelContext) var modelContext
-    @Query(sort: \FTMeditate.startDate, order: .reverse) var meditations: [FTMeditate]
     
     @AppStorage(meditateGoalKey) var meditateGoal: Int = 600
     
@@ -69,5 +65,4 @@ struct MeditationsSheet: View {
     let healthKitController = HealthKitController()
     
     return MeditationsSheet(healthKitController: healthKitController, showingSheet: .constant(true))
-        .modelContainer(for: FTMeditate.self)
 }

@@ -21,7 +21,7 @@ struct MeditatingView: View {
     
     var body: some View {
         VStack {
-            TimerView(meditationType: $meditateType, meditateGoal: $meditateGoal, showingAlert: $showingAlert, elapsed: $elapsed)
+            MeditateTimerView(meditationType: $meditateType, meditateGoal: $meditateGoal, showingAlert: $showingAlert, elapsed: $elapsed)
         }
         .navigationTitle("Meditating")
         .navigationBarTitleDisplayMode(.inline)

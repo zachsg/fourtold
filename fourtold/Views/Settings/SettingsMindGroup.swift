@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsMindGroup: View {
     @AppStorage(meditateGoalKey) var meditateGoal: Int = 600
+    @AppStorage(readGoalKey) var readGoal: Int = 1800
     
     var body: some View {
         Section(mindTitle) {
@@ -27,6 +28,25 @@ struct SettingsMindGroup: View {
                     },
                     icon: {
                         Image(systemName: meditateSystemImage)
+                    }
+                )
+            }
+            
+            Stepper(value: $readGoal, in: 300...7200, step: 300) {
+                Label(
+                    title: {
+                        HStack {
+                            Text("Read for:")
+                            
+                            Text(readGoal / 60, format: .number)
+                                .bold()
+                            
+                            Text("min")
+                                .font(.footnote)
+                        }
+                    },
+                    icon: {
+                        Image(systemName: readSystemImage)
                     }
                 )
             }

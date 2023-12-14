@@ -16,7 +16,7 @@ class FTMeditate: FTActivity {
     var duration: Int
     var goal: Int?
     
-    init( startDate: Date, type: FTMeditateType, duration: Int) {
+    init(startDate: Date, type: FTMeditateType, duration: Int) {
         self.startDate = startDate
         self.type = type
         self.duration = duration

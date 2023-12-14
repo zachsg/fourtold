@@ -69,6 +69,9 @@ let journalSystemImage = "square.and.pencil"
 // Read
 let readTitle = "Read"
 let readSystemImage = "book"
+let readOpenSystemImage = "stopwatch"
+let readTimedSystemImage = "alarm"
+let readGoalKey = "readGoal"
 
 // MARK: - Life
 let lifeTitle = "Life"

@@ -1,5 +1,5 @@
 //
-//  TimerView.swift
+//  MeditateTimerView.swift
 //  fourtold
 //
 //  Created by Zach Gottlieb on 12/11/23.
@@ -9,7 +9,7 @@ import AVFoundation
 import SwiftUI
 import UIKit
 
-struct TimerView: View {
+struct MeditateTimerView: View {
     @Binding var meditationType: FTMeditateType
     @Binding var meditateGoal: Int
     @Binding var showingAlert: Bool
@@ -113,5 +113,5 @@ struct TimerView: View {
 }
 
 #Preview {
-    TimerView(meditationType: .constant(.timed), meditateGoal: .constant(300), showingAlert: .constant(false), elapsed: .constant(0))
+    MeditateTimerView(meditationType: .constant(.timed), meditateGoal: .constant(300), showingAlert: .constant(false), elapsed: .constant(0))
 }

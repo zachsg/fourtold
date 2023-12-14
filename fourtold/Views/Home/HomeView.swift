@@ -109,9 +109,9 @@ struct HomeView: View {
                     
                     HomeMindfulMinutesPastWeek(healthKitController: healthKitController)
                     
-                    // TODO: Time in daylight (i.e. Sun exposure)
+                    // TODO: Mood
                     
-                    // TODO: Grounding / Earthing
+                    // TODO: Journal?
                 } header: {
                     Text(mindTitle)
                 } footer: {
@@ -125,9 +125,11 @@ struct HomeView: View {
                 }
                 
                 Section(lifeTitle) {
-                    // TODO: Mood
-                
-                    // TODO: Journal?
+                    // TODO: Time in daylight (i.e. Sun exposure)
+                    
+                    // TODO: Grounding / Earthing
+                    
+                    // TODO: Stand hours?
                 }
             }
             .navigationTitle(homeTitle)
