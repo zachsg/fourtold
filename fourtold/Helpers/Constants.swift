@@ -10,6 +10,8 @@ import Foundation
 // MARK: - App
 let appName = "4told"
 
+let cancelSystemImage = "xmark.circle"
+
 // MARK: - User
 let userAgeKey = "userAge"
 let userGenderKey = "userGender"

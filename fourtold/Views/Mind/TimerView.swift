@@ -78,6 +78,12 @@ struct TimerView: View {
                     .font(.footnote)
             }
         }
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            Button("Cancel", systemImage: cancelSystemImage) {
+                timerStopped()
+            }
+        }
         .onAppear(perform: {
             if meditationType == .timed {
                 NotificationController.scheduleNotification(title: "Meditation Done", subtitle: "You completed your mediation goal.", timeInSeconds: meditateGoal)

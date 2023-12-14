@@ -188,6 +188,7 @@ struct MindView: View {
             }
             .sheet(isPresented: $meditateSheetIsShowing) {
                 MeditationsSheet(healthKitController: healthKitController, showingSheet: $meditateSheetIsShowing)
+                    .interactiveDismissDisabled()
             }
         }
     }
