@@ -21,7 +21,7 @@ struct HomeStepsPastWeek: View {
                     
                     Text("Steps past 7 days")
                 }
-                .foregroundStyle(.blue)
+                .foregroundStyle(.accent)
                 .font(.footnote.bold())
                 
                 HStack {

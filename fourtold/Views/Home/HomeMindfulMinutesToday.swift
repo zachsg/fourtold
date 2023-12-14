@@ -18,11 +18,11 @@ struct HomeMindfulMinutesToday: View {
                     
                     Text("Mindfulness today")
                 }
-                .foregroundColor(.blue)
+                .foregroundColor(.accentColor)
                 
                 Spacer()
                 
-                Text(healthKitController.latestSteps, format: .dateTime.hour().minute())
+                Text(healthKitController.latestMindfulMinutes, format: .dateTime.hour().minute())
                     .foregroundStyle(.tertiary)
             }
             .font(.footnote.bold())

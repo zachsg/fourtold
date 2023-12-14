@@ -25,6 +25,34 @@ struct HomeView: View {
         Calendar.current.isDateInToday(healthKitController.latestCardioFitness)
     }
     
+    var bestStepsDay: (day: Date, steps: Int) {
+        var bestDay: Date = .now
+        var bestSteps = 0
+        
+        for (day, minutes) in healthKitController.stepCountWeekByDay {
+            if minutes > bestSteps {
+                bestDay = day
+                bestSteps = minutes
+            }
+        }
+        
+        return (bestDay, bestSteps)
+    }
+    
+    var bestMindfulDay: (day: Date, minutes: Int) {
+        var bestDay: Date = .now
+        var bestMinutes = 0
+        
+        for (day, minutes) in healthKitController.mindfulMinutesWeekByDay {
+            if minutes > bestMinutes {
+                bestDay = day
+                bestMinutes = minutes
+            }
+        }
+        
+        return (bestDay, bestMinutes)
+    }
+    
     var body: some View {
         NavigationStack {
             List {
@@ -61,12 +89,22 @@ struct HomeView: View {
                 } header: {
                     Text(bodyTitle)
                 } footer: {
-                    if healthKitController.walkRunDistanceToday > 0 {
-                        Text("You're taking \(stepsPerMile()) steps per mile today.")
+                    VStack(alignment: .leading) {
+                        if healthKitController.walkRunDistanceToday > 0 {
+                            Text("You're taking \(stepsPerMile()) steps per mile today.")
+                        }
+                        
+                        if bestStepsDay.steps > 0 {
+                            HStack(spacing: 0) {
+                                Text("Your best day was ")
+                                Text(bestStepsDay.day, format: .dateTime.weekday().month().day())
+                                Text(" with \(bestStepsDay.steps, format: .number) steps.")
+                            }
+                        }
                     }
                 }
                 
-                Section(mindTitle) {
+                Section {
                     HomeMindfulMinutesToday(healthKitController: healthKitController)
                     
                     HomeMindfulMinutesPastWeek(healthKitController: healthKitController)
@@ -74,6 +112,16 @@ struct HomeView: View {
                     // TODO: Time in daylight (i.e. Sun exposure)
                     
                     // TODO: Grounding / Earthing
+                } header: {
+                    Text(mindTitle)
+                } footer: {
+                    if bestMindfulDay.minutes > 0 {
+                        HStack(spacing: 0) {
+                            Text("Your best day was ")
+                            Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
+                            Text(" with \(bestMindfulDay.minutes) minutes.")
+                        }
+                    }
                 }
                 
                 Section(lifeTitle) {
@@ -85,31 +133,34 @@ struct HomeView: View {
             .navigationTitle(homeTitle)
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
-                    refresh()
+                    let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
+                    refresh(hard: !today)
                 }
             }
             .refreshable {
-                refresh()
+                refresh(hard: true)
             }
         }
     }
     
-    func refresh() {
+    func refresh(hard: Bool = false) {
         if hasCardio {
-            healthKitController.getCardioFitnessRecent()
+            healthKitController.getCardioFitnessRecent(refresh: hard)
         }
         
         if hasDailyStepsGoal {
-            healthKitController.getStepCountToday()
-            healthKitController.getStepCountWeek()
+            healthKitController.getStepCountToday(refresh: hard)
+            healthKitController.getStepCountWeek(refresh: hard)
+            healthKitController.getStepCountWeekByDay(refresh: hard)
         }
         
         if hasWalkRunDistance {
-            healthKitController.getWalkRunDistanceToday()
+            healthKitController.getWalkRunDistanceToday(refresh: hard)
         }
         
-        healthKitController.getMindfulMinutesToday()
-        healthKitController.getMindfulMinutesRecent()
+        healthKitController.getMindfulMinutesToday(refresh: hard)
+        healthKitController.getMindfulMinutesRecent(refresh: hard)
+        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
     }
     
     func stepsPerMile() -> String {
@@ -134,6 +185,22 @@ struct HomeView: View {
     healthKitController.walkRunDistanceToday = 5.1
     healthKitController.cardioFitnessMostRecent = 44.1
     healthKitController.mindfulMinutesToday = 20
+    healthKitController.mindfulMinutesWeek = 60
+    
+    let today: Date = .now
+    for i in 0...6 {
+        let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
+        if let date {
+            healthKitController.mindfulMinutesWeekByDay[date] = Int.random(in: 0...20)
+        }
+    }
+    
+    for i in 0...6 {
+        let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
+        if let date {
+            healthKitController.stepCountWeekByDay[date] = Int.random(in: 0...15000)
+        }
+    }
     
     return HomeView(healthKitController: healthKitController)
 }

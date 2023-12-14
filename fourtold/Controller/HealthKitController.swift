@@ -63,7 +63,7 @@ class HealthKitController {
     }
     
     // MARK: - Steps
-    func getStepCountToday() {
+    func getStepCountToday(refresh: Bool = false) {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
             fatalError("*** Unable to create a step count type ***")
         }
@@ -90,12 +90,14 @@ class HealthKitController {
             self.latestSteps = result.endDate
         }
         
-        stepCountToday = 0
+        if refresh {
+            stepCountToday = 0
+        }
         
         healthStore.execute(query)
     }
     
-    func getStepCountWeek() {
+    func getStepCountWeek(refresh: Bool = false) {
         let calendar = Calendar.current
         
         // Set the anchor for 3 a.m. 6 days ago.
@@ -144,12 +146,14 @@ class HealthKitController {
             self.stepCountWeek = steps
         }
         
-        stepCountWeek = 0
+        if refresh {
+            stepCountWeek = 0
+        }
         
         healthStore.execute(query)
     }
     
-    func getStepCountWeekByDay() {
+    func getStepCountWeekByDay(refresh: Bool = false) {
         let calendar = Calendar.current
         
         // Create a 1-week interval.
@@ -264,13 +268,15 @@ class HealthKitController {
             
         }
         
-        stepCountWeekByDay = [:]
+        if refresh {
+            stepCountWeekByDay = [:]
+        }
         
         healthStore.execute(query)
     }
     
     // MARK: - Distance
-    func getWalkRunDistanceToday() {
+    func getWalkRunDistanceToday(refresh: Bool = false) {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning) else {
             fatalError("*** Unable to create a distance type ***")
         }
@@ -288,7 +294,7 @@ class HealthKitController {
             options: .cumulativeSum
         ) { _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
-                print("failed to read step count: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
+                print("failed to read step count: \(error?.localizedDescription ?? "")")
                 return
             }
            
@@ -301,13 +307,15 @@ class HealthKitController {
             self.latestWalkRunDistance = result.endDate
         }
         
-        walkRunDistanceToday = 0
+        if refresh {
+            walkRunDistanceToday = 0
+        }
         
         healthStore.execute(query)
     }
     
     // MARK: - Cardio Fitness
-    func getCardioFitnessRecent() {
+    func getCardioFitnessRecent(refresh: Bool = false) {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .vo2Max) else {
             fatalError("*** Unable to create a vo2max type ***")
         }
@@ -346,13 +354,15 @@ class HealthKitController {
             }
         }
         
-        cardioFitnessMostRecent = 0.0
+        if refresh {
+            cardioFitnessMostRecent = 0.0
+        }
         
         healthStore.execute(query)
     }
     
     // MARK: - Mindful Minutes
-    func getMindfulMinutesToday() {
+    func getMindfulMinutesToday(refresh: Bool = false) {
         guard let sampleType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
             fatalError("*** Unable to create a step count type ***")
         }
@@ -387,12 +397,14 @@ class HealthKitController {
             self.latestMindfulMinutes = latest
         }
         
-        mindfulMinutesToday = 0
+        if refresh {
+            mindfulMinutesToday = 0
+        }
         
         healthStore.execute(query)
     }
     
-    func getMindfulMinutesRecent() {
+    func getMindfulMinutesRecent(refresh: Bool = false) {
         guard let sampleType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
             fatalError("*** Unable to create a step count type ***")
         }
@@ -445,12 +457,14 @@ class HealthKitController {
             self.mindfulMinutesWeek = Int((total / 60).rounded())
         }
         
-        mindfulMinutesWeek = 0
+        if refresh {
+            mindfulMinutesWeek = 0
+        }
         
         healthStore.execute(query)
     }
     
-    func getMindfulMinutesWeekByDay() {
+    func getMindfulMinutesWeekByDay(refresh: Bool = false) {
         guard let sampleType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
             fatalError("*** Unable to create a step count type ***")
         }
@@ -520,7 +534,9 @@ class HealthKitController {
             }
         }
         
-        mindfulMinutesWeekByDay = [:]
+        if refresh {
+            mindfulMinutesWeekByDay = [:]
+        }
         
         healthStore.execute(query)
     }

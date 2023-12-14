@@ -19,7 +19,7 @@ struct HomeStepsToday: View {
                     
                     Text("Steps today")
                 }
-                .foregroundColor(.blue)
+                .foregroundColor(.accentColor)
                 
                 Spacer()
                 

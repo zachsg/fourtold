@@ -22,7 +22,7 @@ struct HomeWalkRunDistanceToday: View {
                     
                     Text("Distance today")
                 }
-                .foregroundColor(.blue)
+                .foregroundColor(.accentColor)
                 
                 Spacer()
                 

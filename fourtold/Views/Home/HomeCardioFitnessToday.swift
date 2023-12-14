@@ -18,7 +18,7 @@ struct HomeCardioFitnessToday: View {
                     
                     Text("Latest Cardio Fitness")
                 }
-                .foregroundColor(.blue)
+                .foregroundColor(.accentColor)
                 
                 Spacer()
                 
