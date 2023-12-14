@@ -11,7 +11,7 @@ struct WeekMindfulMinutesDetailView: View {
     @Bindable var healthKitController: HealthKitController
     
     var body: some View {
-        WeekMindfulMinutesBarChart(mindfulMinutesWeekByDay: healthKitController.mindfulMinutesWeekByDay)
+        WeekMindfulMinutesBarChart(healthKitController: healthKitController)
             .navigationTitle("Mindful Minutes")
             .navigationBarTitleDisplayMode(.inline)
             .task {
