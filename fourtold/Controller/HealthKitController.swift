@@ -482,7 +482,7 @@ class HealthKitController {
             }
             
             let today: Date = .now
-            for i in 0...5 {
+            for i in 0...6 {
                 let date = calendar.date(byAdding: .day, value: -i, to: today)
                 if let date {
                     self.mindfulMinutesWeekByDay[date] = 0
