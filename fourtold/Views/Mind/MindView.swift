@@ -203,8 +203,8 @@ struct MindView: View {
             }
         }
         .onAppear {
-            let refreshToday = todayActivities
-            let refreshOlder = olderActivities
+            let _ = todayActivities
+            let _ = olderActivities
         }
     }
     

@@ -90,6 +90,8 @@ class HealthKitController {
             self.latestSteps = result.endDate
         }
         
+        stepCountToday = 0
+        
         healthStore.execute(query)
     }
     
@@ -141,6 +143,8 @@ class HealthKitController {
             let steps = Int(sum.doubleValue(for: HKUnit.count()))
             self.stepCountWeek = steps
         }
+        
+        stepCountWeek = 0
         
         healthStore.execute(query)
     }
@@ -260,6 +264,8 @@ class HealthKitController {
             
         }
         
+        stepCountWeekByDay = [:]
+        
         healthStore.execute(query)
     }
     
@@ -294,6 +300,8 @@ class HealthKitController {
             self.walkRunDistanceToday = distance
             self.latestWalkRunDistance = result.endDate
         }
+        
+        walkRunDistanceToday = 0
         
         healthStore.execute(query)
     }
@@ -338,6 +346,8 @@ class HealthKitController {
             }
         }
         
+        cardioFitnessMostRecent = 0.0
+        
         healthStore.execute(query)
     }
     
@@ -376,6 +386,8 @@ class HealthKitController {
             self.mindfulMinutesToday = Int((total / 60).rounded())
             self.latestMindfulMinutes = latest
         }
+        
+        mindfulMinutesToday = 0
         
         healthStore.execute(query)
     }
@@ -432,6 +444,8 @@ class HealthKitController {
             
             self.mindfulMinutesWeek = Int((total / 60).rounded())
         }
+        
+        mindfulMinutesWeek = 0
         
         healthStore.execute(query)
     }
