@@ -69,6 +69,8 @@ struct HomeView: View {
                 Section(mindTitle) {
                     HomeMindfulMinutesToday(healthKitController: healthKitController)
                     
+                    HomeMindfulMinutesPastWeek(healthKitController: healthKitController)
+                    
                     // TODO: Time in daylight (i.e. Sun exposure)
                     
                     // TODO: Grounding / Earthing
@@ -107,6 +109,7 @@ struct HomeView: View {
         }
         
         healthKitController.getMindfulMinutesToday()
+        healthKitController.getMindfulMinutesRecent()
     }
     
     func stepsPerMile() -> String {

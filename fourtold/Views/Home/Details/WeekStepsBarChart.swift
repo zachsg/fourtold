@@ -8,7 +8,7 @@
 import Charts
 import SwiftUI
 
-struct BarChart: View {
+struct WeekStepsBarChart: View {
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = 0
     
     var stepCountWeekByDay: [Date: Int]
@@ -63,5 +63,5 @@ struct BarChart: View {
 }
 
 #Preview {
-    BarChart(stepCountWeekByDay: [Date.now : 1000])
+    WeekStepsBarChart(stepCountWeekByDay: [Date.now : 1000])
 }

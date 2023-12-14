@@ -29,6 +29,8 @@ class HealthKitController {
     // Mindful Minutes
     var mindfulMinutesToday = 0
     var latestMindfulMinutes: Date = .now
+    var mindfulMinutesWeek = 0
+    var mindfulMinutesWeekByDay: [Date: Int] = [:]
     
     init() {
         requestAuthorization()
@@ -174,7 +176,7 @@ class HealthKitController {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
             fatalError("*** Unable to create a step count type ***")
         }
-        
+                
         // Create the query.
         let query = HKStatisticsCollectionQuery(
             quantityType: quantityType,
@@ -230,7 +232,6 @@ class HealthKitController {
         }
         
         query.statisticsUpdateHandler = { query, statistics, collection, error in
-            print("handling updates...")
             guard let collection else {
                 print("no collection found")
                 return
@@ -380,7 +381,130 @@ class HealthKitController {
     }
     
     func getMindfulMinutesRecent() {
+        guard let sampleType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
+            fatalError("*** Unable to create a step count type ***")
+        }
         
+        let calendar = Calendar.current
+        
+        // Set the anchor for 3 a.m. 6 days ago.
+        let todayNumber = calendar.component(.weekday, from: .now)
+        let sixDaysAgo = todayNumber == 7 ? 1 : todayNumber + 1
+        let components = DateComponents(
+            calendar: calendar,
+            timeZone: calendar.timeZone,
+            hour: 3,
+            minute: 0,
+            second: 0,
+            weekday: sixDaysAgo
+        )
+        
+        guard let anchorDate = calendar.nextDate(
+            after: .now,
+            matching: components,
+            matchingPolicy: .nextTime,
+            repeatedTimePolicy: .first,
+            direction: .backward
+        ) else {
+            fatalError("*** unable to find the previous Monday. ***")
+        }
+        
+        let predicate = HKQuery.predicateForSamples(
+            withStart: anchorDate,
+            end: .now,
+            options: .strictStartDate
+        )
+
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+        
+        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { query, samples, error in
+            guard let samples else {
+                if let error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            var total = TimeInterval()
+            for sample in samples {
+                total += sample.endDate.timeIntervalSince(sample.startDate)
+            }
+            
+            self.mindfulMinutesWeek = Int((total / 60).rounded())
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    func getMindfulMinutesWeekByDay() {
+        guard let sampleType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
+            fatalError("*** Unable to create a step count type ***")
+        }
+        
+        let calendar = Calendar.current
+        
+        // Set the anchor for 3 a.m. 6 days ago.
+        let todayNumber = calendar.component(.weekday, from: .now)
+        let sixDaysAgo = todayNumber == 7 ? 1 : todayNumber + 1
+        let components = DateComponents(
+            calendar: calendar,
+            timeZone: calendar.timeZone,
+            hour: 3,
+            minute: 0,
+            second: 0,
+            weekday: sixDaysAgo
+        )
+        
+        guard let anchorDate = calendar.nextDate(
+            after: .now,
+            matching: components,
+            matchingPolicy: .nextTime,
+            repeatedTimePolicy: .first,
+            direction: .backward
+        ) else {
+            fatalError("*** unable to find the previous Monday. ***")
+        }
+        
+        let predicate = HKQuery.predicateForSamples(
+            withStart: anchorDate,
+            end: .now,
+            options: .strictStartDate
+        )
+        
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+        
+        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { query, samples, error in
+            guard let samples else {
+                if let error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            let today: Date = .now
+            for i in 0...5 {
+                let date = calendar.date(byAdding: .day, value: -i, to: today)
+                if let date {
+                    self.mindfulMinutesWeekByDay[date] = 0
+                }
+            }
+            
+            for (day, _) in self.mindfulMinutesWeekByDay {
+                var total = TimeInterval()
+                
+                for sample in samples {
+                    if calendar.isDate(sample.startDate, inSameDayAs: day) {
+                        total += sample.endDate.timeIntervalSince(sample.startDate)
+                    }
+                }
+                
+                self.mindfulMinutesWeekByDay[day] = Int((total / 60).rounded())
+            }
+        }
+        
+        mindfulMinutesWeekByDay = [:]
+        
+        healthStore.execute(query)
     }
     
     func setMindfulMinutes(seconds: Int, startDate: Date) {
