@@ -34,6 +34,7 @@
 		598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117952B27F462003FAEB0 /* MeditatingView.swift */; };
 		598117982B27F61C003FAEB0 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117972B27F61C003FAEB0 /* TimerView.swift */; };
 		5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5997A6192B295EBE00CDDF76 /* NotificationController.swift */; };
+		59B96AC52B2AA850003B5106 /* MeditationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AC42B2AA850003B5106 /* MeditationDetailView.swift */; };
 		59D28FD32B1E829E002799C4 /* HomeStepsToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD22B1E829E002799C4 /* HomeStepsToday.swift */; };
 		59D28FD52B1E84D9002799C4 /* WeekStepsBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */; };
 		59D28FD82B1E8564002799C4 /* SettingsMindGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD72B1E8564002799C4 /* SettingsMindGroup.swift */; };
@@ -75,6 +76,7 @@
 		598117972B27F61C003FAEB0 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		5997A6182B2917C800CDDF76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5997A6192B295EBE00CDDF76 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		59B96AC42B2AA850003B5106 /* MeditationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetailView.swift; sourceTree = "<group>"; };
 		59D28FD22B1E829E002799C4 /* HomeStepsToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsToday.swift; sourceTree = "<group>"; };
 		59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepsBarChart.swift; sourceTree = "<group>"; };
 		59D28FD72B1E8564002799C4 /* SettingsMindGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMindGroup.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				597550992B20E1650070F60E /* MindView.swift */,
+				59B96AC42B2AA850003B5106 /* MeditationDetailView.swift */,
 				598117932B27D22B003FAEB0 /* MeditationsSheet.swift */,
 				598117972B27F61C003FAEB0 /* TimerView.swift */,
 				598117952B27F462003FAEB0 /* MeditatingView.swift */,
@@ -321,6 +324,7 @@
 				590432AB2B1FC1370012F0FA /* SettingsUserInfoGroup.swift in Sources */,
 				59D28FE32B1EACDC002799C4 /* SettingsBodyGroup.swift in Sources */,
 				5912D1972B1BB78D00E78D6E /* ContentView.swift in Sources */,
+				59B96AC52B2AA850003B5106 /* MeditationDetailView.swift in Sources */,
 				594888FF2B296938003FD4C8 /* Extensions.swift in Sources */,
 				597550982B20E15D0070F60E /* BodyView.swift in Sources */,
 				597550A52B2542820070F60E /* SettingsLifeGroup.swift in Sources */,

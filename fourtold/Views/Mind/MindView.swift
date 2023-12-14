@@ -163,7 +163,7 @@ struct MindView: View {
             }
             .navigationTitle(mindTitle)
             .navigationDestination(for: FTMeditate.self) { meditate in
-                Text("You just did a \(meditate.type.rawValue) meditation for \(meditate.duration) seconds")
+                MeditationDetailView(meditate: meditate)
             }
             .toolbar {
                 Button("Journal", systemImage: journalSystemImage) {
