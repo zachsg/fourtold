@@ -50,12 +50,6 @@ let mobilityTitle = "Mobility"
 // MARK: - Mind
 let mindTitle = "Mind"
 let mindSystemImage = "brain.filled.head.profile"
-let meditateOpenSystemImage = "stopwatch"
-let meditateTimedSystemImage = "alarm"
-
-// MARK: - Life
-let lifeTitle = "Life"
-let lifeSystemImage = "atom"
 
 // Breath
 let breathTitle = "Breath"
@@ -65,10 +59,20 @@ let breathSystemImage = "lungs"
 let meditateTitle = "Meditate"
 let meditateSystemImage = "brain"
 let meditateGoalKey = "meditateGoal"
+let meditateOpenSystemImage = "stopwatch"
+let meditateTimedSystemImage = "alarm"
 
 // Journal
 let journalTitle = "Journal"
 let journalSystemImage = "square.and.pencil"
+
+// Read
+let readTitle = "Read"
+let readSystemImage = "book"
+
+// MARK: - Life
+let lifeTitle = "Life"
+let lifeSystemImage = "atom"
 
 // MARK: -  Settings
 let settingsTitle = "Settings"
