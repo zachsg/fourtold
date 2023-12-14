@@ -67,6 +67,8 @@ struct HomeView: View {
                 }
                 
                 Section(mindTitle) {
+                    HomeMindfulMinutesToday(healthKitController: healthKitController)
+                    
                     // TODO: Time in daylight (i.e. Sun exposure)
                     
                     // TODO: Grounding / Earthing
@@ -103,6 +105,8 @@ struct HomeView: View {
         if hasWalkRunDistance {
             healthKitController.getWalkRunDistanceToday()
         }
+        
+        healthKitController.getMindfulMinutesToday()
     }
     
     func stepsPerMile() -> String {
@@ -126,6 +130,7 @@ struct HomeView: View {
     healthKitController.stepCountWeek = 12000
     healthKitController.walkRunDistanceToday = 5.1
     healthKitController.cardioFitnessMostRecent = 44.1
+    healthKitController.mindfulMinutesToday = 20
     
     return HomeView(healthKitController: healthKitController)
 }

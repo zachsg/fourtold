@@ -17,6 +17,7 @@
 		5912D1A42B1BB90500E78D6E /* HealthKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A32B1BB90500E78D6E /* HealthKitController.swift */; };
 		5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */; };
 		594888FF2B296938003FD4C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594888FE2B296938003FD4C8 /* Extensions.swift */; };
+		594889032B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889022B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift */; };
 		597550932B1FC3620070F60E /* FTGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550922B1FC3620070F60E /* FTGender.swift */; };
 		597550982B20E15D0070F60E /* BodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550972B20E15D0070F60E /* BodyView.swift */; };
 		5975509A2B20E1650070F60E /* MindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550992B20E1650070F60E /* MindView.swift */; };
@@ -53,6 +54,7 @@
 		5912D1A32B1BB90500E78D6E /* HealthKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitController.swift; sourceTree = "<group>"; };
 		5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepsDetailView.swift; sourceTree = "<group>"; };
 		594888FE2B296938003FD4C8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		594889022B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMindfulMinutesToday.swift; sourceTree = "<group>"; };
 		597550922B1FC3620070F60E /* FTGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTGender.swift; sourceTree = "<group>"; };
 		597550972B20E15D0070F60E /* BodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyView.swift; sourceTree = "<group>"; };
 		597550992B20E1650070F60E /* MindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindView.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				5975509D2B20EA190070F60E /* Details */,
 				59D28FD22B1E829E002799C4 /* HomeStepsToday.swift */,
 				59D28FDE2B1EA048002799C4 /* HomeStepsPastWeek.swift */,
+				594889022B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift */,
 				59D28FDC2B1E8E4B002799C4 /* HomeWalkRunDistanceToday.swift */,
 				59D28FE02B1EABF7002799C4 /* HomeCardioFitnessToday.swift */,
 			);
@@ -314,6 +317,7 @@
 				597550A52B2542820070F60E /* SettingsLifeGroup.swift in Sources */,
 				598117982B27F61C003FAEB0 /* TimerView.swift in Sources */,
 				5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */,
+				594889032B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift in Sources */,
 				5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */,
 				598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */,
 				5975509A2B20E1650070F60E /* MindView.swift in Sources */,

@@ -29,7 +29,7 @@ struct ContentView: View {
                 }
                 .tag(FTTabItem.body)
             
-            MindView()
+            MindView(healthKitController: healthKitController)
                 .tabItem {
                     Image(systemName: mindSystemImage)
                     Text(mindTitle)

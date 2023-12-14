@@ -9,6 +9,8 @@ import SwiftData
 import SwiftUI
 
 struct MindView: View {
+    @Bindable var healthKitController: HealthKitController
+    
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditations: [FTMeditate]
     
@@ -185,7 +187,7 @@ struct MindView: View {
                 Text("Breathwork sheet")
             }
             .sheet(isPresented: $meditateSheetIsShowing) {
-                MeditationsSheet(showingSheet: $meditateSheetIsShowing)
+                MeditationsSheet(healthKitController: healthKitController, showingSheet: $meditateSheetIsShowing)
             }
         }
     }
@@ -196,6 +198,8 @@ struct MindView: View {
 }
 
 #Preview {
-    MindView()
+    let healthKitController = HealthKitController()
+    
+    return MindView(healthKitController: healthKitController)
         .modelContainer(for: FTMeditate.self)
 }

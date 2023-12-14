@@ -9,6 +9,8 @@ import SwiftData
 import SwiftUI
 
 struct MeditationsSheet: View {
+    @Bindable var healthKitController: HealthKitController
+    
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate, order: .reverse) var meditations: [FTMeditate]
     
@@ -55,7 +57,7 @@ struct MeditationsSheet: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
-                        MeditatingView(meditateType: $meditationType, meditateGoal: $meditateGoal, startDate: $startDate, showingSheet: $showingSheet)
+                        MeditatingView(healthKitController: healthKitController, meditateType: $meditationType, meditateGoal: $meditateGoal, startDate: $startDate, showingSheet: $showingSheet)
                     }
                 }
             }
@@ -64,6 +66,8 @@ struct MeditationsSheet: View {
 }
 
 #Preview {
-    MeditationsSheet(showingSheet: .constant(true))
+    let healthKitController = HealthKitController()
+    
+    return MeditationsSheet(healthKitController: healthKitController, showingSheet: .constant(true))
         .modelContainer(for: FTMeditate.self)
 }

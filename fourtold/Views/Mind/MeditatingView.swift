@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MeditatingView: View {
     @Environment(\.modelContext) var modelContext
+    @Bindable var healthKitController: HealthKitController
     
     @Binding var meditateType: FTMeditateType
     @Binding var meditateGoal: Int
@@ -38,6 +39,8 @@ struct MeditatingView: View {
             Button("Save") {
                 NotificationController.cancelAllPending()
                 
+                healthKitController.setMindfulMinutes(seconds: Int(elapsed), startDate: startDate)
+                
                 let mediation = FTMeditate(startDate: startDate, type: meditateType, duration: Int(TimeInterval(elapsed)))
                 modelContext.insert(mediation)
                 showingAlert.toggle()
@@ -54,5 +57,7 @@ struct MeditatingView: View {
 }
 
 #Preview {
-    MeditatingView(meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), showingSheet: .constant(true))
+    let healthKitController = HealthKitController()
+    
+    return MeditatingView(healthKitController: healthKitController, meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), showingSheet: .constant(true))
 }

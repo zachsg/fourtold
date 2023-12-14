@@ -26,10 +26,15 @@ class HealthKitController {
     var cardioFitnessMostRecent = 0.0
     var latestCardioFitness: Date = .now
     
+    // Mindful Minutes
+    var mindfulMinutesToday = 0
+    var latestMindfulMinutes: Date = .now
+    
     init() {
         requestAuthorization()
     }
     
+    // MARK: - Authorization
     func requestAuthorization() {
         let toRead = Set([
             HKObjectType.quantityType(forIdentifier: .stepCount)!,
@@ -55,7 +60,7 @@ class HealthKitController {
         }
     }
     
-    // MARK: Today
+    // MARK: - Steps
     func getStepCountToday() {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
             fatalError("*** Unable to create a step count type ***")
@@ -83,86 +88,9 @@ class HealthKitController {
             self.latestSteps = result.endDate
         }
         
-        self.healthStore.execute(query)
+        healthStore.execute(query)
     }
     
-    func getWalkRunDistanceToday() {
-        guard let quantityType = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning) else {
-            fatalError("*** Unable to create a distance type ***")
-        }
-        
-        let startDate = Calendar.current.startOfDay(for: .now)
-        let predicate = HKQuery.predicateForSamples(
-            withStart: startDate,
-            end: .now,
-            options: .strictStartDate
-        )
-        
-        let query = HKStatisticsQuery(
-            quantityType: quantityType,
-            quantitySamplePredicate: predicate,
-            options: .cumulativeSum
-        ) { _, result, error in
-            guard let result = result, let sum = result.sumQuantity() else {
-                print("failed to read step count: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
-                return
-            }
-           
-            let desiredLengthUnit = UnitLength(forLocale: .current)
-            let lengthUnit = desiredLengthUnit == UnitLength.feet ? HKUnit.mile() : HKUnit.meter()
-            
-            // TODO: Fix to work with Km and not just Miles
-            let distance = sum.doubleValue(for: lengthUnit)
-            self.walkRunDistanceToday = distance
-            self.latestWalkRunDistance = result.endDate
-        }
-        
-        self.healthStore.execute(query)
-    }
-    
-    func getCardioFitnessRecent() {
-        guard let quantityType = HKObjectType.quantityType(forIdentifier: .vo2Max) else {
-            fatalError("*** Unable to create a vo2max type ***")
-        }
-        
-        let startDate = Calendar.current.startOfDay(for: .now.addingTimeInterval(-1029600))
-        let predicate = HKQuery.predicateForSamples(
-            withStart: startDate,
-            end: .now,
-            options: .strictStartDate
-        )
-        
-        let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: .none) { query, results, error in
-            guard let samples = results as? [HKQuantitySample] else {
-                return
-            }
-            
-            var latest: Date = .distantPast
-            var bestSample: HKQuantitySample?
-            for sample in samples {
-                if sample.endDate > latest {
-                    latest = sample.endDate
-                    bestSample = sample
-                }
-            }
-            
-            if let bestSample {
-                let kgmin = HKUnit.gramUnit(with: .kilo).unitMultiplied(by: .minute())
-                let mL = HKUnit.literUnit(with: .milli)
-                let vo2Unit = mL.unitDivided(by: kgmin)
-                self.cardioFitnessMostRecent = bestSample.quantity.doubleValue(for: vo2Unit)
-                self.latestCardioFitness = bestSample.endDate
-            }
-            
-            DispatchQueue.main.async {
-                // Update the UI here.
-            }
-        }
-        
-        self.healthStore.execute(query)
-    }
-    
-    // MARK: Week
     func getStepCountWeek() {
         let calendar = Calendar.current
         
@@ -212,7 +140,7 @@ class HealthKitController {
             self.stepCountWeek = steps
         }
         
-        self.healthStore.execute(query)
+        healthStore.execute(query)
     }
     
     func getStepCountWeekByDay() {
@@ -332,5 +260,146 @@ class HealthKitController {
         }
         
         healthStore.execute(query)
+    }
+    
+    // MARK: - Distance
+    func getWalkRunDistanceToday() {
+        guard let quantityType = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning) else {
+            fatalError("*** Unable to create a distance type ***")
+        }
+        
+        let startDate = Calendar.current.startOfDay(for: .now)
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: .now,
+            options: .strictStartDate
+        )
+        
+        let query = HKStatisticsQuery(
+            quantityType: quantityType,
+            quantitySamplePredicate: predicate,
+            options: .cumulativeSum
+        ) { _, result, error in
+            guard let result = result, let sum = result.sumQuantity() else {
+                print("failed to read step count: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
+                return
+            }
+           
+            let desiredLengthUnit = UnitLength(forLocale: .current)
+            let lengthUnit = desiredLengthUnit == UnitLength.feet ? HKUnit.mile() : HKUnit.meter()
+            
+            // TODO: Fix to work with Km and not just Miles
+            let distance = sum.doubleValue(for: lengthUnit)
+            self.walkRunDistanceToday = distance
+            self.latestWalkRunDistance = result.endDate
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    // MARK: - Cardio Fitness
+    func getCardioFitnessRecent() {
+        guard let quantityType = HKObjectType.quantityType(forIdentifier: .vo2Max) else {
+            fatalError("*** Unable to create a vo2max type ***")
+        }
+        
+        let startDate = Calendar.current.startOfDay(for: .now.addingTimeInterval(-1029600))
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: .now,
+            options: .strictStartDate
+        )
+        
+        let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: .none) { query, results, error in
+            guard let samples = results as? [HKQuantitySample] else {
+                return
+            }
+            
+            var latest: Date = .distantPast
+            var bestSample: HKQuantitySample?
+            for sample in samples {
+                if sample.endDate > latest {
+                    latest = sample.endDate
+                    bestSample = sample
+                }
+            }
+            
+            if let bestSample {
+                let kgmin = HKUnit.gramUnit(with: .kilo).unitMultiplied(by: .minute())
+                let mL = HKUnit.literUnit(with: .milli)
+                let vo2Unit = mL.unitDivided(by: kgmin)
+                self.cardioFitnessMostRecent = bestSample.quantity.doubleValue(for: vo2Unit)
+                self.latestCardioFitness = bestSample.endDate
+            }
+            
+            DispatchQueue.main.async {
+                // Update the UI here.
+            }
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    // MARK: - Mindful Minutes
+    func getMindfulMinutesToday() {
+        guard let sampleType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
+            fatalError("*** Unable to create a step count type ***")
+        }
+        
+        let startDate = Calendar.current.startOfDay(for: .now)
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: .now,
+            options: .strictStartDate
+        )
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+        
+        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { query, samples, error in
+            guard let samples else {
+                if let error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            var total = TimeInterval()
+            var latest: Date = .distantPast
+            for sample in samples {
+                total += sample.endDate.timeIntervalSince(sample.startDate)
+                
+                if sample.endDate > latest {
+                    latest = sample.endDate
+                }
+            }
+            
+            self.mindfulMinutesToday = Int((total / 60).rounded())
+            self.latestMindfulMinutes = latest
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    func getMindfulMinutesRecent() {
+        
+    }
+    
+    func setMindfulMinutes(seconds: Int, startDate: Date) {
+        if let mindfulType = HKObjectType.categoryType(forIdentifier: .mindfulSession) {
+            
+            let endDate = Calendar.current.date(byAdding: .second, value: seconds, to: startDate) ?? .now
+            let mindfulSample = HKCategorySample(type: mindfulType, value: HKCategoryValue.notApplicable.rawValue, start: startDate, end: endDate)
+            
+            healthStore.save(mindfulSample, withCompletion: { (success, error) -> Void in
+                if success {
+                   // Saved to Apple Health
+                } else {
+                    // Something wrong
+                    if let error {
+                        print(error.localizedDescription)
+                    }
+                }
+                
+            })
+        }
     }
 }
