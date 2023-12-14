@@ -9,14 +9,14 @@ import Charts
 import SwiftUI
 
 struct WeekStepsBarChart: View {
-    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = 0
+    @Bindable var healthKitController: HealthKitController
     
-    var stepCountWeekByDay: [Date: Int]
+    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = 10000
     
     var averageStepsPerDay: Int {
         var cumulative = 0
         var days = 0
-        for (_, steps) in stepCountWeekByDay {
+        for (_, steps) in healthKitController.stepCountWeekByDay {
             days += 1
             cumulative += steps
         }
@@ -28,7 +28,7 @@ struct WeekStepsBarChart: View {
         VStack {
             GroupBox("Past 7 Days (Avg: \(averageStepsPerDay))") {
                 Chart {
-                    ForEach(stepCountWeekByDay.sorted { $0.key < $1.key }, id: \.key) { date, steps in
+                    ForEach(healthKitController.stepCountWeekByDay.sorted { $0.key < $1.key }, id: \.key) { date, steps in
                         BarMark(
                             x: .value("Day", weekDay(for: date)),
                             y: .value("Steps", steps)
@@ -63,5 +63,15 @@ struct WeekStepsBarChart: View {
 }
 
 #Preview {
-    WeekStepsBarChart(stepCountWeekByDay: [Date.now : 1000])
+    let healthKitController = HealthKitController()
+    
+    let today: Date = .now
+    for i in 0...6 {
+        let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
+        if let date {
+            healthKitController.stepCountWeekByDay[date] = Int.random(in: 0...15000)
+        }
+    }
+    
+    return WeekStepsBarChart(healthKitController: healthKitController)
 }

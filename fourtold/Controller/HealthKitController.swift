@@ -227,7 +227,7 @@ class HealthKitController {
             
             // Dispatch to the main queue to update the UI.
             DispatchQueue.main.async {
-                print("dispatching to main queue")
+                // Update UI
             }
         }
         
@@ -253,8 +253,8 @@ class HealthKitController {
                 
                 self.stepCountWeekByDay[date] = Int(value)
                 
-                DispatchQueue.main.async{
-                    //
+                DispatchQueue.main.async {
+                    // Update UI
                 }
             }
             
@@ -499,6 +499,10 @@ class HealthKitController {
                 }
                 
                 self.mindfulMinutesWeekByDay[day] = Int((total / 60).rounded())
+            }
+            
+            DispatchQueue.main.async {
+                // Update UI
             }
         }
         

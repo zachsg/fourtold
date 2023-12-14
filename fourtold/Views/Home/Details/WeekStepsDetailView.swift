@@ -11,7 +11,7 @@ struct WeekStepsDetailView: View {
     @Bindable var healthKitController: HealthKitController
     
     var body: some View {
-        WeekStepsBarChart(stepCountWeekByDay: healthKitController.stepCountWeekByDay)
+        WeekStepsBarChart(healthKitController: healthKitController)
             .navigationTitle("Steps")
             .navigationBarTitleDisplayMode(.inline)
             .task {
