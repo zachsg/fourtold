@@ -28,12 +28,12 @@ struct ReadDetailView: View {
                     .padding(.top, 16)
                 
                 Text(read.type.rawValue.capitalized)
-                    .font(.headline)
+                    .font(.title)
                     .padding(.top, 4)
                 
-                HStack {
+                HStack(spacing: 0) {
                     Text(read.startDate, format: .dateTime.hour().minute())
-                    Text("on")
+                    Text(" on ")
                     Text(read.startDate, format: .dateTime.day().month())
                 }
                 .font(.subheadline)
@@ -41,7 +41,7 @@ struct ReadDetailView: View {
                 
                 Text("You read for \(TimeInterval(read.duration).secondsAsTime(units: .full)).")
                     .font(.subheadline)
-                    .padding(.bottom, 4)
+                    .padding(.bottom, 12)
                 
                 Divider()
             }
@@ -49,7 +49,6 @@ struct ReadDetailView: View {
             VStack(alignment: .leading) {
                 Text("\(read.type.rawValue.capitalized) title")
                     .font(.headline)
-                    .padding(.top, 4)
                 TextField("\(read.type.rawValue.capitalized) title (optional)", text: $read.title)
                     .submitLabel(.done)
                 

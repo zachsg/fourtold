@@ -55,80 +55,9 @@ struct MindView: View {
                     Section("Today") {
                         ForEach(todayActivities, id: \.id) { activity in
                             if let meditate = activity as? FTMeditate {
-                                NavigationLink(value: meditate) {
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Label {
-                                                HStack(spacing: 0) {
-                                                    Text("Meditated for ")
-                                                    Text("\(TimeInterval(meditate.duration).secondsAsTime(units: .short))")
-                                                }
-                                                .foregroundColor(.accentColor)
-                                                
-                                                Spacer()
-                                                
-                                                Text(meditate.startDate, format: .dateTime.hour().minute())
-                                                    .foregroundStyle(.secondary)
-                                            } icon: {
-                                                Image(systemName: meditateSystemImage)
-                                                    .foregroundColor(.accentColor)
-                                                    
-                                            }
-                                        }
-                                        .font(.caption)
-                                        
-                                        HStack {
-                                            Label {
-                                                HStack {
-                                                    Text(meditate.type == .open ? "Open-ended session" : "Timed session")
-                                                }
-                                            } icon: {
-                                                Image(systemName: meditate.type == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
-                                            }
-                                        }
-                                        .foregroundStyle(.primary)
-                                        .fontWeight(.semibold)
-                                        .padding(.top, 4)
-                                    }
-                                }
+                                MindMeditateItemView(meditate: meditate)
                             } else if let read = activity as? FTRead {
-                                NavigationLink(value: read) {
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Label {
-                                                HStack(spacing: 0) {
-                                                    Text("Read for ")
-                                                    Text("\(TimeInterval(read.duration).secondsAsTime(units: .short))")
-                                                }
-                                                .foregroundColor(.accentColor)
-                                                
-                                                Spacer()
-                                                
-                                                Text(read.startDate, format: .dateTime.hour().minute())
-                                                    .foregroundStyle(.secondary)
-                                            } icon: {
-                                                Image(systemName: readSystemImage)
-                                                    .foregroundColor(.accentColor)
-                                                
-                                            }
-                                        }
-                                        .font(.caption)
-                                        
-                                        HStack {
-                                            Label {
-                                                HStack {
-                                                    Text("\(read.type.rawValue.capitalized):")
-                                                    Text(read.title.isEmpty ? read.type.rawValue.capitalized : read.title)
-                                                }
-                                            } icon: {
-                                                Image(systemName: read.isTimed ? readTimedSystemImage : readOpenSystemImage)
-                                            }
-                                        }
-                                        .foregroundStyle(.primary)
-                                        .fontWeight(.semibold)
-                                        .padding(.top, 4)
-                                    }
-                                }
+                                MindReadItemView(read: read)
                             }
                         }
                         .onDelete { indexSet in
@@ -145,84 +74,16 @@ struct MindView: View {
                             .foregroundColor(.accentColor)
                             .font(.title3)
                     }
+                    .font(.headline)
                 }
                 
                 if !olderActivities.isEmpty {
                     Section(isExpanded: $showOldActivities) {
                         ForEach(olderActivities, id: \.id) { activity in
                             if let meditate = activity as? FTMeditate {
-                                NavigationLink(value: meditate) {
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Label {
-                                                HStack(spacing: 0) {
-                                                    Text("Meditated for ")
-                                                    Text("\(TimeInterval(meditate.duration).secondsAsTime(units: .short))")
-                                                }
-                                                .foregroundColor(.accentColor)
-                                                
-                                                Spacer()
-                                                
-                                                Text(meditate.startDate, format: .dateTime.day().month())
-                                                    .foregroundStyle(.secondary)
-                                            } icon: {
-                                                Image(systemName: meditateSystemImage)
-                                                    .foregroundColor(.accentColor)
-                                                
-                                            }
-                                        }
-                                        .font(.caption)
-                                        
-                                        HStack {
-                                            Label {
-                                                HStack {
-                                                    Text(meditate.type == .open ? "Open-ended session" : "Timed session")
-                                                }
-                                            } icon: {
-                                                Image(systemName: meditate.type == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
-                                            }
-                                        }
-                                        .foregroundStyle(.primary)
-                                        .fontWeight(.semibold)
-                                        .padding(.top, 4)
-                                    }
-                                }
+                                MindMeditateItemView(meditate: meditate)
                             } else if let read = activity as? FTRead {
-                                NavigationLink(value: read) {
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Label {
-                                                HStack(spacing: 0) {
-                                                    Text("Read for ")
-                                                    Text("\(TimeInterval(read.duration).secondsAsTime(units: .short))")
-                                                }
-                                                .foregroundColor(.accentColor)
-                                                Spacer()
-                                                Text(read.startDate, format: .dateTime.day().month())
-                                                    .foregroundStyle(.secondary)
-                                            } icon: {
-                                                Image(systemName: readSystemImage)
-                                                    .foregroundColor(.accentColor)
-                                                
-                                            }
-                                        }
-                                        .font(.caption)
-                                        
-                                        HStack {
-                                            Label {
-                                                HStack {
-                                                    Text("\(read.type.rawValue.capitalized):")
-                                                    Text(read.title.isEmpty ? read.type.rawValue.capitalized : read.title)
-                                                }
-                                            } icon: {
-                                                Image(systemName: read.isTimed ? readTimedSystemImage : readOpenSystemImage)
-                                            }
-                                        }
-                                        .foregroundStyle(.primary)
-                                        .fontWeight(.semibold)
-                                        .padding(.top, 4)
-                                    }
-                                }
+                                MindReadItemView(read: read)
                             }
                         }
                         .onDelete { indexSet in

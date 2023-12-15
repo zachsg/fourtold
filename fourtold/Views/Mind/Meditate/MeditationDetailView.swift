@@ -24,42 +24,42 @@ struct MeditationDetailView: View {
                     .padding(.top, 16)
                 
                 Text(meditate.type == .open ? "Open-ended" : "Timed")
-                    .font(.headline)
+                    .font(.title)
                     .padding(.top, 4)
                 
-                HStack {
+                HStack(spacing: 0) {
                     Text(meditate.startDate, format: .dateTime.hour().minute())
-                    Text("on")
+                    Text(" on ")
                     Text(meditate.startDate, format: .dateTime.day().month())
                 }
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-                .padding(.bottom, 16)
+                .padding(.bottom, 12)
+                
+                Divider()
             }
             
             VStack(alignment: .leading) {
                 Text("You meditated for \(TimeInterval(meditate.duration).secondsAsTime(units: .full)).")
-                    .padding()
                 
                 if meditate.type == .timed {
                     VStack(alignment: .leading) {
                         Text("...Your goal was \(TimeInterval(meditate.goal ?? meditateGoal).secondsAsTime(units: .full)).")
-                            .padding()
+                            .padding(.top, 12)
                         
                         if meditate.duration >= meditate.goal ?? meditateGoal {
                             Text("Nice work!!")
-                                .padding()
+                                .padding(.top, 12)
                         } else {
                             Text("Not bad. You'll get 'em next time!")
-                                .padding()
+                                .padding(.top, 12)
                         }
                     }
                 }
                 
             }
-            .font(.title2)
-            
-            
+            .padding()
+            .font(.headline)
         }
         .navigationTitle("Meditation Details")
         .navigationBarTitleDisplayMode(.inline)

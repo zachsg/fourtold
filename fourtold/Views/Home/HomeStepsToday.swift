@@ -16,7 +16,6 @@ struct HomeStepsToday: View {
             HStack {
                 HStack {
                     Image(systemName: stepsSystemImage)
-                    
                     Text("Steps today")
                 }
                 .foregroundColor(.accentColor)
