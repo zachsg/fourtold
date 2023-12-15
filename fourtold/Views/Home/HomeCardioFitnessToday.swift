@@ -29,7 +29,7 @@ struct HomeCardioFitnessToday: View {
             
             HStack(alignment: .firstTextBaseline, spacing: 0) {
                 Text(String(format: "%.1f%", healthKitController.cardioFitnessMostRecent))
-                    .font(.title.bold())
+                    .font(.title.weight(.semibold))
                 
                 Text("VO₂ max")
                     .font(.caption.bold())

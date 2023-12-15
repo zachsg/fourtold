@@ -29,7 +29,7 @@ struct HomeStepsToday: View {
             
             HStack(spacing: 0) {
                 Text(healthKitController.stepCountToday, format: .number)
-                    .font(.title.bold())
+                    .font(.title.weight(.semibold))
                 
                 VStack(alignment: .leading) {
                     Text("\(percentComplete(action: healthKitController.stepCountToday, goal: dailyStepsGoal))")

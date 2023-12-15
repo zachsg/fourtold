@@ -36,13 +36,6 @@ struct ContentView: View {
                 }
                 .tag(FTTabItem.mind)
             
-            LifeView()
-                .tabItem {
-                    Image(systemName: lifeSystemImage)
-                    Text(lifeTitle)
-                }
-                .tag(FTTabItem.life)
-            
             SettingsView()
                 .tabItem {
                     Image(systemName: settingsSystemImage)

@@ -33,7 +33,7 @@ struct HomeWalkRunDistanceToday: View {
             
             HStack(alignment: .firstTextBaseline, spacing: 0) {
                 Text(walkRunDistancetoday)
-                    .font(.title.bold())
+                    .font(.title.weight(.semibold))
                 
                 Text("Miles")
                     .font(.caption.bold())

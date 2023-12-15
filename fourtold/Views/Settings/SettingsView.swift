@@ -16,8 +16,6 @@ struct SettingsView: View {
                 SettingsBodyGroup()
                 
                 SettingsMindGroup()
-                
-                SettingsLifeGroup()
             }
             .navigationTitle(settingsTitle)
         }

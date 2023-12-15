@@ -8,5 +8,5 @@
 import Foundation
 
 enum FTTabItem: String, Equatable {
-    case overview, body, mind, life, settings
+    case overview, body, mind, settings
 }

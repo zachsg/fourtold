@@ -29,7 +29,7 @@ struct HomeMindfulMinutesToday: View {
             
             HStack(alignment: .firstTextBaseline, spacing: 0) {
                 Text("\(healthKitController.mindfulMinutesToday)")
-                    .font(.title.bold())
+                    .font(.title.weight(.semibold))
                 
                 Text("Minutes")
                     .font(.caption.bold())

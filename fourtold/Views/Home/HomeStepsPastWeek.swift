@@ -26,7 +26,7 @@ struct HomeStepsPastWeek: View {
                 
                 HStack(spacing: 0) {
                     Text(healthKitController.stepCountWeek, format: .number)
-                        .font(.title.bold())
+                        .font(.title.weight(.semibold))
                     
                     VStack(alignment: .leading) {
                         Text("\(percentComplete(action: healthKitController.stepCountWeek, goal: dailyStepsGoal * 7))")

@@ -112,6 +112,12 @@ struct HomeView: View {
                     // TODO: Mood
                     
                     // TODO: Journal?
+                    
+                    // TODO: Time in daylight (i.e. Sun exposure)
+                    
+                    // TODO: Grounding / Earthing
+                    
+                    // TODO: Stand hours?
                 } header: {
                     Text(mindTitle)
                 } footer: {
@@ -122,14 +128,6 @@ struct HomeView: View {
                             Text(" with \(bestMindfulDay.minutes) minutes.")
                         }
                     }
-                }
-                
-                Section(lifeTitle) {
-                    // TODO: Time in daylight (i.e. Sun exposure)
-                    
-                    // TODO: Grounding / Earthing
-                    
-                    // TODO: Stand hours?
                 }
             }
             .navigationTitle(homeTitle)

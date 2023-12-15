@@ -74,10 +74,6 @@ let readOpenSystemImage = "stopwatch"
 let readTimedSystemImage = "alarm"
 let readGoalKey = "readGoal"
 
-// MARK: - Life
-let lifeTitle = "Life"
-let lifeSystemImage = "atom"
-
 // MARK: -  Settings
 let settingsTitle = "Settings"
 let settingsSystemImage = "gear"
