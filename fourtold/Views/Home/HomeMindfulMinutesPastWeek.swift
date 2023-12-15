@@ -25,14 +25,16 @@ struct HomeMindfulMinutesPastWeek: View {
                 }
                 .font(.footnote.bold())
                 
-                HStack(alignment: .firstTextBaseline) {
+                HStack(alignment: .firstTextBaseline, spacing: 0) {
                     Text("\(healthKitController.mindfulMinutesWeek)")
-                        .font(.largeTitle.weight(.medium))
+                        .font(.title.bold())
                     
                     Text("Minutes")
-                        .font(.footnote.weight(.heavy))
-                        .foregroundStyle(.tertiary)
+                        .font(.caption.bold())
+                        .foregroundStyle(.secondary)
+                        .padding(.leading, 2)
                 }
+                .padding(.top, 2)
             }
         }
     }

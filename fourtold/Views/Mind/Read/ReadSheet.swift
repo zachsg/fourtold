@@ -55,6 +55,10 @@ struct ReadSheet: View {
                 
                 TextField("URL/hyperlink for \(readType.rawValue) (optional)", text: $url)
                     .submitLabel(.done)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                    .textContentType(.URL)
+                    .keyboardType(.URL)
             }
             .navigationTitle("Read")
             .toolbar {

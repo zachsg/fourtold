@@ -31,14 +31,16 @@ struct HomeWalkRunDistanceToday: View {
             }
             .font(.footnote.bold())
             
-            HStack(alignment: .firstTextBaseline) {
+            HStack(alignment: .firstTextBaseline, spacing: 0) {
                 Text(walkRunDistancetoday)
-                    .font(.largeTitle.weight(.medium))
+                    .font(.title.bold())
                 
                 Text("Miles")
-                    .font(.footnote.weight(.heavy))
-                    .foregroundStyle(.tertiary)
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                    .padding(.leading, 2)
             }
+            .padding(.top, 2)
         }
     }
 }

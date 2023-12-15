@@ -17,14 +17,13 @@ struct SettingsMindGroup: View {
             Stepper(value: $meditateGoal, in: 60...5400, step: 60) {
                 Label(
                     title: {
-                        HStack {
-                            Text("Meditate goal:")
-                            
+                        HStack(alignment: .firstTextBaseline, spacing: 0) {
+                            Text("Meditate goal: ")
                             Text(meditateGoal / 60, format: .number)
                                 .bold()
-                            
                             Text("min")
                                 .font(.footnote)
+                                .padding(.leading, 1)
                         }
                     },
                     icon: {
@@ -36,14 +35,13 @@ struct SettingsMindGroup: View {
             Stepper(value: $readGoal, in: 300...7200, step: 300) {
                 Label(
                     title: {
-                        HStack {
-                            Text("Read goal:")
-                            
+                        HStack(alignment: .firstTextBaseline, spacing: 0) {
+                            Text("Read goal: ")
                             Text(readGoal / 60, format: .number)
                                 .bold()
-                            
                             Text("min")
                                 .font(.footnote)
+                                .padding(.leading, 1)
                         }
                     },
                     icon: {
@@ -56,16 +54,16 @@ struct SettingsMindGroup: View {
                 ForEach(FTBreathType.allCases, id: \.self) {
                     switch($0) {
                     case .four78:
-                        Text("4-7-8")
+                        Text("4-7-8 breath")
                     case .box:
-                        Text("Box Breath")
+                        Text("Box breath")
                     case .wimHof:
-                        Text("Wim Hof Method")
+                        Text("Wim Hof method")
                     }
                 }
             } label: {
                 Label {
-                    Text("Favorite breathwork")
+                    Text("Breath type")
                 } icon: {
                     Image(systemName: breathSystemImage)
                 }

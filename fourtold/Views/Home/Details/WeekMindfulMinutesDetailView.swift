@@ -15,7 +15,7 @@ struct WeekMindfulMinutesDetailView: View {
             .navigationTitle("Mindful Minutes")
             .navigationBarTitleDisplayMode(.inline)
             .task {
-                healthKitController.getMindfulMinutesWeekByDay()
+                healthKitController.getMindfulMinutesWeekByDay(refresh: true)
             }
     }
 }

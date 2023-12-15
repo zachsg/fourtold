@@ -24,18 +24,20 @@ struct HomeStepsPastWeek: View {
                 .foregroundStyle(.accent)
                 .font(.footnote.bold())
                 
-                HStack {
+                HStack(spacing: 0) {
                     Text(healthKitController.stepCountWeek, format: .number)
-                        .font(.largeTitle.weight(.medium))
+                        .font(.title.bold())
                     
                     VStack(alignment: .leading) {
                         Text("\(percentComplete(action: healthKitController.stepCountWeek, goal: dailyStepsGoal * 7))")
                         
                         Text("of \(dailyStepsGoal * 7)")
                     }
-                    .font(.footnote.weight(.heavy))
-                    .foregroundStyle(.tertiary)
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                    .padding(.leading, 2)
                 }
+                .padding(.top, 2)
             }
         }
     }

@@ -16,14 +16,13 @@ struct SettingsUserInfoGroup: View {
             Stepper(value: $userAge, in: 16...100) {
                 Label(
                     title: {
-                        HStack {
-                            Text("Age:")
-                            
+                        HStack(alignment: .firstTextBaseline, spacing: 0) {
+                            Text("Age: ")
                             Text(userAge, format: .number)
                                 .bold()
-                            
                             Text("yrs")
                                 .font(.footnote)
+                                .padding(.leading, 1)
                         }
                     },
                     icon: {

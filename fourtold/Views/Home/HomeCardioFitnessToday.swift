@@ -27,14 +27,16 @@ struct HomeCardioFitnessToday: View {
             }
             .font(.footnote.bold())
             
-            HStack(alignment: .firstTextBaseline) {
+            HStack(alignment: .firstTextBaseline, spacing: 0) {
                 Text(String(format: "%.1f%", healthKitController.cardioFitnessMostRecent))
-                    .font(.largeTitle.weight(.medium))
+                    .font(.title.bold())
                 
-//                Text("Miles")
-//                    .font(.footnote.weight(.heavy))
-//                    .foregroundStyle(.tertiary)
+                Text("VO₂ max")
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                    .padding(.leading, 2)
             }
+            .padding(.top, 2)
         }
     }
     
