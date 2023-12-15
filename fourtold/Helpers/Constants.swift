@@ -54,6 +54,7 @@ let mindSystemImage = "brain.filled.head.profile"
 // Breath
 let breathTitle = "Breath"
 let breathSystemImage = "lungs"
+let breathTypeKey = "breathType"
 
 // Meditate
 let meditateTitle = "Meditate"

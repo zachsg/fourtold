@@ -50,6 +50,8 @@
 		59D28FE32B1EACDC002799C4 /* SettingsBodyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FE22B1EACDC002799C4 /* SettingsBodyGroup.swift */; };
 		59DAF3762B2BF4B300BB12B5 /* MindMeditateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF3752B2BF4B300BB12B5 /* MindMeditateItemView.swift */; };
 		59DAF3782B2BF5F300BB12B5 /* MindReadItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF3772B2BF5F300BB12B5 /* MindReadItemView.swift */; };
+		59DAF37A2B2C047A00BB12B5 /* FTBreathType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */; };
+		59DAF37C2B2C04B900BB12B5 /* FTBreath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */; };
 		59DC47C62B1E6A1E00737EDE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC47C52B1E6A1E00737EDE /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +102,8 @@
 		59D28FE22B1EACDC002799C4 /* SettingsBodyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBodyGroup.swift; sourceTree = "<group>"; };
 		59DAF3752B2BF4B300BB12B5 /* MindMeditateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindMeditateItemView.swift; sourceTree = "<group>"; };
 		59DAF3772B2BF5F300BB12B5 /* MindReadItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindReadItemView.swift; sourceTree = "<group>"; };
+		59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreathType.swift; sourceTree = "<group>"; };
+		59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreath.swift; sourceTree = "<group>"; };
 		59DC47C52B1E6A1E00737EDE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,8 +254,10 @@
 				597550A62B27A1800070F60E /* FTActivity.swift */,
 				597550A82B27A1D50070F60E /* FTMeditate.swift */,
 				597550AC2B27A2580070F60E /* FTMeditateType.swift */,
+				59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */,
 				59B96AC62B2B9415003B5106 /* FTRead.swift */,
 				59B96AC82B2B9462003B5106 /* FTReadType.swift */,
+				59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				5975509C2B20E16B0070F60E /* LifeView.swift in Sources */,
 				59D28FD52B1E84D9002799C4 /* WeekStepsBarChart.swift in Sources */,
 				59B96AD12B2B9DAD003B5106 /* ReadingView.swift in Sources */,
+				59DAF37A2B2C047A00BB12B5 /* FTBreathType.swift in Sources */,
 				597550A92B27A1D50070F60E /* FTMeditate.swift in Sources */,
 				590432AB2B1FC1370012F0FA /* SettingsUserInfoGroup.swift in Sources */,
 				59D28FE32B1EACDC002799C4 /* SettingsBodyGroup.swift in Sources */,
@@ -397,6 +404,7 @@
 				59D28FE12B1EABF7002799C4 /* HomeCardioFitnessToday.swift in Sources */,
 				5975509F2B226FA00070F60E /* FTTabItem.swift in Sources */,
 				590861E52B1E5C790040DC72 /* Constants.swift in Sources */,
+				59DAF37C2B2C04B900BB12B5 /* FTBreath.swift in Sources */,
 				59B96AD32B2B9F0F003B5106 /* ReadTimerView.swift in Sources */,
 				598117942B27D22B003FAEB0 /* MeditationsSheet.swift in Sources */,
 			);
