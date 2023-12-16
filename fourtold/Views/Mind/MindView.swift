@@ -121,12 +121,10 @@ struct MindView: View {
                 ToolbarItemGroup {
                     Button(readTitle, systemImage: readSystemImage) {
                         readSheetIsShowing.toggle()
-                        // TODO: Add reading
                     }
                     
                     Button(journalTitle, systemImage: journalSystemImage) {
                         journalSheetIsShowing.toggle()
-                        // TODO: Add journaling
                     }
                     
                     Button(breathTitle, systemImage: breathSystemImage) {
@@ -144,7 +142,7 @@ struct MindView: View {
                     .interactiveDismissDisabled()
             }
             .sheet(isPresented: $journalSheetIsShowing) {
-                Text("Journal sheet")
+                JournalSheet()
             }
             .sheet(isPresented: $breathworkSheetIsShowing) {
                 Text("Breathwork sheet")

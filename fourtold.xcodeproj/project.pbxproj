@@ -32,6 +32,7 @@
 		598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117952B27F462003FAEB0 /* MeditatingView.swift */; };
 		598117982B27F61C003FAEB0 /* MeditateTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117972B27F61C003FAEB0 /* MeditateTimerView.swift */; };
 		5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5997A6192B295EBE00CDDF76 /* NotificationController.swift */; };
+		59B57B342B2D13EE00FA949C /* JournalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B332B2D13EE00FA949C /* JournalSheet.swift */; };
 		59B96AC52B2AA850003B5106 /* MeditationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AC42B2AA850003B5106 /* MeditationDetailView.swift */; };
 		59B96AC72B2B9415003B5106 /* FTRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AC62B2B9415003B5106 /* FTRead.swift */; };
 		59B96AC92B2B9462003B5106 /* FTReadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AC82B2B9462003B5106 /* FTReadType.swift */; };
@@ -82,6 +83,7 @@
 		598117972B27F61C003FAEB0 /* MeditateTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateTimerView.swift; sourceTree = "<group>"; };
 		5997A6182B2917C800CDDF76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5997A6192B295EBE00CDDF76 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		59B57B332B2D13EE00FA949C /* JournalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalSheet.swift; sourceTree = "<group>"; };
 		59B96AC42B2AA850003B5106 /* MeditationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetailView.swift; sourceTree = "<group>"; };
 		59B96AC62B2B9415003B5106 /* FTRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTRead.swift; sourceTree = "<group>"; };
 		59B96AC82B2B9462003B5106 /* FTReadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTReadType.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		597550952B20E1310070F60E /* Mind */ = {
 			isa = PBXGroup;
 			children = (
+				59B57B322B2D13DB00FA949C /* Journal */,
 				59B96ACB2B2B969A003B5106 /* Read */,
 				597550992B20E1650070F60E /* MindView.swift */,
 				59DAF3752B2BF4B300BB12B5 /* MindMeditateItemView.swift */,
@@ -183,6 +186,14 @@
 				594889062B2A8E60003FD4C8 /* WeekMindfulMinutesDetailView.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		59B57B322B2D13DB00FA949C /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				59B57B332B2D13EE00FA949C /* JournalSheet.swift */,
+			);
+			path = Journal;
 			sourceTree = "<group>";
 		};
 		59B96ACA2B2B9691003B5106 /* Meditate */ = {
@@ -389,6 +400,7 @@
 				5975509F2B226FA00070F60E /* FTTabItem.swift in Sources */,
 				590861E52B1E5C790040DC72 /* Constants.swift in Sources */,
 				59DAF37C2B2C04B900BB12B5 /* FTBreath.swift in Sources */,
+				59B57B342B2D13EE00FA949C /* JournalSheet.swift in Sources */,
 				59B96AD32B2B9F0F003B5106 /* ReadTimerView.swift in Sources */,
 				598117942B27D22B003FAEB0 /* MeditationsSheet.swift in Sources */,
 			);
@@ -538,6 +550,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -576,6 +589,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
