@@ -17,9 +17,10 @@ struct SettingsUserInfoGroup: View {
                 Label(
                     title: {
                         HStack(alignment: .firstTextBaseline, spacing: 0) {
-                            Text("Age: ")
+                            Text("Age:")
                             Text(userAge, format: .number)
                                 .bold()
+                                .padding(.leading, 4)
                             Text("yrs")
                                 .font(.footnote)
                                 .padding(.leading, 1)

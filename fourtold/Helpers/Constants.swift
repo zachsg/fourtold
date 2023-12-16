@@ -74,6 +74,14 @@ let readOpenSystemImage = "stopwatch"
 let readTimedSystemImage = "alarm"
 let readGoalKey = "readGoal"
 
+// Sun
+let sunTitle = "Sun Exposure"
+let sunSystemImage = "sun.max"
+
+// Ground
+let groundTitle = "Grounding"
+let groundSystemImage = "globe.americas"
+
 // MARK: -  Settings
 let settingsTitle = "Settings"
 let settingsSystemImage = "gear"

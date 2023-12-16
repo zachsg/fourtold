@@ -18,9 +18,10 @@ struct SettingsMindGroup: View {
                 Label(
                     title: {
                         HStack(alignment: .firstTextBaseline, spacing: 0) {
-                            Text("Meditate goal: ")
+                            Text("Meditate goal:")
                             Text(meditateGoal / 60, format: .number)
                                 .bold()
+                                .padding(.leading, 4)
                             Text("min")
                                 .font(.footnote)
                                 .padding(.leading, 1)
@@ -36,9 +37,10 @@ struct SettingsMindGroup: View {
                 Label(
                     title: {
                         HStack(alignment: .firstTextBaseline, spacing: 0) {
-                            Text("Read goal: ")
+                            Text("Read goal:")
                             Text(readGoal / 60, format: .number)
                                 .bold()
+                                .padding(.leading, 4)
                             Text("min")
                                 .font(.footnote)
                                 .padding(.leading, 1)

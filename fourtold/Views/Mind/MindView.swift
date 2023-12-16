@@ -21,6 +21,8 @@ struct MindView: View {
     @State private var breathworkSheetIsShowing = false
     @State private var journalSheetIsShowing = false
     @State private var readSheetIsShowing = false
+    @State private var sunSheetIsShowing = false
+    @State private var groundSheetIsShowing = false
     
     @State private var showOldActivities = false
     
@@ -135,6 +137,14 @@ struct MindView: View {
                     Button(meditateTitle, systemImage: meditateSystemImage) {
                         meditateSheetIsShowing.toggle()
                     }
+                    
+                    Button(sunTitle, systemImage: sunSystemImage) {
+                        sunSheetIsShowing.toggle()
+                    }
+                    
+                    Button(groundTitle, systemImage: groundSystemImage) {
+                        groundSheetIsShowing.toggle()
+                    }
                 }
             }
             .sheet(isPresented: $readSheetIsShowing) {
@@ -145,11 +155,18 @@ struct MindView: View {
                 JournalSheet()
             }
             .sheet(isPresented: $breathworkSheetIsShowing) {
-                Text("Breathwork sheet")
+                BreathSheet(healthKitController: healthKitController, showingSheet: $breathworkSheetIsShowing)
+                    .interactiveDismissDisabled()
             }
             .sheet(isPresented: $meditateSheetIsShowing) {
                 MeditationsSheet(healthKitController: healthKitController, showingSheet: $meditateSheetIsShowing)
                     .interactiveDismissDisabled()
+            }
+            .sheet(isPresented: $sunSheetIsShowing) {
+                Text("Sunning sheet")
+            }
+            .sheet(isPresented: $groundSheetIsShowing) {
+                Text("Grounding sheet")
             }
         }
         .onAppear {

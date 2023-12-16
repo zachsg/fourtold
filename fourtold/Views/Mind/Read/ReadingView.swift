@@ -24,7 +24,7 @@ struct ReadingView: View {
     
     var body: some View {
         VStack {
-            ReadTimerView(readType: $readType, readGoal: $readGoal, showingAlert: $showingAlert, elapsed: $elapsed, isTimed: $isTimed)
+            TimerView(goal: $readGoal, showingAlert: $showingAlert, elapsed: $elapsed, isTimed: isTimed, notificationTitle: "Reading Done", notificationSubtitle: "You completed your reading goal.")
         }
         .navigationTitle("Reading")
         .navigationBarTitleDisplayMode(.inline)

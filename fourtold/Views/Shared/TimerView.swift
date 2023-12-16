@@ -1,19 +1,22 @@
 //
-//  MeditateTimerView.swift
+//  TimerView.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/11/23.
+//  Created by Zach Gottlieb on 12/15/23.
 //
 
 import AVFoundation
 import SwiftUI
 import UIKit
 
-struct MeditateTimerView: View {
-    @Binding var meditationType: FTMeditateType
-    @Binding var meditateGoal: Int
+struct TimerView: View {
+    @Binding var goal: Int
     @Binding var showingAlert: Bool
     @Binding var elapsed: TimeInterval
+    
+    var isTimed: Bool
+    var notificationTitle: String
+    var notificationSubtitle: String
     
     @State var isTimerRunning = true
     @State private var startTime =  Date()
@@ -21,7 +24,7 @@ struct MeditateTimerView: View {
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var progress: CGFloat {
-        CGFloat(elapsed) / CGFloat(meditateGoal)
+        CGFloat(elapsed) / CGFloat(goal)
     }
     
     var body: some View {
@@ -50,12 +53,12 @@ struct MeditateTimerView: View {
                         if isTimerRunning {
                             elapsed = Date().timeIntervalSince(startTime)
                             
-                            let elapsedTemp = meditationType == .open ? Date().timeIntervalSince(startTime) : Double(meditateGoal) - Date().timeIntervalSince(startTime)
+                            let elapsedTemp = isTimed ? Double(goal) - Date().timeIntervalSince(startTime) : Date().timeIntervalSince(startTime)
                             
                             let tempTimerString = elapsedTemp.secondsAsTime(units: .short)
                             timerString = tempTimerString.replacingOccurrences(of: ", ", with: "\n")
                             
-                            if meditationType == .timed {
+                            if isTimed {
                                 if elapsedTemp < 0 {
                                     stopTimer()
                                     showingAlert.toggle()
@@ -72,7 +75,7 @@ struct MeditateTimerView: View {
                     })
                     .onDisappear(perform: {
                         UIApplication.shared.isIdleTimerDisabled = false
-                })
+                    })
                 
                 Text("Tap to end")
                     .font(.footnote)
@@ -85,8 +88,8 @@ struct MeditateTimerView: View {
             }
         }
         .onAppear(perform: {
-            if meditationType == .timed {
-                NotificationController.scheduleNotification(title: "Meditation Done", subtitle: "You completed your mediation goal.", timeInSeconds: meditateGoal)
+            if isTimed {
+                NotificationController.scheduleNotification(title: notificationTitle, subtitle: notificationSubtitle, timeInSeconds: goal)
             }
         })
     }
@@ -113,5 +116,5 @@ struct MeditateTimerView: View {
 }
 
 #Preview {
-    MeditateTimerView(meditationType: .constant(.timed), meditateGoal: .constant(300), showingAlert: .constant(false), elapsed: .constant(0))
+    TimerView(goal: .constant(300), showingAlert: .constant(false), elapsed: .constant(60), isTimed: true, notificationTitle: "Finished", notificationSubtitle: "You are finished")
 }
