@@ -47,10 +47,8 @@ struct MeditationsSheet: View {
                 }
                 
                 Section("Mood") {
-                    Picker(selection: $mood, label: Text("How're you feeling?")) {
-                        ForEach(FTMood.allCases, id: \.self) { type in
-                            Text("\(type.emoji()) \(type.rawValue.capitalized)")
-                        }
+                    MoodPicker(mood: $mood) {
+                        Text("How're you feeling?")
                     }
                 }
             }

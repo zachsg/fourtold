@@ -8,5 +8,11 @@
 import Foundation
 
 enum FTMood: String, Codable, CaseIterable {
-    case sad, anxious, tired, neutral, calm, energized, happy
+    case veryUnpleasant = "very unpleasant",
+         unpleasant,
+         slightlyUnpleasant = "slightly unpleasant",
+         neutral,
+         slightlyPleasant = "slightly pleasant",
+         pleasant,
+         veryPleasant = "very pleasant"
 }

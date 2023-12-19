@@ -25,64 +25,96 @@ struct MindReadItemView: View {
         if read.type == .other && read.genre == .other {
             title = "Read for"
         } else if read.type == .other {
-            let genre = read.genre == .sciFi ? "science fiction" : read.genre.rawValue
-            title = "Read \(genre) for"
+            title = "Read \(read.genre.rawValue) for"
         } else if read.genre == .other {
             title = "Read \(read.type == .article ? "an" : "a") \(read.type.rawValue) for"
         } else {
-            let genre = read.genre == .sciFi ? "science fiction" : read.genre.rawValue
-            title = "Read a \(genre) \(read.type.rawValue) for"
+            title = "Read a \(read.genre.rawValue) \(read.type.rawValue) for"
         }
         
         return title
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        DisclosureGroup {
             HStack {
-                HStack {
-                    Image(systemName: readSystemImage)
-                    Text("Reading")
-                }
-                .foregroundColor(.accentColor)
-                
-                Spacer()
-                
-                Text(read.startDate, format: dateFormat(for: read.startDate))
-                    .foregroundStyle(.tertiary)
-            }
-            .font(.footnote.bold())
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    if read.type == .other {
-                        Text("\(readingTitle) \(readingTimeFormatted)")
-                            .font(.headline)
-                    } else {
-                        Text("\(readingTitle) \(readingTimeFormatted)")
-                            .font(.headline)
-                    }
-                    
-                    HStack {
-                        Text(read.startMood.emoji())
-                        Image(systemName: arrowSystemImage)
-                        Text(read.endMood.emoji())
-                    }
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                }
-                .foregroundStyle(.primary)
-                
-                Spacer()
-                
                 Image(systemName: progressSystemImage)
                     .resizable()
-                    .frame(width: 32, height: 32)
-                    .foregroundColor(moodChange > 0 ? .green : moodChange < 0 ? .red : .secondary)
+                    .frame(width: 28, height: 28)
+                    .foregroundColor(read.endMood.color())
                     .rotationEffect(.degrees(90 - Double(moodChange * 10)))
+                
+                VStack(alignment: .leading) {
+                    if moodChange > 0 {
+                        Text("Your mood improved from:")
+                        HStack {
+                            Text(read.startMood.rawValue)
+                                .foregroundStyle(read.startMood.color())
+                                .fontWeight(.bold)
+                            Image(systemName: arrowSystemImage)
+                            Text(read.endMood.rawValue)
+                                .foregroundStyle(read.endMood.color())
+                                .fontWeight(.bold)
+                        }
+                    } else if moodChange == 0 {
+                        Text("Your mood remained:")
+                        Text(read.endMood.rawValue)
+                            .foregroundStyle(read.endMood.color())
+                            .fontWeight(.bold)
+                    } else {
+                        Text("Your mood declined from")
+                        HStack {
+                            Text(read.startMood.rawValue)
+                                .foregroundStyle(read.startMood.color())
+                                .fontWeight(.bold)
+                            Image(systemName: arrowSystemImage)
+                            Text(read.endMood.rawValue)
+                                .foregroundStyle(read.endMood.color())
+                                .fontWeight(.bold)
+                        }
+                    }
+                }
             }
-            .padding(.top, 4)
+        } label: {
+            VStack(alignment: .leading) {
+                HStack {
+                    HStack {
+                        Image(systemName: readSystemImage)
+                        Text("Reading")
+                    }
+                    .foregroundColor(.accentColor)
+                    
+                    Spacer()
+                    
+                    Text(read.startDate, format: dateFormat(for: read.startDate))
+                        .foregroundStyle(.tertiary)
+                }
+                .font(.footnote.bold())
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        if read.type == .other {
+                            Text("\(readingTitle) \(readingTimeFormatted)")
+                                .font(.headline)
+                        } else {
+                            Text("\(readingTitle) \(readingTimeFormatted)")
+                                .font(.headline)
+                        }
+                        
+                        HStack {
+                            Text(read.startMood.emoji())
+                            Image(systemName: arrowSystemImage)
+                            Text(read.endMood.emoji())
+                        }
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    }
+                    .foregroundStyle(.primary)
+                }
+                .padding(.top, 4)
+            }
         }
+        .tint(read.endMood.color())
     }
     
     func dateFormat(for date: Date) -> Date.FormatStyle {
@@ -98,7 +130,7 @@ struct MindReadItemView: View {
         let container = try ModelContainer(for: FTRead.self, configurations: config)
         
         let startMood: FTMood = .neutral
-        let endMood: FTMood = .happy
+        let endMood: FTMood = .veryPleasant
         
         let now: Date = .now
         

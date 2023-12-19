@@ -48,10 +48,8 @@ struct MeditationDoneSheet: View {
                     VStack {
                         Text("How're you feeling now?")
                             .font(.headline)
-                        Picker(selection: $endMood, label: Text("How're you feeling now?")) {
-                            ForEach(FTMood.allCases, id: \.self) { type in
-                                Text("\(type.emoji()) \(type.rawValue.capitalized)")
-                            }
+                        MoodPicker(mood: $endMood) {
+                            Text("How're you feeling now?")
                         }
                         .labelsHidden()
                     }

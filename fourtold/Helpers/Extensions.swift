@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension TimeInterval {
     func secondsAsTime(units: DateComponentsFormatter.UnitsStyle) -> String {
@@ -68,39 +69,58 @@ extension FTTimeOfDay {
 extension FTMood {
     func emoji() -> String {
         return switch self {
-        case .sad:
+        case .veryUnpleasant:
+            "😭"
+        case .unpleasant:
             "😓"
-        case .anxious:
-            "😬"
-        case .tired:
-            "😴"
+        case .slightlyUnpleasant:
+            "🙁"
         case .neutral:
             "😶"
-        case .calm:
-            "😌"
-        case .energized:
+        case .slightlyPleasant:
+            "🙂"
+        case .pleasant:
             "😊"
-        case .happy:
-            "😃"
+        case .veryPleasant:
+            "😁"
+        }
+    }
+    
+    func color() -> Color {
+        return switch self {
+        case .veryUnpleasant:
+            .red
+        case .unpleasant:
+            .orange
+        case .slightlyUnpleasant:
+            .pink
+        case .neutral:
+            .purple
+        case .slightlyPleasant:
+            .blue
+        case .pleasant:
+            .yellow
+        case .veryPleasant:
+            .green
         }
     }
     
     func differentThan(mood:FTMood) -> Int {
         func intValueOf(mood: FTMood) -> Int {
             switch mood {
-            case .sad:
+            case .veryUnpleasant:
                 1
-            case .anxious:
+            case .unpleasant:
                 2
-            case .tired:
+            case .slightlyUnpleasant:
                 3
             case .neutral:
                 4
-            case .calm:
+            case .slightlyPleasant:
                 5
-            case .energized:
+            case .pleasant:
                 6
-            case .happy:
+            case .veryPleasant:
                 7
             }
         }

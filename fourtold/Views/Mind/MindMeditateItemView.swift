@@ -16,46 +16,80 @@ struct MindMeditateItemView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        DisclosureGroup {
             HStack {
-                HStack {
-                    Image(systemName: meditateSystemImage)
-                    Text("Meditation")
-                }
-                .foregroundColor(.accentColor)
-                
-                Spacer()
-                
-                Text(meditate.startDate, format: dateFormat(for: meditate.startDate))
-                    .foregroundStyle(.tertiary)
-            }
-            .font(.footnote.bold())
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Meditated for \(TimeInterval(meditate.duration).secondsAsTime(units: .full))")
-                        .font(.headline)
-                    
-                    HStack {
-                        Text(meditate.startMood.emoji())
-                        Image(systemName: arrowSystemImage)
-                        Text(meditate.endMood.emoji())
-                    }
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                }
-                .foregroundStyle(.primary)
-                
-                Spacer()
-                
                 Image(systemName: progressSystemImage)
                     .resizable()
-                    .frame(width: 32, height: 32)
-                    .foregroundColor(moodChange > 0 ? .green : moodChange < 0 ? .red : .secondary)
+                    .frame(width: 28, height: 28)
+                    .foregroundColor(meditate.endMood.color())
                     .rotationEffect(.degrees(90 - Double(moodChange * 10)))
+                
+                VStack(alignment: .leading) {
+                    if moodChange > 0 {
+                        Text("Your mood improved from:")
+                        HStack {
+                            Text(meditate.startMood.rawValue)
+                                .foregroundStyle(meditate.startMood.color())
+                                .fontWeight(.bold)
+                            Image(systemName: arrowSystemImage)
+                            Text(meditate.endMood.rawValue)
+                                .foregroundStyle(meditate.endMood.color())
+                                .fontWeight(.bold)
+                        }
+                    } else if moodChange == 0 {
+                        Text("Your mood remained:")
+                        Text(meditate.endMood.rawValue)
+                            .foregroundStyle(meditate.endMood.color())
+                            .fontWeight(.bold)
+                    } else {
+                        Text("Your mood declined from")
+                        HStack {
+                            Text(meditate.startMood.rawValue)
+                                .foregroundStyle(meditate.startMood.color())
+                                .fontWeight(.bold)
+                            Image(systemName: arrowSystemImage)
+                            Text(meditate.endMood.rawValue)
+                                .foregroundStyle(meditate.endMood.color())
+                                .fontWeight(.bold)
+                        }
+                    }
+                }
             }
-            .padding(.top, 4)
+        } label: {
+            VStack(alignment: .leading) {
+                HStack {
+                    HStack {
+                        Image(systemName: meditateSystemImage)
+                        Text("Meditation")
+                    }
+                    .foregroundColor(.accentColor)
+                    
+                    Spacer()
+                    
+                    Text(meditate.startDate, format: dateFormat(for: meditate.startDate))
+                        .foregroundStyle(.tertiary)
+                }
+                .font(.footnote.bold())
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Meditated for \(TimeInterval(meditate.duration).secondsAsTime(units: .full))")
+                            .font(.headline)
+                        
+                        HStack {
+                            Text(meditate.startMood.emoji())
+                            Image(systemName: arrowSystemImage)
+                            Text(meditate.endMood.emoji())
+                        }
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    }
+                    .foregroundStyle(.primary)
+                }
+                .padding(.top, 4)
+            }
         }
+        .tint(meditate.endMood.color())
     }
     
     func dateFormat(for date: Date) -> Date.FormatStyle {
@@ -69,7 +103,7 @@ struct MindMeditateItemView: View {
         let container = try ModelContainer(for: FTMeditate.self, configurations: config)
         
         let startMood: FTMood = .neutral
-        let endMood: FTMood = .calm
+        let endMood: FTMood = .veryPleasant
         let now: Date = .now
         
         let meditate = FTMeditate(startDate: now, timeOfDay: now.timeOfDay(), startMood: startMood, endMood: endMood, type: .timed, duration: 300)
