@@ -12,13 +12,14 @@ struct ReadingView: View {
     @Bindable var healthKitController: HealthKitController
     
     @Binding var readType: FTReadType
+    @Binding var genre: FTReadGenre
+    @Binding var mood: FTMood
     @Binding var isTimed: Bool
     @Binding var readGoal: Int
     @Binding var startDate: Date
-    @Binding var title: String
-    @Binding var url: String
     @Binding var showingSheet: Bool
     
+    @State private var endMood: FTMood = .neutral
     @State private var showingAlert = false
     @State private var elapsed: TimeInterval = 0
     
@@ -30,39 +31,23 @@ struct ReadingView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: {
             startDate = .now
+            endMood = mood
         })
-        .alert("Done Reading", isPresented: $showingAlert) {
-            Button("Cancel", role: .cancel) {
-                NotificationController.cancelAllPending()
-                
-                showingAlert.toggle()
-                showingSheet.toggle()
-            }
-            
-            Button("Save") {
-                NotificationController.cancelAllPending()
-                
-                healthKitController.setMindfulMinutes(seconds: Int(elapsed), startDate: startDate)
-                
-                let read = FTRead(startDate: startDate, type: readType, title: title, url: url, duration: Int(TimeInterval(elapsed)), isTimed: isTimed)
-                
-                modelContext.insert(read)
-                showingAlert.toggle()
-                showingSheet.toggle()
-            }
-        } message: {
-            if isTimed {
-                Text("You read for \(elapsed.secondsAsTime(units: .full)) (\((elapsed / Double(readGoal) * 100).rounded() / 100, format: .percent) of your goal).")
-            } else {
-                Text("You read for \(elapsed.secondsAsTime(units: .full)).")
-            }
-        }
+        .sheet(isPresented: $showingAlert, content: {
+            ReadingDoneSheet(healthKitController: healthKitController, type: $readType, genre: $genre, isTimed: $isTimed, startDate: $startDate, elapsed: $elapsed, goal: $readGoal, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingAlert: $showingAlert)
+                .presentationDetents([.medium])
+                .interactiveDismissDisabled()
+        })
+    }
+    
+    func elapsedRounded() -> Int {
+        Int((elapsed / 60.0).rounded()) * 60
     }
 }
 
 #Preview {
     let healthKitController = HealthKitController()
     
-    return ReadingView(healthKitController: healthKitController, readType: .constant(.book), isTimed: .constant(true), readGoal: .constant(1800), startDate: .constant(.now), title: .constant("Princess Bride"), url: .constant("https://www.google.com"),  showingSheet: .constant(true))
+    return ReadingView(healthKitController: healthKitController, readType: .constant(.book), genre: .constant(.fantasy), mood: .constant(.neutral), isTimed: .constant(true), readGoal: .constant(1800), startDate: .constant(.now), showingSheet: .constant(true))
 }
 

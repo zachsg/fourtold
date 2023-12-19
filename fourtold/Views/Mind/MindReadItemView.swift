@@ -29,7 +29,7 @@ struct MindReadItemView: View {
                 .font(.footnote.bold())
                 
                 VStack(alignment: .leading) {
-                    Text("\(read.type.rawValue.capitalized)\(read.title.isEmpty ? "" : ": \(read.title)")")
+                    Text("\(read.type.rawValue.capitalized): \(read.genre.rawValue.capitalized)")
                         .font(.headline)
                     
                     Text("Read for \(TimeInterval(read.duration).secondsAsTime(units: .full))")
@@ -54,7 +54,10 @@ struct MindReadItemView: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: FTRead.self, configurations: config)
         
-        let read = FTRead(startDate: .now, type: .book, duration: 600, isTimed: false)
+        let mood: FTMood = .neutral
+        let now: Date = .now
+        
+        let read = FTRead(startDate: now, timeOfDay: now.timeOfDay(), startMood: mood, endMood: mood, type: .book, genre: .fantasy, duration: 600, isTimed: false)
             
         return MindReadItemView(read: read)
             .modelContainer(container)

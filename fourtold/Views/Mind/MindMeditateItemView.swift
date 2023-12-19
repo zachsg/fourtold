@@ -52,7 +52,10 @@ struct MindMeditateItemView: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: FTMeditate.self, configurations: config)
         
-        let meditate = FTMeditate(startDate: .now, type: .timed, duration: 300)
+        let mood: FTMood = .neutral
+        let now: Date = .now
+        
+        let meditate = FTMeditate(startDate: now, timeOfDay: now.timeOfDay(), startMood: mood, endMood: mood, type: .timed, duration: 300)
         
         return MindMeditateItemView(meditate: meditate)
             .modelContainer(container)

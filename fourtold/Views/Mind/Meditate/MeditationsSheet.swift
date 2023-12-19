@@ -16,30 +16,41 @@ struct MeditationsSheet: View {
     
     @State private var meditateType: FTMeditateType = .timed
     @State private var startDate: Date = .now
+    @State private var mood: FTMood = .neutral
     
     var body: some View {
         NavigationStack {
             Form {
-                Picker(selection: $meditateType, label: Text("Meditation type")) {
-                    ForEach(FTMeditateType.allCases, id: \.self) { type in
-                        Text(type.rawValue.capitalized)
+                Section("Meditation details") {
+                    Picker(selection: $meditateType, label: Text("Meditation type")) {
+                        ForEach(FTMeditateType.allCases, id: \.self) { type in
+                            Text(type.rawValue.capitalized)
+                        }
+                    }
+                    
+                    if meditateType == .timed {
+                        Stepper(value: $meditateGoal, in: 60...5400, step: 60) {
+                            Label(
+                                title: {
+                                    HStack {
+                                        Text("Goal:")
+                                        Text(meditateGoal / 60, format: .number)
+                                            .bold()
+                                        Text("min")
+                                    }
+                                }, icon: {
+                                    Image(systemName: meditateType == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
+                                }
+                            )
+                        }
                     }
                 }
                 
-                if meditateType == .timed {
-                    Stepper(value: $meditateGoal, in: 60...5400, step: 60) {
-                        Label(
-                            title: {
-                                HStack {
-                                    Text("Goal:")
-                                    Text(meditateGoal / 60, format: .number)
-                                        .bold()
-                                    Text("min")
-                                }
-                            }, icon: {
-                                Image(systemName: meditateType == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
-                            }
-                        )
+                Section("Mood") {
+                    Picker(selection: $mood, label: Text("How're you feeling?")) {
+                        ForEach(FTMood.allCases, id: \.self) { type in
+                            Text("\(type.emoji()) \(type.rawValue.capitalized)")
+                        }
                     }
                 }
             }
@@ -53,7 +64,7 @@ struct MeditationsSheet: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
-                        MeditatingView(healthKitController: healthKitController, meditateType: $meditateType, meditateGoal: $meditateGoal, startDate: $startDate, showingSheet: $showingSheet)
+                        MeditatingView(healthKitController: healthKitController, meditateType: $meditateType, meditateGoal: $meditateGoal, startDate: $startDate, mood: $mood, showingSheet: $showingSheet)
                     }
                 }
             }

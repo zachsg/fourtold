@@ -30,11 +30,16 @@
 		597550AD2B27A2580070F60E /* FTMeditateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550AC2B27A2580070F60E /* FTMeditateType.swift */; };
 		598117942B27D22B003FAEB0 /* MeditationsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117932B27D22B003FAEB0 /* MeditationsSheet.swift */; };
 		598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117952B27F462003FAEB0 /* MeditatingView.swift */; };
+		5984BCD92B31109B00B5AD6A /* MeditationDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5984BCD82B31109B00B5AD6A /* MeditationDoneSheet.swift */; };
+		5984BCDB2B31155900B5AD6A /* ReadingDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5984BCDA2B31155900B5AD6A /* ReadingDoneSheet.swift */; };
 		5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5997A6192B295EBE00CDDF76 /* NotificationController.swift */; };
 		59B57B342B2D13EE00FA949C /* JournalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B332B2D13EE00FA949C /* JournalSheet.swift */; };
 		59B57B372B2D323C00FA949C /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B362B2D323C00FA949C /* TimerView.swift */; };
 		59B57B3A2B2D38B300FA949C /* BreathSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B392B2D38B300FA949C /* BreathSheet.swift */; };
 		59B57B3C2B2D3E0E00FA949C /* Four78Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B3B2B2D3E0D00FA949C /* Four78Section.swift */; };
+		59B57B3E2B30CDCC00FA949C /* FTMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B3D2B30CDCC00FA949C /* FTMood.swift */; };
+		59B57B402B30CF7F00FA949C /* FTTimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B3F2B30CF7F00FA949C /* FTTimeOfDay.swift */; };
+		59B57B422B30D14D00FA949C /* FTReadGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B412B30D14D00FA949C /* FTReadGenre.swift */; };
 		59B96AC52B2AA850003B5106 /* MeditationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AC42B2AA850003B5106 /* MeditationDetailView.swift */; };
 		59B96AC72B2B9415003B5106 /* FTRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AC62B2B9415003B5106 /* FTRead.swift */; };
 		59B96AC92B2B9462003B5106 /* FTReadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AC82B2B9462003B5106 /* FTReadType.swift */; };
@@ -81,12 +86,17 @@
 		597550AC2B27A2580070F60E /* FTMeditateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMeditateType.swift; sourceTree = "<group>"; };
 		598117932B27D22B003FAEB0 /* MeditationsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationsSheet.swift; sourceTree = "<group>"; };
 		598117952B27F462003FAEB0 /* MeditatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditatingView.swift; sourceTree = "<group>"; };
+		5984BCD82B31109B00B5AD6A /* MeditationDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDoneSheet.swift; sourceTree = "<group>"; };
+		5984BCDA2B31155900B5AD6A /* ReadingDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingDoneSheet.swift; sourceTree = "<group>"; };
 		5997A6182B2917C800CDDF76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5997A6192B295EBE00CDDF76 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		59B57B332B2D13EE00FA949C /* JournalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalSheet.swift; sourceTree = "<group>"; };
 		59B57B362B2D323C00FA949C /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		59B57B392B2D38B300FA949C /* BreathSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathSheet.swift; sourceTree = "<group>"; };
 		59B57B3B2B2D3E0D00FA949C /* Four78Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Four78Section.swift; sourceTree = "<group>"; };
+		59B57B3D2B30CDCC00FA949C /* FTMood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTMood.swift; sourceTree = "<group>"; };
+		59B57B3F2B30CF7F00FA949C /* FTTimeOfDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTimeOfDay.swift; sourceTree = "<group>"; };
+		59B57B412B30D14D00FA949C /* FTReadGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTReadGenre.swift; sourceTree = "<group>"; };
 		59B96AC42B2AA850003B5106 /* MeditationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetailView.swift; sourceTree = "<group>"; };
 		59B96AC62B2B9415003B5106 /* FTRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTRead.swift; sourceTree = "<group>"; };
 		59B96AC82B2B9462003B5106 /* FTReadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTReadType.swift; sourceTree = "<group>"; };
@@ -216,12 +226,41 @@
 			path = Breath;
 			sourceTree = "<group>";
 		};
+		59B57B432B30D40C00FA949C /* Read */ = {
+			isa = PBXGroup;
+			children = (
+				59B96AC62B2B9415003B5106 /* FTRead.swift */,
+				59B96AC82B2B9462003B5106 /* FTReadType.swift */,
+				59B57B412B30D14D00FA949C /* FTReadGenre.swift */,
+			);
+			path = Read;
+			sourceTree = "<group>";
+		};
+		59B57B442B30D42000FA949C /* Breath */ = {
+			isa = PBXGroup;
+			children = (
+				59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */,
+				59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */,
+			);
+			path = Breath;
+			sourceTree = "<group>";
+		};
+		59B57B452B30D42D00FA949C /* Meditate */ = {
+			isa = PBXGroup;
+			children = (
+				597550A82B27A1D50070F60E /* FTMeditate.swift */,
+				597550AC2B27A2580070F60E /* FTMeditateType.swift */,
+			);
+			path = Meditate;
+			sourceTree = "<group>";
+		};
 		59B96ACA2B2B9691003B5106 /* Meditate */ = {
 			isa = PBXGroup;
 			children = (
 				59B96AC42B2AA850003B5106 /* MeditationDetailView.swift */,
 				598117932B27D22B003FAEB0 /* MeditationsSheet.swift */,
 				598117952B27F462003FAEB0 /* MeditatingView.swift */,
+				5984BCD82B31109B00B5AD6A /* MeditationDoneSheet.swift */,
 			);
 			path = Meditate;
 			sourceTree = "<group>";
@@ -232,6 +271,7 @@
 				59B96ACC2B2B9738003B5106 /* ReadSheet.swift */,
 				59B96ACE2B2B9ACB003B5106 /* ReadDetailView.swift */,
 				59B96AD02B2B9DAD003B5106 /* ReadingView.swift */,
+				5984BCDA2B31155900B5AD6A /* ReadingDoneSheet.swift */,
 			);
 			path = Read;
 			sourceTree = "<group>";
@@ -265,15 +305,14 @@
 		59D28FD92B1E85ED002799C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				597550922B1FC3620070F60E /* FTGender.swift */,
 				5975509E2B226FA00070F60E /* FTTabItem.swift */,
+				597550922B1FC3620070F60E /* FTGender.swift */,
 				597550A62B27A1800070F60E /* FTActivity.swift */,
-				597550A82B27A1D50070F60E /* FTMeditate.swift */,
-				597550AC2B27A2580070F60E /* FTMeditateType.swift */,
-				59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */,
-				59B96AC62B2B9415003B5106 /* FTRead.swift */,
-				59B96AC82B2B9462003B5106 /* FTReadType.swift */,
-				59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */,
+				59B57B3D2B30CDCC00FA949C /* FTMood.swift */,
+				59B57B3F2B30CF7F00FA949C /* FTTimeOfDay.swift */,
+				59B57B442B30D42000FA949C /* Breath */,
+				59B57B452B30D42D00FA949C /* Meditate */,
+				59B57B432B30D40C00FA949C /* Read */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,9 +428,12 @@
 				59D28FE32B1EACDC002799C4 /* SettingsBodyGroup.swift in Sources */,
 				5912D1972B1BB78D00E78D6E /* ContentView.swift in Sources */,
 				59B96AC52B2AA850003B5106 /* MeditationDetailView.swift in Sources */,
+				5984BCDB2B31155900B5AD6A /* ReadingDoneSheet.swift in Sources */,
 				594888FF2B296938003FD4C8 /* Extensions.swift in Sources */,
+				59B57B422B30D14D00FA949C /* FTReadGenre.swift in Sources */,
 				597550982B20E15D0070F60E /* BodyView.swift in Sources */,
 				59B96AC72B2B9415003B5106 /* FTRead.swift in Sources */,
+				59B57B3E2B30CDCC00FA949C /* FTMood.swift in Sources */,
 				5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */,
 				59DAF3762B2BF4B300BB12B5 /* MindMeditateItemView.swift in Sources */,
 				594889032B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift in Sources */,
@@ -404,11 +446,13 @@
 				59D28FD82B1E8564002799C4 /* SettingsMindGroup.swift in Sources */,
 				59D28FD32B1E829E002799C4 /* HomeStepsToday.swift in Sources */,
 				5912D1952B1BB78D00E78D6E /* fourtoldApp.swift in Sources */,
+				59B57B402B30CF7F00FA949C /* FTTimeOfDay.swift in Sources */,
 				59B96ACF2B2B9ACB003B5106 /* ReadDetailView.swift in Sources */,
 				59B57B3C2B2D3E0E00FA949C /* Four78Section.swift in Sources */,
 				590861E32B1E3FD70040DC72 /* HomeView.swift in Sources */,
 				597550A72B27A1800070F60E /* FTActivity.swift in Sources */,
 				59D28FDF2B1EA049002799C4 /* HomeStepsPastWeek.swift in Sources */,
+				5984BCD92B31109B00B5AD6A /* MeditationDoneSheet.swift in Sources */,
 				59B57B3A2B2D38B300FA949C /* BreathSheet.swift in Sources */,
 				594889072B2A8E60003FD4C8 /* WeekMindfulMinutesDetailView.swift in Sources */,
 				5912D1A42B1BB90500E78D6E /* HealthKitController.swift in Sources */,

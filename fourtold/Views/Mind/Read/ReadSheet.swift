@@ -15,50 +15,62 @@ struct ReadSheet: View {
     @Binding var showingSheet: Bool
     
     @State private var readType: FTReadType = .book
+    @State private var genre: FTReadGenre = .fiction
     @State private var startDate: Date = .now
     @State private var isTimed = true
-    @State private var title = ""
-    @State private var url = ""
+    @State private var mood: FTMood = .neutral
     
     var body: some View {
         NavigationStack {
             Form {
-                Picker(selection: $readType, label: Text("What are you reading?")) {
-                    ForEach(FTReadType.allCases, id: \.self) { type in
-                        Text(type.rawValue.capitalized)
+                Section("Reading details") {
+                    Picker(selection: $readType, label: Text("What are you reading?")) {
+                        ForEach(FTReadType.allCases, id: \.self) { type in
+                            Text(type.rawValue.capitalized)
+                        }
                     }
-                }
-                
-                Toggle(isOn: $isTimed) {
-                    Label("Timed session?", systemImage: isTimed ? readTimedSystemImage : readOpenSystemImage)
-                }
-                
-                if isTimed {
-                    Stepper(value: $readGoal, in: 300...7200, step: 300) {
-                        Label(
-                            title: {
-                                HStack {
-                                    Text("Goal:")
-                                    Text(readGoal / 60, format: .number)
-                                        .bold()
-                                    Text("min")
-                                }
-                            }, icon: {
-                                Image(systemName: isTimed ? readTimedSystemImage : readOpenSystemImage)
+                    
+                    Picker(selection: $genre, label: Text("What genre is it?")) {
+                        ForEach(FTReadGenre.allCases, id: \.self) { type in
+                            if type == .sciFi {
+                                Text("Science fiction")
+                            } else {
+                                Text(type.rawValue.capitalized)
                             }
-                        )
+                        }
                     }
                 }
                 
-                TextField("\(readType.rawValue.capitalized) title (optional)", text: $title)
-                    .submitLabel(.done)
+                Section("Mood") {
+                    Picker(selection: $mood, label: Text("How're you feeling?")) {
+                        ForEach(FTMood.allCases, id: \.self) { type in
+                            Text("\(type.emoji()) \(type.rawValue.capitalized)")
+                        }
+                    }
+                }
                 
-                TextField("URL/hyperlink for \(readType.rawValue) (optional)", text: $url)
-                    .submitLabel(.done)
-                    .autocapitalization(.none)
-                    .autocorrectionDisabled()
-                    .textContentType(.URL)
-                    .keyboardType(.URL)
+                Section("Session details") {
+                    Toggle(isOn: $isTimed) {
+                        Label("Timed session?", systemImage: isTimed ? readTimedSystemImage : readOpenSystemImage)
+                    }
+                    
+                    if isTimed {
+                        Stepper(value: $readGoal, in: 300...7200, step: 300) {
+                            Label(
+                                title: {
+                                    HStack {
+                                        Text("Goal:")
+                                        Text(readGoal / 60, format: .number)
+                                            .bold()
+                                        Text("min")
+                                    }
+                                }, icon: {
+                                    Image(systemName: isTimed ? readTimedSystemImage : readOpenSystemImage)
+                                }
+                            )
+                        }
+                    }
+                }
             }
             .navigationTitle("Read")
             .toolbar {
@@ -70,7 +82,7 @@ struct ReadSheet: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
-                        ReadingView(healthKitController: healthKitController, readType: $readType, isTimed: $isTimed, readGoal: $readGoal, startDate: $startDate, title: $title, url: $url, showingSheet: $showingSheet)
+                        ReadingView(healthKitController: healthKitController, readType: $readType, genre: $genre, mood: $mood, isTimed: $isTimed, readGoal: $readGoal, startDate: $startDate, showingSheet: $showingSheet)
                     }
                 }
             }

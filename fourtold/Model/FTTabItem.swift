@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum FTTabItem: String, Equatable {
+enum FTTabItem: String, Codable, Equatable {
     case overview, body, mind, settings
 }

@@ -14,21 +14,23 @@ import SwiftData
 class FTRead: FTActivity {
     var id = UUID()
     var startDate: Date
+    var timeOfDay: FTTimeOfDay
+    var startMood: FTMood
+    var endMood: FTMood
     var type: FTReadType
-    var title: String
-    var comment: String
-    var url: String
+    var genre: FTReadGenre
     var duration: Int
     var goal: Int?
     var isTimed: Bool
     
-    init(id: UUID = UUID(), startDate: Date, type: FTReadType, title: String = "", comment: String = "", url: String = "", duration: Int, goal: Int? = nil, isTimed: Bool) {
+    init(id: UUID = UUID(), startDate: Date, timeOfDay: FTTimeOfDay, startMood: FTMood, endMood: FTMood, type: FTReadType, genre: FTReadGenre, duration: Int, goal: Int? = nil, isTimed: Bool) {
         self.id = id
         self.startDate = startDate
+        self.timeOfDay = timeOfDay
+        self.startMood = startMood
+        self.endMood = endMood
         self.type = type
-        self.title = title
-        self.comment = comment
-        self.url = url
+        self.genre = genre
         self.duration = duration
         self.goal = goal
         self.isTimed = isTimed

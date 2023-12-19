@@ -11,4 +11,7 @@ import SwiftData
 protocol FTActivity: Identifiable, PersistentModel {
     var id: UUID { get }
     var startDate: Date { get set }
+    var timeOfDay: FTTimeOfDay { get set }
+    var startMood: FTMood { get set }
+    var endMood: FTMood { get set }
 }
