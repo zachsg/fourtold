@@ -33,7 +33,7 @@ struct WeekStepsBarChart: View {
                             x: .value("Day", weekDay(for: date)),
                             y: .value("Steps", steps)
                         )
-                        .foregroundStyle(steps >= dailyStepsGoal ? .accent : .blue)
+                        .foregroundStyle(steps >= dailyStepsGoal ? .accent : .orange)
                         .annotation(position: .top, alignment: .center) {
                             Text(steps, format: .number)
                                 .font(Calendar.current.isDateInToday(date) ? .footnote.bold() : .footnote)
