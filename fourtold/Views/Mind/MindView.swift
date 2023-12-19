@@ -9,6 +9,8 @@ import SwiftData
 import SwiftUI
 
 struct MindView: View {
+    @Environment(\.scenePhase) var scenePhase
+    
     @Bindable var healthKitController: HealthKitController
         
     @Environment(\.modelContext) var modelContext    
@@ -25,6 +27,8 @@ struct MindView: View {
     @State private var groundSheetIsShowing = false
     
     @State private var showOldActivities = false
+    
+    @State private var lastDate: Date = .now
     
     var todayActivities: [any FTActivity] {
         var activities: [any FTActivity] = []
@@ -169,9 +173,14 @@ struct MindView: View {
                 Text("Grounding sheet")
             }
         }
-        .onAppear {
-            let _ = todayActivities
-            let _ = olderActivities
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .active {
+                if !Calendar.current.isDateInToday(lastDate) {
+                    lastDate = .now
+                    showOldActivities.toggle()
+                    showOldActivities = false
+                }
+            }
         }
     }
     
