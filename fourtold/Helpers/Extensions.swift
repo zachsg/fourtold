@@ -84,4 +84,30 @@ extension FTMood {
             "😃"
         }
     }
+    
+    func differentThan(mood:FTMood) -> Int {
+        func intValueOf(mood: FTMood) -> Int {
+            switch mood {
+            case .sad:
+                1
+            case .anxious:
+                2
+            case .tired:
+                3
+            case .neutral:
+                4
+            case .calm:
+                5
+            case .energized:
+                6
+            case .happy:
+                7
+            }
+        }
+        
+        let intValueSelf = intValueOf(mood: self)
+        let intValueMood = intValueOf(mood: mood)
+        
+        return intValueSelf - intValueMood
+    }
 }

@@ -11,6 +11,8 @@ import Foundation
 let appName = "4told"
 
 let cancelSystemImage = "xmark.circle"
+let arrowSystemImage = "arrowshape.forward"
+let progressSystemImage = "location.north.circle.fill"
 
 // MARK: - User
 let userAgeKey = "userAge"
