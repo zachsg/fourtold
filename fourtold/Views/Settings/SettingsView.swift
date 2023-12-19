@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct SettingsView: View {
+    var appVersion: String {
+        UIApplication.appVersion ?? "Unknown"
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -16,6 +20,16 @@ struct SettingsView: View {
                 SettingsBodyGroup()
                 
                 SettingsMindGroup()
+                
+                Section {
+                    // Any dev info about the app
+                } header: {
+                    HStack {
+                        Spacer()
+                        Text("App version: \(appVersion)")
+                        Spacer()
+                    }
+                }
             }
             .navigationTitle(settingsTitle)
         }

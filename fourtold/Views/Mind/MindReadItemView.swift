@@ -40,7 +40,7 @@ struct MindReadItemView: View {
             HStack {
                 Image(systemName: progressSystemImage)
                     .resizable()
-                    .frame(width: 28, height: 28)
+                    .frame(width: 32, height: 32)
                     .foregroundColor(read.endMood.color())
                     .rotationEffect(.degrees(90 - Double(moodChange * 10)))
                 
