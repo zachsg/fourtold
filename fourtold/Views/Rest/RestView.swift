@@ -69,21 +69,21 @@ struct RestView: View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 List {
-//                    Section {
-//                        RestMindfulMinutesToday(healthKitController: healthKitController)
-//                        
-//                        RestMindfulMinutesPastWeek(healthKitController: healthKitController)
-//                    } header: {
-//                        Text("Stats")
-//                    } footer: {
-//                        if bestMindfulDay.minutes > 0 {
-//                            HStack(spacing: 0) {
-//                                Text("Your best day was ")
-//                                Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
-//                                Text(" with \(bestMindfulDay.minutes) minutes.")
-//                            }
-//                        }
-//                    }
+                    Section {
+                        RestMindfulMinutesToday(healthKitController: healthKitController)
+                        
+                        RestMindfulMinutesPastWeek(healthKitController: healthKitController)
+                    } header: {
+                        Text("Stats")
+                    } footer: {
+                        if bestMindfulDay.minutes > 0 {
+                            HStack(spacing: 0) {
+                                Text("Your best day was ")
+                                Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
+                                Text(" with \(bestMindfulDay.minutes) minutes.")
+                            }
+                        }
+                    }
                     
                     if !todayActivities.isEmpty {
                         Section("Today") {
@@ -183,10 +183,10 @@ struct RestView: View {
                     } label: {
                         Image(systemName: "plus.circle")
                             .resizable()
-                            .frame(width: 32, height: 32)
+                            .frame(width: 38, height: 38)
                             .foregroundStyle(restColor)
                     }
-                    .buttonStyle(.bordered)
+                    .background(showingOptions ? .black.opacity(0.9) : Color(UIColor.systemBackground))
                     .clipShape(Circle())
                     .rotationEffect(.degrees(showingOptions ? 45 : 0))
                 }
@@ -243,7 +243,7 @@ struct RestView: View {
     func refresh(hard: Bool = false) {
         healthKitController.getMindfulMinutesToday(refresh: hard)
         healthKitController.getMindfulMinutesRecent(refresh: hard)
-        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
+//        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
     }
 }
 
