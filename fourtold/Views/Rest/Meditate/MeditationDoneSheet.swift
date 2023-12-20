@@ -2,7 +2,7 @@
 //  MeditationDoneSheet.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/18/23.
+//  Created by Zach Gottlieb on 12/20/23.
 //
 
 import SwiftData
@@ -40,7 +40,7 @@ struct MeditationDoneSheet: View {
                 }
             }
             .padding(.bottom, 12)
-           
+            
             if elapsed > 30 {
                 VStack {
                     Divider()

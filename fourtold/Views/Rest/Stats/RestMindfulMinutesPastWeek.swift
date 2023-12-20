@@ -41,5 +41,5 @@ struct RestMindfulMinutesPastWeek: View {
 }
 
 #Preview {
-    RestMindfulMinutesToday(healthKitController: HealthKitController())
+    RestMindfulMinutesPastWeek(healthKitController: HealthKitController())
 }

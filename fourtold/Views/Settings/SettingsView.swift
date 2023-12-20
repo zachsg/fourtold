@@ -21,8 +21,6 @@ struct SettingsView: View {
                 
                 SettingsSweatGroup()
                 
-                SettingsLiftGroup()
-                
                 SettingsRestGroup()
                 
                 Section {

@@ -22,11 +22,11 @@ let userSystemImage = "person.crop.circle"
 
 // MARK: - Home
 let homeTitle = "Home"
-let homeSystemImage = "house"
+let homeSystemImage = "house.circle"
 
 // MARK: - Move
 let moveTitle = "Move"
-let moveSystemImage = "move.3d"
+let moveSystemImage = "figure.walk.circle"
 let moveColor: Color = .red
 
 // Steps
@@ -44,7 +44,7 @@ let mobilityTitle = "Mobility"
 
 // MARK: - Sweat
 let sweatTitle = "Sweat"
-let sweatSystemImage = "drop.fill"
+let sweatSystemImage = "drop.circle"
 let sweatColor: Color = .blue
 
 // VO2 max
@@ -58,7 +58,7 @@ let buildColor: Color = .orange
 
 // MARK: - Rest
 let restTitle = "Rest"
-let restSystemImage = "battery.100percent.bolt"
+let restSystemImage = "sleep.circle"
 let restColor: Color = .green
 
 // Breath
@@ -94,4 +94,4 @@ let groundSystemImage = "globe.americas"
 
 // MARK: -  Settings
 let settingsTitle = "Settings"
-let settingsSystemImage = "gear"
+let settingsSystemImage = "gearshape"

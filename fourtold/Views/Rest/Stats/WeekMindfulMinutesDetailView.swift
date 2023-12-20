@@ -21,6 +21,6 @@ struct WeekMindfulMinutesDetailView: View {
 }
 
 #Preview {
-    WeekStepsDetailView(healthKitController: HealthKitController())
+    WeekMindfulMinutesDetailView(healthKitController: HealthKitController())
 }
 

@@ -29,20 +29,6 @@ struct HomeView: View {
         NavigationStack {
             List {
                 Section {
-                    ZStack(alignment: .leading) {
-                        moveColor
-                        
-                        NavigationLink {
-                            MoveView(healthKitController: healthKitController)
-                        } label: {
-                            Label(moveTitle, systemImage: moveSystemImage)
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
-                        .padding()
-                    }
-                    .listRowInsets(EdgeInsets())
-                    
                     // TODO: Minutes Upper Body strength training this week
                     
                     // TODO: Minutes Lower Body strength training this week
@@ -56,6 +42,8 @@ struct HomeView: View {
                     if hasWalkRunDistance {
                         HomeWalkRunDistanceToday(healthKitController: healthKitController)
                     }
+                } header: {
+                    Text(moveTitle)
                 } footer: {
                     VStack(alignment: .leading) {
                         if healthKitController.walkRunDistanceToday > 0 {
@@ -65,88 +53,26 @@ struct HomeView: View {
                 }
                 
                 Section {
-                    ZStack(alignment: .leading) {
-                        sweatColor
-                        
-                        NavigationLink {
-                            
-                        } label: {
-                            Label(sweatTitle, systemImage: sweatSystemImage)
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
-                        .padding()
-                    }
-                    .listRowInsets(EdgeInsets())
-                    
                     // TODO: Zone 2 minutes today
-                    
-                    // TODO: Zone 2 minutes this week
-                    
-                    // TODO: VO2Max / Cario Fitness
                     
                     if hasVO2 && vO2Today {
                         HomeVO2Today(healthKitController: healthKitController)
                     }
                     
                     // TODO: Cardio Recovery
+                } header: {
+                    Text(sweatTitle)
                 }
                 
                 Section {
-                    ZStack(alignment: .leading) {
-                        buildColor
-                        
-                        NavigationLink {
-                            
-                        } label: {
-                            Label(buildTitle, systemImage: buildSystemImage)
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
-                        .padding()
-                    }
-                    .listRowInsets(EdgeInsets())
-                }
-                
-                Section {
-                    ZStack(alignment: .leading) {
-                        restColor
-                        
-                        NavigationLink {
-                            RestView(healthKitController: healthKitController)
-                        } label: {
-                            Label(restTitle, systemImage: restSystemImage)
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
-                        .padding()
-                    }
-                    .listRowInsets(EdgeInsets())
-                    
                     HomeMindfulMinutesToday(healthKitController: healthKitController)
                     
-                    // TODO: Mood
-                    
-                    // TODO: Journal?
-                    
                     // TODO: Time in daylight (i.e. Sun exposure)
-                    
-                    // TODO: Grounding / Earthing
-                    
-                    // TODO: Stand hours?
+                } header: {
+                    Text(restTitle)
                 }
             }
             .navigationTitle(homeTitle)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                NavigationLink {
-                    SettingsView()
-                } label: {
-                    Image(systemName: settingsSystemImage)
-//                    Label(settingsTitle, image: settingsSystemImage)
-//                        .labelStyle(.iconOnly)
-                }
-            }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
                     let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
@@ -166,8 +92,8 @@ struct HomeView: View {
         
         if hasDailyStepsGoal {
             healthKitController.getStepCountToday(refresh: hard)
-            healthKitController.getStepCountWeek(refresh: hard)
-            healthKitController.getStepCountWeekByDay(refresh: hard)
+//            healthKitController.getStepCountWeek(refresh: hard)
+//            healthKitController.getStepCountWeekByDay(refresh: hard)
         }
         
         if hasWalkRunDistance {
@@ -175,8 +101,8 @@ struct HomeView: View {
         }
         
         healthKitController.getMindfulMinutesToday(refresh: hard)
-        healthKitController.getMindfulMinutesRecent(refresh: hard)
-        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
+//        healthKitController.getMindfulMinutesRecent(refresh: hard)
+//        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
     }
     
     func stepsPerMile() -> String {

@@ -17,18 +17,15 @@ struct RestView: View {
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
     
-    @State private var path = NavigationPath()
-    
     @State private var meditateSheetIsShowing = false
     @State private var breathworkSheetIsShowing = false
     @State private var journalSheetIsShowing = false
     @State private var readSheetIsShowing = false
     @State private var sunSheetIsShowing = false
     @State private var groundSheetIsShowing = false
-    
     @State private var showOldActivities = false
-    
     @State private var lastDate: Date = .now
+    @State private var showingOptions = false
     
     var todayActivities: [any FTActivity] {
         var activities: [any FTActivity] = []
@@ -69,120 +66,133 @@ struct RestView: View {
     }
     
     var body: some View {
-        NavigationStack(path: $path) {
-            List {
-                Section {
-                    RestMindfulMinutesToday(healthKitController: healthKitController)
-                    
-                    RestMindfulMinutesPastWeek(healthKitController: healthKitController)
-                } header: {
-                    Text("Stats")
-                } footer: {
-                    if bestMindfulDay.minutes > 0 {
-                        HStack(spacing: 0) {
-                            Text("Your best day was ")
-                            Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
-                            Text(" with \(bestMindfulDay.minutes) minutes.")
-                        }
-                    }
-                }
-                
-                if !todayActivities.isEmpty {
-                    Section("Today") {
-                        ForEach(todayActivities, id: \.id) { activity in
-                            if let meditate = activity as? FTMeditate {
-                                RestMeditateItemView(meditate: meditate)
-                            } else if let read = activity as? FTRead {
-                                RestReadItemView(read: read)
-                            }
-                        }
-                        .onDelete { indexSet in
-                            for index in indexSet {
-                                let activity = todayActivities[index]
-                                modelContext.delete(activity)
-                            }
-                        }
-                    }
-                } else {
-                    HStack {
-                        Text("It's a new day. Time to take action!")
-                        Image(systemName: arrowSystemImage)
-                            .rotationEffect(.degrees(-90))
-                            .foregroundColor(restColor)
-                            .font(.title3)
-                    }
-                    .font(.headline)
-                }
-                
-                if !olderActivities.isEmpty {
-                    Section(isExpanded: $showOldActivities) {
-                        ForEach(olderActivities, id: \.id) { activity in
-                            if let meditate = activity as? FTMeditate {
-                                RestMeditateItemView(meditate: meditate)
-                            } else if let read = activity as? FTRead {
-                                RestReadItemView(read: read)
-                            }
-                        }
-                        .onDelete { indexSet in
-                            for index in indexSet {
-                                let activity = olderActivities[index]
-                                modelContext.delete(activity)
-                            }
-                        }
+        NavigationStack {
+            ZStack(alignment: .bottomTrailing) {
+                List {
+                    Section {
+                        RestMindfulMinutesToday(healthKitController: healthKitController)
+                        
+                        RestMindfulMinutesPastWeek(healthKitController: healthKitController)
                     } header: {
-                        HStack {
-                            Text("Older")
-                            Spacer()
-                            Text(olderActivities.count, format: .number)
-                                .font(.footnote)
-                            Button {
-                                withAnimation {
-                                    showOldActivities.toggle()
-                                }
-                            } label: {
-                                Image(systemName: showOldActivities ? "chevron.down.circle" : "chevron.forward.circle")
-                                    .foregroundStyle(restColor)
+                        Text("Stats")
+                    } footer: {
+                        if bestMindfulDay.minutes > 0 {
+                            HStack(spacing: 0) {
+                                Text("Your best day was ")
+                                Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
+                                Text(" with \(bestMindfulDay.minutes) minutes.")
                             }
-                            
+                        }
+                    }
+                    
+                    if !todayActivities.isEmpty {
+                        Section("Today") {
+                            ForEach(todayActivities, id: \.id) { activity in
+                                if let meditate = activity as? FTMeditate {
+                                    RestMeditateItemView(meditate: meditate)
+                                } else if let read = activity as? FTRead {
+                                    RestReadItemView(read: read)
+                                }
+                            }
+                            .onDelete { indexSet in
+                                for index in indexSet {
+                                    let activity = todayActivities[index]
+                                    modelContext.delete(activity)
+                                }
+                            }
+                        }
+                    } else {
+                        HStack {
+                            Text("It's a new day. Time to take action!")
+                            Image(systemName: "plus.circle")
+                                .foregroundColor(restColor)
+                                .font(.title3)
+                        }
+                        .onTapGesture(perform: {
+                            withAnimation {
+                                showingOptions.toggle()
+                            }
+                        })
+                        .font(.headline)
+                    }
+                    
+                    if !olderActivities.isEmpty {
+                        Section(isExpanded: $showOldActivities) {
+                            ForEach(olderActivities, id: \.id) { activity in
+                                if let meditate = activity as? FTMeditate {
+                                    RestMeditateItemView(meditate: meditate)
+                                } else if let read = activity as? FTRead {
+                                    RestReadItemView(read: read)
+                                }
+                            }
+                            .onDelete { indexSet in
+                                for index in indexSet {
+                                    let activity = olderActivities[index]
+                                    modelContext.delete(activity)
+                                }
+                            }
+                        } header: {
+                            HStack {
+                                Text("Older")
+                                Spacer()
+                                Text(olderActivities.count, format: .number)
+                                    .font(.footnote)
+                                Button {
+                                    withAnimation {
+                                        showOldActivities.toggle()
+                                    }
+                                } label: {
+                                    Image(systemName: showOldActivities ? "chevron.down.circle" : "chevron.forward.circle")
+                                        .foregroundStyle(restColor)
+                                }
+                                
+                            }
                         }
                     }
                 }
+                
+                if showingOptions {
+                    Color.black.opacity(0.9)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            withAnimation {
+                                showingOptions.toggle()
+                            }
+                        }
+                }
+                
+                VStack(alignment: .trailing) {
+                    if showingOptions {
+                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $readSheetIsShowing, title: readTitle, icon: readSystemImage)
+                        
+                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $journalSheetIsShowing, title: journalTitle, icon: journalSystemImage)
+                        
+                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $breathworkSheetIsShowing, title: breathTitle, icon: breathSystemImage)
+                        
+                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $meditateSheetIsShowing, title: meditateTitle, icon: meditateSystemImage)
+                        
+                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $sunSheetIsShowing, title: sunTitle, icon: sunSystemImage)
+                        
+                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $groundSheetIsShowing, title: groundTitle, icon: groundSystemImage)
+                    }
+                    
+                    Button {
+                        withAnimation {
+                            showingOptions.toggle()
+                        }
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .foregroundStyle(restColor)
+                    }
+                    .buttonStyle(.bordered)
+                    .clipShape(Circle())
+                    .rotationEffect(.degrees(showingOptions ? 45 : 0))
+                }
+                .padding()
             }
             .navigationTitle(restTitle)
-            .toolbar {
-                ToolbarItemGroup(placement: .status) {
-                    Button(readTitle, systemImage: readSystemImage) {
-                        readSheetIsShowing.toggle()
-                    }
-                    .foregroundStyle(restColor)
-                    
-                    Button(journalTitle, systemImage: journalSystemImage) {
-                        journalSheetIsShowing.toggle()
-                    }
-                    .foregroundStyle(restColor)
-                    
-                    Button(breathTitle, systemImage: breathSystemImage) {
-                        breathworkSheetIsShowing.toggle()
-                        // TODO: Add breathwork
-                    }
-                    .foregroundStyle(restColor)
-                    
-                    Button(meditateTitle, systemImage: meditateSystemImage) {
-                        meditateSheetIsShowing.toggle()
-                    }
-                    .foregroundStyle(restColor)
-                    
-                    Button(sunTitle, systemImage: sunSystemImage) {
-                        sunSheetIsShowing.toggle()
-                    }
-                    .foregroundStyle(restColor)
-                    
-                    Button(groundTitle, systemImage: groundSystemImage) {
-                        groundSheetIsShowing.toggle()
-                    }
-                    .foregroundStyle(restColor)
-                }
-            }
             .sheet(isPresented: $readSheetIsShowing) {
                 ReadSheet(healthKitController: healthKitController, showingSheet: $readSheetIsShowing)
                     .interactiveDismissDisabled()
@@ -204,13 +214,23 @@ struct RestView: View {
             .sheet(isPresented: $groundSheetIsShowing) {
                 Text("Grounding sheet")
             }
-        }
-        .onChange(of: scenePhase) { oldPhase, newPhase in
-            if newPhase == .active {
-                if !Calendar.current.isDateInToday(lastDate) {
-                    lastDate = .now
-                    showOldActivities.toggle()
-                    showOldActivities = false
+            .onAppear(perform: {
+                if healthKitController.mindfulMinutesWeek == 0 {
+                    refresh(hard: true)
+                } else {
+                    refresh()
+                }
+            })
+            .onChange(of: scenePhase) { oldPhase, newPhase in
+                if newPhase == .active {
+                    if !Calendar.current.isDateInToday(lastDate) {
+                        lastDate = .now
+                        showOldActivities.toggle()
+                        showOldActivities = false
+                    }
+                    
+                    let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
+                    refresh(hard: !today)
                 }
             }
         }
@@ -219,10 +239,26 @@ struct RestView: View {
     func isToday(date: Date) -> Bool {
         Calendar.current.isDateInToday(date)
     }
+    
+    func refresh(hard: Bool = false) {
+        healthKitController.getMindfulMinutesToday(refresh: hard)
+        healthKitController.getMindfulMinutesRecent(refresh: hard)
+        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
+    }
 }
 
 #Preview {
     let healthKitController = HealthKitController()
+    healthKitController.mindfulMinutesToday = 10
+    healthKitController.mindfulMinutesWeek = 60
+    
+    let today: Date = .now
+    for i in 0...6 {
+        let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
+        if let date {
+            healthKitController.mindfulMinutesWeekByDay[date] = Int.random(in: 0...30)
+        }
+    }
     
     return RestView(healthKitController: healthKitController)
         .modelContainer(for: [FTMeditate.self, FTRead.self])

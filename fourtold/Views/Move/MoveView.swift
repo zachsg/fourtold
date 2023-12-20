@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MoveView: View {
+    @Environment(\.scenePhase) var scenePhase
     @Bindable var healthKitController: HealthKitController
     
     // Steps
@@ -53,21 +54,34 @@ struct MoveView: View {
                 }
             }
             .navigationTitle(moveTitle)
+            .onAppear(perform: {
+                if healthKitController.stepCountWeek == 0 {
+                    refresh(hard: true)
+                } else {
+                    refresh()
+                }
+            })
+            .onChange(of: scenePhase) { oldPhase, newPhase in
+                if newPhase == .active {
+                    let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
+                    refresh(hard: !today)
+                }
+            }
             .refreshable {
                 refresh()
             }
         }
     }
     
-    func refresh() {
+    func refresh(hard: Bool = false) {
         if hasDailyStepsGoal {
-            healthKitController.getStepCountToday(refresh: true)
-            healthKitController.getStepCountWeek(refresh: true)
-            healthKitController.getStepCountWeekByDay(refresh: true)
+            healthKitController.getStepCountToday(refresh: hard)
+            healthKitController.getStepCountWeek(refresh: hard)
+            healthKitController.getStepCountWeekByDay(refresh: hard)
         }
         
         if hasWalkRunDistance {
-            healthKitController.getWalkRunDistanceToday(refresh: true)
+            healthKitController.getWalkRunDistanceToday(refresh: hard)
         }
     }
 }

@@ -2,7 +2,7 @@
 //  ReadingDoneSheet.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/18/23.
+//  Created by Zach Gottlieb on 12/20/23.
 //
 
 import SwiftData
@@ -60,7 +60,7 @@ struct ReadingDoneSheet: View {
                     Divider()
                 }
             }
-                    
+            
             HStack(alignment: .center) {
                 Button("Cancel", role: .cancel) {
                     NotificationController.cancelAllPending()
