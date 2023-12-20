@@ -1,5 +1,5 @@
 //
-//  MindView.swift
+//  RestView.swift
 //  fourtold
 //
 //  Created by Zach Gottlieb on 12/6/23.
@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-struct MindView: View {
+struct RestView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @Bindable var healthKitController: HealthKitController
@@ -54,16 +54,46 @@ struct MindView: View {
         return activities.sorted { $0.startDate > $1.startDate }
     }
     
+    var bestMindfulDay: (day: Date, minutes: Int) {
+        var bestDay: Date = .now
+        var bestMinutes = 0
+        
+        for (day, minutes) in healthKitController.mindfulMinutesWeekByDay {
+            if minutes > bestMinutes {
+                bestDay = day
+                bestMinutes = minutes
+            }
+        }
+        
+        return (bestDay, bestMinutes)
+    }
+    
     var body: some View {
         NavigationStack(path: $path) {
             List {
+                Section {
+                    RestMindfulMinutesToday(healthKitController: healthKitController)
+                    
+                    RestMindfulMinutesPastWeek(healthKitController: healthKitController)
+                } header: {
+                    Text("Stats")
+                } footer: {
+                    if bestMindfulDay.minutes > 0 {
+                        HStack(spacing: 0) {
+                            Text("Your best day was ")
+                            Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
+                            Text(" with \(bestMindfulDay.minutes) minutes.")
+                        }
+                    }
+                }
+                
                 if !todayActivities.isEmpty {
                     Section("Today") {
                         ForEach(todayActivities, id: \.id) { activity in
                             if let meditate = activity as? FTMeditate {
-                                MindMeditateItemView(meditate: meditate)
+                                RestMeditateItemView(meditate: meditate)
                             } else if let read = activity as? FTRead {
-                                MindReadItemView(read: read)
+                                RestReadItemView(read: read)
                             }
                         }
                         .onDelete { indexSet in
@@ -76,8 +106,9 @@ struct MindView: View {
                 } else {
                     HStack {
                         Text("It's a new day. Time to take action!")
-                        Image(systemName: "hand.point.up.fill")
-                            .foregroundColor(.accentColor)
+                        Image(systemName: arrowSystemImage)
+                            .rotationEffect(.degrees(-90))
+                            .foregroundColor(restColor)
                             .font(.title3)
                     }
                     .font(.headline)
@@ -87,9 +118,9 @@ struct MindView: View {
                     Section(isExpanded: $showOldActivities) {
                         ForEach(olderActivities, id: \.id) { activity in
                             if let meditate = activity as? FTMeditate {
-                                MindMeditateItemView(meditate: meditate)
+                                RestMeditateItemView(meditate: meditate)
                             } else if let read = activity as? FTRead {
-                                MindReadItemView(read: read)
+                                RestReadItemView(read: read)
                             }
                         }
                         .onDelete { indexSet in
@@ -110,45 +141,46 @@ struct MindView: View {
                                 }
                             } label: {
                                 Image(systemName: showOldActivities ? "chevron.down.circle" : "chevron.forward.circle")
+                                    .foregroundStyle(restColor)
                             }
                             
                         }
                     }
                 }
             }
-            .navigationTitle(mindTitle)
-            .navigationDestination(for: FTMeditate.self) { meditate in
-                MeditationDetailView(meditate: meditate)
-            }
-            .navigationDestination(for: FTRead.self) { read in
-                ReadDetailView(read: read)
-            }
+            .navigationTitle(restTitle)
             .toolbar {
-                ToolbarItemGroup {
+                ToolbarItemGroup(placement: .status) {
                     Button(readTitle, systemImage: readSystemImage) {
                         readSheetIsShowing.toggle()
                     }
+                    .foregroundStyle(restColor)
                     
                     Button(journalTitle, systemImage: journalSystemImage) {
                         journalSheetIsShowing.toggle()
                     }
+                    .foregroundStyle(restColor)
                     
                     Button(breathTitle, systemImage: breathSystemImage) {
                         breathworkSheetIsShowing.toggle()
                         // TODO: Add breathwork
                     }
+                    .foregroundStyle(restColor)
                     
                     Button(meditateTitle, systemImage: meditateSystemImage) {
                         meditateSheetIsShowing.toggle()
                     }
+                    .foregroundStyle(restColor)
                     
                     Button(sunTitle, systemImage: sunSystemImage) {
                         sunSheetIsShowing.toggle()
                     }
+                    .foregroundStyle(restColor)
                     
                     Button(groundTitle, systemImage: groundSystemImage) {
                         groundSheetIsShowing.toggle()
                     }
+                    .foregroundStyle(restColor)
                 }
             }
             .sheet(isPresented: $readSheetIsShowing) {
@@ -192,6 +224,6 @@ struct MindView: View {
 #Preview {
     let healthKitController = HealthKitController()
     
-    return MindView(healthKitController: healthKitController)
+    return RestView(healthKitController: healthKitController)
         .modelContainer(for: [FTMeditate.self, FTRead.self])
 }

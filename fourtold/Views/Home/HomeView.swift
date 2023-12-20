@@ -18,58 +18,30 @@ struct HomeView: View {
     // Walk/run distance
     @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = true
     
-    // Cardio
-    @AppStorage(hasCardioKey) var hasCardio: Bool = true
+    // VO2 max
+    @AppStorage(hasVO2Key) var hasVO2: Bool = true
     
-    var cardioToday: Bool {
+    var vO2Today: Bool {
         Calendar.current.isDateInToday(healthKitController.latestCardioFitness)
-    }
-    
-    var bestStepsDay: (day: Date, steps: Int) {
-        var bestDay: Date = .now
-        var bestSteps = 0
-        
-        for (day, minutes) in healthKitController.stepCountWeekByDay {
-            if minutes > bestSteps {
-                bestDay = day
-                bestSteps = minutes
-            }
-        }
-        
-        return (bestDay, bestSteps)
-    }
-    
-    var bestMindfulDay: (day: Date, minutes: Int) {
-        var bestDay: Date = .now
-        var bestMinutes = 0
-        
-        for (day, minutes) in healthKitController.mindfulMinutesWeekByDay {
-            if minutes > bestMinutes {
-                bestDay = day
-                bestMinutes = minutes
-            }
-        }
-        
-        return (bestDay, bestMinutes)
     }
     
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    if hasCardio {
-                        // TODO: Zone 2 minutes today
+                    ZStack(alignment: .leading) {
+                        moveColor
                         
-                        // TODO: Zone 2 minutes this week
-                        
-                        // TODO: VO2Max / Cario Fitness
-                        
-                        if cardioToday {
-                            HomeCardioFitnessToday(healthKitController: healthKitController)
+                        NavigationLink {
+                            MoveView(healthKitController: healthKitController)
+                        } label: {
+                            Label(moveTitle, systemImage: moveSystemImage)
+                                .font(.headline)
+                                .foregroundColor(.white)
                         }
-                        
-                        // TODO: Cardio Recovery
+                        .padding()
                     }
+                    .listRowInsets(EdgeInsets())
                     
                     // TODO: Minutes Upper Body strength training this week
                     
@@ -79,35 +51,79 @@ struct HomeView: View {
                     
                     if hasDailyStepsGoal {
                         HomeStepsToday(healthKitController: healthKitController)
-                        
-                        HomeStepsPastWeek(healthKitController: healthKitController)
                     }
                     
                     if hasWalkRunDistance {
                         HomeWalkRunDistanceToday(healthKitController: healthKitController)
                     }
-                } header: {
-                    Text(bodyTitle)
                 } footer: {
                     VStack(alignment: .leading) {
                         if healthKitController.walkRunDistanceToday > 0 {
                             Text("You're taking \(stepsPerMile()) steps per mile today.")
                         }
-                        
-                        if bestStepsDay.steps > 0 {
-                            HStack(spacing: 0) {
-                                Text("Your best day was ")
-                                Text(bestStepsDay.day, format: .dateTime.weekday().month().day())
-                                Text(" with \(bestStepsDay.steps, format: .number) steps.")
-                            }
-                        }
                     }
                 }
                 
                 Section {
-                    HomeMindfulMinutesToday(healthKitController: healthKitController)
+                    ZStack(alignment: .leading) {
+                        sweatColor
+                        
+                        NavigationLink {
+                            
+                        } label: {
+                            Label(sweatTitle, systemImage: sweatSystemImage)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                        .padding()
+                    }
+                    .listRowInsets(EdgeInsets())
                     
-                    HomeMindfulMinutesPastWeek(healthKitController: healthKitController)
+                    // TODO: Zone 2 minutes today
+                    
+                    // TODO: Zone 2 minutes this week
+                    
+                    // TODO: VO2Max / Cario Fitness
+                    
+                    if hasVO2 && vO2Today {
+                        HomeVO2Today(healthKitController: healthKitController)
+                    }
+                    
+                    // TODO: Cardio Recovery
+                }
+                
+                Section {
+                    ZStack(alignment: .leading) {
+                        buildColor
+                        
+                        NavigationLink {
+                            
+                        } label: {
+                            Label(buildTitle, systemImage: buildSystemImage)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                        .padding()
+                    }
+                    .listRowInsets(EdgeInsets())
+                }
+                
+                Section {
+                    ZStack(alignment: .leading) {
+                        restColor
+                        
+                        NavigationLink {
+                            RestView(healthKitController: healthKitController)
+                        } label: {
+                            Label(restTitle, systemImage: restSystemImage)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                        .padding()
+                    }
+                    .listRowInsets(EdgeInsets())
+                    
+                    HomeMindfulMinutesToday(healthKitController: healthKitController)
                     
                     // TODO: Mood
                     
@@ -118,19 +134,19 @@ struct HomeView: View {
                     // TODO: Grounding / Earthing
                     
                     // TODO: Stand hours?
-                } header: {
-                    Text(mindTitle)
-                } footer: {
-                    if bestMindfulDay.minutes > 0 {
-                        HStack(spacing: 0) {
-                            Text("Your best day was ")
-                            Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
-                            Text(" with \(bestMindfulDay.minutes) minutes.")
-                        }
-                    }
                 }
             }
             .navigationTitle(homeTitle)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                NavigationLink {
+                    SettingsView()
+                } label: {
+                    Image(systemName: settingsSystemImage)
+//                    Label(settingsTitle, image: settingsSystemImage)
+//                        .labelStyle(.iconOnly)
+                }
+            }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
                     let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
@@ -144,7 +160,7 @@ struct HomeView: View {
     }
     
     func refresh(hard: Bool = false) {
-        if hasCardio {
+        if hasVO2 {
             healthKitController.getCardioFitnessRecent(refresh: hard)
         }
         

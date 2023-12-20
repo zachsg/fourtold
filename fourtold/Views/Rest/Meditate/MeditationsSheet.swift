@@ -40,6 +40,7 @@ struct MeditationsSheet: View {
                                     }
                                 }, icon: {
                                     Image(systemName: meditateType == .open ? meditateOpenSystemImage : meditateTimedSystemImage)
+                                        .foregroundStyle(restColor)
                                 }
                             )
                         }
@@ -47,7 +48,7 @@ struct MeditationsSheet: View {
                 }
                 
                 Section("Mood") {
-                    MoodPicker(mood: $mood) {
+                    MoodPicker(mood: $mood, color: restColor) {
                         Text("How're you feeling?")
                     }
                 }
@@ -58,12 +59,14 @@ struct MeditationsSheet: View {
                     Button("Cancel", role: .cancel) {
                         showingSheet.toggle()
                     }
+                    .foregroundStyle(restColor)
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
                         MeditatingView(healthKitController: healthKitController, meditateType: $meditateType, meditateGoal: $meditateGoal, startDate: $startDate, mood: $mood, showingSheet: $showingSheet)
                     }
+                    .foregroundStyle(restColor)
                 }
             }
         }

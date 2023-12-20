@@ -1,13 +1,13 @@
 //
-//  HomeStepsView.swift
+//  MoveStepsToday.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/4/23.
+//  Created by Zach Gottlieb on 12/19/23.
 //
 
 import SwiftUI
 
-struct HomeStepsToday: View {
+struct MoveStepsToday: View {
     @Bindable var healthKitController: HealthKitController
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = 10000
     
@@ -52,5 +52,5 @@ struct HomeStepsToday: View {
 }
 
 #Preview {
-    HomeStepsToday(healthKitController: HealthKitController())
+    MoveStepsToday(healthKitController: HealthKitController())
 }

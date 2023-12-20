@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // MARK: - App
 let appName = "4told"
@@ -19,13 +20,14 @@ let userAgeKey = "userAge"
 let userGenderKey = "userGender"
 let userSystemImage = "person.crop.circle"
 
-// MARK: - Overview
+// MARK: - Home
 let homeTitle = "Home"
 let homeSystemImage = "house"
 
-// MARK: - Body
-let bodyTitle = "Body"
-let bodySystemImage = "figure.arms.open"
+// MARK: - Move
+let moveTitle = "Move"
+let moveSystemImage = "move.3d"
+let moveColor: Color = .red
 
 // Steps
 let hasDailyStepsGoalKey = "hasDailyStepsGoal"
@@ -37,21 +39,27 @@ let hasWalkRunDistanceKey = "hasWalkRunDistance"
 let useMilesKey = "useMiles"
 let distanceSystemImage = "ruler"
 
-// Cardio
-let hasCardioKey = "hasCardio"
-let cardioTitle = "Cardio"
-let cardioSystemImage = "heart"
-
-// Strength
-let strengthTitle = "Strength"
-let strengthSystemImage = "dumbbell"
-
 // Mobility
 let mobilityTitle = "Mobility"
 
-// MARK: - Mind
-let mindTitle = "Mind"
-let mindSystemImage = "brain.filled.head.profile"
+// MARK: - Sweat
+let sweatTitle = "Sweat"
+let sweatSystemImage = "drop.fill"
+let sweatColor: Color = .blue
+
+// VO2 max
+let hasVO2Key = "hasVO2"
+let vO2SystemImage = "heart"
+
+// MARK: - Build
+let buildTitle = "Build"
+let buildSystemImage = "scalemass.fill"
+let buildColor: Color = .orange
+
+// MARK: - Rest
+let restTitle = "Rest"
+let restSystemImage = "battery.100percent.bolt"
+let restColor: Color = .green
 
 // Breath
 let breathTitle = "Breath"

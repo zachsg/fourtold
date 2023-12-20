@@ -1,5 +1,5 @@
 //
-//  MeditationDoneSheet.swift
+//  ReadingDoneSheet.swift
 //  fourtold
 //
 //  Created by Zach Gottlieb on 12/18/23.
@@ -8,11 +8,13 @@
 import SwiftData
 import SwiftUI
 
-struct MeditationDoneSheet: View {
+struct ReadingDoneSheet: View {
     @Environment(\.modelContext) var modelContext
     @Bindable var healthKitController: HealthKitController
     
-    @Binding var type: FTMeditateType
+    @Binding var type: FTReadType
+    @Binding var genre: FTReadGenre
+    @Binding var isTimed: Bool
     @Binding var startDate: Date
     @Binding var elapsed: TimeInterval
     @Binding var goal: Int
@@ -23,24 +25,24 @@ struct MeditationDoneSheet: View {
     
     var body: some View {
         VStack {
-            Text("Done Meditating")
+            Text("Done Reading")
                 .font(.title)
                 .padding(.bottom, 8)
             
             VStack {
                 if elapsed < 30 {
-                    Text("You meditated for less than 1 minute.")
+                    Text("You read for less than 1 minute.")
                     Text("You have to do at least a minute to log it!")
                         .font(.footnote)
-                } else if type == .timed {
-                    Text("You meditated for \(elapsed.secondsAsTimeRoundedToMinutes(units: .full))")
+                } else if isTimed {
+                    Text("You read for \(elapsed.secondsAsTimeRoundedToMinutes(units: .full))")
                     Text("(\((elapsed / Double(goal) * 100).rounded() / 100, format: .percent) of your goal)")
                 } else {
-                    Text("You meditated for \(elapsed.secondsAsTimeRoundedToMinutes(units: .full)).")
+                    Text("You read for \(elapsed.secondsAsTimeRoundedToMinutes(units: .full)).")
                 }
             }
             .padding(.bottom, 12)
-           
+            
             if elapsed > 30 {
                 VStack {
                     Divider()
@@ -48,7 +50,7 @@ struct MeditationDoneSheet: View {
                     VStack {
                         Text("How're you feeling now?")
                             .font(.headline)
-                        MoodPicker(mood: $endMood) {
+                        MoodPicker(mood: $endMood, color: restColor) {
                             Text("How're you feeling now?")
                         }
                         .labelsHidden()
@@ -58,7 +60,7 @@ struct MeditationDoneSheet: View {
                     Divider()
                 }
             }
-            
+                    
             HStack(alignment: .center) {
                 Button("Cancel", role: .cancel) {
                     NotificationController.cancelAllPending()
@@ -66,23 +68,26 @@ struct MeditationDoneSheet: View {
                     showingAlert.toggle()
                     showingSheet.toggle()
                 }
+                .foregroundStyle(restColor)
                 .padding()
                 
                 if elapsed > 30 {
                     Button("Save") {
                         NotificationController.cancelAllPending()
                         
-                        healthKitController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: startDate)
+                        // Write mindful minutes to Apple Health
+                        // healthKitController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: startDate)
                         
-                        let mediation = FTMeditate(startDate: startDate, timeOfDay: startDate.timeOfDay(), startMood: mood, endMood: endMood, type: type, duration: elapsed.secondsToMinutesRounded())
+                        let read = FTRead(startDate: startDate, timeOfDay: startDate.timeOfDay(), startMood: mood, endMood: endMood, type: type, genre: genre, duration: elapsed.secondsToMinutesRounded(), isTimed: isTimed)
                         
-                        modelContext.insert(mediation)
+                        modelContext.insert(read)
                         
                         showingAlert.toggle()
                         showingSheet.toggle()
                     }
                     .padding()
                     .buttonStyle(.borderedProminent)
+                    .tint(restColor)
                 }
             }
         }
@@ -90,5 +95,5 @@ struct MeditationDoneSheet: View {
 }
 
 #Preview {
-    MeditationDoneSheet(healthKitController: HealthKitController(), type: .constant(.timed), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingAlert: .constant(true))
+    ReadingDoneSheet(healthKitController: HealthKitController(), type: .constant(.book), genre: .constant(.fantasy), isTimed: .constant(true), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingAlert: .constant(true))
 }

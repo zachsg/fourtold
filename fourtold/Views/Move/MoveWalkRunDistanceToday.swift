@@ -1,37 +1,41 @@
 //
-//  HomeCardioFitnessToday.swift
+//  MoveWalkRunDistanceToday.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/4/23.
+//  Created by Zach Gottlieb on 12/19/23.
 //
 
 import SwiftUI
 
-struct HomeCardioFitnessToday: View {
+struct MoveWalkRunDistanceToday: View {
     @Bindable var healthKitController: HealthKitController
+    
+    var walkRunDistancetoday: String {
+        String(format: "%.2f%", healthKitController.walkRunDistanceToday)
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 HStack {
-                    Image(systemName: cardioSystemImage)
+                    Image(systemName: distanceSystemImage)
                     
-                    Text("Latest Cardio Fitness")
+                    Text("Distance today")
                 }
-                .foregroundColor(.accentColor)
+                .foregroundColor(moveColor)
                 
                 Spacer()
                 
-                Text(healthKitController.latestCardioFitness, format: updatedToday() ? .dateTime.hour().minute() : .dateTime.month().day())
+                Text(healthKitController.latestWalkRunDistance, format: .dateTime.hour().minute())
                     .foregroundStyle(.tertiary)
             }
             .font(.footnote.bold())
             
             HStack(alignment: .firstTextBaseline, spacing: 0) {
-                Text(String(format: "%.1f%", healthKitController.cardioFitnessMostRecent))
+                Text(walkRunDistancetoday)
                     .font(.title.weight(.semibold))
                 
-                Text("VO₂ max")
+                Text("Miles")
                     .font(.caption.bold())
                     .foregroundStyle(.secondary)
                     .padding(.leading, 2)
@@ -39,12 +43,9 @@ struct HomeCardioFitnessToday: View {
             .padding(.top, 2)
         }
     }
-    
-    func updatedToday() -> Bool {
-        return Calendar.current.isDateInToday(healthKitController.latestCardioFitness)
-    }
 }
 
 #Preview {
-    HomeCardioFitnessToday(healthKitController: HealthKitController())
+    MoveWalkRunDistanceToday(healthKitController: HealthKitController())
 }
+

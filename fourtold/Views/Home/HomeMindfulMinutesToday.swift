@@ -14,11 +14,11 @@ struct HomeMindfulMinutesToday: View {
         VStack(alignment: .leading) {
             HStack {
                 HStack {
-                    Image(systemName: mindSystemImage)
+                    Image(systemName: restSystemImage)
                     
                     Text("Mindfulness today")
                 }
-                .foregroundColor(.accentColor)
+                .foregroundColor(restColor)
                 
                 Spacer()
                 

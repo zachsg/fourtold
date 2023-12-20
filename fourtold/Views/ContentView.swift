@@ -11,39 +11,42 @@ struct ContentView: View {
     @State private var tabSelected: FTTabItem = .overview
     @State private var healthKitController = HealthKitController()
     
-    @AppStorage(hasCardioKey) var hasCardio: Bool = true
+    @AppStorage(hasVO2Key) var hasVO2: Bool = true
     
     var body: some View {
-        TabView(selection: $tabSelected) {
-            HomeView(healthKitController: healthKitController)
-                .tabItem {
-                    Image(systemName: homeSystemImage)
-                    Text(homeTitle)
-                }
-                .tag(FTTabItem.overview)
-            
-            BodyView()
-                .tabItem {
-                    Image(systemName: bodySystemImage)
-                    Text(bodyTitle)
-                }
-                .tag(FTTabItem.body)
-            
-            MindView(healthKitController: healthKitController)
-                .tabItem {
-                    Image(systemName: mindSystemImage)
-                    Text(mindTitle)
-                }
-                .tag(FTTabItem.mind)
-            
-            SettingsView()
-                .tabItem {
-                    Image(systemName: settingsSystemImage)
-                    Text(settingsTitle)
-                }
-                .tag(FTTabItem.settings)
-        }
-        .onAppear(perform: NotificationController.requestAuthorization)
+        HomeView(healthKitController: healthKitController)
+            .onAppear(perform: NotificationController.requestAuthorization)
+        
+//        TabView(selection: $tabSelected) {
+//            HomeView(healthKitController: healthKitController)
+//                .tabItem {
+//                    Image(systemName: homeSystemImage)
+//                    Text(homeTitle)
+//                }
+//                .tag(FTTabItem.overview)
+//            
+//            BodyView()
+//                .tabItem {
+//                    Image(systemName: bodySystemImage)
+//                    Text(bodyTitle)
+//                }
+//                .tag(FTTabItem.body)
+//            
+//            MindView(healthKitController: healthKitController)
+//                .tabItem {
+//                    Image(systemName: mindSystemImage)
+//                    Text(mindTitle)
+//                }
+//                .tag(FTTabItem.mind)
+//            
+//            SettingsView()
+//                .tabItem {
+//                    Image(systemName: settingsSystemImage)
+//                    Text(settingsTitle)
+//                }
+//                .tag(FTTabItem.settings)
+//        }
+//        .onAppear(perform: NotificationController.requestAuthorization)
     }
 }
 

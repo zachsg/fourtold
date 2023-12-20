@@ -7,10 +7,7 @@
 
 import SwiftUI
 
-struct SettingsBodyGroup: View {
-    // Cardio
-    @AppStorage(hasCardioKey) var hasCardio: Bool = true
-    
+struct SettingsMoveGroup: View {
     // Steps
     @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = true
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = 10000
@@ -19,11 +16,7 @@ struct SettingsBodyGroup: View {
     @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = true
     
     var body: some View {
-        Section(bodyTitle) {
-            Toggle(isOn: $hasCardio.animation()) {
-                Label("Use cardio metrics?", systemImage: cardioSystemImage)
-            }
-            
+        Section(moveTitle) {
             Toggle(isOn: $hasDailyStepsGoal.animation()) {
                 Label("Use steps metrics?", systemImage: stepsSystemImage)
             }
@@ -54,5 +47,5 @@ struct SettingsBodyGroup: View {
 }
 
 #Preview {
-    SettingsBodyGroup()
+    SettingsMoveGroup()
 }

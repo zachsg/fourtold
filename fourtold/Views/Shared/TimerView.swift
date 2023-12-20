@@ -14,6 +14,7 @@ struct TimerView: View {
     @Binding var showingAlert: Bool
     @Binding var elapsed: TimeInterval
     
+    var color: Color
     var isTimed: Bool
     var notificationTitle: String
     var notificationSubtitle: String
@@ -40,7 +41,7 @@ struct TimerView: View {
                 .overlay(Circle()
                     .trim(from:0, to: progress)
                     .stroke(style: StrokeStyle(lineWidth: 25, lineCap: .round, lineJoin: .round))
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(color)
                     .rotationEffect(.degrees(-90))
                     .animation(.easeInOut, value: 0.2)
                 )
@@ -83,9 +84,20 @@ struct TimerView: View {
         }
         .navigationBarBackButtonHidden()
         .toolbar {
-            Button("Cancel", systemImage: cancelSystemImage) {
+            Button(action: {
                 timerStopped()
-            }
+            }, label: {
+                Label(
+                    title: {
+                        Text("Cancel")
+                            .foregroundStyle(color)
+                    },
+                    icon: {
+                        Image(systemName: cancelSystemImage)
+                            .foregroundStyle(color)
+                    }
+                )
+            })
         }
         .onAppear(perform: {
             if isTimed {
@@ -116,5 +128,5 @@ struct TimerView: View {
 }
 
 #Preview {
-    TimerView(goal: .constant(300), showingAlert: .constant(false), elapsed: .constant(60), isTimed: true, notificationTitle: "Finished", notificationSubtitle: "You are finished")
+    TimerView(goal: .constant(300), showingAlert: .constant(false), elapsed: .constant(60), color: .red, isTimed: true, notificationTitle: "Finished", notificationSubtitle: "You are finished")
 }

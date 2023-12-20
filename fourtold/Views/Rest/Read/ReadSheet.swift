@@ -38,14 +38,22 @@ struct ReadSheet: View {
                 }
                 
                 Section("Mood") {
-                    MoodPicker(mood: $mood) {
+                    MoodPicker(mood: $mood, color: restColor) {
                         Text("How're you feeling?")
                     }
                 }
                 
                 Section("Session details") {
                     Toggle(isOn: $isTimed) {
-                        Label("Timed session?", systemImage: isTimed ? readTimedSystemImage : readOpenSystemImage)
+                        Label(
+                            title: {
+                                Text("Timed session?")
+                            },
+                            icon: {
+                                Image(systemName: isTimed ? readTimedSystemImage : readOpenSystemImage)
+                                    .foregroundStyle(restColor)
+                            }
+                        )
                     }
                     
                     if isTimed {
@@ -60,6 +68,7 @@ struct ReadSheet: View {
                                     }
                                 }, icon: {
                                     Image(systemName: isTimed ? readTimedSystemImage : readOpenSystemImage)
+                                        .foregroundColor(restColor)
                                 }
                             )
                         }
@@ -72,12 +81,14 @@ struct ReadSheet: View {
                     Button("Cancel", role: .cancel) {
                         showingSheet.toggle()
                     }
+                    .foregroundStyle(restColor)
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
                         ReadingView(healthKitController: healthKitController, readType: $readType, genre: $genre, mood: $mood, isTimed: $isTimed, readGoal: $readGoal, startDate: $startDate, showingSheet: $showingSheet)
                     }
+                    .foregroundStyle(restColor)
                 }
             }
         }

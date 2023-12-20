@@ -1,41 +1,37 @@
 //
-//  HomeWalkRunDistanceSection.swift
+//  RestMindfulMinutesToday.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/4/23.
+//  Created by Zach Gottlieb on 12/19/23.
 //
 
 import SwiftUI
 
-struct HomeWalkRunDistanceToday: View {
+struct RestMindfulMinutesToday: View {
     @Bindable var healthKitController: HealthKitController
-    
-    var walkRunDistancetoday: String {
-        String(format: "%.2f%", healthKitController.walkRunDistanceToday)
-    }
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 HStack {
-                    Image(systemName: distanceSystemImage)
+                    Image(systemName: restSystemImage)
                     
-                    Text("Distance today")
+                    Text("Mindfulness today")
                 }
-                .foregroundColor(moveColor)
+                .foregroundColor(restColor)
                 
                 Spacer()
                 
-                Text(healthKitController.latestWalkRunDistance, format: .dateTime.hour().minute())
+                Text(healthKitController.latestMindfulMinutes, format: .dateTime.hour().minute())
                     .foregroundStyle(.tertiary)
             }
             .font(.footnote.bold())
             
             HStack(alignment: .firstTextBaseline, spacing: 0) {
-                Text(walkRunDistancetoday)
+                Text("\(healthKitController.mindfulMinutesToday)")
                     .font(.title.weight(.semibold))
                 
-                Text("Miles")
+                Text("Minutes")
                     .font(.caption.bold())
                     .foregroundStyle(.secondary)
                     .padding(.leading, 2)
@@ -46,5 +42,5 @@ struct HomeWalkRunDistanceToday: View {
 }
 
 #Preview {
-    HomeWalkRunDistanceToday(healthKitController: HealthKitController())
+    RestMindfulMinutesToday(healthKitController: HealthKitController())
 }

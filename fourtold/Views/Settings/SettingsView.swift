@@ -17,12 +17,16 @@ struct SettingsView: View {
             Form {
                 SettingsUserInfoGroup()
                 
-                SettingsBodyGroup()
+                SettingsMoveGroup()
                 
-                SettingsMindGroup()
+                SettingsSweatGroup()
+                
+                SettingsLiftGroup()
+                
+                SettingsRestGroup()
                 
                 Section {
-                    // Any dev info about the app
+                    // Add any dev info about the app
                 } header: {
                     HStack {
                         Spacer()

@@ -10,6 +10,8 @@ import SwiftUI
 struct MoodPicker<Content: View>: View {
     @Binding var mood: FTMood
     
+    var color: Color
+    
     @ViewBuilder var label: Content
     
     var body: some View {
@@ -19,11 +21,12 @@ struct MoodPicker<Content: View>: View {
                     .foregroundStyle(type.color())
             }
         }
+        .tint(color)
     }
 }
 
 #Preview {
-    MoodPicker(mood: .constant(.veryPleasant)) {
+    MoodPicker(mood: .constant(.veryPleasant), color: .red) {
         Text("How are you feeling?")
     }
 }

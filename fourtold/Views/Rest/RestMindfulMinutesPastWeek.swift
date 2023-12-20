@@ -1,13 +1,13 @@
 //
-//  HomeMindfulMinutesPastWeek.swift
+//  RestMindfulMinutesPastWeek.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/13/23.
+//  Created by Zach Gottlieb on 12/19/23.
 //
 
 import SwiftUI
 
-struct HomeMindfulMinutesPastWeek: View {
+struct RestMindfulMinutesPastWeek: View {
     @Bindable var healthKitController: HealthKitController
     
     var body: some View {
@@ -41,5 +41,5 @@ struct HomeMindfulMinutesPastWeek: View {
 }
 
 #Preview {
-    HomeMindfulMinutesToday(healthKitController: HealthKitController())
+    RestMindfulMinutesToday(healthKitController: HealthKitController())
 }

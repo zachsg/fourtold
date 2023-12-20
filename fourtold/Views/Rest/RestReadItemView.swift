@@ -1,5 +1,5 @@
 //
-//  MindReadItemView.swift
+//  RestReadItemView.swift
 //  fourtold
 //
 //  Created by Zach Gottlieb on 12/14/23.
@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-struct MindReadItemView: View {
+struct RestReadItemView: View {
     @Bindable var read: FTRead
     
     var moodChange: Int {
@@ -82,7 +82,7 @@ struct MindReadItemView: View {
                         Image(systemName: readSystemImage)
                         Text("Reading")
                     }
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(restColor)
                     
                     Spacer()
                     
@@ -96,9 +96,11 @@ struct MindReadItemView: View {
                         if read.type == .other {
                             Text("\(readingTitle) \(readingTimeFormatted)")
                                 .font(.headline)
+                                .foregroundStyle(.primary)
                         } else {
                             Text("\(readingTitle) \(readingTimeFormatted)")
                                 .font(.headline)
+                                .foregroundStyle(.primary)
                         }
                         
                         HStack {
@@ -136,7 +138,7 @@ struct MindReadItemView: View {
         
         let read = FTRead(startDate: now, timeOfDay: now.timeOfDay(), startMood: startMood, endMood: endMood, type: .book, genre: .fantasy, duration: 600, isTimed: false)
             
-        return MindReadItemView(read: read)
+        return RestReadItemView(read: read)
             .modelContainer(container)
     } catch {
         fatalError(error.localizedDescription)

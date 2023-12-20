@@ -42,6 +42,7 @@ struct WeekMindfulMinutesBarChart: View {
                             x: .value("Day", weekDay(for: date)),
                             y: .value("Minutes", minutes)
                         )
+                        .foregroundStyle(restColor)
                         .annotation(position: .top, alignment: .center) {
                             Text(minutes, format: .number)
                                 .font(Calendar.current.isDateInToday(date) ? .footnote.bold() : .footnote)

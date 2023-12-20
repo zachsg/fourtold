@@ -22,7 +22,7 @@ class HealthKitController {
     var walkRunDistanceToday = 0.0
     var latestWalkRunDistance: Date = .now
     
-    // Cardio
+    // VO2 max
     var cardioFitnessMostRecent = 0.0
     var latestCardioFitness: Date = .now
     

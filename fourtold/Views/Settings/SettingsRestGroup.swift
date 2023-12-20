@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct SettingsMindGroup: View {
+struct SettingsRestGroup: View {
     @AppStorage(meditateGoalKey) var meditateGoal: Int = 600
     @AppStorage(readGoalKey) var readGoal: Int = 1800
     @AppStorage(breathTypeKey) var breathType: FTBreathType = .four78
     
     var body: some View {
-        Section(mindTitle) {
+        Section(restTitle) {
             Stepper(value: $meditateGoal, in: 60...5400, step: 60) {
                 Label(
                     title: {
@@ -75,5 +75,5 @@ struct SettingsMindGroup: View {
 }
 
 #Preview {
-    SettingsMindGroup()
+    SettingsRestGroup()
 }

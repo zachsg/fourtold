@@ -1,5 +1,5 @@
 //
-//  MindItemView.swift
+//  RestMeditateItemView.swift
 //  fourtold
 //
 //  Created by Zach Gottlieb on 12/14/23.
@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-struct MindMeditateItemView: View {
+struct RestMeditateItemView: View {
     @Bindable var meditate: FTMeditate
     
     var moodChange: Int {
@@ -62,7 +62,7 @@ struct MindMeditateItemView: View {
                         Image(systemName: meditateSystemImage)
                         Text("Meditation")
                     }
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(restColor)
                     
                     Spacer()
                     
@@ -75,6 +75,7 @@ struct MindMeditateItemView: View {
                     VStack(alignment: .leading) {
                         Text("Meditated for \(TimeInterval(meditate.duration).secondsAsTime(units: .full))")
                             .font(.headline)
+                            .foregroundStyle(.primary)
                         
                         HStack {
                             Text(meditate.startMood.emoji())
@@ -108,7 +109,7 @@ struct MindMeditateItemView: View {
         
         let meditate = FTMeditate(startDate: now, timeOfDay: now.timeOfDay(), startMood: startMood, endMood: endMood, type: .timed, duration: 300)
         
-        return MindMeditateItemView(meditate: meditate)
+        return RestMeditateItemView(meditate: meditate)
             .modelContainer(container)
     } catch {
         fatalError(error.localizedDescription)
