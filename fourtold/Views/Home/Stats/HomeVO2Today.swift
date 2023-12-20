@@ -18,7 +18,7 @@ struct HomeVO2Today: View {
                     
                     Text("Latest Cardio Fitness")
                 }
-                .foregroundColor(sweatColor)
+                .foregroundStyle(sweatColor)
                 
                 Spacer()
                 

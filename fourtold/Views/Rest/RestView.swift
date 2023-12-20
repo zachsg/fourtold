@@ -105,7 +105,7 @@ struct RestView: View {
                         HStack {
                             Text("It's a new day. Time to take action!")
                             Image(systemName: "plus.circle")
-                                .foregroundColor(restColor)
+                                .foregroundStyle(restColor)
                                 .font(.title3)
                         }
                         .onTapGesture(perform: {

@@ -41,7 +41,7 @@ struct RestReadItemView: View {
                 Image(systemName: progressSystemImage)
                     .resizable()
                     .frame(width: 32, height: 32)
-                    .foregroundColor(read.endMood.color())
+                    .foregroundStyle(read.endMood.color())
                     .rotationEffect(.degrees(90 - Double(moodChange * 10)))
                 
                 VStack(alignment: .leading) {
@@ -82,7 +82,7 @@ struct RestReadItemView: View {
                         Image(systemName: readSystemImage)
                         Text("Reading")
                     }
-                    .foregroundColor(restColor)
+                    .foregroundStyle(restColor)
                     
                     Spacer()
                     
@@ -109,7 +109,7 @@ struct RestReadItemView: View {
                             Text(read.endMood.emoji())
                         }
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     }
                     .foregroundStyle(.primary)
                 }

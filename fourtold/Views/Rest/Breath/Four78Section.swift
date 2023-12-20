@@ -36,7 +36,7 @@ struct Four78Section: View {
                     Image(systemName: "circle.fill")
                         .resizable()
                         .frame(width: 4, height: 4)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 .padding(.leading, 4)
                 
@@ -47,7 +47,7 @@ struct Four78Section: View {
                     Image(systemName: "circle.fill")
                         .resizable()
                         .frame(width: 4, height: 4)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 .padding(.leading, 4)
                 
@@ -58,7 +58,7 @@ struct Four78Section: View {
                     Image(systemName: "circle.fill")
                         .resizable()
                         .frame(width: 4, height: 4)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 .padding(.leading, 4)
             }

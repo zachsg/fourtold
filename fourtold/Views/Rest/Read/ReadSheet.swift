@@ -68,7 +68,7 @@ struct ReadSheet: View {
                                     }
                                 }, icon: {
                                     Image(systemName: isTimed ? readTimedSystemImage : readOpenSystemImage)
-                                        .foregroundColor(restColor)
+                                        .foregroundStyle(restColor)
                                 }
                             )
                         }

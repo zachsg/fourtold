@@ -21,7 +21,7 @@ struct RestMeditateItemView: View {
                 Image(systemName: progressSystemImage)
                     .resizable()
                     .frame(width: 32, height: 32)
-                    .foregroundColor(meditate.endMood.color())
+                    .foregroundStyle(meditate.endMood.color())
                     .rotationEffect(.degrees(90 - Double(moodChange * 10)))
                 
                 VStack(alignment: .leading) {
@@ -62,7 +62,7 @@ struct RestMeditateItemView: View {
                         Image(systemName: meditateSystemImage)
                         Text("Meditation")
                     }
-                    .foregroundColor(restColor)
+                    .foregroundStyle(restColor)
                     
                     Spacer()
                     
@@ -83,7 +83,7 @@ struct RestMeditateItemView: View {
                             Text(meditate.endMood.emoji())
                         }
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     }
                     .foregroundStyle(.primary)
                 }
