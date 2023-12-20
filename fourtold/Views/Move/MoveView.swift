@@ -36,12 +36,12 @@ struct MoveView: View {
         NavigationStack {
             List {
                 Section {
-                    HomeStepsToday(healthKitController: healthKitController)
+                    MoveStepsToday(healthKitController: healthKitController)
                     
                     MoveStepsPastWeek(healthKitController: healthKitController)
                     
                     if hasWalkRunDistance {
-                        HomeWalkRunDistanceToday(healthKitController: healthKitController)
+                        MoveWalkRunDistanceToday(healthKitController: healthKitController)
                     }
                 } footer: {
                     if bestStepsDay.steps > 0 {

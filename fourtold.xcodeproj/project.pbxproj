@@ -23,7 +23,6 @@
 		591CC1E42B32620A00B731B7 /* SettingsSweatGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591CC1E32B32620A00B731B7 /* SettingsSweatGroup.swift */; };
 		594888FF2B296938003FD4C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594888FE2B296938003FD4C8 /* Extensions.swift */; };
 		594889032B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889022B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift */; };
-		594889052B2A8CB0003FD4C8 /* HomeMindfulMinutesPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889042B2A8CB0003FD4C8 /* HomeMindfulMinutesPastWeek.swift */; };
 		594889072B2A8E60003FD4C8 /* WeekMindfulMinutesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889062B2A8E60003FD4C8 /* WeekMindfulMinutesDetailView.swift */; };
 		594889092B2A8EF8003FD4C8 /* WeekMindfulMinutesBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889082B2A8EF8003FD4C8 /* WeekMindfulMinutesBarChart.swift */; };
 		59511A9B2B33363E0071249A /* MeditationDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */; };
@@ -53,7 +52,6 @@
 		59D28FD52B1E84D9002799C4 /* WeekStepsBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */; };
 		59D28FD82B1E8564002799C4 /* SettingsRestGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD72B1E8564002799C4 /* SettingsRestGroup.swift */; };
 		59D28FDD2B1E8E4B002799C4 /* HomeWalkRunDistanceToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FDC2B1E8E4B002799C4 /* HomeWalkRunDistanceToday.swift */; };
-		59D28FDF2B1EA049002799C4 /* HomeStepsPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FDE2B1EA048002799C4 /* HomeStepsPastWeek.swift */; };
 		59D28FE12B1EABF7002799C4 /* HomeVO2Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FE02B1EABF7002799C4 /* HomeVO2Today.swift */; };
 		59D28FE32B1EACDC002799C4 /* SettingsMoveGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FE22B1EACDC002799C4 /* SettingsMoveGroup.swift */; };
 		59DAF3762B2BF4B300BB12B5 /* RestMeditateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF3752B2BF4B300BB12B5 /* RestMeditateItemView.swift */; };
@@ -85,7 +83,6 @@
 		591CC1E32B32620A00B731B7 /* SettingsSweatGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSweatGroup.swift; sourceTree = "<group>"; };
 		594888FE2B296938003FD4C8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		594889022B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMindfulMinutesToday.swift; sourceTree = "<group>"; };
-		594889042B2A8CB0003FD4C8 /* HomeMindfulMinutesPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMindfulMinutesPastWeek.swift; sourceTree = "<group>"; };
 		594889062B2A8E60003FD4C8 /* WeekMindfulMinutesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekMindfulMinutesDetailView.swift; sourceTree = "<group>"; };
 		594889082B2A8EF8003FD4C8 /* WeekMindfulMinutesBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekMindfulMinutesBarChart.swift; sourceTree = "<group>"; };
 		59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDoneSheet.swift; sourceTree = "<group>"; };
@@ -116,7 +113,6 @@
 		59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepsBarChart.swift; sourceTree = "<group>"; };
 		59D28FD72B1E8564002799C4 /* SettingsRestGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRestGroup.swift; sourceTree = "<group>"; };
 		59D28FDC2B1E8E4B002799C4 /* HomeWalkRunDistanceToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWalkRunDistanceToday.swift; sourceTree = "<group>"; };
-		59D28FDE2B1EA048002799C4 /* HomeStepsPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsPastWeek.swift; sourceTree = "<group>"; };
 		59D28FE02B1EABF7002799C4 /* HomeVO2Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVO2Today.swift; sourceTree = "<group>"; };
 		59D28FE22B1EACDC002799C4 /* SettingsMoveGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMoveGroup.swift; sourceTree = "<group>"; };
 		59DAF3752B2BF4B300BB12B5 /* RestMeditateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestMeditateItemView.swift; sourceTree = "<group>"; };
@@ -350,9 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				59D28FD22B1E829E002799C4 /* HomeStepsToday.swift */,
-				59D28FDE2B1EA048002799C4 /* HomeStepsPastWeek.swift */,
 				594889022B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift */,
-				594889042B2A8CB0003FD4C8 /* HomeMindfulMinutesPastWeek.swift */,
 				59D28FDC2B1E8E4B002799C4 /* HomeWalkRunDistanceToday.swift */,
 				59D28FE02B1EABF7002799C4 /* HomeVO2Today.swift */,
 			);
@@ -489,7 +483,6 @@
 				59B57B3C2B2D3E0E00FA949C /* Four78Section.swift in Sources */,
 				590861E32B1E3FD70040DC72 /* HomeView.swift in Sources */,
 				597550A72B27A1800070F60E /* FTActivity.swift in Sources */,
-				59D28FDF2B1EA049002799C4 /* HomeStepsPastWeek.swift in Sources */,
 				59B57B3A2B2D38B300FA949C /* BreathSheet.swift in Sources */,
 				59EF3A802B3297F100BDBB7F /* RestOptionButton.swift in Sources */,
 				591CC1E42B32620A00B731B7 /* SettingsSweatGroup.swift in Sources */,
@@ -498,7 +491,6 @@
 				597550932B1FC3620070F60E /* FTGender.swift in Sources */,
 				594889092B2A8EF8003FD4C8 /* WeekMindfulMinutesBarChart.swift in Sources */,
 				59D28FDD2B1E8E4B002799C4 /* HomeWalkRunDistanceToday.swift in Sources */,
-				594889052B2A8CB0003FD4C8 /* HomeMindfulMinutesPastWeek.swift in Sources */,
 				59B96AC92B2B9462003B5106 /* FTReadType.swift in Sources */,
 				59132D832B326D2F00C113A6 /* MoveStepsPastWeek.swift in Sources */,
 				59D28FE12B1EABF7002799C4 /* HomeVO2Today.swift in Sources */,

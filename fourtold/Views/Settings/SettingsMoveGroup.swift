@@ -18,8 +18,17 @@ struct SettingsMoveGroup: View {
     var body: some View {
         Section(moveTitle) {
             Toggle(isOn: $hasDailyStepsGoal.animation()) {
-                Label("Use steps metrics?", systemImage: stepsSystemImage)
+                Label(
+                    title: {
+                        Text("Use steps metrics?")
+                    },
+                    icon: {
+                        Image(systemName: stepsSystemImage)
+                            .foregroundStyle(moveColor)
+                    }
+                )
             }
+            .tint(moveColor)
             
             if hasDailyStepsGoal {
                 Stepper(value: $dailyStepsGoal, in: 2000...30000, step: 500) {
@@ -34,14 +43,24 @@ struct SettingsMoveGroup: View {
                         },
                         icon: {
                             Image(systemName: stepsSystemImage)
+                                .foregroundStyle(moveColor)
                         }
                     )
                 }
             }
             
             Toggle(isOn: $hasWalkRunDistance.animation()) {
-                Label("Use distance metrics?", systemImage: distanceSystemImage)
+                Label(
+                    title: {
+                        Text("Use distance metrics?")
+                    },
+                    icon: {
+                        Image(systemName: distanceSystemImage)
+                            .foregroundStyle(moveColor)
+                    }
+                )
             }
+            .tint(moveColor)
         }
     }
 }

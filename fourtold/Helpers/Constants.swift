@@ -95,3 +95,4 @@ let groundSystemImage = "globe.americas"
 // MARK: -  Settings
 let settingsTitle = "Settings"
 let settingsSystemImage = "gearshape"
+let settingsColor: Color = .gray

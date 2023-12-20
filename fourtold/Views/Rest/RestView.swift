@@ -69,21 +69,21 @@ struct RestView: View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 List {
-                    Section {
-                        RestMindfulMinutesToday(healthKitController: healthKitController)
-                        
-                        RestMindfulMinutesPastWeek(healthKitController: healthKitController)
-                    } header: {
-                        Text("Stats")
-                    } footer: {
-                        if bestMindfulDay.minutes > 0 {
-                            HStack(spacing: 0) {
-                                Text("Your best day was ")
-                                Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
-                                Text(" with \(bestMindfulDay.minutes) minutes.")
-                            }
-                        }
-                    }
+//                    Section {
+//                        RestMindfulMinutesToday(healthKitController: healthKitController)
+//                        
+//                        RestMindfulMinutesPastWeek(healthKitController: healthKitController)
+//                    } header: {
+//                        Text("Stats")
+//                    } footer: {
+//                        if bestMindfulDay.minutes > 0 {
+//                            HStack(spacing: 0) {
+//                                Text("Your best day was ")
+//                                Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
+//                                Text(" with \(bestMindfulDay.minutes) minutes.")
+//                            }
+//                        }
+//                    }
                     
                     if !todayActivities.isEmpty {
                         Section("Today") {

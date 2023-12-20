@@ -29,6 +29,7 @@ struct SettingsRestGroup: View {
                     },
                     icon: {
                         Image(systemName: meditateSystemImage)
+                            .foregroundStyle(restColor)
                     }
                 )
             }
@@ -48,6 +49,7 @@ struct SettingsRestGroup: View {
                     },
                     icon: {
                         Image(systemName: readSystemImage)
+                            .foregroundStyle(restColor)
                     }
                 )
             }
@@ -68,8 +70,10 @@ struct SettingsRestGroup: View {
                     Text("Breath type")
                 } icon: {
                     Image(systemName: breathSystemImage)
+                        .foregroundStyle(restColor)
                 }
             }
+            .tint(restColor)
         }
     }
 }

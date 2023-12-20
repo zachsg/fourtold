@@ -13,8 +13,17 @@ struct SettingsSweatGroup: View {
     var body: some View {
         Section(sweatTitle) {
             Toggle(isOn: $hasVO2.animation()) {
-                Label("Use cardio fitness?", systemImage: vO2SystemImage)
+                Label(
+                    title: {
+                        Text("Use cardio fitness?")
+                    },
+                    icon: {
+                        Image(systemName: vO2SystemImage)
+                            .foregroundStyle(sweatColor)
+                    }
+                )
             }
+            .tint(sweatColor)
         }
     }
 }

@@ -62,6 +62,8 @@ struct ContentView: View {
             sweatColor
         case .rest:
             restColor
+        case .settings:
+            settingsColor
         default:
             .accentColor
         }
