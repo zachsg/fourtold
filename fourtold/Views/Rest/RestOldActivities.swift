@@ -13,7 +13,7 @@ struct RestOldActivities: View {
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
     
-    @State private var showOldActivities = false
+    @Binding var showOldActivities: Bool
     
     var olderActivities: [any FTActivity] {
         var activities: [any FTActivity] = []
@@ -68,6 +68,6 @@ struct RestOldActivities: View {
 }
 
 #Preview {
-    RestOldActivities()
+    RestOldActivities(showOldActivities: .constant(true))
         .modelContainer(for: [FTMeditate.self, FTRead.self])
 }

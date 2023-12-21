@@ -20,6 +20,7 @@ struct RestView: View {
     @State private var groundSheetIsShowing = false
     @State private var lastDate: Date = .now
     @State private var showingOptions = false
+    @State private var showOldActivities = false
     
     var bestMindfulDay: (day: Date, minutes: Int) {
         var bestDay: Date = .now
@@ -40,9 +41,9 @@ struct RestView: View {
             ZStack(alignment: .bottomTrailing) {
                 List {
                     Section {
-                        RestMindfulMinutesToday(healthKitController: healthKitController)
+                        RestMinutesToday()
                         
-                        RestMindfulMinutesPastWeek(healthKitController: healthKitController)
+                        RestMinutesPastWeek(healthKitController: healthKitController)
                     } header: {
                         Text("Stats")
                     } footer: {
@@ -57,7 +58,7 @@ struct RestView: View {
                     
                     RestTodayActivities(showingOptions: $showingOptions)
                     
-                    RestOldActivities()
+                    RestOldActivities(showOldActivities: $showOldActivities)
                 }
                 
                 if showingOptions {
@@ -123,45 +124,19 @@ struct RestView: View {
             .sheet(isPresented: $groundSheetIsShowing) {
                 Text("Grounding sheet")
             }
-            .onAppear(perform: {
-                if healthKitController.mindfulMinutesWeek == 0 {
-                    refresh(hard: true)
-                } else {
-                    refresh()
-                }
-            })
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
                     if !Calendar.current.isDateInToday(lastDate) {
                         lastDate = .now
+                        showOldActivities.toggle()
+                        showOldActivities = false
                     }
-                    
-                    let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
-                    refresh(hard: !today)
                 }
             }
         }
     }
-    
-    func refresh(hard: Bool = false) {
-        healthKitController.getMindfulMinutesToday(refresh: hard)
-        healthKitController.getMindfulMinutesRecent(refresh: hard)
-//        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
-    }
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.mindfulMinutesToday = 10
-    healthKitController.mindfulMinutesWeek = 60
-    
-    let today: Date = .now
-    for i in 0...6 {
-        let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
-        if let date {
-            healthKitController.mindfulMinutesWeekByDay[date] = Int.random(in: 0...30)
-        }
-    }
-    
-    return RestView(healthKitController: healthKitController)
+    RestView(healthKitController: HealthKitController())
 }

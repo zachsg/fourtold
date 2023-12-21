@@ -10,6 +10,7 @@ import Foundation
 enum FTReadGenre: String, Codable, CaseIterable {
     case adventure,
          biography,
+         business,
          fantasy,
          fiction,
          horror,
