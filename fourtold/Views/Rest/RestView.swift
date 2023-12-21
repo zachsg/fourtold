@@ -5,7 +5,6 @@
 //  Created by Zach Gottlieb on 12/6/23.
 //
 
-import SwiftData
 import SwiftUI
 
 struct RestView: View {
@@ -13,43 +12,14 @@ struct RestView: View {
     
     @Bindable var healthKitController: HealthKitController
         
-    @Environment(\.modelContext) var modelContext    
-    @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
-    @Query(sort: \FTRead.startDate) var reads: [FTRead]
-    
     @State private var meditateSheetIsShowing = false
     @State private var breathworkSheetIsShowing = false
     @State private var journalSheetIsShowing = false
     @State private var readSheetIsShowing = false
     @State private var sunSheetIsShowing = false
     @State private var groundSheetIsShowing = false
-    @State private var showOldActivities = false
     @State private var lastDate: Date = .now
     @State private var showingOptions = false
-    
-    var todayActivities: [any FTActivity] {
-        var activities: [any FTActivity] = []
-        
-        let todayMeditates = meditates.filter { isToday(date: $0.startDate) }
-        let todayReads = reads.filter { isToday(date: $0.startDate) }
-        
-        activities.append(contentsOf: todayMeditates)
-        activities.append(contentsOf: todayReads)
-        
-        return activities.sorted { $0.startDate > $1.startDate }
-    }
-    
-    var olderActivities: [any FTActivity] {
-        var activities: [any FTActivity] = []
-        
-        let olderMeditates = meditates.filter { !isToday(date: $0.startDate) }
-        let olderReads = reads.filter { !isToday(date: $0.startDate) }
-        
-        activities.append(contentsOf: olderMeditates)
-        activities.append(contentsOf: olderReads)
-        
-        return activities.sorted { $0.startDate > $1.startDate }
-    }
     
     var bestMindfulDay: (day: Date, minutes: Int) {
         var bestDay: Date = .now
@@ -85,70 +55,9 @@ struct RestView: View {
                         }
                     }
                     
-                    if !todayActivities.isEmpty {
-                        Section("Today") {
-                            ForEach(todayActivities, id: \.id) { activity in
-                                if let meditate = activity as? FTMeditate {
-                                    RestMeditateItemView(meditate: meditate)
-                                } else if let read = activity as? FTRead {
-                                    RestReadItemView(read: read)
-                                }
-                            }
-                            .onDelete { indexSet in
-                                for index in indexSet {
-                                    let activity = todayActivities[index]
-                                    modelContext.delete(activity)
-                                }
-                            }
-                        }
-                    } else {
-                        HStack {
-                            Text("It's a new day. Time to take action!")
-                            Image(systemName: "plus.circle")
-                                .foregroundStyle(restColor)
-                                .font(.title3)
-                        }
-                        .onTapGesture(perform: {
-                            withAnimation {
-                                showingOptions.toggle()
-                            }
-                        })
-                        .font(.headline)
-                    }
+                    RestTodayActivities(showingOptions: $showingOptions)
                     
-                    if !olderActivities.isEmpty {
-                        Section(isExpanded: $showOldActivities) {
-                            ForEach(olderActivities, id: \.id) { activity in
-                                if let meditate = activity as? FTMeditate {
-                                    RestMeditateItemView(meditate: meditate)
-                                } else if let read = activity as? FTRead {
-                                    RestReadItemView(read: read)
-                                }
-                            }
-                            .onDelete { indexSet in
-                                for index in indexSet {
-                                    let activity = olderActivities[index]
-                                    modelContext.delete(activity)
-                                }
-                            }
-                        } header: {
-                            HStack {
-                                Text("Older")
-                                Spacer()
-                                Text(olderActivities.count, format: .number)
-                                    .font(.footnote)
-                                Button {
-                                    withAnimation {
-                                        showOldActivities.toggle()
-                                    }
-                                } label: {
-                                    Image(systemName: showOldActivities ? "chevron.down.circle" : "chevron.forward.circle")
-                                        .foregroundStyle(restColor)
-                                }
-                                
-                            }
-                        }
-                    }
+                    RestOldActivities()
                 }
                 
                 if showingOptions {
@@ -184,7 +93,7 @@ struct RestView: View {
                         Image(systemName: "plus.circle")
                             .resizable()
                             .frame(width: 38, height: 38)
-                            .foregroundStyle(restColor)
+                            .foregroundStyle(.rest)
                     }
                     .background(showingOptions ? .black.opacity(0.9) : Color(UIColor.systemBackground))
                     .clipShape(Circle())
@@ -225,8 +134,6 @@ struct RestView: View {
                 if newPhase == .active {
                     if !Calendar.current.isDateInToday(lastDate) {
                         lastDate = .now
-                        showOldActivities.toggle()
-                        showOldActivities = false
                     }
                     
                     let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
@@ -234,10 +141,6 @@ struct RestView: View {
                 }
             }
         }
-    }
-    
-    func isToday(date: Date) -> Bool {
-        Calendar.current.isDateInToday(date)
     }
     
     func refresh(hard: Bool = false) {
@@ -261,5 +164,4 @@ struct RestView: View {
     }
     
     return RestView(healthKitController: healthKitController)
-        .modelContainer(for: [FTMeditate.self, FTRead.self])
 }

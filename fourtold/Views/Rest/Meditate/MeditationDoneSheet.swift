@@ -48,7 +48,7 @@ struct MeditationDoneSheet: View {
                     VStack {
                         Text("How're you feeling now?")
                             .font(.headline)
-                        MoodPicker(mood: $endMood, color: restColor) {
+                        MoodPicker(mood: $endMood, color: .rest) {
                             Text("How're you feeling now?")
                         }
                         .labelsHidden()
@@ -66,7 +66,7 @@ struct MeditationDoneSheet: View {
                     showingAlert.toggle()
                     showingSheet.toggle()
                 }
-                .foregroundStyle(restColor)
+                .foregroundStyle(.rest)
                 .padding()
                 
                 if elapsed > 30 {
@@ -84,7 +84,7 @@ struct MeditationDoneSheet: View {
                     }
                     .padding()
                     .buttonStyle(.borderedProminent)
-                    .tint(restColor)
+                    .tint(.rest)
                 }
             }
         }

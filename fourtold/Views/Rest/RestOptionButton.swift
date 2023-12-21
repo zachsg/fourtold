@@ -28,7 +28,7 @@ struct RestOptionButton: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 24)
-                    .foregroundStyle(restColor)
+                    .foregroundStyle(.rest)
             }
             .padding()
         }

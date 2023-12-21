@@ -38,7 +38,7 @@ struct ReadSheet: View {
                 }
                 
                 Section("Mood") {
-                    MoodPicker(mood: $mood, color: restColor) {
+                    MoodPicker(mood: $mood, color: .rest) {
                         Text("How're you feeling?")
                     }
                 }
@@ -51,7 +51,7 @@ struct ReadSheet: View {
                             },
                             icon: {
                                 Image(systemName: isTimed ? readTimedSystemImage : readOpenSystemImage)
-                                    .foregroundStyle(restColor)
+                                    .foregroundStyle(.rest)
                             }
                         )
                     }
@@ -68,7 +68,7 @@ struct ReadSheet: View {
                                     }
                                 }, icon: {
                                     Image(systemName: isTimed ? readTimedSystemImage : readOpenSystemImage)
-                                        .foregroundStyle(restColor)
+                                        .foregroundStyle(.rest)
                                 }
                             )
                         }
@@ -81,14 +81,14 @@ struct ReadSheet: View {
                     Button("Cancel", role: .cancel) {
                         showingSheet.toggle()
                     }
-                    .foregroundStyle(restColor)
+                    .foregroundStyle(.rest)
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
                         ReadingView(healthKitController: healthKitController, readType: $readType, genre: $genre, mood: $mood, isTimed: $isTimed, readGoal: $readGoal, startDate: $startDate, showingSheet: $showingSheet)
                     }
-                    .foregroundStyle(restColor)
+                    .foregroundStyle(.rest)
                 }
             }
         }

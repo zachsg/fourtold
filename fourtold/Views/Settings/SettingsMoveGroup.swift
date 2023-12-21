@@ -24,11 +24,11 @@ struct SettingsMoveGroup: View {
                     },
                     icon: {
                         Image(systemName: stepsSystemImage)
-                            .foregroundStyle(moveColor)
+                            .foregroundStyle(.move)
                     }
                 )
             }
-            .tint(moveColor)
+            .tint(.move)
             
             if hasDailyStepsGoal {
                 Stepper(value: $dailyStepsGoal, in: 2000...30000, step: 500) {
@@ -43,7 +43,7 @@ struct SettingsMoveGroup: View {
                         },
                         icon: {
                             Image(systemName: stepsSystemImage)
-                                .foregroundStyle(moveColor)
+                                .foregroundStyle(.move)
                         }
                     )
                 }
@@ -56,11 +56,11 @@ struct SettingsMoveGroup: View {
                     },
                     icon: {
                         Image(systemName: distanceSystemImage)
-                            .foregroundStyle(moveColor)
+                            .foregroundStyle(.move)
                     }
                 )
             }
-            .tint(moveColor)
+            .tint(.move)
         }
     }
 }

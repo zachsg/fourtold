@@ -18,7 +18,7 @@ struct HomeMindfulMinutesToday: View {
                     
                     Text("Mindfulness today")
                 }
-                .foregroundStyle(restColor)
+                .foregroundStyle(.rest)
                 
                 Spacer()
                 

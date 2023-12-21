@@ -21,7 +21,7 @@ struct RestMindfulMinutesPastWeek: View {
                         
                         Text("Mindfulness past 7 days")
                     }
-                    .foregroundStyle(restColor)
+                    .foregroundStyle(.rest)
                 }
                 .font(.footnote.bold())
                 

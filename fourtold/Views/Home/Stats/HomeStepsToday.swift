@@ -18,7 +18,7 @@ struct HomeStepsToday: View {
                     Image(systemName: stepsSystemImage)
                     Text("Steps today")
                 }
-                .foregroundStyle(moveColor)
+                .foregroundStyle(.move)
                 
                 Spacer()
                 

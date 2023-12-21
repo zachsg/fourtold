@@ -33,7 +33,7 @@ struct WeekStepsBarChart: View {
                             x: .value("Day", weekDay(for: date)),
                             y: .value("Steps", steps)
                         )
-                        .foregroundStyle(steps >= dailyStepsGoal ? .accent : moveColor)
+                        .foregroundStyle(steps >= dailyStepsGoal ? .move : .accent)
                         .annotation(position: .top, alignment: .center) {
                             Text(steps, format: .number)
                                 .font(Calendar.current.isDateInToday(date) ? .footnote.bold() : .footnote)
@@ -42,7 +42,7 @@ struct WeekStepsBarChart: View {
                     }
                     
                     RuleMark(y: .value("Goal", dailyStepsGoal))
-                        .foregroundStyle(moveColor.opacity(0.5))
+                        .foregroundStyle(.move.opacity(0.4))
                         .annotation(position: .trailing, alignment: .center) {
                             // Text(12000, format: .number)
                             //    .font(.footnote)

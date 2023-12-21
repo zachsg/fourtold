@@ -10,6 +10,8 @@
 		590432AB2B1FC1370012F0FA /* SettingsUserInfoGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590432AA2B1FC1370012F0FA /* SettingsUserInfoGroup.swift */; };
 		590861E32B1E3FD70040DC72 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590861E22B1E3FD70040DC72 /* HomeView.swift */; };
 		590861E52B1E5C790040DC72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590861E42B1E5C790040DC72 /* Constants.swift */; };
+		590E17A82B33AD9B00269FA4 /* RestTodayActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E17A72B33AD9B00269FA4 /* RestTodayActivities.swift */; };
+		590E17AA2B33B06E00269FA4 /* RestOldActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E17A92B33B06E00269FA4 /* RestOldActivities.swift */; };
 		5912D1952B1BB78D00E78D6E /* fourtoldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1942B1BB78D00E78D6E /* fourtoldApp.swift */; };
 		5912D1972B1BB78D00E78D6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1962B1BB78D00E78D6E /* ContentView.swift */; };
 		5912D1992B1BB78F00E78D6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5912D1982B1BB78F00E78D6E /* Assets.xcassets */; };
@@ -68,6 +70,8 @@
 		590432AA2B1FC1370012F0FA /* SettingsUserInfoGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUserInfoGroup.swift; sourceTree = "<group>"; };
 		590861E22B1E3FD70040DC72 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		590861E42B1E5C790040DC72 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		590E17A72B33AD9B00269FA4 /* RestTodayActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTodayActivities.swift; sourceTree = "<group>"; };
+		590E17A92B33B06E00269FA4 /* RestOldActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOldActivities.swift; sourceTree = "<group>"; };
 		5912D1912B1BB78D00E78D6E /* fourtold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fourtold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5912D1942B1BB78D00E78D6E /* fourtoldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fourtoldApp.swift; sourceTree = "<group>"; };
 		5912D1962B1BB78D00E78D6E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				597550992B20E1650070F60E /* RestView.swift */,
+				590E17A72B33AD9B00269FA4 /* RestTodayActivities.swift */,
+				590E17A92B33B06E00269FA4 /* RestOldActivities.swift */,
 				59EF3A7F2B3297F100BDBB7F /* RestOptionButton.swift */,
 				59DAF3752B2BF4B300BB12B5 /* RestMeditateItemView.swift */,
 				59DAF3772B2BF5F300BB12B5 /* RestReadItemView.swift */,
@@ -462,6 +468,7 @@
 				597550982B20E15D0070F60E /* MoveView.swift in Sources */,
 				59B96AC72B2B9415003B5106 /* FTRead.swift in Sources */,
 				59B57B3E2B30CDCC00FA949C /* FTMood.swift in Sources */,
+				590E17A82B33AD9B00269FA4 /* RestTodayActivities.swift in Sources */,
 				5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */,
 				59DAF3762B2BF4B300BB12B5 /* RestMeditateItemView.swift in Sources */,
 				59EF3A7B2B3278D400BDBB7F /* RestMindfulMinutesPastWeek.swift in Sources */,
@@ -471,6 +478,7 @@
 				5975509A2B20E1650070F60E /* RestView.swift in Sources */,
 				59B96ACD2B2B9738003B5106 /* ReadSheet.swift in Sources */,
 				59DAF3782B2BF5F300BB12B5 /* RestReadItemView.swift in Sources */,
+				590E17AA2B33B06E00269FA4 /* RestOldActivities.swift in Sources */,
 				59132D852B326D5700C113A6 /* MoveStepsToday.swift in Sources */,
 				59EF3A792B3278A300BDBB7F /* RestMindfulMinutesToday.swift in Sources */,
 				591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */,

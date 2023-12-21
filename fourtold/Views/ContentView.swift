@@ -57,15 +57,15 @@ struct ContentView: View {
     func tabColor() -> Color {
         switch tabSelected {
         case .move:
-            moveColor
+                .move
         case .sweat:
-            sweatColor
+                .sweat
         case .rest:
-            restColor
+                .rest
         case .settings:
-            settingsColor
+                .settings
         default:
-            .accentColor
+                .accentColor
         }
     }
 }

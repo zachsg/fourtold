@@ -27,7 +27,6 @@ let homeSystemImage = "house.circle"
 // MARK: - Move
 let moveTitle = "Move"
 let moveSystemImage = "figure.walk.circle"
-let moveColor: Color = .red
 
 // Steps
 let hasDailyStepsGoalKey = "hasDailyStepsGoal"
@@ -45,7 +44,6 @@ let mobilityTitle = "Mobility"
 // MARK: - Sweat
 let sweatTitle = "Sweat"
 let sweatSystemImage = "drop.circle"
-let sweatColor: Color = .blue
 
 // VO2 max
 let hasVO2Key = "hasVO2"
@@ -54,12 +52,10 @@ let vO2SystemImage = "heart"
 // MARK: - Build
 let buildTitle = "Build"
 let buildSystemImage = "scalemass.fill"
-let buildColor: Color = .orange
 
 // MARK: - Rest
 let restTitle = "Rest"
 let restSystemImage = "sleep.circle"
-let restColor: Color = .green
 
 // Breath
 let breathTitle = "Breath"
@@ -95,4 +91,3 @@ let groundSystemImage = "globe.americas"
 // MARK: -  Settings
 let settingsTitle = "Settings"
 let settingsSystemImage = "gearshape"
-let settingsColor: Color = .gray

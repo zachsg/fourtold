@@ -42,14 +42,14 @@ struct BreathSheet: View {
                     Button("Cancel", role: .cancel) {
                         showingSheet.toggle()
                     }
-                    .foregroundStyle(restColor)
+                    .foregroundStyle(.rest)
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
                         // TODO: BreathingView
                     }
-                    .foregroundStyle(restColor)
+                    .foregroundStyle(.rest)
                 }
             }
         }

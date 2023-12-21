@@ -19,11 +19,11 @@ struct SettingsSweatGroup: View {
                     },
                     icon: {
                         Image(systemName: vO2SystemImage)
-                            .foregroundStyle(sweatColor)
+                            .foregroundStyle(.sweat)
                     }
                 )
             }
-            .tint(sweatColor)
+            .tint(.sweat)
         }
     }
 }

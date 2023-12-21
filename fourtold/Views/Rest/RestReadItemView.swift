@@ -82,7 +82,7 @@ struct RestReadItemView: View {
                         Image(systemName: readSystemImage)
                         Text("Reading")
                     }
-                    .foregroundStyle(restColor)
+                    .foregroundStyle(.rest)
                     
                     Spacer()
                     

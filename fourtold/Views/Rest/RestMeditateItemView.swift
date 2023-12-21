@@ -62,7 +62,7 @@ struct RestMeditateItemView: View {
                         Image(systemName: meditateSystemImage)
                         Text("Meditation")
                     }
-                    .foregroundStyle(restColor)
+                    .foregroundStyle(.rest)
                     
                     Spacer()
                     
