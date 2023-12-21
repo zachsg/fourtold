@@ -13,8 +13,6 @@ struct RestMinutesPastWeek: View {
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
     
-    @Bindable var healthKitController: HealthKitController
-    
     var dateAndMins: (date: Date, readMinutes: Int, meditateMinutes: Int) {
         var mostRecent: Date = .distantPast
         
@@ -102,5 +100,5 @@ struct RestMinutesPastWeek: View {
 }
 
 #Preview {
-    RestMinutesPastWeek(healthKitController: HealthKitController())
+    RestMinutesPastWeek()
 }

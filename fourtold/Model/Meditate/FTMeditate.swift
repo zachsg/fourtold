@@ -11,12 +11,12 @@ import SwiftData
 @Model
 class FTMeditate: FTActivity {
     var id = UUID()
-    var startDate: Date
-    var timeOfDay: FTTimeOfDay
-    var startMood: FTMood
-    var endMood: FTMood
-    var type: FTMeditateType
-    var duration: Int
+    var startDate: Date = Date.now
+    var timeOfDay: FTTimeOfDay = FTTimeOfDay.morning
+    var startMood: FTMood = FTMood.neutral
+    var endMood: FTMood = FTMood.neutral
+    var type: FTMeditateType = FTMeditateType.open
+    var duration: Int = 0
     var goal: Int?
     
     init(startDate: Date, timeOfDay: FTTimeOfDay, startMood: FTMood, endMood: FTMood, type: FTMeditateType, duration: Int) {

@@ -11,7 +11,7 @@ struct RestView: View {
     @Environment(\.scenePhase) var scenePhase
     
     @Bindable var healthKitController: HealthKitController
-        
+    
     @State private var meditateSheetIsShowing = false
     @State private var breathworkSheetIsShowing = false
     @State private var journalSheetIsShowing = false
@@ -22,20 +22,6 @@ struct RestView: View {
     @State private var showingOptions = false
     @State private var showOldActivities = false
     
-    var bestMindfulDay: (day: Date, minutes: Int) {
-        var bestDay: Date = .now
-        var bestMinutes = 0
-        
-        for (day, minutes) in healthKitController.mindfulMinutesWeekByDay {
-            if minutes > bestMinutes {
-                bestDay = day
-                bestMinutes = minutes
-            }
-        }
-        
-        return (bestDay, bestMinutes)
-    }
-    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
@@ -43,17 +29,9 @@ struct RestView: View {
                     Section {
                         RestMinutesToday()
                         
-                        RestMinutesPastWeek(healthKitController: healthKitController)
+                        RestMinutesPastWeek()
                     } header: {
                         Text("Stats")
-                    } footer: {
-                        if bestMindfulDay.minutes > 0 {
-                            HStack(spacing: 0) {
-                                Text("Your best day was ")
-                                Text(bestMindfulDay.day, format: .dateTime.weekday().month().day())
-                                Text(" with \(bestMindfulDay.minutes) minutes.")
-                            }
-                        }
                     }
                     
                     RestTodayActivities(showingOptions: $showingOptions)

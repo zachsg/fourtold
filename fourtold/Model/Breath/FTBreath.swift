@@ -11,15 +11,15 @@ import SwiftData
 @Model
 class FTBreath: FTActivity {
     var id = UUID()
-    var startDate: Date
-    var timeOfDay: FTTimeOfDay
-    var startMood: FTMood
-    var endMood: FTMood
-    var type: FTBreathType
-    var duration: Int
-    var rounds: Int
-    var breathsPerRound: Int
-    var holdSecondsPerRound: [Int]
+    var startDate: Date = Date.now
+    var timeOfDay: FTTimeOfDay = FTTimeOfDay.morning
+    var startMood: FTMood = FTMood.neutral
+    var endMood: FTMood = FTMood.neutral
+    var type: FTBreathType = FTBreathType.box
+    var duration: Int = 0
+    var rounds: Int = 0
+    var breathsPerRound: Int = 0
+    var holdSecondsPerRound: [Int] = []
     
     init(id: UUID = UUID(), startDate: Date, timeOfDay: FTTimeOfDay, startMood: FTMood, endMood: FTMood, type: FTBreathType, duration: Int, rounds: Int, breathsPerRound: Int = 0, holdSecondsPerRound: [Int] = []) {
         self.id = id
