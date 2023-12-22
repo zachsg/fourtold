@@ -37,6 +37,13 @@ struct RestView: View {
                     RestTodayActivities(showingOptions: $showingOptions)
                     
                     RestOldActivities(showOldActivities: $showOldActivities)
+                    
+                    Section {
+                    } footer: {
+                        Rectangle()
+                            .frame(width: 0, height: 0)
+                            .padding(.bottom, 20)
+                    }
                 }
                 
                 if showingOptions {

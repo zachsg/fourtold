@@ -88,6 +88,12 @@ struct RestReadItemView: View {
                     
                     Text(read.startDate, format: dateFormat(for: read.startDate))
                         .foregroundStyle(.tertiary)
+                    
+                    Image(systemName: read.timeOfDay.systemImage())
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18)
+                        .foregroundStyle(.secondary)
                 }
                 .font(.footnote.bold())
                 

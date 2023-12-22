@@ -28,7 +28,7 @@ struct SettingsUserInfoGroup: View {
                     },
                     icon: {
                         Image(systemName: userSystemImage)
-                            .foregroundStyle(.settings)
+                            .foregroundStyle(.accent)
                     }
                 )
             }

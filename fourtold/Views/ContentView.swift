@@ -63,7 +63,8 @@ struct ContentView: View {
         case .rest:
                 .rest
         case .settings:
-                .settings
+//                .settings
+                .accentColor
         default:
                 .accentColor
         }

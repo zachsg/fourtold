@@ -68,6 +68,13 @@ struct RestMeditateItemView: View {
                     
                     Text(meditate.startDate, format: dateFormat(for: meditate.startDate))
                         .foregroundStyle(.tertiary)
+                    
+                    Image(systemName: meditate.timeOfDay.systemImage())
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18)
+                        .foregroundStyle(.secondary)
+                        
                 }
                 .font(.footnote.bold())
                 
