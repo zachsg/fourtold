@@ -31,11 +31,7 @@ struct RestOldActivities: View {
         if !olderActivities.isEmpty {
             Section(isExpanded: $showOldActivities) {
                 ForEach(olderActivities, id: \.id) { activity in
-                    if let meditate = activity as? FTMeditate {
-                        RestMeditateItemView(meditate: meditate)
-                    } else if let read = activity as? FTRead {
-                        RestReadItemView(read: read)
-                    }
+                    RestItemView(activity: activity)
                 }
                 .onDelete { indexSet in
                     for index in indexSet {

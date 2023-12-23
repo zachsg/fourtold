@@ -24,14 +24,16 @@ struct RestOptionButton: View {
                 Text(title)
                     .padding(.trailing, 4)
                     .foregroundStyle(.white)
+                    .font(.headline)
                 Image(systemName: icon)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 24)
+                    .frame(width: 32)
                     .foregroundStyle(.rest)
             }
-            .padding()
+            .padding([.leading, .bottom, .top])
         }
+        .padding(.trailing, 2)
     }
 }
 

@@ -26,7 +26,7 @@ struct WeekStepsBarChart: View {
     
     var body: some View {
         VStack {
-            GroupBox("Past 7 Days (Avg: \(averageStepsPerDay))") {
+            GroupBox("Past 7 Days (avg: \(averageStepsPerDay))") {
                 Chart {
                     ForEach(healthKitController.stepCountWeekByDay.sorted { $0.key < $1.key }, id: \.key) { date, steps in
                         BarMark(

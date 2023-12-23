@@ -55,6 +55,14 @@ extension Date {
             .midday
         }
     }
+    
+    func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
+        return calendar.dateComponents(Set(components), from: self)
+    }
+    
+    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
+        return calendar.component(component, from: self)
+    }
 }
 
 extension FTTimeOfDay {
@@ -135,5 +143,38 @@ extension FTMood {
         let intValueMood = intValueOf(mood: mood)
         
         return intValueSelf - intValueMood
+    }
+}
+
+extension Int {
+    func monthName(abbreviated: Bool = true) -> String {
+        switch self {
+        case 1:
+            abbreviated ? "Jan" : "January"
+        case 2:
+            abbreviated ? "Feb" : "February"
+        case 3:
+            abbreviated ? "Mar" : "March"
+        case 4:
+            abbreviated ? "Apr" : "April"
+        case 5:
+            abbreviated ? "May" : "May"
+        case 6:
+            abbreviated ? "Jun" : "June"
+        case 7:
+            abbreviated ? "Jul" : "July"
+        case 8:
+            abbreviated ? "Aug" : "August"
+        case 9:
+            abbreviated ? "Sep" : "September"
+        case 10:
+            abbreviated ? "Oct" : "October"
+        case 11:
+            abbreviated ? "Nov" : "November"
+        case 12:
+            abbreviated ? "Dec" : "December"
+        default:
+            "N/A"
+        }
     }
 }

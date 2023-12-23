@@ -81,7 +81,7 @@ let readTimedSystemImage = "alarm"
 let readGoalKey = "readGoal"
 
 // Sun
-let sunTitle = "Sun Exposure"
+let sunTitle = "Sun exposure"
 let sunSystemImage = "sun.max"
 
 // Ground

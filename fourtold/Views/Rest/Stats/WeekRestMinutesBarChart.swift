@@ -21,11 +21,13 @@ struct WeekRestMinutesBarChart: View {
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
     
+    @Binding var timeFrame: FTTimeFrame
+    
     var averageMinutesPerDay: Int {
         var minutes = 0
         
-        let pastWeekMeditates = meditates.filter { isPastWeek(date: $0.startDate) }
-        let pastWeekReads = reads.filter { isPastWeek(date: $0.startDate) }
+        let pastWeekMeditates = meditates.filter { isInPast(period: timeFrame, date: $0.startDate) }
+        let pastWeekReads = reads.filter { isInPast(period: timeFrame, date: $0.startDate) }
         
         for read in pastWeekReads {
             minutes += read.duration
@@ -36,7 +38,7 @@ struct WeekRestMinutesBarChart: View {
         }
         
         minutes /= 60
-        let minutesPerDay = Double(minutes) / 7
+        let minutesPerDay = Double(minutes) / timeFrame.days()
         
         return Int(minutesPerDay.rounded())
     }
@@ -44,17 +46,18 @@ struct WeekRestMinutesBarChart: View {
     var weekData: [Rest] {
         var data: [Rest] = []
         
-        let pastWeekMeditates = meditates.filter { isPastWeek(date: $0.startDate) }
-        let pastWeekReads = reads.filter { isPastWeek(date: $0.startDate) }
+        let pastMeditates = meditates.filter { isInPast(period: timeFrame, date: $0.startDate) }
+        let pastReads = reads.filter { isInPast(period: timeFrame, date: $0.startDate) }
         
         var day = 0.0
         let calendar = Calendar.current
-        for i in (0...6).reversed() {
+        
+        for i in (0...Int(timeFrame.days() - 1)).reversed() {
             day = Double(i) * 86400
             
             let checkDate: Date = .now.addingTimeInterval(-day)
             var minutes = 0
-            for meditate in pastWeekMeditates {
+            for meditate in pastMeditates {
                 if calendar.isDate(checkDate, equalTo: meditate.startDate, toGranularity: .day) {
                     minutes += meditate.duration
                 }
@@ -65,7 +68,7 @@ struct WeekRestMinutesBarChart: View {
             data.append(rest)
             
             minutes = 0
-            for read in pastWeekReads {
+            for read in pastReads {
                 if calendar.isDate(checkDate, equalTo: read.startDate, toGranularity: .day) {
                     minutes += read.duration
                 }
@@ -76,16 +79,18 @@ struct WeekRestMinutesBarChart: View {
             data.append(rest2)
         }
         
-        return data
+        return data.sorted { a, b in
+            a.type > b.type
+        }
     }
     
     var body: some View {
         VStack {
-            GroupBox("Past 7 Days (Avg: \(averageMinutesPerDay) minutes)") {
+            GroupBox("Past \(timeFrame.labelName()) (avg: \(averageMinutesPerDay) minutes)") {
                 Chart {
                     ForEach(weekData) { rest in
                         BarMark(
-                            x: .value("Day", weekDay(for: rest.date)),
+                            x: .value("Day", day(for: rest.date)),
                             y: .value("Minutes", rest.minutes)
                         )
                         .foregroundStyle(by: .value("Type", rest.type))
@@ -97,18 +102,33 @@ struct WeekRestMinutesBarChart: View {
         }
     }
     
-    private func weekDay(for date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE"
-        let weekday = dateFormatter.string(from: date)
-        
-        return weekday
+    private func day(for date: Date) -> String {
+        if timeFrame == .sevenDays {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEE"
+            let weekday = dateFormatter.string(from: date)
+            
+            return weekday
+        } else if timeFrame == .twoWeeks {
+            let day = date.get(.day)
+            
+            return String(day)
+        } else if timeFrame == .sixMonths {
+            let month = date.get(.month)
+            
+            return month.monthName()
+        } else {
+            let week = date.get(.weekOfYear)
+            
+            return String(week)
+        }
     }
     
-    func isPastWeek(date: Date) -> Bool {
+    func isInPast(period: FTTimeFrame, date: Date) -> Bool {
         let now: Date = .now
         let dayInSeconds = 86400.0
-        let aWeekAgo = now.addingTimeInterval(dayInSeconds * -6)
+        let span = timeFrame.days() - 1
+        let aWeekAgo = now.addingTimeInterval(dayInSeconds * -span)
         let range = aWeekAgo...now
         
         return range.contains(date)
@@ -116,5 +136,5 @@ struct WeekRestMinutesBarChart: View {
 }
 
 #Preview {
-    return WeekRestMinutesBarChart()
+    return WeekRestMinutesBarChart(timeFrame: .constant(.sevenDays))
 }
