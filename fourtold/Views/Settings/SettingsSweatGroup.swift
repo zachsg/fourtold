@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsSweatGroup: View {
-    @AppStorage(hasVO2Key) var hasVO2: Bool = true
+    @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
     
     var body: some View {
         Section(sweatTitle) {

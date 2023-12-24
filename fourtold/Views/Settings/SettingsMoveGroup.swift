@@ -9,11 +9,11 @@ import SwiftUI
 
 struct SettingsMoveGroup: View {
     // Steps
-    @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = true
-    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = 10000
+    @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = hasDailyStepsGoalDefault
+    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
     // Distance
-    @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = true
+    @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = hasWalkRunDistanceDefault
     
     var body: some View {
         Section(moveTitle) {

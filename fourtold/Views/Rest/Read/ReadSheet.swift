@@ -10,7 +10,7 @@ import SwiftUI
 struct ReadSheet: View {
     @Bindable var healthKitController: HealthKitController
     
-    @AppStorage(readGoalKey) var readGoal: Int = 1800
+    @AppStorage(readGoalKey) var readGoal: Int = readGoalDefault
     
     @Binding var showingSheet: Bool
     

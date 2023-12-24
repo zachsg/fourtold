@@ -12,14 +12,14 @@ struct HomeView: View {
     @Bindable var healthKitController: HealthKitController
     
     // Steps
-    @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = true
-    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = 10000
+    @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = hasDailyStepsGoalDefault
+    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
     // Walk/run distance
-    @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = true
+    @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = hasWalkRunDistanceDefault
     
     // VO2 max
-    @AppStorage(hasVO2Key) var hasVO2: Bool = true
+    @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
     
     var vO2Today: Bool {
         Calendar.current.isDateInToday(healthKitController.latestCardioFitness)

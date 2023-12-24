@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoveStepsToday: View {
     @Bindable var healthKitController: HealthKitController
-    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = 10000
+    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
     var body: some View {
         VStack(alignment: .leading) {

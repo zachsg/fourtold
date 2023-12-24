@@ -12,7 +12,7 @@ struct BreathSheet: View {
     
     @Binding var showingSheet: Bool
     
-    @AppStorage(breathTypeKey) var breathType: FTBreathType = .four78
+    @AppStorage(breathTypeKey) var breathType: FTBreathType = breathTypeDefault
     
     @State private var rounds = 4
     

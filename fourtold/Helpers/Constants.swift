@@ -17,7 +17,9 @@ let progressSystemImage = "location.north.circle.fill"
 
 // MARK: - User
 let userAgeKey = "userAge"
+let userAgeDefault = 30
 let userGenderKey = "userGender"
+let userGenderDefault: FTGender = .female
 let userSystemImage = "person.crop.circle"
 
 // MARK: - Home
@@ -30,12 +32,16 @@ let moveSystemImage = "figure.walk.circle"
 
 // Steps
 let hasDailyStepsGoalKey = "hasDailyStepsGoal"
+let hasDailyStepsGoalDefault = true
 let dailyStepsGoalKey = "dailyStepsGoal"
+let dailyStepsGoalDefault = 10000
 let stepsSystemImage = "figure.walk"
 
 // Distance
 let hasWalkRunDistanceKey = "hasWalkRunDistance"
+let hasWalkRunDistanceDefault = true
 let useMilesKey = "useMiles"
+let useMilesDefault = true
 let distanceSystemImage = "ruler"
 
 // Mobility
@@ -47,9 +53,10 @@ let sweatSystemImage = "drop.circle"
 
 // VO2 max
 let hasVO2Key = "hasVO2"
+let hasVO2Default = true
 let vO2SystemImage = "heart"
 
-// MARK: - Build
+// Lift
 let buildTitle = "Build"
 let buildSystemImage = "scalemass.fill"
 
@@ -61,11 +68,13 @@ let restSystemImage = "sleep.circle"
 let breathTitle = "Breath"
 let breathSystemImage = "lungs"
 let breathTypeKey = "breathType"
+let breathTypeDefault: FTBreathType = .four78
 
 // Meditate
 let meditateTitle = "Meditate"
 let meditateSystemImage = "brain"
 let meditateGoalKey = "meditateGoal"
+let meditateGoalDefault = 600 // 10 minutes
 let meditateOpenSystemImage = "stopwatch"
 let meditateTimedSystemImage = "alarm"
 
@@ -79,14 +88,19 @@ let readSystemImage = "book"
 let readOpenSystemImage = "stopwatch"
 let readTimedSystemImage = "alarm"
 let readGoalKey = "readGoal"
+let readGoalDefault = 1800 // 30 minutes
 
 // Sun
 let sunTitle = "Sun exposure"
 let sunSystemImage = "sun.max"
+let sunGoalKey = "sunGoal"
+let sunGoalDefault = 600 // 10 minutes
 
 // Ground
 let groundTitle = "Grounding"
 let groundSystemImage = "globe.americas"
+let groundGoalKey = "groundGoal"
+let groundGoalDefault = 600 // 10 minutes
 
 // MARK: -  Settings
 let settingsTitle = "Settings"

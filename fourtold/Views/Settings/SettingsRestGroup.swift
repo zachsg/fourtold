@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SettingsRestGroup: View {
-    @AppStorage(meditateGoalKey) var meditateGoal: Int = 600
-    @AppStorage(readGoalKey) var readGoal: Int = 1800
-    @AppStorage(breathTypeKey) var breathType: FTBreathType = .four78
+    @AppStorage(meditateGoalKey) var meditateGoal: Int = meditateGoalDefault
+    @AppStorage(readGoalKey) var readGoal: Int = readGoalDefault
+    @AppStorage(sunGoalKey) var sunGoal: Int = sunGoalDefault
+    @AppStorage(groundGoalKey) var groundGoal: Int = groundGoalDefault
+    @AppStorage(breathTypeKey) var breathType: FTBreathType = breathTypeDefault
     
     var body: some View {
         Section(restTitle) {
@@ -49,6 +51,46 @@ struct SettingsRestGroup: View {
                     },
                     icon: {
                         Image(systemName: readSystemImage)
+                            .foregroundStyle(.rest)
+                    }
+                )
+            }
+            
+            Stepper(value: $sunGoal, in: 300...7200, step: 300) {
+                Label(
+                    title: {
+                        HStack(alignment: .firstTextBaseline, spacing: 0) {
+                            Text("Sunlight goal:")
+                            Text(sunGoal / 60, format: .number)
+                                .bold()
+                                .padding(.leading, 4)
+                            Text("min")
+                                .font(.footnote)
+                                .padding(.leading, 1)
+                        }
+                    },
+                    icon: {
+                        Image(systemName: sunSystemImage)
+                            .foregroundStyle(.rest)
+                    }
+                )
+            }
+            
+            Stepper(value: $groundGoal, in: 300...7200, step: 300) {
+                Label(
+                    title: {
+                        HStack(alignment: .firstTextBaseline, spacing: 0) {
+                            Text("Ground goal:")
+                            Text(groundGoal / 60, format: .number)
+                                .bold()
+                                .padding(.leading, 4)
+                            Text("min")
+                                .font(.footnote)
+                                .padding(.leading, 1)
+                        }
+                    },
+                    icon: {
+                        Image(systemName: groundSystemImage)
                             .foregroundStyle(.rest)
                     }
                 )

@@ -30,6 +30,8 @@ struct RestView: View {
                         RestMinutesToday()
                         
                         RestMinutesPastWeek()
+                        
+                        RestStreaks()
                     } header: {
                         Text("Stats")
                     }

@@ -10,7 +10,7 @@ import SwiftUI
 struct MeditationsSheet: View {
     @Bindable var healthKitController: HealthKitController
     
-    @AppStorage(meditateGoalKey) var meditateGoal: Int = 600
+    @AppStorage(meditateGoalKey) var meditateGoal: Int = meditateGoalDefault
     
     @Binding var showingSheet: Bool
     

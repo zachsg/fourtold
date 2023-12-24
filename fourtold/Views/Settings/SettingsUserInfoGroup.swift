@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SettingsUserInfoGroup: View {
-    @AppStorage(userAgeKey) var userAge: Int = 30
-    @AppStorage(userGenderKey) var userGender: FTGender = .female
+    @AppStorage(userAgeKey) var userAge: Int = userAgeDefault
+    @AppStorage(userGenderKey) var userGender: FTGender = userGenderDefault
     
     var body: some View {
         Section {

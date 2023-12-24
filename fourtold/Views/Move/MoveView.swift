@@ -12,11 +12,11 @@ struct MoveView: View {
     @Bindable var healthKitController: HealthKitController
     
     // Steps
-    @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = true
-    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = 10000
+    @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = hasDailyStepsGoalDefault
+    @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
     // Walk/run distance
-    @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = true
+    @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = hasWalkRunDistanceDefault
     
     var bestStepsDay: (day: Date, steps: Int) {
         var bestDay: Date = .now
