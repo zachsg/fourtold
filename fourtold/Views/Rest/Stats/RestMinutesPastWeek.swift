@@ -12,12 +12,16 @@ struct RestMinutesPastWeek: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
+    @Query(sort: \FTGround.startDate) var grounds: [FTGround]
+    @Query(sort: \FTSun.startDate) var suns: [FTSun]
     
-    var dateAndMins: (date: Date, readMinutes: Int, meditateMinutes: Int) {
+    var dateAndMins: (date: Date, readMinutes: Int, meditateMinutes: Int, groundMinutes: Int, sunMinutes: Int) {
         var mostRecent: Date = .distantPast
         
         let pastWeekMeditates = meditates.filter { isPastWeek(date: $0.startDate) }
         let pastWeekReads = reads.filter { isPastWeek(date: $0.startDate) }
+        let pastWeekGrounds = grounds.filter { isPastWeek(date: $0.startDate) }
+        let pastWeekSuns = suns.filter { isPastWeek(date: $0.startDate) }
         
         var readMinutes = 0
         for read in pastWeekReads {
@@ -39,7 +43,27 @@ struct RestMinutesPastWeek: View {
         }
         meditateMinutes /= 60
         
-        return (mostRecent, readMinutes, meditateMinutes)
+        var groundMinutes = 0
+        for ground in pastWeekGrounds {
+            groundMinutes += ground.duration
+            
+            if ground.startDate > mostRecent {
+                mostRecent = ground.startDate
+            }
+        }
+        groundMinutes /= 60
+        
+        var sunMinutes = 0
+        for sun in pastWeekSuns {
+            sunMinutes += sun.duration
+            
+            if sun.startDate > mostRecent {
+                mostRecent = sun.startDate
+            }
+        }
+        sunMinutes /= 60
+        
+        return (mostRecent, readMinutes, meditateMinutes, groundMinutes, sunMinutes)
     }
     
     var body: some View {
@@ -51,37 +75,49 @@ struct RestMinutesPastWeek: View {
                     HStack {
                         Image(systemName: restSystemImage)
                         
-                        Text("Rest past 7 days")
+                        Text("Rest minutes past 7 days")
                     }
                     .foregroundStyle(.rest)
                 }
                 .font(.footnote.bold())
                 
-                HStack {
-                    HStack(spacing: 0) {
-                        Text("\(dateAndMins.readMinutes)")
-                            .font(.title.weight(.semibold))
-                        
-                        VStack(alignment: .leading) {
-                            Text("Minutes")
-                            Text("Reading")
+                ScrollView(.horizontal) {
+                    HStack(spacing: 16) {
+                        VStack {
+                            Text("\(dateAndMins.meditateMinutes)")
+                                .font(.title.weight(.semibold))
+                            
+                            Text("Meditate")
+                                .font(.caption.bold())
+                                .foregroundStyle(.secondary)
                         }
-                        .padding(.leading, 2)
-                        .font(.caption.bold())
-                        .foregroundStyle(.secondary)
-                    }
-                    
-                    HStack(spacing: 0) {
-                        Text("\(dateAndMins.meditateMinutes)")
-                            .font(.title.weight(.semibold))
                         
-                        VStack(alignment: .leading) {
-                            Text("Minutes")
-                            Text("Meditating")
+                        VStack {
+                            Text("\(dateAndMins.readMinutes)")
+                                .font(.title.weight(.semibold))
+                            
+                            Text("Read")
+                                .font(.caption.bold())
+                                .foregroundStyle(.secondary)
                         }
-                        .padding(.leading, 2)
-                        .font(.caption.bold())
-                        .foregroundStyle(.secondary)
+                        
+                        VStack {
+                            Text("\(dateAndMins.groundMinutes)")
+                                .font(.title.weight(.semibold))
+                            
+                            Text("Ground")
+                                .font(.caption.bold())
+                                .foregroundStyle(.secondary)
+                        }
+                        
+                        VStack {
+                            Text("\(dateAndMins.sunMinutes)")
+                                .font(.title.weight(.semibold))
+                            
+                            Text("Sun")
+                                .font(.caption.bold())
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
                 .padding(.top, 2)

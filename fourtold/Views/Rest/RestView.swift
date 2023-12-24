@@ -106,10 +106,12 @@ struct RestView: View {
                     .interactiveDismissDisabled()
             }
             .sheet(isPresented: $sunSheetIsShowing) {
-                Text("Sunning sheet")
+                SunSheet(healthKitController: healthKitController, showingSheet: $sunSheetIsShowing)
+                    .interactiveDismissDisabled()
             }
             .sheet(isPresented: $groundSheetIsShowing) {
-                Text("Grounding sheet")
+                GroundSheet(healthKitController: healthKitController, showingSheet: $groundSheetIsShowing)
+                    .interactiveDismissDisabled()
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {

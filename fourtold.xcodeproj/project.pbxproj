@@ -27,6 +27,16 @@
 		594889032B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889022B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift */; };
 		594889072B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889062B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift */; };
 		594889092B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889082B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift */; };
+		594B28792B37DFBA004F8BD6 /* FTSun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28782B37DFBA004F8BD6 /* FTSun.swift */; };
+		594B287C2B37DFDF004F8BD6 /* FTGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B287B2B37DFDF004F8BD6 /* FTGround.swift */; };
+		594B28832B37E142004F8BD6 /* FTGroundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28822B37E142004F8BD6 /* FTGroundType.swift */; };
+		594B28852B37E157004F8BD6 /* FTSunType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28842B37E157004F8BD6 /* FTSunType.swift */; };
+		594B28872B37E24A004F8BD6 /* GroundingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28862B37E24A004F8BD6 /* GroundingView.swift */; };
+		594B28892B38C0A4004F8BD6 /* GroundingDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28882B38C0A4004F8BD6 /* GroundingDoneSheet.swift */; };
+		594B288D2B38DB99004F8BD6 /* SunSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B288C2B38DB99004F8BD6 /* SunSheet.swift */; };
+		594B288F2B38DC10004F8BD6 /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B288E2B38DC10004F8BD6 /* SunView.swift */; };
+		594B28912B38DC65004F8BD6 /* SunDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28902B38DC65004F8BD6 /* SunDoneSheet.swift */; };
+		594B28932B38DDAA004F8BD6 /* GroundSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28922B38DDAA004F8BD6 /* GroundSheet.swift */; };
 		59511A9B2B33363E0071249A /* MeditationDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */; };
 		59511A9D2B3336660071249A /* ReadingDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59511A9C2B3336660071249A /* ReadingDoneSheet.swift */; };
 		597550932B1FC3620070F60E /* FTGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550922B1FC3620070F60E /* FTGender.swift */; };
@@ -91,6 +101,16 @@
 		594889022B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMindfulMinutesToday.swift; sourceTree = "<group>"; };
 		594889062B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRestMinutesDetailView.swift; sourceTree = "<group>"; };
 		594889082B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRestMinutesBarChart.swift; sourceTree = "<group>"; };
+		594B28782B37DFBA004F8BD6 /* FTSun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSun.swift; sourceTree = "<group>"; };
+		594B287B2B37DFDF004F8BD6 /* FTGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTGround.swift; sourceTree = "<group>"; };
+		594B28822B37E142004F8BD6 /* FTGroundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTGroundType.swift; sourceTree = "<group>"; };
+		594B28842B37E157004F8BD6 /* FTSunType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTSunType.swift; sourceTree = "<group>"; };
+		594B28862B37E24A004F8BD6 /* GroundingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundingView.swift; sourceTree = "<group>"; };
+		594B28882B38C0A4004F8BD6 /* GroundingDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundingDoneSheet.swift; sourceTree = "<group>"; };
+		594B288C2B38DB99004F8BD6 /* SunSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunSheet.swift; sourceTree = "<group>"; };
+		594B288E2B38DC10004F8BD6 /* SunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
+		594B28902B38DC65004F8BD6 /* SunDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunDoneSheet.swift; sourceTree = "<group>"; };
+		594B28922B38DDAA004F8BD6 /* GroundSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundSheet.swift; sourceTree = "<group>"; };
 		59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDoneSheet.swift; sourceTree = "<group>"; };
 		59511A9C2B3336660071249A /* ReadingDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingDoneSheet.swift; sourceTree = "<group>"; };
 		597550922B1FC3620070F60E /* FTGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTGender.swift; sourceTree = "<group>"; };
@@ -184,6 +204,44 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		594B287A2B37DFC2004F8BD6 /* Sun */ = {
+			isa = PBXGroup;
+			children = (
+				594B28782B37DFBA004F8BD6 /* FTSun.swift */,
+				594B28842B37E157004F8BD6 /* FTSunType.swift */,
+			);
+			path = Sun;
+			sourceTree = "<group>";
+		};
+		594B287D2B37DFE7004F8BD6 /* Ground */ = {
+			isa = PBXGroup;
+			children = (
+				594B287B2B37DFDF004F8BD6 /* FTGround.swift */,
+				594B28822B37E142004F8BD6 /* FTGroundType.swift */,
+			);
+			path = Ground;
+			sourceTree = "<group>";
+		};
+		594B287E2B37E095004F8BD6 /* Sun */ = {
+			isa = PBXGroup;
+			children = (
+				594B288C2B38DB99004F8BD6 /* SunSheet.swift */,
+				594B288E2B38DC10004F8BD6 /* SunView.swift */,
+				594B28902B38DC65004F8BD6 /* SunDoneSheet.swift */,
+			);
+			path = Sun;
+			sourceTree = "<group>";
+		};
+		594B287F2B37E09B004F8BD6 /* Ground */ = {
+			isa = PBXGroup;
+			children = (
+				594B28882B38C0A4004F8BD6 /* GroundingDoneSheet.swift */,
+				594B28862B37E24A004F8BD6 /* GroundingView.swift */,
+				594B28922B38DDAA004F8BD6 /* GroundSheet.swift */,
+			);
+			path = Ground;
+			sourceTree = "<group>";
+		};
 		597550942B20E1240070F60E /* Move */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +263,8 @@
 				59B57B322B2D13DB00FA949C /* Journal */,
 				59B96ACB2B2B969A003B5106 /* Read */,
 				59B96ACA2B2B9691003B5106 /* Meditate */,
+				594B287F2B37E09B004F8BD6 /* Ground */,
+				594B287E2B37E095004F8BD6 /* Sun */,
 				59EF3A7E2B328F4B00BDBB7F /* Stats */,
 			);
 			path = Rest;
@@ -313,10 +373,12 @@
 				597550A62B27A1800070F60E /* FTActivity.swift */,
 				59B57B3D2B30CDCC00FA949C /* FTMood.swift */,
 				59B57B3F2B30CF7F00FA949C /* FTTimeOfDay.swift */,
+				597A78A22B363C23002F1BA7 /* FTTimeFrame.swift */,
 				59B57B442B30D42000FA949C /* Breath */,
 				59B57B452B30D42D00FA949C /* Meditate */,
 				59B57B432B30D40C00FA949C /* Read */,
-				597A78A22B363C23002F1BA7 /* FTTimeFrame.swift */,
+				594B287D2B37DFE7004F8BD6 /* Ground */,
+				594B287A2B37DFC2004F8BD6 /* Sun */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -371,8 +433,6 @@
 				59132D862B326F1D00C113A6 /* MoveWalkRunDistanceToday.swift */,
 				5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */,
 				59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */,
-				597A78A62B374DCE002F1BA7 /* RestStreaks.swift */,
-				597A78A82B37CA35002F1BA7 /* RestStreakItem.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -380,6 +440,8 @@
 		59EF3A7E2B328F4B00BDBB7F /* Stats */ = {
 			isa = PBXGroup;
 			children = (
+				597A78A62B374DCE002F1BA7 /* RestStreaks.swift */,
+				597A78A82B37CA35002F1BA7 /* RestStreakItem.swift */,
 				59EF3A782B3278A300BDBB7F /* RestMinutesToday.swift */,
 				59EF3A7A2B3278D400BDBB7F /* RestMinutesPastWeek.swift */,
 				594889082B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift */,
@@ -458,12 +520,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				594B28852B37E157004F8BD6 /* FTSunType.swift in Sources */,
+				594B28932B38DDAA004F8BD6 /* GroundSheet.swift in Sources */,
 				59DC47C62B1E6A1E00737EDE /* SettingsView.swift in Sources */,
 				59D28FD52B1E84D9002799C4 /* WeekStepsBarChart.swift in Sources */,
 				59B96AD12B2B9DAD003B5106 /* ReadingView.swift in Sources */,
 				59DAF37A2B2C047A00BB12B5 /* FTBreathType.swift in Sources */,
 				597550A92B27A1D50070F60E /* FTMeditate.swift in Sources */,
 				590432AB2B1FC1370012F0FA /* SettingsUserInfoGroup.swift in Sources */,
+				594B28872B37E24A004F8BD6 /* GroundingView.swift in Sources */,
 				59132D872B326F1D00C113A6 /* MoveWalkRunDistanceToday.swift in Sources */,
 				59B57B372B2D323C00FA949C /* TimerView.swift in Sources */,
 				59D28FE32B1EACDC002799C4 /* SettingsMoveGroup.swift in Sources */,
@@ -472,6 +537,7 @@
 				594888FF2B296938003FD4C8 /* Extensions.swift in Sources */,
 				59B57B422B30D14D00FA949C /* FTReadGenre.swift in Sources */,
 				597550982B20E15D0070F60E /* MoveView.swift in Sources */,
+				594B28792B37DFBA004F8BD6 /* FTSun.swift in Sources */,
 				59B96AC72B2B9415003B5106 /* FTRead.swift in Sources */,
 				59B57B3E2B30CDCC00FA949C /* FTMood.swift in Sources */,
 				590E17A82B33AD9B00269FA4 /* RestTodayActivities.swift in Sources */,
@@ -485,18 +551,23 @@
 				590E17AA2B33B06E00269FA4 /* RestOldActivities.swift in Sources */,
 				59132D852B326D5700C113A6 /* MoveStepsToday.swift in Sources */,
 				59EF3A792B3278A300BDBB7F /* RestMinutesToday.swift in Sources */,
+				594B288F2B38DC10004F8BD6 /* SunView.swift in Sources */,
+				594B28892B38C0A4004F8BD6 /* GroundingDoneSheet.swift in Sources */,
 				591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */,
 				597550AD2B27A2580070F60E /* FTMeditateType.swift in Sources */,
 				59D28FD82B1E8564002799C4 /* SettingsRestGroup.swift in Sources */,
+				594B287C2B37DFDF004F8BD6 /* FTGround.swift in Sources */,
 				59D28FD32B1E829E002799C4 /* HomeStepsToday.swift in Sources */,
 				597A78A72B374DCE002F1BA7 /* RestStreaks.swift in Sources */,
 				5912D1952B1BB78D00E78D6E /* fourtoldApp.swift in Sources */,
+				594B288D2B38DB99004F8BD6 /* SunSheet.swift in Sources */,
 				59511A9D2B3336660071249A /* ReadingDoneSheet.swift in Sources */,
 				59B57B402B30CF7F00FA949C /* FTTimeOfDay.swift in Sources */,
 				59B57B3C2B2D3E0E00FA949C /* Four78Section.swift in Sources */,
 				590861E32B1E3FD70040DC72 /* HomeView.swift in Sources */,
 				597550A72B27A1800070F60E /* FTActivity.swift in Sources */,
 				59B57B3A2B2D38B300FA949C /* BreathSheet.swift in Sources */,
+				594B28912B38DC65004F8BD6 /* SunDoneSheet.swift in Sources */,
 				59EF3A802B3297F100BDBB7F /* RestOptionButton.swift in Sources */,
 				591CC1E42B32620A00B731B7 /* SettingsSweatGroup.swift in Sources */,
 				594889072B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift in Sources */,
@@ -510,6 +581,7 @@
 				59132D832B326D2F00C113A6 /* MoveStepsPastWeek.swift in Sources */,
 				59D28FE12B1EABF7002799C4 /* HomeVO2Today.swift in Sources */,
 				597A78A52B365C37002F1BA7 /* RestItemView.swift in Sources */,
+				594B28832B37E142004F8BD6 /* FTGroundType.swift in Sources */,
 				5975509F2B226FA00070F60E /* FTTabItem.swift in Sources */,
 				590861E52B1E5C790040DC72 /* Constants.swift in Sources */,
 				59DAF37C2B2C04B900BB12B5 /* FTBreath.swift in Sources */,

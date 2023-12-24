@@ -12,6 +12,8 @@ struct RestOldActivities: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
+    @Query(sort: \FTGround.startDate) var grounds: [FTGround]
+    @Query(sort: \FTSun.startDate) var suns: [FTSun]
     
     @Binding var showOldActivities: Bool
     
@@ -20,9 +22,13 @@ struct RestOldActivities: View {
         
         let olderMeditates = meditates.filter { !isToday(date: $0.startDate) }
         let olderReads = reads.filter { !isToday(date: $0.startDate) }
+        let olderGrounds = grounds.filter { !isToday(date: $0.startDate) }
+        let olderSuns = suns.filter { !isToday(date: $0.startDate) }
         
         activities.append(contentsOf: olderMeditates)
         activities.append(contentsOf: olderReads)
+        activities.append(contentsOf: olderGrounds)
+        activities.append(contentsOf: olderSuns)
         
         return activities.sorted { $0.startDate > $1.startDate }
     }

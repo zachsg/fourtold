@@ -12,6 +12,8 @@ struct RestStreaks: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate, order: .reverse) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate, order: .reverse) var reads: [FTRead]
+    @Query(sort: \FTGround.startDate) var grounds: [FTGround]
+    @Query(sort: \FTSun.startDate) var suns: [FTSun]
     
     var doesMeditate: Bool {
         !meditates.isEmpty
@@ -21,12 +23,28 @@ struct RestStreaks: View {
         !reads.isEmpty
     }
     
+    var doesGround: Bool {
+        !grounds.isEmpty
+    }
+    
+    var doesSun: Bool {
+        !suns.isEmpty
+    }
+    
     var meditateStreak: Int {
         calculateStreak(for: meditates)
     }
     
     var readStreak: Int {
         calculateStreak(for: reads)
+    }
+    
+    var groundStreak: Int {
+        calculateStreak(for: grounds)
+    }
+    
+    var sunStreak: Int {
+        calculateStreak(for: suns)
     }
     
     var body: some View {
@@ -42,10 +60,27 @@ struct RestStreaks: View {
             .font(.footnote.bold())
             
             ScrollView(.horizontal) {
-                HStack {
-                    RestStreakItem(label: "Meditate", streak: meditateStreak)
-                    
-                    RestStreakItem(label: "Read", streak: readStreak)
+                if doesMeditate || doesRead || doesGround || doesSun {
+                    HStack {
+                        if doesMeditate {
+                            RestStreakItem(label: "Meditate", streak: meditateStreak)
+                        }
+                        
+                        if doesRead {
+                            RestStreakItem(label: "Read", streak: readStreak)
+                        }
+                        
+                        if doesGround {
+                            RestStreakItem(label: "Ground", streak: groundStreak)
+                        }
+                        
+                        if doesSun {
+                            RestStreakItem(label: "Sun", streak: sunStreak)
+                        }
+                    }
+                } else {
+                    Text("No actions taken yet!")
+                        .font(.headline)
                 }
             }
         }
