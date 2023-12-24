@@ -81,43 +81,41 @@ struct RestMinutesPastWeek: View {
                 }
                 .font(.footnote.bold())
                 
-                ScrollView(.horizontal) {
-                    HStack(spacing: 16) {
-                        VStack {
-                            Text("\(dateAndMins.meditateMinutes)")
-                                .font(.title.weight(.semibold))
-                            
-                            Text("Meditate")
-                                .font(.caption.bold())
-                                .foregroundStyle(.secondary)
-                        }
+                HStack(alignment: .firstTextBaseline, spacing: 16) {
+                    VStack {
+                        Text("\(dateAndMins.meditateMinutes)")
+                            .font(.title.weight(.semibold))
                         
-                        VStack {
-                            Text("\(dateAndMins.readMinutes)")
-                                .font(.title.weight(.semibold))
-                            
-                            Text("Read")
-                                .font(.caption.bold())
-                                .foregroundStyle(.secondary)
-                        }
+                        Text("Meditate")
+                            .font(.caption.bold())
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    VStack {
+                        Text("\(dateAndMins.readMinutes)")
+                            .font(.title.weight(.semibold))
                         
-                        VStack {
-                            Text("\(dateAndMins.groundMinutes)")
-                                .font(.title.weight(.semibold))
-                            
-                            Text("Ground")
-                                .font(.caption.bold())
-                                .foregroundStyle(.secondary)
-                        }
+                        Text("Read")
+                            .font(.caption.bold())
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    VStack {
+                        Text("\(dateAndMins.groundMinutes)")
+                            .font(.title.weight(.semibold))
                         
-                        VStack {
-                            Text("\(dateAndMins.sunMinutes)")
-                                .font(.title.weight(.semibold))
-                            
-                            Text("Sun")
-                                .font(.caption.bold())
-                                .foregroundStyle(.secondary)
-                        }
+                        Text("Ground")
+                            .font(.caption.bold())
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    VStack {
+                        Text("\(dateAndMins.sunMinutes)")
+                            .font(.title.weight(.semibold))
+                        
+                        Text("Sun")
+                            .font(.caption.bold())
+                            .foregroundStyle(.secondary)
                     }
                 }
                 .padding(.top, 2)
