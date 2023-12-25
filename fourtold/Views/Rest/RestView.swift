@@ -27,10 +27,7 @@ struct RestView: View {
             ZStack(alignment: .bottomTrailing) {
                 List {
                     Section {
-                        RestMinutesToday()
-                        
-                        RestMinutesPastWeek()
-                        
+                        RestMinutes()
                         RestStreaks()
                     } header: {
                         Text("Stats")

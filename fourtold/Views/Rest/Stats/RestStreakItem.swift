@@ -25,9 +25,8 @@ struct RestStreakItem: View {
             .clipShape(RoundedRectangle(cornerSize: CGSize(width: 4, height: 4)))
             
             Text(label)
-                .font(.footnote)
+                .font(.caption.bold())
                 .foregroundStyle(.secondary)
-                .fontWeight(.bold)
         }
         .padding(.horizontal, 4)
     }

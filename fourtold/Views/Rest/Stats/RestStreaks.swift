@@ -8,6 +8,12 @@
 import SwiftData
 import SwiftUI
 
+struct Streak: Identifiable, Hashable {
+    let id = UUID()
+    let label: String
+    let days: Int
+}
+
 struct RestStreaks: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate, order: .reverse) var meditates: [FTMeditate]
@@ -47,6 +53,27 @@ struct RestStreaks: View {
         calculateStreak(for: suns)
     }
     
+    var streaks: [Streak] {
+        var s: [Streak] = []
+        
+        var all = [
+            Streak(label: "Meditate", days: meditateStreak),
+            Streak(label: "Read", days: readStreak),
+            Streak(label: "Ground", days: groundStreak),
+            Streak(label: "Sun", days: sunStreak)
+        ].sorted { a, b in
+            a.days > b.days
+        }
+        
+        for item in all {
+            if item.days > 0 {
+                s.append(item)
+            }
+        }
+        
+        return s
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -62,20 +89,8 @@ struct RestStreaks: View {
             ScrollView(.horizontal) {
                 if doesMeditate || doesRead || doesGround || doesSun {
                     HStack {
-                        if doesMeditate {
-                            RestStreakItem(label: "Meditate", streak: meditateStreak)
-                        }
-                        
-                        if doesRead {
-                            RestStreakItem(label: "Read", streak: readStreak)
-                        }
-                        
-                        if doesGround {
-                            RestStreakItem(label: "Ground", streak: groundStreak)
-                        }
-                        
-                        if doesSun {
-                            RestStreakItem(label: "Sun", streak: sunStreak)
+                        ForEach(streaks, id: \.self) { streak in
+                            RestStreakItem(label: streak.label, streak: streak.days)
                         }
                     }
                 } else {
@@ -83,6 +98,7 @@ struct RestStreaks: View {
                         .font(.headline)
                 }
             }
+            .padding(.top, 4)
         }
     }
     

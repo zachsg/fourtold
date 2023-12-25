@@ -25,31 +25,58 @@ struct WeekRestMinutesBarChart: View {
     
     @Binding var timeFrame: FTTimeFrame
     
-    var averageMinutesPerDay: Int {
+    var meditateMinutes: Int {
         var minutes = 0
         
-        let pastWeekMeditates = meditates.filter { isInPast(period: timeFrame, date: $0.startDate) }
-        let pastWeekReads = reads.filter { isInPast(period: timeFrame, date: $0.startDate) }
-        let pastWeekGrounds = grounds.filter { isInPast(period: timeFrame, date: $0.startDate) }
-        let pastWeekSuns = suns.filter { isInPast(period: timeFrame, date: $0.startDate) }
-        
-        for read in pastWeekReads {
-            minutes += read.duration
-        }
-        
-        for meditate in pastWeekMeditates {
+        let pastMeditates = meditates.filter { isInPast(period: timeFrame, date: $0.startDate) }
+        for meditate in pastMeditates {
             minutes += meditate.duration
         }
         
-        for ground in pastWeekGrounds {
+        return minutes / 60
+    }
+    
+    var readMinutes: Int {
+        var minutes = 0
+        
+        let pastReads = reads.filter { isInPast(period: timeFrame, date: $0.startDate) }
+        for read in pastReads {
+            minutes += read.duration
+        }
+        
+        return minutes / 60
+    }
+    
+    var groundMinutes: Int {
+        var minutes = 0
+        
+        let pastGrounds = grounds.filter { isInPast(period: timeFrame, date: $0.startDate) }
+        for ground in pastGrounds {
             minutes += ground.duration
         }
         
-        for sun in pastWeekSuns {
+        return minutes / 60
+    }
+    
+    var sunMinutes: Int {
+        var minutes = 0
+        
+        let pastSuns = suns.filter { isInPast(period: timeFrame, date: $0.startDate) }
+        for sun in pastSuns {
             minutes += sun.duration
         }
         
-        minutes /= 60
+        return minutes / 60
+    }
+    
+    var averageMinutesPerDay: Int {
+        var minutes = 0
+
+        minutes += meditateMinutes
+        minutes += readMinutes
+        minutes += groundMinutes
+        minutes += sunMinutes
+        
         let minutesPerDay = Double(minutes) / timeFrame.days()
         
         return Int(minutesPerDay.rounded())
@@ -122,7 +149,33 @@ struct WeekRestMinutesBarChart: View {
     
     var body: some View {
         VStack {
-            GroupBox("Past \(timeFrame.labelName()) (avg: \(averageMinutesPerDay) minutes)") {
+            VStack(alignment: .leading) {
+                HStack {
+                    Spacer()
+                    Image(systemName: restSystemImage)
+                    Text("Rest minutes \(timeFrame.labelName())")
+                    Spacer()
+                }
+                .foregroundStyle(.rest)
+                .font(.headline)
+                
+                HStack {
+                    Spacer()
+                    StatItem(minutes: meditateMinutes, title: "Meditate")
+                    Spacer()
+                    StatItem(minutes: readMinutes, title: "Read")
+                    Spacer()
+                    StatItem(minutes: groundMinutes, title: "Ground")
+                    Spacer()
+                    StatItem(minutes: sunMinutes, title: "Sun")
+                    Spacer()
+                }
+                .padding(.top, 4)
+            }
+            .padding(.horizontal)
+            .padding(.top, 4)
+            
+            GroupBox {
                 Chart {
                     ForEach(weekData) { rest in
                         BarMark(
@@ -134,7 +187,7 @@ struct WeekRestMinutesBarChart: View {
                     }
                 }
             }
-            .padding()
+            .padding(.horizontal)
         }
     }
     

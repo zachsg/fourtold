@@ -37,6 +37,8 @@
 		594B288F2B38DC10004F8BD6 /* SunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B288E2B38DC10004F8BD6 /* SunView.swift */; };
 		594B28912B38DC65004F8BD6 /* SunDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28902B38DC65004F8BD6 /* SunDoneSheet.swift */; };
 		594B28932B38DDAA004F8BD6 /* GroundSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28922B38DDAA004F8BD6 /* GroundSheet.swift */; };
+		594B28952B392728004F8BD6 /* StatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28942B392728004F8BD6 /* StatItem.swift */; };
+		594B28972B39310A004F8BD6 /* RestMinutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28962B39310A004F8BD6 /* RestMinutes.swift */; };
 		59511A9B2B33363E0071249A /* MeditationDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */; };
 		59511A9D2B3336660071249A /* ReadingDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59511A9C2B3336660071249A /* ReadingDoneSheet.swift */; };
 		597550932B1FC3620070F60E /* FTGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550922B1FC3620070F60E /* FTGender.swift */; };
@@ -73,8 +75,6 @@
 		59DAF37A2B2C047A00BB12B5 /* FTBreathType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */; };
 		59DAF37C2B2C04B900BB12B5 /* FTBreath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */; };
 		59DC47C62B1E6A1E00737EDE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC47C52B1E6A1E00737EDE /* SettingsView.swift */; };
-		59EF3A792B3278A300BDBB7F /* RestMinutesToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EF3A782B3278A300BDBB7F /* RestMinutesToday.swift */; };
-		59EF3A7B2B3278D400BDBB7F /* RestMinutesPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EF3A7A2B3278D400BDBB7F /* RestMinutesPastWeek.swift */; };
 		59EF3A802B3297F100BDBB7F /* RestOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EF3A7F2B3297F100BDBB7F /* RestOptionButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +111,8 @@
 		594B288E2B38DC10004F8BD6 /* SunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunView.swift; sourceTree = "<group>"; };
 		594B28902B38DC65004F8BD6 /* SunDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunDoneSheet.swift; sourceTree = "<group>"; };
 		594B28922B38DDAA004F8BD6 /* GroundSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroundSheet.swift; sourceTree = "<group>"; };
+		594B28942B392728004F8BD6 /* StatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatItem.swift; sourceTree = "<group>"; };
+		594B28962B39310A004F8BD6 /* RestMinutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestMinutes.swift; sourceTree = "<group>"; };
 		59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDoneSheet.swift; sourceTree = "<group>"; };
 		59511A9C2B3336660071249A /* ReadingDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingDoneSheet.swift; sourceTree = "<group>"; };
 		597550922B1FC3620070F60E /* FTGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTGender.swift; sourceTree = "<group>"; };
@@ -148,8 +150,6 @@
 		59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreathType.swift; sourceTree = "<group>"; };
 		59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreath.swift; sourceTree = "<group>"; };
 		59DC47C52B1E6A1E00737EDE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		59EF3A782B3278A300BDBB7F /* RestMinutesToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestMinutesToday.swift; sourceTree = "<group>"; };
-		59EF3A7A2B3278D400BDBB7F /* RestMinutesPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestMinutesPastWeek.swift; sourceTree = "<group>"; };
 		59EF3A7F2B3297F100BDBB7F /* RestOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOptionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -442,10 +442,10 @@
 			children = (
 				597A78A62B374DCE002F1BA7 /* RestStreaks.swift */,
 				597A78A82B37CA35002F1BA7 /* RestStreakItem.swift */,
-				59EF3A782B3278A300BDBB7F /* RestMinutesToday.swift */,
-				59EF3A7A2B3278D400BDBB7F /* RestMinutesPastWeek.swift */,
+				594B28962B39310A004F8BD6 /* RestMinutes.swift */,
 				594889082B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift */,
 				594889062B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift */,
+				594B28942B392728004F8BD6 /* StatItem.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -531,6 +531,7 @@
 				594B28872B37E24A004F8BD6 /* GroundingView.swift in Sources */,
 				59132D872B326F1D00C113A6 /* MoveWalkRunDistanceToday.swift in Sources */,
 				59B57B372B2D323C00FA949C /* TimerView.swift in Sources */,
+				594B28972B39310A004F8BD6 /* RestMinutes.swift in Sources */,
 				59D28FE32B1EACDC002799C4 /* SettingsMoveGroup.swift in Sources */,
 				59511A9B2B33363E0071249A /* MeditationDoneSheet.swift in Sources */,
 				5912D1972B1BB78D00E78D6E /* ContentView.swift in Sources */,
@@ -542,7 +543,6 @@
 				59B57B3E2B30CDCC00FA949C /* FTMood.swift in Sources */,
 				590E17A82B33AD9B00269FA4 /* RestTodayActivities.swift in Sources */,
 				5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */,
-				59EF3A7B2B3278D400BDBB7F /* RestMinutesPastWeek.swift in Sources */,
 				594889032B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift in Sources */,
 				5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */,
 				598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */,
@@ -550,7 +550,6 @@
 				59B96ACD2B2B9738003B5106 /* ReadSheet.swift in Sources */,
 				590E17AA2B33B06E00269FA4 /* RestOldActivities.swift in Sources */,
 				59132D852B326D5700C113A6 /* MoveStepsToday.swift in Sources */,
-				59EF3A792B3278A300BDBB7F /* RestMinutesToday.swift in Sources */,
 				594B288F2B38DC10004F8BD6 /* SunView.swift in Sources */,
 				594B28892B38C0A4004F8BD6 /* GroundingDoneSheet.swift in Sources */,
 				591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */,
@@ -580,6 +579,7 @@
 				597A78A32B363C23002F1BA7 /* FTTimeFrame.swift in Sources */,
 				59132D832B326D2F00C113A6 /* MoveStepsPastWeek.swift in Sources */,
 				59D28FE12B1EABF7002799C4 /* HomeVO2Today.swift in Sources */,
+				594B28952B392728004F8BD6 /* StatItem.swift in Sources */,
 				597A78A52B365C37002F1BA7 /* RestItemView.swift in Sources */,
 				594B28832B37E142004F8BD6 /* FTGroundType.swift in Sources */,
 				5975509F2B226FA00070F60E /* FTTabItem.swift in Sources */,
