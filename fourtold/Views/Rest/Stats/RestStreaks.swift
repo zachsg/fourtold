@@ -18,8 +18,8 @@ struct RestStreaks: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate, order: .reverse) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate, order: .reverse) var reads: [FTRead]
-    @Query(sort: \FTGround.startDate) var grounds: [FTGround]
-    @Query(sort: \FTSun.startDate) var suns: [FTSun]
+    @Query(sort: \FTGround.startDate, order: .reverse) var grounds: [FTGround]
+    @Query(sort: \FTSun.startDate, order: .reverse) var suns: [FTSun]
     
     var doesMeditate: Bool {
         !meditates.isEmpty
