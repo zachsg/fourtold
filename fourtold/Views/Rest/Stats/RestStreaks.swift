@@ -56,7 +56,7 @@ struct RestStreaks: View {
     var streaks: [Streak] {
         var s: [Streak] = []
         
-        var all = [
+        let all = [
             Streak(label: "Meditate", days: meditateStreak),
             Streak(label: "Read", days: readStreak),
             Streak(label: "Ground", days: groundStreak),

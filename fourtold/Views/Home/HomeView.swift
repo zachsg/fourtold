@@ -42,17 +42,7 @@ struct HomeView: View {
                     if hasWalkRunDistance {
                         HomeWalkRunDistanceToday(healthKitController: healthKitController)
                     }
-                } header: {
-                    Text(moveTitle)
-                } footer: {
-                    VStack(alignment: .leading) {
-                        if healthKitController.walkRunDistanceToday > 0 {
-                            Text("You're taking \(stepsPerMile()) steps per mile today.")
-                        }
-                    }
-                }
-                
-                Section {
+                    
                     // TODO: Zone 2 minutes today
                     
                     if hasVO2 && vO2Today {
@@ -61,7 +51,13 @@ struct HomeView: View {
                     
                     // TODO: Cardio Recovery
                 } header: {
-                    Text(sweatTitle)
+                    Text(moveTitle)
+                } footer: {
+                    VStack(alignment: .leading) {
+                        if healthKitController.walkRunDistanceToday > 0 {
+                            Text("You're taking \(stepsPerMile()) steps per mile today.")
+                        }
+                    }
                 }
                 
                 Section {

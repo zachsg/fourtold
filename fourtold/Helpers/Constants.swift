@@ -47,7 +47,6 @@ let distanceSystemImage = "ruler"
 // Mobility
 let mobilityTitle = "Mobility"
 
-// MARK: - Sweat
 let sweatTitle = "Sweat"
 let sweatSystemImage = "drop.circle"
 
