@@ -36,7 +36,7 @@ struct HomeView: View {
                     // TODO: Minutes Core strength training this week
                     
                     if hasDailyStepsGoal {
-                        HomeStepsToday(healthKitController: healthKitController)
+                        HomeSteps(healthKitController: healthKitController)
                     }
                     
                     if hasWalkRunDistance {
@@ -88,7 +88,7 @@ struct HomeView: View {
         
         if hasDailyStepsGoal {
             healthKitController.getStepCountToday(refresh: hard)
-//            healthKitController.getStepCountWeek(refresh: hard)
+            healthKitController.getStepCountWeek(refresh: hard)
 //            healthKitController.getStepCountWeekByDay(refresh: hard)
         }
         

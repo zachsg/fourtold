@@ -106,7 +106,7 @@ struct RestMinutes: View {
                 }
                 .font(.footnote.bold())
                 
-                HStack(spacing: 24) {
+                HStack(spacing: 32) {
                     VStack {
                         Text("\(dateAndMinsToday.minutes)")
                             .font(.title.weight(.semibold))
