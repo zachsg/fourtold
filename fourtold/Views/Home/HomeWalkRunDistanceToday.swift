@@ -17,11 +17,12 @@ struct HomeWalkRunDistanceToday: View {
     var body: some View {
         HomeStatCard(headerTitle: "Distance today", headerImage: distanceSystemImage, date: healthKitController.latestWalkRunDistance, color: .move) {
             Text(walkRunDistancetoday)
-                .font(.title.bold())
+                .font(.title)
+                .fontWeight(.semibold)
             
             Text("Miles")
                 .foregroundStyle(.secondary)
-                .font(.headline)
+                .font(.subheadline.bold())
         }
     }
 }

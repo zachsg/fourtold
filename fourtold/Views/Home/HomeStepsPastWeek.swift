@@ -14,11 +14,12 @@ struct HomeStepsPastWeek: View {
     var body: some View {
         HomeStatCard(headerTitle: "Steps 7 days", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move) {
             Text(healthKitController.stepCountWeek, format: .number)
-                .font(.title.bold())
+                .font(.title)
+                .fontWeight(.semibold)
             
             Text("\(percentComplete(action: healthKitController.stepCountWeek, goal: dailyStepsGoal, forWeek: true)) of \(goalAbbreviated(forWeek: true))k")
                 .foregroundStyle(.secondary)
-                .font(.headline)
+                .font(.subheadline.bold())
         }
     }
     

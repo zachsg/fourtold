@@ -14,11 +14,12 @@ struct HomeStepsToday: View {
     var body: some View {
         HomeStatCard(headerTitle: "Steps today", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move) {
             Text(healthKitController.stepCountToday, format: .number)
-                .font(.title.bold())
+                .font(.title)
+                .fontWeight(.semibold)
             
             Text("\(percentComplete(action: healthKitController.stepCountToday, goal: dailyStepsGoal)) of \(goalAbbreviated())k")
                 .foregroundStyle(.secondary)
-                .font(.headline)
+                .font(.subheadline.bold())
         }
     }
     

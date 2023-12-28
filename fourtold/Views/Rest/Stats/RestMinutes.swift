@@ -71,7 +71,7 @@ struct RestMinutes: View {
                     
                     Spacer()
                     
-                    Text(dateAndMinsToday.date, format: .dateTime.hour().minute())
+                    Text(dateAndMinsToday.date, format: Calendar.current.isDateInToday(dateAndMinsToday.date) ? .dateTime.hour().minute() : .dateTime.day().month())
                         .foregroundStyle(.tertiary)
                 }
                 .font(.footnote.bold())

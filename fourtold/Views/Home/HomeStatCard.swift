@@ -31,7 +31,7 @@ struct HomeStatCard<Content: View>: View {
                 Spacer()
             }
             .foregroundStyle(color)
-            .font(.footnote)
+            .font(.footnote.bold())
             
             Text(date, format: Calendar.current.isDateInToday(date) ? .dateTime.hour().minute() : .dateTime.day().month())
                 .font(.caption)
@@ -39,13 +39,6 @@ struct HomeStatCard<Content: View>: View {
             
             VStack(alignment: .leading) {
                 inputView()
-                
-//                Text(stat)
-//                    .font(.title.bold())
-//                
-//                    Text(subStat)
-//                        .foregroundStyle(.secondary)
-//                        .font(.headline)
             }
             .padding(.horizontal, 4)
             .padding(.vertical, 8)

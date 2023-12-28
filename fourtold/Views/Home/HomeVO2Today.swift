@@ -13,11 +13,12 @@ struct HomeVO2Today: View {
     var body: some View {
         HomeStatCard(headerTitle: "Cardio fitness", headerImage: vO2SystemImage, date: healthKitController.latestCardioFitness, color: .move) {
             Text(String(format: "%.1f%", healthKitController.cardioFitnessMostRecent))
-                .font(.title.bold())
+                .font(.title)
+                .fontWeight(.semibold)
             
             Text("VO₂ max")
                 .foregroundStyle(.secondary)
-                .font(.headline)
+                .font(.subheadline.bold())
         }
     }
     
