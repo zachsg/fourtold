@@ -12,8 +12,6 @@ struct RestTodayActivities: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
-    @Query(sort: \FTGround.startDate) var grounds: [FTGround]
-    @Query(sort: \FTSun.startDate) var suns: [FTSun]
     
     @Binding var showingOptions: Bool
     
@@ -24,13 +22,9 @@ struct RestTodayActivities: View {
         
         let todayMeditates = meditates.filter { isToday(date: $0.startDate) }
         let todayReads = reads.filter { isToday(date: $0.startDate) }
-        let todayGrounds = grounds.filter { isToday(date: $0.startDate) }
-        let todaySuns = suns.filter { isToday(date: $0.startDate) }
         
         activities.append(contentsOf: todayMeditates)
         activities.append(contentsOf: todayReads)
-        activities.append(contentsOf: todayGrounds)
-        activities.append(contentsOf: todaySuns)
         
         return activities.sorted { $0.startDate > $1.startDate }
     }

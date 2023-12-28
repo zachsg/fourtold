@@ -16,8 +16,6 @@ struct RestView: View {
     @State private var breathworkSheetIsShowing = false
     @State private var journalSheetIsShowing = false
     @State private var readSheetIsShowing = false
-    @State private var sunSheetIsShowing = false
-    @State private var groundSheetIsShowing = false
     @State private var lastDate: Date = .now
     @State private var showingOptions = false
     @State private var showOldActivities = false
@@ -64,10 +62,6 @@ struct RestView: View {
                         RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $breathworkSheetIsShowing, title: breathTitle, icon: breathSystemImage)
                         
                         RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $meditateSheetIsShowing, title: meditateTitle, icon: meditateSystemImage)
-                        
-                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $sunSheetIsShowing, title: sunTitle, icon: sunSystemImage)
-                        
-                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $groundSheetIsShowing, title: groundTitle, icon: groundSystemImage)
                     }
                     
                     Button {
@@ -100,14 +94,6 @@ struct RestView: View {
             }
             .sheet(isPresented: $meditateSheetIsShowing) {
                 MeditationsSheet(healthKitController: healthKitController, showingSheet: $meditateSheetIsShowing)
-                    .interactiveDismissDisabled()
-            }
-            .sheet(isPresented: $sunSheetIsShowing) {
-                SunSheet(healthKitController: healthKitController, showingSheet: $sunSheetIsShowing)
-                    .interactiveDismissDisabled()
-            }
-            .sheet(isPresented: $groundSheetIsShowing) {
-                GroundSheet(healthKitController: healthKitController, showingSheet: $groundSheetIsShowing)
                     .interactiveDismissDisabled()
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in

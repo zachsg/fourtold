@@ -20,8 +20,6 @@ struct WeekRestMinutesBarChart: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
-    @Query(sort: \FTGround.startDate) var grounds: [FTGround]
-    @Query(sort: \FTSun.startDate) var suns: [FTSun]
     
     @Binding var timeFrame: FTTimeFrame
     
@@ -47,35 +45,11 @@ struct WeekRestMinutesBarChart: View {
         return minutes / 60
     }
     
-    var groundMinutes: Int {
-        var minutes = 0
-        
-        let pastGrounds = grounds.filter { isInPast(period: timeFrame, date: $0.startDate) }
-        for ground in pastGrounds {
-            minutes += ground.duration
-        }
-        
-        return minutes / 60
-    }
-    
-    var sunMinutes: Int {
-        var minutes = 0
-        
-        let pastSuns = suns.filter { isInPast(period: timeFrame, date: $0.startDate) }
-        for sun in pastSuns {
-            minutes += sun.duration
-        }
-        
-        return minutes / 60
-    }
-    
     var averageMinutesPerDay: Int {
         var minutes = 0
 
         minutes += meditateMinutes
         minutes += readMinutes
-        minutes += groundMinutes
-        minutes += sunMinutes
         
         let minutesPerDay = Double(minutes) / timeFrame.days()
         
@@ -87,8 +61,6 @@ struct WeekRestMinutesBarChart: View {
         
         let pastMeditates = meditates.filter { isInPast(period: timeFrame, date: $0.startDate) }
         let pastReads = reads.filter { isInPast(period: timeFrame, date: $0.startDate) }
-        let pastGrounds = grounds.filter { isInPast(period: timeFrame, date: $0.startDate) }
-        let pastSuns = suns.filter { isInPast(period: timeFrame, date: $0.startDate) }
         
         var day = 0.0
         let calendar = Calendar.current
@@ -105,7 +77,6 @@ struct WeekRestMinutesBarChart: View {
             }
             
             let rest = Rest(date: checkDate, minutes: minutes / 60, type: "Meditate")
-            
             data.append(rest)
             
             minutes = 0
@@ -116,30 +87,7 @@ struct WeekRestMinutesBarChart: View {
             }
             
             let rest2 = Rest(date: checkDate, minutes: minutes / 60, type: "Read")
-            
             data.append(rest2)
-            
-            minutes = 0
-            for ground in pastGrounds {
-                if calendar.isDate(checkDate, equalTo: ground.startDate, toGranularity: .day) {
-                    minutes += ground.duration
-                }
-            }
-            
-            let rest3 = Rest(date: checkDate, minutes: minutes / 60, type: "Ground")
-            
-            data.append(rest3)
-            
-            minutes = 0
-            for sun in pastSuns {
-                if calendar.isDate(checkDate, equalTo: sun.startDate, toGranularity: .day) {
-                    minutes += sun.duration
-                }
-            }
-            
-            let rest4 = Rest(date: checkDate, minutes: minutes / 60, type: "Sun")
-            
-            data.append(rest4)
         }
         
         return data.sorted { a, b in
@@ -164,10 +112,6 @@ struct WeekRestMinutesBarChart: View {
                     StatItem(minutes: meditateMinutes, title: "Meditate")
                     Spacer()
                     StatItem(minutes: readMinutes, title: "Read")
-                    Spacer()
-                    StatItem(minutes: groundMinutes, title: "Ground")
-                    Spacer()
-                    StatItem(minutes: sunMinutes, title: "Sun")
                     Spacer()
                 }
                 .padding(.top, 4)

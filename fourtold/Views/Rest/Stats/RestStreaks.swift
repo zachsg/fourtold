@@ -18,8 +18,6 @@ struct RestStreaks: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate, order: .reverse) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate, order: .reverse) var reads: [FTRead]
-    @Query(sort: \FTGround.startDate, order: .reverse) var grounds: [FTGround]
-    @Query(sort: \FTSun.startDate, order: .reverse) var suns: [FTSun]
     
     var doesMeditate: Bool {
         !meditates.isEmpty
@@ -27,14 +25,6 @@ struct RestStreaks: View {
     
     var doesRead: Bool {
         !reads.isEmpty
-    }
-    
-    var doesGround: Bool {
-        !grounds.isEmpty
-    }
-    
-    var doesSun: Bool {
-        !suns.isEmpty
     }
     
     var meditateStreak: Int {
@@ -45,22 +35,12 @@ struct RestStreaks: View {
         calculateStreak(for: reads)
     }
     
-    var groundStreak: Int {
-        calculateStreak(for: grounds)
-    }
-    
-    var sunStreak: Int {
-        calculateStreak(for: suns)
-    }
-    
     var streaks: [Streak] {
         var s: [Streak] = []
         
         let all = [
             Streak(label: "Meditate", days: meditateStreak),
             Streak(label: "Read", days: readStreak),
-            Streak(label: "Ground", days: groundStreak),
-            Streak(label: "Sun", days: sunStreak)
         ].sorted { a, b in
             a.days > b.days
         }
@@ -87,7 +67,7 @@ struct RestStreaks: View {
             .font(.footnote.bold())
             
             ScrollView(.horizontal) {
-                if doesMeditate || doesRead || doesGround || doesSun {
+                if doesMeditate || doesRead {
                     HStack {
                         ForEach(streaks, id: \.self) { streak in
                             RestStreakItem(label: streak.label, streak: streak.days)

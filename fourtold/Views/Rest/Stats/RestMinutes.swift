@@ -12,8 +12,6 @@ struct RestMinutes: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
-    @Query(sort: \FTGround.startDate) var grounds: [FTGround]
-    @Query(sort: \FTSun.startDate) var suns: [FTSun]
     
     var dateAndMinsToday: (date: Date, minutes: Int) {
         var mostRecent: Date = .distantPast
@@ -21,8 +19,6 @@ struct RestMinutes: View {
         
         let todayMeditates = meditates.filter { isToday(date: $0.startDate) }
         let todayReads = reads.filter { isToday(date: $0.startDate) }
-        let todayGrounds = grounds.filter { isToday(date: $0.startDate) }
-        let todaySuns = suns.filter { isToday(date: $0.startDate) }
         
         for read in todayReads {
             minutes += read.duration
@@ -40,22 +36,6 @@ struct RestMinutes: View {
             }
         }
         
-        for ground in todayGrounds {
-            minutes += ground.duration
-            
-            if ground.startDate > mostRecent {
-                mostRecent = ground.startDate
-            }
-        }
-        
-        for sun in todaySuns {
-            minutes += sun.duration
-            
-            if sun.startDate > mostRecent {
-                mostRecent = sun.startDate
-            }
-        }
-        
         return (mostRecent, minutes / 60)
     }
     
@@ -64,8 +44,6 @@ struct RestMinutes: View {
         
         let pastWeekMeditates = meditates.filter { isPastWeek(date: $0.startDate) }
         let pastWeekReads = reads.filter { isPastWeek(date: $0.startDate) }
-        let pastWeekGrounds = grounds.filter { isPastWeek(date: $0.startDate) }
-        let pastWeekSuns = suns.filter { isPastWeek(date: $0.startDate) }
         
         for read in pastWeekReads {
             minutes += read.duration
@@ -73,14 +51,6 @@ struct RestMinutes: View {
         
         for meditate in pastWeekMeditates {
             minutes += meditate.duration
-        }
-        
-        for ground in pastWeekGrounds {
-            minutes += ground.duration
-        }
-        
-        for sun in pastWeekSuns {
-            minutes += sun.duration
         }
         
         return minutes / 60

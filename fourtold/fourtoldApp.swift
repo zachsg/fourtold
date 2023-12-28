@@ -14,6 +14,6 @@ struct fourtoldApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTGround.self, FTSun.self])
+        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self])
     }
 }

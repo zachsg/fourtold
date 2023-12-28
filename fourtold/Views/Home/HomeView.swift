@@ -25,48 +25,33 @@ struct HomeView: View {
         Calendar.current.isDateInToday(healthKitController.latestCardioFitness)
     }
     
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    // TODO: Minutes Upper Body strength training this week
+            ScrollView {
+                HStack(alignment: .top) {
+                    Spacer()
                     
-                    // TODO: Minutes Lower Body strength training this week
-                    
-                    // TODO: Minutes Core strength training this week
-                    
-                    if hasDailyStepsGoal {
-                        HomeSteps(healthKitController: healthKitController)
-                    }
-                    
-                    if hasWalkRunDistance {
+                    VStack {
+                        HomeStepsToday(healthKitController: healthKitController)
+                        
                         HomeWalkRunDistanceToday(healthKitController: healthKitController)
+                        
+                        HomeMindfulMinutesToday(healthKitController: healthKitController)
                     }
                     
-                    // TODO: Zone 2 minutes today
-                    
-                    if hasVO2 && vO2Today {
+                    VStack {
+                        HomeStepsPastWeek(healthKitController: healthKitController)
+                        
                         HomeVO2Today(healthKitController: healthKitController)
                     }
                     
-                    // TODO: Cardio Recovery
-                } header: {
-                    Text(moveTitle)
-                } footer: {
-                    VStack(alignment: .leading) {
-                        if healthKitController.walkRunDistanceToday > 0 {
-                            Text("You're taking \(stepsPerMile()) steps per mile today.")
-                        }
-                    }
+                    Spacer()
                 }
-                
-                Section {
-                    HomeMindfulMinutesToday(healthKitController: healthKitController)
-                    
-                    // TODO: Time in daylight (i.e. Sun exposure)
-                } header: {
-                    Text(restTitle)
-                }
+            }
+            .refreshable {
+                refresh(hard: true)
             }
             .navigationTitle(homeTitle)
             .onChange(of: scenePhase) { oldPhase, newPhase in
@@ -74,9 +59,6 @@ struct HomeView: View {
                     let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
                     refresh(hard: !today)
                 }
-            }
-            .refreshable {
-                refresh(hard: true)
             }
         }
     }

@@ -20,10 +20,6 @@ struct RestItemView: View {
             return ("Meditate", meditateSystemImage)
         } else if activity is FTRead {
             return ("Read", readSystemImage)
-        } else if activity is FTGround {
-            return ("Ground", groundSystemImage)
-        } else if activity is FTSun {
-            return ("Sun", sunSystemImage)
         } else {
             return ("Unknown", "")
         }
@@ -39,14 +35,6 @@ struct RestItemView: View {
         } else if activity is FTRead {
             if let read = activity as? FTRead {
                 d = read.duration
-            }
-        } else if activity is FTGround {
-            if let ground = activity as? FTGround {
-                d = ground.duration
-            }
-        } else if activity is FTSun {
-            if let sun = activity as? FTSun {
-                d = sun.duration
             }
         }
         
@@ -70,10 +58,6 @@ struct RestItemView: View {
                     title = "Read a \(read.genre.rawValue) \(read.type.rawValue) for"
                 }
             }
-        } else if activity is FTGround {
-            title = "Grounded for"
-        } else if activity is FTSun {
-            title = "Sun exposure for"
         } else {
             title = "Unkown"
         }
