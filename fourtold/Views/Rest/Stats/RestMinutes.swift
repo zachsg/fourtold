@@ -13,8 +13,7 @@ struct RestMinutes: View {
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
     
-    var dateAndMinsToday: (date: Date, minutes: Int) {
-        var mostRecent: Date = .distantPast
+    var minToday: Int {
         var minutes = 0
         
         let todayMeditates = meditates.filter { isToday(date: $0.startDate) }
@@ -22,13 +21,31 @@ struct RestMinutes: View {
         
         for read in todayReads {
             minutes += read.duration
+        }
+        
+        for meditate in todayMeditates {
+            minutes += meditate.duration
+        }
+        
+        return minutes / 60
+    }
+    
+    var dateAndMinPastWeek: (date: Date, minutes: Int) {
+        var mostRecent: Date = .distantPast
+        var minutes = 0
+        
+        let pastWeekMeditates = meditates.filter { isPastWeek(date: $0.startDate) }
+        let pastWeekReads = reads.filter { isPastWeek(date: $0.startDate) }
+        
+        for read in pastWeekReads {
+            minutes += read.duration
             
             if read.startDate > mostRecent {
                 mostRecent = read.startDate
             }
         }
         
-        for meditate in todayMeditates {
+        for meditate in pastWeekMeditates {
             minutes += meditate.duration
             
             if meditate.startDate > mostRecent {
@@ -37,23 +54,6 @@ struct RestMinutes: View {
         }
         
         return (mostRecent, minutes / 60)
-    }
-    
-    var minsPastWeek: Int {
-        var minutes = 0
-        
-        let pastWeekMeditates = meditates.filter { isPastWeek(date: $0.startDate) }
-        let pastWeekReads = reads.filter { isPastWeek(date: $0.startDate) }
-        
-        for read in pastWeekReads {
-            minutes += read.duration
-        }
-        
-        for meditate in pastWeekMeditates {
-            minutes += meditate.duration
-        }
-        
-        return minutes / 60
     }
     
     var body: some View {
@@ -71,14 +71,16 @@ struct RestMinutes: View {
                     
                     Spacer()
                     
-                    Text(dateAndMinsToday.date, format: Calendar.current.isDateInToday(dateAndMinsToday.date) ? .dateTime.hour().minute() : .dateTime.day().month())
-                        .foregroundStyle(.tertiary)
+                    if dateAndMinPastWeek.date != .distantPast {
+                        Text(dateAndMinPastWeek.date, format: Calendar.current.isDateInToday(dateAndMinPastWeek.date) ? .dateTime.hour().minute() : .dateTime.day().month())
+                            .foregroundStyle(.tertiary)
+                    }
                 }
                 .font(.footnote.bold())
                 
                 HStack(spacing: 32) {
                     VStack {
-                        Text("\(dateAndMinsToday.minutes)")
+                        Text("\(minToday)")
                             .font(.title.weight(.semibold))
                         
                         Text("Today")
@@ -87,7 +89,7 @@ struct RestMinutes: View {
                     }
                     
                     VStack {
-                        Text("\(minsPastWeek)")
+                        Text("\(dateAndMinPastWeek.minutes)")
                             .font(.title.weight(.semibold))
                         
                         Text("7 days")

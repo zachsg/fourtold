@@ -33,9 +33,11 @@ struct HomeStatCard<Content: View>: View {
             .foregroundStyle(color)
             .font(.footnote.bold())
             
-            Text(date, format: Calendar.current.isDateInToday(date) ? .dateTime.hour().minute() : .dateTime.day().month())
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            if date != .distantPast {
+                Text(date, format: Calendar.current.isDateInToday(date) ? .dateTime.hour().minute() : .dateTime.day().month())
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
             
             VStack(alignment: .leading) {
                 inputView()

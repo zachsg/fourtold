@@ -79,7 +79,7 @@ struct HomeView: View {
         }
         
         healthKitController.getMindfulMinutesToday(refresh: hard)
-//        healthKitController.getMindfulMinutesRecent(refresh: hard)
+        healthKitController.getMindfulMinutesRecent(refresh: hard)
 //        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
     }
     

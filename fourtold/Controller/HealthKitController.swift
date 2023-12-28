@@ -450,11 +450,17 @@ class HealthKitController {
             }
             
             var total = TimeInterval()
+            var latest: Date = .distantPast
             for sample in samples {
                 total += sample.endDate.timeIntervalSince(sample.startDate)
+                
+                if sample.endDate > latest {
+                    latest = sample.endDate
+                }
             }
             
             self.mindfulMinutesWeek = Int((total / 60).rounded())
+            self.latestMindfulMinutes = latest
         }
         
         if refresh {
