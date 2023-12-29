@@ -15,7 +15,8 @@ struct HomeTimeInDaylightToday: View {
         let time = healthKitController.timeInDaylightToday
         
         if time > 60 {
-            return (Double(time) / 60, "Hours")
+            let rounded = Double(round(100 * Double(time) / 60) / 100)
+            return (rounded, "Hours")
         } else {
             return (Double(time), "Minutes")
         }
