@@ -37,7 +37,9 @@ struct HomeView: View {
                         
                         HomeWalkRunDistanceToday(healthKitController: healthKitController)
                         
-                        HomeMindfulMinutesToday(healthKitController: healthKitController)
+                        if hasTimeInDaylight {
+                            HomeTimeInDaylightToday(healthKitController: healthKitController)
+                        }
                     }
                     
                     VStack {
@@ -47,9 +49,7 @@ struct HomeView: View {
                             HomeVO2Today(healthKitController: healthKitController)
                         }
                         
-                        if hasTimeInDaylight {
-                            HomeTimeInDaylightToday(healthKitController: healthKitController)
-                        }
+                        HomeMindfulMinutesToday(healthKitController: healthKitController)
                     }
                     
                     Spacer()

@@ -11,6 +11,9 @@ struct SettingsMoveGroup: View {
     // Steps
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
+    // Cardio fitness
+    @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
+    
     var body: some View {
         Section(moveTitle) {
             Stepper(value: $dailyStepsGoal, in: 2000...30000, step: 500) {
@@ -29,6 +32,19 @@ struct SettingsMoveGroup: View {
                     }
                 )
             }
+            
+            Toggle(isOn: $hasVO2.animation()) {
+                Label(
+                    title: {
+                        Text("Use cardio fitness?")
+                    },
+                    icon: {
+                        Image(systemName: vO2SystemImage)
+                            .foregroundStyle(.rest)
+                    }
+                )
+            }
+            .tint(.rest)
         }
     }
 }
