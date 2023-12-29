@@ -40,11 +40,11 @@ struct SettingsMoveGroup: View {
                     },
                     icon: {
                         Image(systemName: vO2SystemImage)
-                            .foregroundStyle(.rest)
+                            .foregroundStyle(.move)
                     }
                 )
             }
-            .tint(.rest)
+            .tint(.move)
         }
     }
 }
