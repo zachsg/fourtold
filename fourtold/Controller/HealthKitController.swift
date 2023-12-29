@@ -388,17 +388,20 @@ class HealthKitController {
                 return
             }
             
-            var total = TimeInterval()
+            var total = 0
             var latest: Date = .distantPast
             for sample in samples {
-                total += sample.endDate.timeIntervalSince(sample.startDate)
+                guard let hksample = sample as? HKQuantitySample else { return }
+                let minutes = hksample.quantity.doubleValue(for: HKUnit.minute())
+                
+                total += Int(minutes)
                 
                 if sample.endDate > latest {
                     latest = sample.endDate
                 }
             }
             
-            self.timeInDaylightToday = Int((total / 60).rounded())
+            self.timeInDaylightToday = total
             self.latestTimeInDaylight = latest
         }
         
