@@ -39,15 +39,18 @@ struct HomeStatCard<Content: View>: View {
                     .foregroundStyle(.secondary)
             }
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
                 inputView()
             }
-            .padding(.horizontal, 4)
-            .padding(.vertical, 8)
+            .padding(.vertical, 4)
         }
         .padding()
         .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(color.opacity(0.3), lineWidth: 2)
+        )
     }
 }
 

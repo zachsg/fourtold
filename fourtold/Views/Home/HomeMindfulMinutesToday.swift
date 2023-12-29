@@ -12,13 +12,15 @@ struct HomeMindfulMinutesToday: View {
     
     var body: some View {
         HomeStatCard(headerTitle: "Mindfulness today", headerImage: restSystemImage, date: healthKitController.latestMindfulMinutes, color: .rest) {
-            Text("\(healthKitController.mindfulMinutesToday)")
-                .font(.title)
-                .fontWeight(.semibold)
-            
-            Text("Minutes")
-                .foregroundStyle(.secondary)
-                .font(.subheadline.bold())
+            HStack(alignment: .firstTextBaseline, spacing: 2) {
+                Text("\(healthKitController.mindfulMinutesToday)")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                
+                Text("Minutes")
+                    .foregroundStyle(.secondary)
+                    .font(.footnote.bold())
+            }
         }
     }
 }

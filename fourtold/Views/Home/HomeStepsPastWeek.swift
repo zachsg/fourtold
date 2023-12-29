@@ -17,7 +17,7 @@ struct HomeStepsPastWeek: View {
                 .font(.title)
                 .fontWeight(.semibold)
             
-            Text("\(percentComplete(action: healthKitController.stepCountWeek, goal: dailyStepsGoal, forWeek: true)) of \(goalAbbreviated(forWeek: true))k")
+            Text("\(percentComplete(action: healthKitController.stepCountWeek, goal: dailyStepsGoal, forWeek: true)) of \(goalAbbreviated(forWeek: true))k goal")
                 .foregroundStyle(.secondary)
                 .font(.subheadline.bold())
         }

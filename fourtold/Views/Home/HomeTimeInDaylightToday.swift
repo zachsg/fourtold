@@ -11,19 +11,35 @@ struct HomeTimeInDaylightToday: View {
     @Bindable var healthKitController: HealthKitController
     @AppStorage(dailyTimeInDaylightGoalKey) var dailyTimeInDaylightGoal: Int = dailyTimeInDaylightGoalDefault
     
+    var timeAndUnits: (time: Double, units: String) {
+        let time = healthKitController.timeInDaylightToday
+        
+        if time > 60 {
+            return (Double(time) / 60, "Hours")
+        } else {
+            return (Double(time), "Minutes")
+        }
+    }
+    
     var body: some View {
         HomeStatCard(headerTitle: "Daylight today", headerImage: timeInDaylightSystemImage, date: healthKitController.latestTimeInDaylight, color: .rest) {
-            HStack(alignment: .firstTextBaseline) {
-                Text(healthKitController.timeInDaylightToday, format: .number)
-                    .font(.title)
-                    .fontWeight(.semibold)
+            HStack(alignment: .firstTextBaseline, spacing: 2) {
+                Group {
+                    if timeAndUnits.units == "Minutes" {
+                        Text(Int(timeAndUnits.time), format: .number)
+                    } else {
+                        Text(timeAndUnits.time, format: .number)
+                    }
+                }
+                .font(.title)
+                .fontWeight(.semibold)
                 
-                Text("Minutes")
+                Text(timeAndUnits.units)
                     .foregroundStyle(.secondary)
-                    .font(.subheadline.bold())
+                    .font(.footnote.bold())
             }
             
-            Text("\(percentComplete(action: healthKitController.timeInDaylightToday, goal: dailyTimeInDaylightGoal)) of \(goalAbbreviated())min")
+            Text("\(percentComplete(action: healthKitController.timeInDaylightToday, goal: dailyTimeInDaylightGoal)) of \(goalAbbreviated())")
                 .foregroundStyle(.secondary)
                 .font(.subheadline.bold())
         }
@@ -38,7 +54,7 @@ struct HomeTimeInDaylightToday: View {
     func goalAbbreviated(forWeek: Bool = false) -> String {
         let goal = Double(forWeek ? dailyTimeInDaylightGoal * 7 : dailyTimeInDaylightGoal) / 60
         
-        return String(Int(goal))
+        return (goal * 60).secondsAsTimeRoundedToMinutes(units: .short)
     }
 }
 
