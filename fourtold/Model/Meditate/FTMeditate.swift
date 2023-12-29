@@ -17,7 +17,6 @@ class FTMeditate: FTActivity {
     var endMood: FTMood = FTMood.neutral
     var type: FTMeditateType = FTMeditateType.open
     var duration: Int = 0
-    var goal: Int?
     
     init(startDate: Date, timeOfDay: FTTimeOfDay, startMood: FTMood, endMood: FTMood, type: FTMeditateType, duration: Int) {
         self.startDate = startDate

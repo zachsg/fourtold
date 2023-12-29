@@ -20,10 +20,9 @@ class FTRead: FTActivity {
     var type: FTReadType = FTReadType.book
     var genre: FTReadGenre = FTReadGenre.fiction
     var duration: Int = 0
-    var goal: Int?
     var isTimed: Bool = false
     
-    init(id: UUID = UUID(), startDate: Date, timeOfDay: FTTimeOfDay, startMood: FTMood, endMood: FTMood, type: FTReadType, genre: FTReadGenre, duration: Int, goal: Int? = nil, isTimed: Bool) {
+    init(id: UUID = UUID(), startDate: Date, timeOfDay: FTTimeOfDay, startMood: FTMood, endMood: FTMood, type: FTReadType, genre: FTReadGenre, duration: Int, isTimed: Bool) {
         self.id = id
         self.startDate = startDate
         self.timeOfDay = timeOfDay
@@ -32,7 +31,6 @@ class FTRead: FTActivity {
         self.type = type
         self.genre = genre
         self.duration = duration
-        self.goal = goal
         self.isTimed = isTimed
     }
 }
