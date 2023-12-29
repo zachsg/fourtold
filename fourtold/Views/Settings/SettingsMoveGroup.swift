@@ -9,18 +9,19 @@ import SwiftUI
 
 struct SettingsMoveGroup: View {
     // Steps
-    @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = hasDailyStepsGoalDefault
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
-    
-    // Distance
-    @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = hasWalkRunDistanceDefault
     
     var body: some View {
         Section(moveTitle) {
-            Toggle(isOn: $hasDailyStepsGoal.animation()) {
+            Stepper(value: $dailyStepsGoal, in: 2000...30000, step: 500) {
                 Label(
                     title: {
-                        Text("Use steps metrics?")
+                        HStack {
+                            Text("Steps goal:")
+                            
+                            Text(dailyStepsGoal, format: .number)
+                                .bold()
+                        }
                     },
                     icon: {
                         Image(systemName: stepsSystemImage)
@@ -28,39 +29,6 @@ struct SettingsMoveGroup: View {
                     }
                 )
             }
-            .tint(.move)
-            
-            if hasDailyStepsGoal {
-                Stepper(value: $dailyStepsGoal, in: 2000...30000, step: 500) {
-                    Label(
-                        title: {
-                            HStack {
-                                Text("Steps goal:")
-                                
-                                Text(dailyStepsGoal, format: .number)
-                                    .bold()
-                            }
-                        },
-                        icon: {
-                            Image(systemName: stepsSystemImage)
-                                .foregroundStyle(.move)
-                        }
-                    )
-                }
-            }
-            
-            Toggle(isOn: $hasWalkRunDistance.animation()) {
-                Label(
-                    title: {
-                        Text("Use distance metrics?")
-                    },
-                    icon: {
-                        Image(systemName: distanceSystemImage)
-                            .foregroundStyle(.move)
-                    }
-                )
-            }
-            .tint(.move)
         }
     }
 }

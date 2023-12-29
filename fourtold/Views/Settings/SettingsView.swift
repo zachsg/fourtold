@@ -26,7 +26,7 @@ struct SettingsView: View {
                 } header: {
                     HStack {
                         Spacer()
-                        Text("App version: \(appVersion)")
+                        Text("App: \(appVersion)")
                         Spacer()
                     }
                 }

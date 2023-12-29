@@ -31,15 +31,11 @@ let moveTitle = "Move"
 let moveSystemImage = "figure.walk.circle"
 
 // Steps
-let hasDailyStepsGoalKey = "hasDailyStepsGoal"
-let hasDailyStepsGoalDefault = true
 let dailyStepsGoalKey = "dailyStepsGoal"
 let dailyStepsGoalDefault = 10000
 let stepsSystemImage = "figure.walk"
 
 // Distance
-let hasWalkRunDistanceKey = "hasWalkRunDistance"
-let hasWalkRunDistanceDefault = true
 let useMilesKey = "useMiles"
 let useMilesDefault = true
 let distanceSystemImage = "ruler"
@@ -95,18 +91,6 @@ let readOpenSystemImage = "stopwatch"
 let readTimedSystemImage = "alarm"
 let readGoalKey = "readGoal"
 let readGoalDefault = 1800 // 30 minutes
-
-// Sun
-let sunTitle = "Sun exposure"
-let sunSystemImage = "sun.max"
-let sunGoalKey = "sunGoal"
-let sunGoalDefault = 600 // 10 minutes
-
-// Ground
-let groundTitle = "Grounding"
-let groundSystemImage = "globe.americas"
-let groundGoalKey = "groundGoal"
-let groundGoalDefault = 600 // 10 minutes
 
 // MARK: -  Settings
 let settingsTitle = "Settings"

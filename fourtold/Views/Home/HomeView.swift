@@ -12,11 +12,7 @@ struct HomeView: View {
     @Bindable var healthKitController: HealthKitController
     
     // Steps
-    @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = hasDailyStepsGoalDefault
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
-    
-    // Walk/run distance
-    @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = hasWalkRunDistanceDefault
     
     // VO2 max
     @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
@@ -39,9 +35,7 @@ struct HomeView: View {
                     VStack {
                         HomeStepsToday(healthKitController: healthKitController)
                         
-                        if hasWalkRunDistance {
-                            HomeWalkRunDistanceToday(healthKitController: healthKitController)
-                        }
+                        HomeWalkRunDistanceToday(healthKitController: healthKitController)
                         
                         HomeMindfulMinutesToday(healthKitController: healthKitController)
                     }
@@ -79,15 +73,11 @@ struct HomeView: View {
             healthKitController.getCardioFitnessRecent(refresh: hard)
         }
         
-        if hasDailyStepsGoal {
-            healthKitController.getStepCountToday(refresh: hard)
-            healthKitController.getStepCountWeek(refresh: hard)
+        healthKitController.getStepCountToday(refresh: hard)
+        healthKitController.getStepCountWeek(refresh: hard)
 //            healthKitController.getStepCountWeekByDay(refresh: hard)
-        }
         
-        if hasWalkRunDistance {
-            healthKitController.getWalkRunDistanceToday(refresh: hard)
-        }
+        healthKitController.getWalkRunDistanceToday(refresh: hard)
         
         healthKitController.getMindfulMinutesToday(refresh: hard)
         healthKitController.getMindfulMinutesRecent(refresh: hard)

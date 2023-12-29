@@ -12,11 +12,7 @@ struct MoveView: View {
     @Bindable var healthKitController: HealthKitController
     
     // Steps
-    @AppStorage(hasDailyStepsGoalKey) var hasDailyStepsGoal: Bool = hasDailyStepsGoalDefault
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
-    
-    // Walk/run distance
-    @AppStorage(hasWalkRunDistanceKey) var hasWalkRunDistance: Bool = hasWalkRunDistanceDefault
     
     var bestStepsDay: (day: Date, steps: Int) {
         var bestDay: Date = .now
@@ -40,9 +36,7 @@ struct MoveView: View {
                     
                     MoveStepsPastWeek(healthKitController: healthKitController)
                     
-                    if hasWalkRunDistance {
-                        MoveWalkRunDistanceToday(healthKitController: healthKitController)
-                    }
+                    MoveWalkRunDistanceToday(healthKitController: healthKitController)
                 } footer: {
                     if bestStepsDay.steps > 0 {
                         HStack(spacing: 0) {
@@ -74,15 +68,11 @@ struct MoveView: View {
     }
     
     func refresh(hard: Bool = false) {
-        if hasDailyStepsGoal {
-            healthKitController.getStepCountToday(refresh: hard)
-            healthKitController.getStepCountWeek(refresh: hard)
-            healthKitController.getStepCountWeekByDay(refresh: hard)
-        }
+        healthKitController.getStepCountToday(refresh: hard)
+        healthKitController.getStepCountWeek(refresh: hard)
+        healthKitController.getStepCountWeekByDay(refresh: hard)
         
-        if hasWalkRunDistance {
-            healthKitController.getWalkRunDistanceToday(refresh: hard)
-        }
+        healthKitController.getWalkRunDistanceToday(refresh: hard)
     }
 }
 

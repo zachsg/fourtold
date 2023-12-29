@@ -10,18 +10,16 @@ import SwiftUI
 struct SettingsRestGroup: View {
     @AppStorage(meditateGoalKey) var meditateGoal: Int = meditateGoalDefault
     @AppStorage(readGoalKey) var readGoal: Int = readGoalDefault
-    @AppStorage(sunGoalKey) var sunGoal: Int = sunGoalDefault
-    @AppStorage(groundGoalKey) var groundGoal: Int = groundGoalDefault
     @AppStorage(breathTypeKey) var breathType: FTBreathType = breathTypeDefault
     @AppStorage(hasTimeInDaylightKey) var hasTimeInDaylight: Bool = true
     @AppStorage(dailyTimeInDaylightGoalKey) var dailyTimeInDaylight: Int = dailyTimeInDaylightGoalDefault
     
     var body: some View {
-        Section(restTitle) {
+        Section {
             Toggle(isOn: $hasTimeInDaylight.animation()) {
                 Label(
                     title: {
-                        Text("Use time in daylight metrics?")
+                        Text("Use time in daylight?")
                     },
                     icon: {
                         Image(systemName: timeInDaylightSystemImage)
@@ -32,7 +30,7 @@ struct SettingsRestGroup: View {
             .tint(.rest)
             
             if hasTimeInDaylight {
-                Stepper(value: $dailyTimeInDaylight, in: 60...10800, step: 60) {
+                Stepper(value: $dailyTimeInDaylight, in: 60...10800, step: 300) {
                     Label(
                         title: {
                             HStack(alignment: .firstTextBaseline, spacing: 0) {
@@ -93,46 +91,6 @@ struct SettingsRestGroup: View {
                 )
             }
             
-            Stepper(value: $sunGoal, in: 300...7200, step: 300) {
-                Label(
-                    title: {
-                        HStack(alignment: .firstTextBaseline, spacing: 0) {
-                            Text("Sunlight goal:")
-                            Text(sunGoal / 60, format: .number)
-                                .bold()
-                                .padding(.leading, 4)
-                            Text("min")
-                                .font(.footnote)
-                                .padding(.leading, 1)
-                        }
-                    },
-                    icon: {
-                        Image(systemName: sunSystemImage)
-                            .foregroundStyle(.rest)
-                    }
-                )
-            }
-            
-            Stepper(value: $groundGoal, in: 300...7200, step: 300) {
-                Label(
-                    title: {
-                        HStack(alignment: .firstTextBaseline, spacing: 0) {
-                            Text("Ground goal:")
-                            Text(groundGoal / 60, format: .number)
-                                .bold()
-                                .padding(.leading, 4)
-                            Text("min")
-                                .font(.footnote)
-                                .padding(.leading, 1)
-                        }
-                    },
-                    icon: {
-                        Image(systemName: groundSystemImage)
-                            .foregroundStyle(.rest)
-                    }
-                )
-            }
-            
             Picker(selection: $breathType) {
                 ForEach(FTBreathType.allCases, id: \.self) {
                     switch($0) {
@@ -153,6 +111,10 @@ struct SettingsRestGroup: View {
                 }
             }
             .tint(.rest)
+        } header: {
+            Text(restTitle)
+        } footer: {
+            Text("Goals help keep you on track and are used as defaults for each category so you don't have to set them every time.")
         }
     }
 }
