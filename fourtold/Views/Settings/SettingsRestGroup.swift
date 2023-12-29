@@ -13,9 +13,46 @@ struct SettingsRestGroup: View {
     @AppStorage(sunGoalKey) var sunGoal: Int = sunGoalDefault
     @AppStorage(groundGoalKey) var groundGoal: Int = groundGoalDefault
     @AppStorage(breathTypeKey) var breathType: FTBreathType = breathTypeDefault
+    @AppStorage(hasTimeInDaylightKey) var hasTimeInDaylight: Bool = true
+    @AppStorage(dailyTimeInDaylightGoalKey) var dailyTimeInDaylight: Int = dailyTimeInDaylightGoalDefault
     
     var body: some View {
         Section(restTitle) {
+            Toggle(isOn: $hasTimeInDaylight.animation()) {
+                Label(
+                    title: {
+                        Text("Use time in daylight metrics?")
+                    },
+                    icon: {
+                        Image(systemName: timeInDaylightSystemImage)
+                            .foregroundStyle(.rest)
+                    }
+                )
+            }
+            .tint(.rest)
+            
+            if hasTimeInDaylight {
+                Stepper(value: $dailyTimeInDaylight, in: 60...10800, step: 60) {
+                    Label(
+                        title: {
+                            HStack(alignment: .firstTextBaseline, spacing: 0) {
+                                Text("Daylight goal:")
+                                Text(dailyTimeInDaylight / 60, format: .number)
+                                    .bold()
+                                    .padding(.leading, 4)
+                                Text("min")
+                                    .font(.footnote)
+                                    .padding(.leading, 1)
+                            }
+                        },
+                        icon: {
+                            Image(systemName: timeInDaylightSystemImage)
+                                .foregroundStyle(.rest)
+                        }
+                    )
+                }
+            }
+            
             Stepper(value: $meditateGoal, in: 60...5400, step: 60) {
                 Label(
                     title: {

@@ -21,6 +21,9 @@ struct HomeView: View {
     // VO2 max
     @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
     
+    // Time in Daylight
+    @AppStorage(hasTimeInDaylightKey) var hasTimeInDaylight: Bool = true
+    
     var vO2Today: Bool {
         Calendar.current.isDateInToday(healthKitController.latestCardioFitness)
     }
@@ -36,7 +39,9 @@ struct HomeView: View {
                     VStack {
                         HomeStepsToday(healthKitController: healthKitController)
                         
-                        HomeWalkRunDistanceToday(healthKitController: healthKitController)
+                        if hasWalkRunDistance {
+                            HomeWalkRunDistanceToday(healthKitController: healthKitController)
+                        }
                         
                         HomeMindfulMinutesToday(healthKitController: healthKitController)
                     }
@@ -44,7 +49,13 @@ struct HomeView: View {
                     VStack {
                         HomeStepsPastWeek(healthKitController: healthKitController)
                         
-                        HomeVO2Today(healthKitController: healthKitController)
+                        if hasVO2 {
+                            HomeVO2Today(healthKitController: healthKitController)
+                        }
+                        
+                        if hasTimeInDaylight {
+                            HomeTimeInDaylightToday(healthKitController: healthKitController)
+                        }
                     }
                     
                     Spacer()
@@ -81,6 +92,10 @@ struct HomeView: View {
         healthKitController.getMindfulMinutesToday(refresh: hard)
         healthKitController.getMindfulMinutesRecent(refresh: hard)
 //        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
+        
+        if hasTimeInDaylight {
+            healthKitController.getTimeInDaylightToday(refresh: hard)
+        }
     }
     
     func stepsPerMile() -> String {

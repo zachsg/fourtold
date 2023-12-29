@@ -67,6 +67,7 @@
 		59FCB7E72B3D1BC0004C64B0 /* HomeStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */; };
 		59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */; };
 		59FCB7F32B3E2D6B004C64B0 /* HomeStepsPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */; };
+		59FCB7F72B3E44F2004C64B0 /* HomeTimeInDaylightToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F62B3E44F2004C64B0 /* HomeTimeInDaylightToday.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +134,7 @@
 		59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatCard.swift; sourceTree = "<group>"; };
 		59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsToday.swift; sourceTree = "<group>"; };
 		59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsPastWeek.swift; sourceTree = "<group>"; };
+		59FCB7F62B3E44F2004C64B0 /* HomeTimeInDaylightToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTimeInDaylightToday.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 				59D28FDC2B1E8E4B002799C4 /* HomeWalkRunDistanceToday.swift */,
 				59D28FE02B1EABF7002799C4 /* HomeVO2Today.swift */,
 				594889022B2A885E003FD4C8 /* HomeMindfulMinutesToday.swift */,
+				59FCB7F62B3E44F2004C64B0 /* HomeTimeInDaylightToday.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				59B57B3A2B2D38B300FA949C /* BreathSheet.swift in Sources */,
 				59EF3A802B3297F100BDBB7F /* RestOptionButton.swift in Sources */,
 				594889072B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift in Sources */,
+				59FCB7F72B3E44F2004C64B0 /* HomeTimeInDaylightToday.swift in Sources */,
 				5912D1A42B1BB90500E78D6E /* HealthKitController.swift in Sources */,
 				597A78A92B37CA35002F1BA7 /* RestStreakItem.swift in Sources */,
 				597550932B1FC3620070F60E /* FTGender.swift in Sources */,
@@ -651,7 +655,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -671,7 +675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.34;
+				MARKETING_VERSION = 2023.12.35;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -690,7 +694,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -710,7 +714,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.34;
+				MARKETING_VERSION = 2023.12.35;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

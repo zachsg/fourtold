@@ -26,6 +26,10 @@ class HealthKitController {
     var cardioFitnessMostRecent = 0.0
     var latestCardioFitness: Date = .now
     
+    // Time in Daylight
+    var timeInDaylightToday = 0
+    var latestTimeInDaylight: Date = .now
+    
     // Mindful Minutes
     var mindfulMinutesToday = 0
     var latestMindfulMinutes: Date = .now
@@ -42,6 +46,7 @@ class HealthKitController {
             HKObjectType.quantityType(forIdentifier: .stepCount)!,
             HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
             HKObjectType.quantityType(forIdentifier: .vo2Max)!,
+            HKObjectType.quantityType(forIdentifier: .timeInDaylight)!,
             HKObjectType.categoryType(forIdentifier: .mindfulSession)!
         ])
         let toShare = Set([
@@ -356,6 +361,49 @@ class HealthKitController {
         
         if refresh {
             cardioFitnessMostRecent = 0.0
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    // MARK: - Time in Daylight
+    func getTimeInDaylightToday(refresh: Bool = false) {
+        guard let sampleType = HKObjectType.quantityType(forIdentifier: .timeInDaylight) else {
+            fatalError("*** Unable to create a step count type ***")
+        }
+        
+        let startDate = Calendar.current.startOfDay(for: .now)
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: .now,
+            options: .strictStartDate
+        )
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+        
+        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { query, samples, error in
+            guard let samples else {
+                if let error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            var total = TimeInterval()
+            var latest: Date = .distantPast
+            for sample in samples {
+                total += sample.endDate.timeIntervalSince(sample.startDate)
+                
+                if sample.endDate > latest {
+                    latest = sample.endDate
+                }
+            }
+            
+            self.timeInDaylightToday = Int((total / 60).rounded())
+            self.latestTimeInDaylight = latest
+        }
+        
+        if refresh {
+            mindfulMinutesToday = 0
         }
         
         healthStore.execute(query)
