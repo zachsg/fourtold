@@ -63,7 +63,6 @@
 		59DAF37A2B2C047A00BB12B5 /* FTBreathType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */; };
 		59DAF37C2B2C04B900BB12B5 /* FTBreath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */; };
 		59DC47C62B1E6A1E00737EDE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC47C52B1E6A1E00737EDE /* SettingsView.swift */; };
-		59EF3A802B3297F100BDBB7F /* RestOptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EF3A7F2B3297F100BDBB7F /* RestOptionButton.swift */; };
 		59FCB7E72B3D1BC0004C64B0 /* HomeStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */; };
 		59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */; };
 		59FCB7F32B3E2D6B004C64B0 /* HomeStepsPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */; };
@@ -130,7 +129,6 @@
 		59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreathType.swift; sourceTree = "<group>"; };
 		59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreath.swift; sourceTree = "<group>"; };
 		59DC47C52B1E6A1E00737EDE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		59EF3A7F2B3297F100BDBB7F /* RestOptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOptionButton.swift; sourceTree = "<group>"; };
 		59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatCard.swift; sourceTree = "<group>"; };
 		59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsToday.swift; sourceTree = "<group>"; };
 		59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsPastWeek.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 				597550992B20E1650070F60E /* RestView.swift */,
 				590E17A72B33AD9B00269FA4 /* RestTodayActivities.swift */,
 				590E17A92B33B06E00269FA4 /* RestOldActivities.swift */,
-				59EF3A7F2B3297F100BDBB7F /* RestOptionButton.swift */,
 				597A78A42B365C37002F1BA7 /* RestItemView.swift */,
 				59B57B382B2D356A00FA949C /* Breath */,
 				59B57B322B2D13DB00FA949C /* Journal */,
@@ -503,7 +500,6 @@
 				590861E32B1E3FD70040DC72 /* HomeView.swift in Sources */,
 				597550A72B27A1800070F60E /* FTActivity.swift in Sources */,
 				59B57B3A2B2D38B300FA949C /* BreathSheet.swift in Sources */,
-				59EF3A802B3297F100BDBB7F /* RestOptionButton.swift in Sources */,
 				594889072B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift in Sources */,
 				59FCB7F72B3E44F2004C64B0 /* HomeTimeInDaylightToday.swift in Sources */,
 				5912D1A42B1BB90500E78D6E /* HealthKitController.swift in Sources */,
@@ -655,7 +651,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -675,7 +671,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.40;
+				MARKETING_VERSION = 2023.12.42;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -694,7 +690,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -714,7 +710,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.40;
+				MARKETING_VERSION = 2023.12.42;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

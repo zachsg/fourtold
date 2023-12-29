@@ -13,8 +13,6 @@ struct RestTodayActivities: View {
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
     
-    @Binding var showingOptions: Bool
-    
     @State private var showOldActivities = false
     
     var todayActivities: [any FTActivity] {
@@ -45,15 +43,11 @@ struct RestTodayActivities: View {
         } else {
             HStack {
                 Text("It's a new day. Time to take action!")
-                Image(systemName: "plus.circle")
+                Image(systemName: arrowSystemImage)
+                    .rotationEffect(.degrees(-90))
                     .foregroundStyle(.rest)
                     .font(.title3)
             }
-            .onTapGesture(perform: {
-                withAnimation {
-                    showingOptions.toggle()
-                }
-            })
             .font(.headline)
         }
     }
@@ -64,6 +58,6 @@ struct RestTodayActivities: View {
 }
 
 #Preview {
-    RestTodayActivities(showingOptions: .constant(false))
+    RestTodayActivities()
         .modelContainer(for: [FTMeditate.self, FTRead.self])
 }

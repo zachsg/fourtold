@@ -16,8 +16,8 @@ struct RestView: View {
     @State private var breathworkSheetIsShowing = false
     @State private var journalSheetIsShowing = false
     @State private var readSheetIsShowing = false
+    @State private var tagSheetIsShowing = false
     @State private var lastDate: Date = .now
-    @State private var showingOptions = false
     @State private var showOldActivities = false
     
     var body: some View {
@@ -31,7 +31,7 @@ struct RestView: View {
                         Text("Stats")
                     }
                     
-                    RestTodayActivities(showingOptions: $showingOptions)
+                    RestTodayActivities()
                     
                     RestOldActivities(showOldActivities: $showOldActivities)
                     
@@ -42,45 +42,36 @@ struct RestView: View {
                             .padding(.bottom, 20)
                     }
                 }
-                
-                if showingOptions {
-                    Color.black.opacity(0.9)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            withAnimation {
-                                showingOptions.toggle()
-                            }
-                        }
-                }
-                
-                VStack(alignment: .trailing) {
-                    if showingOptions {
-                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $readSheetIsShowing, title: readTitle, icon: readSystemImage)
-                        
-                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $journalSheetIsShowing, title: journalTitle, icon: journalSystemImage)
-                        
-                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $breathworkSheetIsShowing, title: breathTitle, icon: breathSystemImage)
-                        
-                        RestOptionButton(showingOption: $showingOptions, sheetIsShowing: $meditateSheetIsShowing, title: meditateTitle, icon: meditateSystemImage)
-                    }
-                    
-                    Button {
-                        withAnimation {
-                            showingOptions.toggle()
-                        }
-                    } label: {
-                        Image(systemName: "plus.circle")
-                            .resizable()
-                            .frame(width: 38, height: 38)
-                            .foregroundStyle(.rest)
-                    }
-                    .background(showingOptions ? .black.opacity(0.9) : Color(UIColor.systemBackground))
-                    .clipShape(Circle())
-                    .rotationEffect(.degrees(showingOptions ? 45 : 0))
-                }
-                .padding()
             }
             .navigationTitle(restTitle)
+            .toolbar {
+                ToolbarItemGroup {
+                    Button(tagTitle, systemImage: tagSystemImage) {
+                        tagSheetIsShowing.toggle()
+                    }
+                    .tint(.rest)
+                    
+                    Button(journalTitle, systemImage: journalSystemImage) {
+                        journalSheetIsShowing.toggle()
+                    }
+                    .tint(.rest)
+                    
+                    Button(readTitle, systemImage: readSystemImage) {
+                        readSheetIsShowing.toggle()
+                    }
+                    .tint(.rest)
+                    
+                    Button(breathTitle, systemImage: breathSystemImage) {
+                        breathworkSheetIsShowing.toggle()
+                    }
+                    .tint(.rest)
+                    
+                    Button(meditateTitle, systemImage: meditateSystemImage) {
+                        meditateSheetIsShowing.toggle()
+                    }
+                    .tint(.rest)
+                }
+            }
             .sheet(isPresented: $readSheetIsShowing) {
                 ReadSheet(healthKitController: healthKitController, showingSheet: $readSheetIsShowing)
                     .interactiveDismissDisabled()
@@ -95,6 +86,9 @@ struct RestView: View {
             .sheet(isPresented: $meditateSheetIsShowing) {
                 MeditationsSheet(healthKitController: healthKitController, showingSheet: $meditateSheetIsShowing)
                     .interactiveDismissDisabled()
+            }
+            .sheet(isPresented: $tagSheetIsShowing) {
+                Text("Tags coming soon")
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {

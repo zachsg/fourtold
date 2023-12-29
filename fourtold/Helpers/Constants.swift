@@ -15,6 +15,10 @@ let cancelSystemImage = "xmark.circle"
 let arrowSystemImage = "arrowshape.forward"
 let progressSystemImage = "location.north.circle.fill"
 
+// Tags
+let tagTitle = "Tag"
+let tagSystemImage = "tag"
+
 // MARK: - User
 let userAgeKey = "userAge"
 let userAgeDefault = 30
