@@ -7,6 +7,7 @@
 
 import Foundation
 import HealthKit
+import SwiftUI
 
 @Observable
 class HealthKitController {
@@ -18,6 +19,11 @@ class HealthKitController {
     var stepCountWeekByDay: [Date: Int] = [:]
     var latestSteps: Date = .now
     
+    // Zone 2
+    var zone2Today = 0
+    var zone2Week = 0
+    var latestZone2: Date = .now
+    
     // Walk/run distance
     var walkRunDistanceToday = 0.0
     var latestWalkRunDistance: Date = .now
@@ -28,6 +34,7 @@ class HealthKitController {
     
     // Time in Daylight
     var timeInDaylightToday = 0
+    var timeInDaylightWeek = 0
     var latestTimeInDaylight: Date = .now
     
     // Mindful Minutes
@@ -44,6 +51,7 @@ class HealthKitController {
     func requestAuthorization() {
         let toRead = Set([
             HKObjectType.quantityType(forIdentifier: .stepCount)!,
+            HKObjectType.quantityType(forIdentifier: .heartRate)!,
             HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
             HKObjectType.quantityType(forIdentifier: .vo2Max)!,
             HKObjectType.quantityType(forIdentifier: .timeInDaylight)!,
@@ -280,6 +288,140 @@ class HealthKitController {
         healthStore.execute(query)
     }
     
+    // MARK: - Zone 2
+    func getZone2Today(refresh: Bool = false) {
+        @AppStorage(zone2ThresholdKey) var zone2Threshold: Int = zone2ThresholdDefault
+        
+        guard let quantityType = HKObjectType.quantityType(forIdentifier: .heartRate) else {
+            fatalError("*** Unable to create a heart rate type ***")
+        }
+        
+        let heartRateUnit:HKUnit = HKUnit(from: "count/min")
+        
+        let startDate = Calendar.current.startOfDay(for: .now)
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: .now,
+            options: .strictStartDate
+        )
+        
+        let sortDescriptors = [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)]
+        
+        let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: sortDescriptors, resultsHandler: { (query, results, error) in
+            guard error == nil else {
+                print("error")
+                return
+            }
+            
+            var total = TimeInterval()
+            var latest: Date = .distantPast
+            var usedComponents: [DateComponents] = []
+            for (_, sample) in results!.enumerated() {
+                guard let currData:HKQuantitySample = sample as? HKQuantitySample else { return }
+                
+                let heartRate = currData.quantity.doubleValue(for: heartRateUnit)
+                if heartRate >= Double(zone2Threshold) {
+                    let components = sample.startDate.get(.minute, .hour)
+                    if !usedComponents.contains(components) {
+                        usedComponents.append(components)
+                        total += 60
+                    }
+
+                    if sample.endDate > latest {
+                        latest = sample.endDate
+                    }
+                }
+            }
+            
+            self.zone2Today = Int((total / 60).rounded())
+            self.latestZone2 = latest
+        })
+        
+        if refresh {
+            zone2Today = 0
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    func getZone2Week(refresh: Bool = false) {
+        @AppStorage(zone2ThresholdKey) var zone2Threshold: Int = zone2ThresholdDefault
+        
+        let calendar = Calendar.current
+        
+        // Set the anchor for 3 a.m. 6 days ago.
+        let todayNumber = calendar.component(.weekday, from: .now)
+        let sixDaysAgo = todayNumber == 7 ? 1 : todayNumber + 1
+        let components = DateComponents(
+            calendar: calendar,
+            timeZone: calendar.timeZone,
+            hour: 3,
+            minute: 0,
+            second: 0,
+            weekday: sixDaysAgo
+        )
+        
+        guard let anchorDate = calendar.nextDate(
+            after: .now,
+            matching: components,
+            matchingPolicy: .nextTime,
+            repeatedTimePolicy: .first,
+            direction: .backward
+        ) else {
+            fatalError("*** unable to find the previous Monday. ***")
+        }
+        
+        let predicate = HKQuery.predicateForSamples(
+            withStart: anchorDate,
+            end: .now,
+            options: .strictStartDate
+        )
+        
+        guard let quantityType = HKObjectType.quantityType(forIdentifier: .heartRate) else {
+            fatalError("*** Unable to create a heart rate type ***")
+        }
+        
+        let heartRateUnit:HKUnit = HKUnit(from: "count/min")
+        
+        let sortDescriptors = [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)]
+        
+        let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: sortDescriptors, resultsHandler: { (query, results, error) in
+            guard error == nil else {
+                print("error")
+                return
+            }
+            
+            var total = TimeInterval()
+            var latest: Date = .distantPast
+            var usedComponents: [DateComponents] = []
+            for (_, sample) in results!.enumerated() {
+                guard let currData:HKQuantitySample = sample as? HKQuantitySample else { return }
+                
+                let heartRate = currData.quantity.doubleValue(for: heartRateUnit)
+                if heartRate >= Double(zone2Threshold) {
+                    let components = sample.startDate.get(.minute, .hour)
+                    if !usedComponents.contains(components) {
+                        usedComponents.append(components)
+                        total += 60
+                    }
+                    
+                    if sample.endDate > latest {
+                        latest = sample.endDate
+                    }
+                }
+            }
+            
+            self.zone2Week = Int((total / 60).rounded())
+            self.latestZone2 = latest
+        })
+        
+        if refresh {
+            zone2Week = 0
+        }
+        
+        healthStore.execute(query)
+    }
+    
     // MARK: - Distance
     func getWalkRunDistanceToday(refresh: Bool = false) {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning) else {
@@ -406,7 +548,76 @@ class HealthKitController {
         }
         
         if refresh {
-            mindfulMinutesToday = 0
+            timeInDaylightToday = 0
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    func getTimeInDaylightWeek(refresh: Bool = false) {
+        guard let sampleType = HKObjectType.quantityType(forIdentifier: .timeInDaylight) else {
+            fatalError("*** Unable to create a step count type ***")
+        }
+        
+        let calendar = Calendar.current
+        
+        // Set the anchor for 3 a.m. 6 days ago.
+        let todayNumber = calendar.component(.weekday, from: .now)
+        let sixDaysAgo = todayNumber == 7 ? 1 : todayNumber + 1
+        let components = DateComponents(
+            calendar: calendar,
+            timeZone: calendar.timeZone,
+            hour: 3,
+            minute: 0,
+            second: 0,
+            weekday: sixDaysAgo
+        )
+        
+        guard let anchorDate = calendar.nextDate(
+            after: .now,
+            matching: components,
+            matchingPolicy: .nextTime,
+            repeatedTimePolicy: .first,
+            direction: .backward
+        ) else {
+            fatalError("*** unable to find the previous Monday. ***")
+        }
+        
+        let predicate = HKQuery.predicateForSamples(
+            withStart: anchorDate,
+            end: .now,
+            options: .strictStartDate
+        )
+        
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+        
+        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { query, samples, error in
+            guard let samples else {
+                if let error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            var total = 0
+            var latest: Date = .distantPast
+            for sample in samples {
+                guard let hksample = sample as? HKQuantitySample else { return }
+                let minutes = hksample.quantity.doubleValue(for: HKUnit.minute())
+                
+                total += Int(minutes)
+                
+                if sample.endDate > latest {
+                    latest = sample.endDate
+                }
+            }
+            
+            self.timeInDaylightWeek = total
+            self.latestTimeInDaylight = latest
+        }
+        
+        if refresh {
+            timeInDaylightWeek = 0
         }
         
         healthStore.execute(query)

@@ -19,7 +19,8 @@ struct HomeStepsToday: View {
             
             Text("\(percentComplete(action: healthKitController.stepCountToday, goal: dailyStepsGoal)) of \(goalAbbreviated())k")
                 .foregroundStyle(.secondary)
-                .font(.subheadline.bold())
+                .font(.caption)
+                .fontWeight(.heavy)
         }
     }
     

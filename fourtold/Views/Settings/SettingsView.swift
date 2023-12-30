@@ -21,6 +21,8 @@ struct SettingsView: View {
                 
                 SettingsRestGroup()
                 
+                SettingsMiscGroup()
+                
                 Section {
                     // Add any dev info about the app
                 } header: {

@@ -26,6 +26,17 @@ let userGenderKey = "userGender"
 let userGenderDefault: FTGender = .female
 let userSystemImage = "person.crop.circle"
 
+// MARK: - Overall Goals
+let goalTitle = "Goals"
+let dailyStepsGoalKey = "dailyStepsGoal"
+let dailyStepsGoalDefault = 10000
+let dailyZone2GoalKey = "dailyZone2Goal"
+let dailyZone2GoalDefault = 1200 // 20 minutes
+let dailyMindfulnessGoalKey = "mindfulnessGoal"
+let dailyMindfulnessGoalDefault = 1800 // 30 minutes
+let dailySunlightGoalKey = "dailySunlightGoal"
+let dailySunlightGoalDefault = 1800 // 30 minutes
+
 // MARK: - Home
 let homeTitle = "Home"
 let homeSystemImage = "house.circle"
@@ -35,8 +46,6 @@ let moveTitle = "Move"
 let moveSystemImage = "figure.walk.circle"
 
 // Steps
-let dailyStepsGoalKey = "dailyStepsGoal"
-let dailyStepsGoalDefault = 10000
 let stepsSystemImage = "figure.walk"
 
 // Distance
@@ -55,6 +64,12 @@ let hasVO2Key = "hasVO2"
 let hasVO2Default = true
 let vO2SystemImage = "heart"
 
+// Zone 2
+let hasZone2Key = "hasZone2"
+let hasZone2Default = true
+let zone2ThresholdKey = "zone2Threshold"
+let zone2ThresholdDefault = 136
+
 // Lift
 let buildTitle = "Build"
 let buildSystemImage = "scalemass.fill"
@@ -64,11 +79,10 @@ let restTitle = "Rest"
 let restSystemImage = "sleep.circle"
 
 // Time in Daylight
-let hasTimeInDaylightKey = "hasTimeInDaylight"
-let dailyTimeInDaylightGoalKey = "dailyTimeInDaylightGoal"
-let dailyTimeInDaylightGoalDefault = 1800
-let timeInDaylightSystemImage = "sun.max"
-let timeInDaylightTitle = "Time in daylight"
+let hasSunlightKey = "hasSunlight"
+let hasSunlightDefault = true
+let sunlightSystemImage = "sun.max"
+let sunlightTitle = "Sunlight"
 
 // Breath
 let breathTitle = "Breath"

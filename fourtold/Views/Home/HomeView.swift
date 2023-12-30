@@ -14,11 +14,11 @@ struct HomeView: View {
     // Steps
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
-    // VO2 max
-    @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
+    // Zone 2
+    @AppStorage(hasZone2Key) var hasZone2: Bool = hasZone2Default
     
     // Time in Daylight
-    @AppStorage(hasTimeInDaylightKey) var hasTimeInDaylight: Bool = true
+    @AppStorage(hasSunlightKey) var hasSunlight: Bool = hasSunlightDefault
     
     var vO2Today: Bool {
         Calendar.current.isDateInToday(healthKitController.latestCardioFitness)
@@ -35,21 +35,29 @@ struct HomeView: View {
                     VStack {
                         HomeStepsToday(healthKitController: healthKitController)
                         
-                        HomeWalkRunDistanceToday(healthKitController: healthKitController)
+                        if hasZone2 {
+                            HomeZone2Today(healthKitController: healthKitController)
+                        }
                         
-                        if hasTimeInDaylight {
-                            HomeTimeInDaylightToday(healthKitController: healthKitController)
+                        HomeMindfulnessToday(healthKitController: healthKitController)
+                        
+                        if hasSunlight {
+                            HomeSunlightToday(healthKitController: healthKitController)
                         }
                     }
                     
                     VStack {
                         HomeStepsPastWeek(healthKitController: healthKitController)
                         
-                        if hasVO2 {
-                            HomeVO2Today(healthKitController: healthKitController)
+                        if hasZone2 {
+                            HomeZone2PastWeek(healthKitController: healthKitController)
                         }
                         
-                        HomeMindfulMinutesToday(healthKitController: healthKitController)
+                        HomeMindfulnessPastWeek(healthKitController: healthKitController)
+                        
+                        if hasSunlight {
+                            HomeSunlightPastWeek(healthKitController: healthKitController)
+                        }
                     }
                     
                     Spacer()
@@ -69,22 +77,22 @@ struct HomeView: View {
     }
     
     func refresh(hard: Bool = false) {
-        if hasVO2 {
-            healthKitController.getCardioFitnessRecent(refresh: hard)
+        if hasZone2 {
+            healthKitController.getZone2Today(refresh: hard)
+            healthKitController.getZone2Week(refresh: hard)
         }
         
         healthKitController.getStepCountToday(refresh: hard)
         healthKitController.getStepCountWeek(refresh: hard)
 //            healthKitController.getStepCountWeekByDay(refresh: hard)
-        
-        healthKitController.getWalkRunDistanceToday(refresh: hard)
-        
+                
         healthKitController.getMindfulMinutesToday(refresh: hard)
         healthKitController.getMindfulMinutesRecent(refresh: hard)
 //        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
         
-        if hasTimeInDaylight {
+        if hasSunlight {
             healthKitController.getTimeInDaylightToday(refresh: hard)
+            healthKitController.getTimeInDaylightWeek(refresh: hard)
         }
     }
     

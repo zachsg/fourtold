@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct SettingsMoveGroup: View {
-    // Steps
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
-    
-    // Cardio fitness
-    @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
+    @AppStorage(hasZone2Key) var hasZone2: Bool = hasZone2Default
+    @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
     
     var body: some View {
-        Section(moveTitle) {
+        Section("Daily \(moveTitle) goals") {
             Stepper(value: $dailyStepsGoal, in: 2000...30000, step: 500) {
                 Label(
                     title: {
@@ -32,19 +30,45 @@ struct SettingsMoveGroup: View {
                     }
                 )
             }
-            
-            Toggle(isOn: $hasVO2.animation()) {
-                Label(
-                    title: {
-                        Text("Use cardio fitness?")
-                    },
-                    icon: {
-                        Image(systemName: vO2SystemImage)
-                            .foregroundStyle(.move)
-                    }
-                )
-            }
             .tint(.move)
+            
+            Group {
+                Toggle(isOn: $hasZone2.animation()) {
+                    Label(
+                        title: {
+                            Text("Include Zone 2 HR?")
+                        },
+                        icon: {
+                            Image(systemName: vO2SystemImage)
+                                .foregroundStyle(.move)
+                        }
+                    )
+                }
+                .tint(.move)
+                
+                if hasZone2 {
+                    Stepper(value: $dailyZone2Goal, in: 60...7200, step: 60) {
+                        Label(
+                            title: {
+                                HStack(alignment: .firstTextBaseline, spacing: 0) {
+                                    Text("Zone 2 goal:")
+                                    Text(dailyZone2Goal / 60, format: .number)
+                                        .bold()
+                                        .padding(.leading, 4)
+                                    Text("min")
+                                        .font(.footnote)
+                                        .padding(.leading, 1)
+                                }
+                            },
+                            icon: {
+                                Image(systemName: vO2SystemImage)
+                                    .foregroundStyle(.move)
+                            }
+                        )
+                    }
+                    .tint(.move)
+                }
+            }
         }
     }
 }
