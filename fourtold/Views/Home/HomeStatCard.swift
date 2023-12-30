@@ -36,9 +36,14 @@ struct HomeStatCard<Content: View>: View {
             if date != .distantPast {
                 Group {
                     if Calendar.current.isDateInYesterday(date) {
-                        Text("Yesterday")
+                        Text("Updated yesterday")
+                    } else if Calendar.current.isDateInToday(date) {
+                        Text(date, format: .dateTime.hour().minute())
                     } else {
-                        Text(date, format: Calendar.current.isDateInToday(date) ? .dateTime.hour().minute() : .dateTime.day().month())
+                        HStack(spacing: 0) {
+                            Text("Updated ")
+                            Text(date, format: .dateTime.day().month())
+                        }
                     }
                 }
                 .font(.caption)
