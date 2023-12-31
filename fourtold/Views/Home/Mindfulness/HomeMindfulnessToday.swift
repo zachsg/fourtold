@@ -26,7 +26,7 @@ struct HomeMindfulnessToday: View {
                     .foregroundStyle(isDone ? .rest : .primary)
                 
                 Text("Minutes")
-                    .foregroundStyle(.rest.opacity(0.5))
+                    .foregroundStyle(.rest.opacity(0.7))
                     .font(.footnote.bold())
             }
             
@@ -35,7 +35,7 @@ struct HomeMindfulnessToday: View {
                     .foregroundStyle(isDone ? .rest : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated())")
-                    .foregroundStyle(.rest.opacity(0.5))
+                    .foregroundStyle(.rest.opacity(0.7))
                     .fontWeight(.bold)
             }
             .font(.caption)

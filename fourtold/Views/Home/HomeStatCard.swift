@@ -48,13 +48,13 @@ struct HomeStatCard<Content: View>: View {
         .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(style: StrokeStyle(lineWidth: 4))
+                .stroke(style: StrokeStyle(lineWidth: 8))
                 .foregroundStyle(color.opacity(0.3))
         )
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .trim(from: 0, to: completed)
-                .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .butt, lineJoin: .round))
+                .stroke(style: StrokeStyle(lineWidth: 8, lineCap: .butt, lineJoin: .round))
                 .rotationEffect(.degrees(180))
                 .foregroundStyle(color)
         )

@@ -26,7 +26,7 @@ struct HomeZone2PastWeek: View {
                     .foregroundStyle(isDone ? .move : .primary)
                 
                 Text("Minutes")
-                    .foregroundStyle(.move.opacity(0.5))
+                    .foregroundStyle(.move.opacity(0.7))
                     .font(.footnote.bold())
             }
             
@@ -35,7 +35,7 @@ struct HomeZone2PastWeek: View {
                     .foregroundStyle(isDone ? .move : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated(forWeek: true))")
-                    .foregroundStyle(.move.opacity(0.5))
+                    .foregroundStyle(.move.opacity(0.7))
                     .fontWeight(.bold)
             }
             .font(.caption)

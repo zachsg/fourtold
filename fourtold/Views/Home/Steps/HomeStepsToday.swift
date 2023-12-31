@@ -29,7 +29,7 @@ struct HomeStepsToday: View {
                     .foregroundStyle(isDone ? .move : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated())k")
-                    .foregroundStyle(.move.opacity(0.5))
+                    .foregroundStyle(.move.opacity(0.7))
                     .fontWeight(.bold)
             }
             .font(.caption)

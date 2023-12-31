@@ -43,7 +43,7 @@ struct HomeSunlightToday: View {
                 .foregroundStyle(isDone ? .rest : .primary)
                 
                 Text(timeAndUnits.units)
-                    .foregroundStyle(.rest.opacity(0.5))
+                    .foregroundStyle(.rest.opacity(0.7))
                     .font(.footnote.bold())
             }
             
@@ -52,7 +52,7 @@ struct HomeSunlightToday: View {
                     .foregroundStyle(isDone ? .rest : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated())")
-                    .foregroundStyle(.rest.opacity(0.5))
+                    .foregroundStyle(.rest.opacity(0.7))
                     .fontWeight(.bold)
             }
             .font(.caption)

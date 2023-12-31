@@ -89,7 +89,7 @@ struct HomeView: View {
                             } header: {
                                 HStack {
                                     Image(systemName: vO2SystemImage)
-                                    Text("Zone 2+ Heart Rate")
+                                    Text("Zone 2+ HR")
                                     Spacer()
                                     dateView(date: healthKitController.latestZone2)
                                 }
