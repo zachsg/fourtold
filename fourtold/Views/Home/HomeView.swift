@@ -24,19 +24,23 @@ struct HomeView: View {
     @State private var sunTodayPercent = 0.0
     @State private var sunWeekPercent = 0.0
     
-    var numberGoalsDone: Int {
-        var count = 0
+    var goals: (total: Double, done: Double)  {
+        var total = 8.0
+        var done = 0.0
         
-        if stepsTodayPercent >= 100 { count += 1 }
-        if stepsWeekPercent >= 100 { count += 1 }
-        if zone2TodayPercent >= 100 { count += 1 }
-        if zone2WeekPercent >= 100 { count += 1 }
-        if mindfulTodayPercent >= 100 { count += 1 }
-        if mindfulWeekPercent >= 100 { count += 1 }
-        if sunTodayPercent >= 100 { count += 1 }
-        if sunWeekPercent >= 100 { count += 1 }
+        if !hasZone2 { total -= 1 }
+        if !hasSunlight { total -= 1 }
         
-        return count
+        if stepsTodayPercent >= 100 { done += 1 }
+        if stepsWeekPercent >= 100 { done += 1 }
+        if hasZone2 && zone2TodayPercent >= 100 { done += 1 }
+        if hasZone2 && zone2WeekPercent >= 100 { done += 1 }
+        if mindfulTodayPercent >= 100 { done += 1 }
+        if mindfulWeekPercent >= 100 { done += 1 }
+        if hasSunlight && sunTodayPercent >= 100 { done += 1 }
+        if hasSunlight && sunWeekPercent >= 100 { done += 1 }
+        
+        return (total, done)
     }
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
@@ -84,12 +88,10 @@ struct HomeView: View {
             .navigationTitle(homeTitle)
             .toolbar {
                 HStack {
-                    Text("\(numberGoalsDone)")
+                    Text( goals.done / goals.total, format: .percent)
                         .fontWeight(.bold)
-                    Text("of")
-                    Text("8")
-                        .fontWeight(.bold)
-                    Text("goals met")
+                        .foregroundStyle( complete() < 20 ? .red : complete() < 70 ? .orange : .green)
+                    Text("of goals met")
                 }
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in
@@ -133,6 +135,10 @@ struct HomeView: View {
         } else {
             return "..."
         }
+    }
+    
+    func complete() -> Double {
+        goals.done / goals.total
     }
 }
 
