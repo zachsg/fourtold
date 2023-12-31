@@ -30,10 +30,15 @@ struct HomeMindfulnessPastWeek: View {
                     .font(.footnote.bold())
             }
             
-            Text("\(percentComplete(action: healthKitController.mindfulMinutesWeek, goal: dailyMindfulnessGoal, forWeek: true)) of \(goalAbbreviated(forWeek: true))")
-                .foregroundStyle(.secondary)
-                .font(.caption)
-                .fontWeight(.heavy)
+            HStack(spacing: 0) {
+                Text("\(percentComplete(action: healthKitController.mindfulMinutesWeek, goal: dailyMindfulnessGoal, forWeek: true))")
+                    .foregroundStyle(.rest)
+                    .fontWeight(.heavy)
+                Text(" of \(goalAbbreviated(forWeek: true))")
+                    .foregroundStyle(.secondary)
+                    .fontWeight(.bold)
+            }
+            .font(.caption)
         }
     }
     

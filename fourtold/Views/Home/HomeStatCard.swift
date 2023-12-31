@@ -41,7 +41,7 @@ struct HomeStatCard<Content: View>: View {
             VStack(alignment: .leading, spacing: 0) {
                 inputView()
             }
-            .padding(.top, 4)
+            .padding(.top, 2)
         }
         .padding()
         .background(.regularMaterial)
@@ -58,7 +58,8 @@ struct HomeStatCard<Content: View>: View {
                 .rotationEffect(.degrees(180))
                 .foregroundStyle(color)
         )
-        .padding(2)
+        .padding(.horizontal, 2)
+        .padding(.bottom, 2)
     }
 }
 

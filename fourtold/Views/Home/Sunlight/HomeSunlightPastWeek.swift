@@ -47,10 +47,15 @@ struct HomeSunlightPastWeek: View {
                     .font(.footnote.bold())
             }
             
-            Text("\(percentComplete(action: healthKitController.timeInDaylightWeek, goal: dailySunlightGoal, forWeek: true)) of \(goalAbbreviated(forWeek: true))")
-                .foregroundStyle(.secondary)
-                .font(.caption)
-                .fontWeight(.heavy)
+            HStack(spacing: 0) {
+                Text("\(percentComplete(action: healthKitController.timeInDaylightWeek, goal: dailySunlightGoal, forWeek: true))")
+                    .foregroundStyle(.rest)
+                    .fontWeight(.heavy)
+                Text(" of \(goalAbbreviated(forWeek: true))")
+                    .foregroundStyle(.secondary)
+                    .fontWeight(.bold)
+            }
+            .font(.caption)
         }
     }
     

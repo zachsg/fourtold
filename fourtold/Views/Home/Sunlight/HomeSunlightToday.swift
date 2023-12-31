@@ -47,10 +47,15 @@ struct HomeSunlightToday: View {
                     .font(.footnote.bold())
             }
             
-            Text("\(percentComplete(action: healthKitController.timeInDaylightToday, goal: dailySunlightGoal)) of \(goalAbbreviated())")
-                .foregroundStyle(.secondary)
-                .font(.caption)
-                .fontWeight(.heavy)
+            HStack(spacing: 0) {
+                Text("\(percentComplete(action: healthKitController.timeInDaylightToday, goal: dailySunlightGoal))")
+                    .foregroundStyle(.rest)
+                    .fontWeight(.heavy)
+                Text(" of \(goalAbbreviated())")
+                    .foregroundStyle(.secondary)
+                    .fontWeight(.bold)
+            }
+            .font(.caption)
         }
     }
     

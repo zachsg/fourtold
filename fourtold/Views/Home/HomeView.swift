@@ -2,7 +2,7 @@
 //  HomeView.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/4/23.
+//  Created by Zach Gottlieb on 12/31/23.
 //
 
 import SwiftUI
@@ -139,7 +139,7 @@ struct HomeView: View {
                         .padding(.bottom)
                     }
                 }
-                .padding(2)
+                .padding(4)
                 .background(.regularMaterial)
             }
             .refreshable {
@@ -190,11 +190,11 @@ struct HomeView: View {
         
         healthKitController.getStepCountToday(refresh: hard)
         healthKitController.getStepCountWeek(refresh: hard)
-//            healthKitController.getStepCountWeekByDay(refresh: hard)
-                
+        //            healthKitController.getStepCountWeekByDay(refresh: hard)
+        
         healthKitController.getMindfulMinutesToday(refresh: hard)
         healthKitController.getMindfulMinutesRecent(refresh: hard)
-//        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
+        //        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
         
         if hasSunlight {
             healthKitController.getTimeInDaylightToday(refresh: hard)

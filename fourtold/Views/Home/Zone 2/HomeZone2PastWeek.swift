@@ -30,10 +30,15 @@ struct HomeZone2PastWeek: View {
                     .font(.footnote.bold())
             }
             
-            Text("\(percentComplete(action: healthKitController.zone2Week, goal: dailyZone2Goal, forWeek: true)) of \(goalAbbreviated(forWeek: true))")
-                .foregroundStyle(.secondary)
-                .font(.caption)
-                .fontWeight(.heavy)
+            HStack(spacing: 0) {
+                Text("\(percentComplete(action: healthKitController.zone2Week, goal: dailyZone2Goal, forWeek: true))")
+                    .foregroundStyle(.move)
+                    .fontWeight(.heavy)
+                Text(" of \(goalAbbreviated(forWeek: true))")
+                    .foregroundStyle(.secondary)
+                    .fontWeight(.bold)
+            }
+            .font(.caption)
         }
     }
     

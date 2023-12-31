@@ -24,10 +24,15 @@ struct HomeStepsToday: View {
                 .fontWeight( isDone ? .bold : .semibold)
                 .foregroundStyle(isDone ? .move : .primary)
             
-            Text("\(percentComplete(action: healthKitController.stepCountToday, goal: dailyStepsGoal)) of \(goalAbbreviated())k")
-                .foregroundStyle(.secondary)
-                .font(.caption)
-                .fontWeight(.heavy)
+            HStack(spacing: 0) {
+                Text("\(percentComplete(action: healthKitController.stepCountToday, goal: dailyStepsGoal))")
+                    .foregroundStyle(.move)
+                    .fontWeight(.heavy)
+                Text(" of \(goalAbbreviated())k")
+                    .foregroundStyle(.secondary)
+                    .fontWeight(.bold)
+            }
+            .font(.caption)
         }
     }
     

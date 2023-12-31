@@ -24,10 +24,15 @@ struct HomeStepsPastWeek: View {
                 .fontWeight( isDone ? .bold : .semibold)
                 .foregroundStyle(isDone ? .move : .primary)
             
-            Text("\(percentComplete(action: healthKitController.stepCountWeek, goal: dailyStepsGoal, forWeek: true)) of \(goalAbbreviated(forWeek: true))k goal")
-                .foregroundStyle(.secondary)
-                .font(.caption)
-                .fontWeight(.heavy)
+            HStack(spacing: 0) {
+                Text("\(percentComplete(action: healthKitController.stepCountWeek, goal: dailyStepsGoal, forWeek: true))")
+                    .foregroundStyle(.move)
+                    .fontWeight(.heavy)
+                Text(" of \(goalAbbreviated(forWeek: true))k goal")
+                    .foregroundStyle(.secondary)
+                    .fontWeight(.bold)
+            }
+            .font(.caption)
         }
     }
     
