@@ -10,7 +10,7 @@
 		590432AB2B1FC1370012F0FA /* SettingsUserInfoGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590432AA2B1FC1370012F0FA /* SettingsUserInfoGroup.swift */; };
 		590539802B40DCD2007AE8EF /* HomeZone2PastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905397F2B40DCD2007AE8EF /* HomeZone2PastWeek.swift */; };
 		590539882B410BF9007AE8EF /* HomeMindfulnessPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590539872B410BF9007AE8EF /* HomeMindfulnessPastWeek.swift */; };
-		5905398C2B41C7C9007AE8EF /* HomeSunlightPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905398B2B41C7C9007AE8EF /* HomeSunlightPastWeek.swift */; };
+		5905FE992B41CA1000D2CD66 /* HomeSunlightPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905FE982B41CA1000D2CD66 /* HomeSunlightPastWeek.swift */; };
 		590861E32B1E3FD70040DC72 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590861E22B1E3FD70040DC72 /* HomeView.swift */; };
 		590861E52B1E5C790040DC72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590861E42B1E5C790040DC72 /* Constants.swift */; };
 		590E17A82B33AD9B00269FA4 /* RestTodayActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E17A72B33AD9B00269FA4 /* RestTodayActivities.swift */; };
@@ -76,7 +76,7 @@
 		590432AA2B1FC1370012F0FA /* SettingsUserInfoGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUserInfoGroup.swift; sourceTree = "<group>"; };
 		5905397F2B40DCD2007AE8EF /* HomeZone2PastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeZone2PastWeek.swift; sourceTree = "<group>"; };
 		590539872B410BF9007AE8EF /* HomeMindfulnessPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMindfulnessPastWeek.swift; sourceTree = "<group>"; };
-		5905398B2B41C7C9007AE8EF /* HomeSunlightPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSunlightPastWeek.swift; sourceTree = "<group>"; };
+		5905FE982B41CA1000D2CD66 /* HomeSunlightPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSunlightPastWeek.swift; sourceTree = "<group>"; };
 		590861E22B1E3FD70040DC72 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		590861E42B1E5C790040DC72 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		590E17A72B33AD9B00269FA4 /* RestTodayActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTodayActivities.swift; sourceTree = "<group>"; };
@@ -313,7 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				59FCB7F62B3E44F2004C64B0 /* HomeSunlightToday.swift */,
-				5905398B2B41C7C9007AE8EF /* HomeSunlightPastWeek.swift */,
+				5905FE982B41CA1000D2CD66 /* HomeSunlightPastWeek.swift */,
 			);
 			path = Sunlight;
 			sourceTree = "<group>";
@@ -513,7 +513,7 @@
 				59B57B372B2D323C00FA949C /* TimerView.swift in Sources */,
 				594B28972B39310A004F8BD6 /* RestMinutes.swift in Sources */,
 				59FCB7F32B3E2D6B004C64B0 /* HomeStepsPastWeek.swift in Sources */,
-				5905398C2B41C7C9007AE8EF /* HomeSunlightPastWeek.swift in Sources */,
+				5905FE992B41CA1000D2CD66 /* HomeSunlightPastWeek.swift in Sources */,
 				59D28FE32B1EACDC002799C4 /* SettingsMoveGroup.swift in Sources */,
 				59511A9B2B33363E0071249A /* MeditationDoneSheet.swift in Sources */,
 				5912D1972B1BB78D00E78D6E /* ContentView.swift in Sources */,
@@ -695,7 +695,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -715,7 +715,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.50;
+				MARKETING_VERSION = 2023.12.52;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -734,7 +734,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -754,7 +754,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.50;
+				MARKETING_VERSION = 2023.12.52;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

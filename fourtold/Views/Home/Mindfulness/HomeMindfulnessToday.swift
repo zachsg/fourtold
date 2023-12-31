@@ -18,7 +18,7 @@ struct HomeMindfulnessToday: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Mindful today", headerImage: restSystemImage, date: healthKitController.latestMindfulMinutes, color: .rest, progress: mindfulTodayPercent) {
+        HomeStatCard(headerTitle: "Today", headerImage: restSystemImage, date: healthKitController.latestMindfulMinutes, color: .rest, progress: mindfulTodayPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(healthKitController.mindfulMinutesToday)")
                     .font(.title)

@@ -18,7 +18,7 @@ struct HomeStepsPastWeek: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Steps 7 days", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move, progress: stepsWeekPercent) {
+        HomeStatCard(headerTitle: "Past 7 days", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move, progress: stepsWeekPercent) {
             Text(healthKitController.stepCountWeek, format: .number)
                 .font(.title)
                 .fontWeight( isDone ? .bold : .semibold)

@@ -18,7 +18,7 @@ struct HomeZone2Today: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Zone 2+ today", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .move, progress: zone2TodayPercent) {
+        HomeStatCard(headerTitle: "Today", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .move, progress: zone2TodayPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(healthKitController.zone2Today)")
                     .font(.title)

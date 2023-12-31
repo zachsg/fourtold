@@ -18,7 +18,7 @@ struct HomeStepsToday: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Steps today", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move, progress: stepsTodayPercent) {
+        HomeStatCard(headerTitle: "Today", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move, progress: stepsTodayPercent) {
             Text(healthKitController.stepCountToday, format: .number)
                 .font(.title)
                 .fontWeight( isDone ? .bold : .semibold)
@@ -46,7 +46,7 @@ struct HomeStepsToday: View {
 
 #Preview {
     let healthKitController = HealthKitController()
-    healthKitController.stepCountToday = 9500
+    healthKitController.stepCountToday = 8000
     
     return HomeStepsToday(healthKitController: healthKitController, stepsTodayPercent: .constant(80))
 }

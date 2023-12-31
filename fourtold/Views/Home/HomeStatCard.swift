@@ -26,39 +26,17 @@ struct HomeStatCard<Content: View>: View {
     }
     
     var completed: CGFloat {
-        let p = CGFloat(progress) / CGFloat(100)
-        
-        print("Progress: \(p)")
-        
-        return p
+        CGFloat(progress) / CGFloat(100)
     }
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image(systemName: headerImage)
                 Text(headerTitle)
                 Spacer()
             }
             .foregroundStyle(color)
             .font(.footnote.bold())
-            
-            if date != .distantPast {
-                Group {
-                    if Calendar.current.isDateInYesterday(date) {
-                        Text("Updated yesterday")
-                    } else if Calendar.current.isDateInToday(date) {
-                        Text(date, format: .dateTime.hour().minute())
-                    } else {
-                        HStack(spacing: 0) {
-                            Text("Updated ")
-                            Text(date, format: .dateTime.day().month())
-                        }
-                    }
-                }
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            }
             
             VStack(alignment: .leading, spacing: 0) {
                 inputView()
@@ -80,6 +58,7 @@ struct HomeStatCard<Content: View>: View {
                 .rotationEffect(.degrees(180))
                 .foregroundStyle(color)
         )
+        .padding(2)
     }
 }
 

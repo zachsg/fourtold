@@ -29,7 +29,7 @@ struct HomeSunlightToday: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Sunlight today", headerImage: sunlightSystemImage, date: healthKitController.latestTimeInDaylight, color: .rest, progress: sunTodayPercent) {
+        HomeStatCard(headerTitle: "Today", headerImage: sunlightSystemImage, date: healthKitController.latestTimeInDaylight, color: .rest, progress: sunTodayPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Group {
                     if timeAndUnits.units == "Minutes" {

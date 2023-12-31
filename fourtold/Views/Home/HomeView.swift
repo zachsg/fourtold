@@ -48,39 +48,99 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                HStack(alignment: .top) {
-                    Spacer()
-                    
+                VStack {
                     VStack {
-                        HomeStepsToday(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent)
-                        
-                        if hasZone2 {
-                            HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
-                        }
-                        
-                        HomeMindfulnessToday(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent)
-                        
-                        if hasSunlight {
-                            HomeSunlightToday(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent)
+                        Section {
+                            HStack {
+                                HomeStepsToday(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent)
+                                
+                                HomeStepsPastWeek(healthKitController: healthKitController, stepsWeekPercent: $stepsWeekPercent)
+                            }
+                        } header: {
+                            HStack {
+                                Image(systemName: stepsSystemImage)
+                                Text("Steps")
+                                Spacer()
+                                dateView(date: healthKitController.latestSteps)
+                            }
+                            .font(.headline.bold())
+                            .foregroundStyle(.move)
                         }
                     }
+                    .padding()
                     
-                    VStack {
-                        HomeStepsPastWeek(healthKitController: healthKitController, stepsWeekPercent: $stepsWeekPercent)
-                        
-                        if hasZone2 {
-                            HomeZone2PastWeek(healthKitController: healthKitController, zone2WeekPercent: $zone2WeekPercent)
+                    if hasZone2 {
+                        VStack {
+                            Section {
+                                HStack {
+                                    HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
+                                    
+                                    HomeZone2PastWeek(healthKitController: healthKitController, zone2WeekPercent: $zone2WeekPercent)
+                                }
+                            } header: {
+                                HStack {
+                                    Image(systemName: vO2SystemImage)
+                                    Text("Zone 2+ Heart Rate")
+                                    Spacer()
+                                    dateView(date: healthKitController.latestZone2)
+                                }
+                                .font(.headline.bold())
+                                .foregroundStyle(.move)
+                            }
                         }
-                        
-                        HomeMindfulnessPastWeek(healthKitController: healthKitController, mindfulWeekPercent: $mindfulWeekPercent)
-                        
-                        if hasSunlight {
-                            HomeSunlightPastWeek(healthKitController: healthKitController, sunWeekPercent: $sunWeekPercent)
-                        }
+                        .padding(.horizontal)
+                        .padding(.bottom)
                     }
-                    
-                    Spacer()
                 }
+                .padding(2)
+                .background(.regularMaterial)
+                
+                VStack {
+                    VStack {
+                        Section {
+                            HStack {
+                                HomeMindfulnessToday(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent)
+                                
+                                HomeMindfulnessPastWeek(healthKitController: healthKitController, mindfulWeekPercent: $mindfulWeekPercent)
+                            }
+                        } header: {
+                            HStack {
+                                Image(systemName: restSystemImage)
+                                Text("Mindfulness")
+                                Spacer()
+                                dateView(date: healthKitController.latestMindfulMinutes)
+                            }
+                            .font(.headline.bold())
+                            .foregroundStyle(.rest)
+                        }
+                    }
+                    .padding()
+                    
+                    if hasSunlight {
+                        VStack {
+                            Section {
+                                HStack {
+                                    HomeSunlightToday(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent)
+                                    
+                                    HomeSunlightPastWeek(healthKitController: healthKitController, sunWeekPercent: $sunWeekPercent)
+                                }
+                            } header: {
+                                HStack {
+                                    Image(systemName: sunlightSystemImage)
+                                    Text("Sunlight")
+                                    Spacer()
+                                    dateView(date: healthKitController.latestTimeInDaylight)
+                                }
+                                .font(.headline.bold())
+                                .foregroundStyle(.rest)
+                            }
+                        }
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                    }
+                }
+                .padding(2)
+                .background(.regularMaterial)
             }
             .refreshable {
                 refresh(hard: true)
@@ -88,9 +148,9 @@ struct HomeView: View {
             .navigationTitle(homeTitle)
             .toolbar {
                 HStack(spacing: 0) {
-                    Text( goals.done / goals.total, format: .percent)
+                    Text(complete(), format: .percent)
                         .fontWeight(.bold)
-                        .foregroundStyle(complete() < 20 ? .red : complete() < 70 ? .blue : .green)
+                        .foregroundStyle(complete() < 0.30 ? .red : complete() < 0.70 ? .blue : .green)
                     Text(" progress")
                 }
             }
@@ -101,6 +161,25 @@ struct HomeView: View {
                 }
             }
         }
+    }
+    
+    func dateView(date: Date) -> some View {
+        Group {
+            if Calendar.current.isDateInYesterday(date) {
+                Text("Updated yesterday")
+            } else if Calendar.current.isDateInToday(date) {
+                Text(date, format: .dateTime.hour().minute())
+            } else if date == .distantPast {
+                Text("")
+            } else  {
+                HStack(spacing: 0) {
+                    Text("Updated ")
+                    Text(date, format: .dateTime.day().month())
+                }
+            }
+        }
+        .font(.footnote.bold())
+        .foregroundStyle(.secondary)
     }
     
     func refresh(hard: Bool = false) {
