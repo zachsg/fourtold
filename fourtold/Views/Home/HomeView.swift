@@ -87,11 +87,11 @@ struct HomeView: View {
             }
             .navigationTitle(homeTitle)
             .toolbar {
-                HStack {
+                HStack(spacing: 0) {
                     Text( goals.done / goals.total, format: .percent)
                         .fontWeight(.bold)
-                        .foregroundStyle( complete() < 20 ? .red : complete() < 70 ? .blue : .green)
-                    Text("of goals met")
+                        .foregroundStyle(complete() < 20 ? .red : complete() < 70 ? .blue : .green)
+                    Text(" progress")
                 }
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in

@@ -18,7 +18,7 @@ struct HomeZone2PastWeek: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Zone 2+ 7 days", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .move, isDone: isDone) {
+        HomeStatCard(headerTitle: "Zone 2+ 7 days", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .move, progress: zone2WeekPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(healthKitController.zone2Week)")
                     .font(.title)

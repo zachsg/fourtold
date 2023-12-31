@@ -2,7 +2,7 @@
 //  HomeSunlightPastWeek.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/30/23.
+//  Created by Zach Gottlieb on 12/31/23.
 //
 
 import SwiftUI
@@ -29,7 +29,7 @@ struct HomeSunlightPastWeek: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Sunlight 7 days", headerImage: sunlightSystemImage, date: healthKitController.latestTimeInDaylight, color: .rest, isDone: isDone) {
+        HomeStatCard(headerTitle: "Sunlight 7 days", headerImage: sunlightSystemImage, date: healthKitController.latestTimeInDaylight, color: .rest, progress: sunWeekPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Group {
                     if timeAndUnits.units == "Minutes" {
@@ -74,4 +74,3 @@ struct HomeSunlightPastWeek: View {
     
     return HomeSunlightPastWeek(healthKitController: healthKitController, sunWeekPercent: .constant(80))
 }
-

@@ -18,7 +18,7 @@ struct HomeMindfulnessPastWeek: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Mindful 7 days", headerImage: restSystemImage, date: healthKitController.latestMindfulMinutes, color: .rest, isDone: isDone) {
+        HomeStatCard(headerTitle: "Mindful 7 days", headerImage: restSystemImage, date: healthKitController.latestMindfulMinutes, color: .rest, progress: mindfulWeekPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(healthKitController.mindfulMinutesWeek)")
                     .font(.title)

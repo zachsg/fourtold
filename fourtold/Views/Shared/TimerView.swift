@@ -39,7 +39,7 @@ struct TimerView: View {
                 .fill(Color.clear)
                 .frame(width: 250, height: 250)
                 .overlay(Circle()
-                    .trim(from:0, to: progress)
+                    .trim(from: 0, to: progress)
                     .stroke(style: StrokeStyle(lineWidth: 25, lineCap: .round, lineJoin: .round))
                     .foregroundStyle(color)
                     .rotationEffect(.degrees(-90))
