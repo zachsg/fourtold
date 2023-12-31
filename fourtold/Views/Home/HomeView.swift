@@ -90,7 +90,7 @@ struct HomeView: View {
                 HStack {
                     Text( goals.done / goals.total, format: .percent)
                         .fontWeight(.bold)
-                        .foregroundStyle( complete() < 20 ? .red : complete() < 70 ? .orange : .green)
+                        .foregroundStyle( complete() < 20 ? .red : complete() < 70 ? .blue : .green)
                     Text("of goals met")
                 }
             }
