@@ -23,7 +23,7 @@ struct HomeZone2PastWeek: View {
                     .font(.footnote.bold())
             }
             
-            Text("\(percentComplete(action: healthKitController.zone2Week, goal: dailyZone2Goal)) of \(goalAbbreviated(forWeek: true))")
+            Text("\(percentComplete(action: healthKitController.zone2Week, goal: dailyZone2Goal, forWeek: true)) of \(goalAbbreviated(forWeek: true))")
                 .foregroundStyle(.secondary)
                 .font(.caption)
                 .fontWeight(.heavy)

@@ -119,6 +119,10 @@ struct HomeView: View {
     healthKitController.cardioFitnessMostRecent = 44.1
     healthKitController.mindfulMinutesToday = 20
     healthKitController.mindfulMinutesWeek = 60
+    healthKitController.zone2Today = 18
+    healthKitController.zone2Week = 95
+    healthKitController.timeInDaylightToday = 30
+    healthKitController.timeInDaylightWeek = 75
     
     let today: Date = .now
     for i in 0...6 {

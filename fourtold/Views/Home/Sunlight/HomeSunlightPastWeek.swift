@@ -40,7 +40,7 @@ struct HomeSunlightPastWeek: View {
                     .font(.footnote.bold())
             }
             
-            Text("\(percentComplete(action: healthKitController.timeInDaylightWeek, goal: dailySunlightGoal)) of \(goalAbbreviated(forWeek: true))")
+            Text("\(percentComplete(action: healthKitController.timeInDaylightWeek, goal: dailySunlightGoal, forWeek: true)) of \(goalAbbreviated(forWeek: true))")
                 .foregroundStyle(.secondary)
                 .font(.caption)
                 .fontWeight(.heavy)

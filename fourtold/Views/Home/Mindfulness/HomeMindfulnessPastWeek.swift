@@ -23,7 +23,7 @@ struct HomeMindfulnessPastWeek: View {
                     .font(.footnote.bold())
             }
             
-            Text("\(percentComplete(action: healthKitController.mindfulMinutesWeek, goal: dailyMindfulnessGoal)) of \(goalAbbreviated(forWeek: true))")
+            Text("\(percentComplete(action: healthKitController.mindfulMinutesWeek, goal: dailyMindfulnessGoal, forWeek: true)) of \(goalAbbreviated(forWeek: true))")
                 .foregroundStyle(.secondary)
                 .font(.caption)
                 .fontWeight(.heavy)
