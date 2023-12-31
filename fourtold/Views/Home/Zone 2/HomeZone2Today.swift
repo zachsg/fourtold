@@ -26,16 +26,16 @@ struct HomeZone2Today: View {
                     .foregroundStyle(isDone ? .move : .primary)
                 
                 Text("Minutes")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.move.opacity(0.5))
                     .font(.footnote.bold())
             }
             
             HStack(spacing: 0) {
                 Text("\(percentComplete(action: healthKitController.zone2Today, goal: dailyZone2Goal))")
-                    .foregroundStyle(.move)
+                    .foregroundStyle(isDone ? .move : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated())")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.move.opacity(0.5))
                     .fontWeight(.bold)
             }
             .font(.caption)

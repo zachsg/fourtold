@@ -26,16 +26,16 @@ struct HomeMindfulnessPastWeek: View {
                     .foregroundStyle(isDone ? .rest : .primary)
                 
                 Text("Minutes")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.rest.opacity(0.5))
                     .font(.footnote.bold())
             }
             
             HStack(spacing: 0) {
                 Text("\(percentComplete(action: healthKitController.mindfulMinutesWeek, goal: dailyMindfulnessGoal, forWeek: true))")
-                    .foregroundStyle(.rest)
+                    .foregroundStyle(isDone ? .rest : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated(forWeek: true))")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.rest.opacity(0.5))
                     .fontWeight(.bold)
             }
             .font(.caption)

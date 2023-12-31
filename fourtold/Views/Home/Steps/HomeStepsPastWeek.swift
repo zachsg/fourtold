@@ -26,10 +26,10 @@ struct HomeStepsPastWeek: View {
             
             HStack(spacing: 0) {
                 Text("\(percentComplete(action: healthKitController.stepCountWeek, goal: dailyStepsGoal, forWeek: true))")
-                    .foregroundStyle(.move)
+                    .foregroundStyle(isDone ? .move : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated(forWeek: true))k goal")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.move.opacity(0.5))
                     .fontWeight(.bold)
             }
             .font(.caption)
