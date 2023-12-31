@@ -11,12 +11,17 @@ struct HomeZone2PastWeek: View {
     @Bindable var healthKitController: HealthKitController
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
     
+    var isDone: Bool {
+        (Double(healthKitController.zone2Week) / Double((dailyZone2Goal * 7) / 60) * 100).rounded() >= 100
+    }
+    
     var body: some View {
-        HomeStatCard(headerTitle: "Zone 2+ 7 days", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .move) {
+        HomeStatCard(headerTitle: "Zone 2+ 7 days", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .move, isDone: isDone) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(healthKitController.zone2Week)")
                     .font(.title)
-                    .fontWeight(.semibold)
+                    .fontWeight( isDone ? .bold : .semibold)
+                    .foregroundStyle(isDone ? .move : .primary)
                 
                 Text("Minutes")
                     .foregroundStyle(.secondary)

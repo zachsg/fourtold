@@ -12,14 +12,16 @@ struct HomeStatCard<Content: View>: View {
     let headerImage: String
     let date: Date
     let color: Color
+    let isDone: Bool
     
     private var inputView: () -> Content
     
-    init(headerTitle: String, headerImage: String, date: Date, color: Color, @ViewBuilder inputView: @escaping () -> Content) {
+    init(headerTitle: String, headerImage: String, date: Date, color: Color, isDone: Bool, @ViewBuilder inputView: @escaping () -> Content) {
         self.headerTitle = headerTitle
         self.headerImage = headerImage
         self.date = date
         self.color = color
+        self.isDone = isDone
         self.inputView = inputView
     }
     
@@ -60,13 +62,13 @@ struct HomeStatCard<Content: View>: View {
         .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(color.opacity(0.3), lineWidth: 2)
+                .stroke(isDone ? color.opacity(0.8) : Color.clear.opacity(0.0), lineWidth: 2)
         )
     }
 }
 
 #Preview {
-    HomeStatCard(headerTitle: "Steps today", headerImage: stepsSystemImage, date: .now, color: .move) {
+    HomeStatCard(headerTitle: "Steps today", headerImage: stepsSystemImage, date: .now, color: .move, isDone: true) {
         Text("Hello")
     }
 }

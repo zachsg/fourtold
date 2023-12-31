@@ -113,13 +113,13 @@ struct HomeView: View {
 
 #Preview {
     let healthKitController = HealthKitController()
-    healthKitController.stepCountToday = 2000
-    healthKitController.stepCountWeek = 12000
+    healthKitController.stepCountToday = 15000
+    healthKitController.stepCountWeek = 65000
     healthKitController.walkRunDistanceToday = 5.1
     healthKitController.cardioFitnessMostRecent = 44.1
     healthKitController.mindfulMinutesToday = 20
     healthKitController.mindfulMinutesWeek = 60
-    healthKitController.zone2Today = 18
+    healthKitController.zone2Today = 30
     healthKitController.zone2Week = 95
     healthKitController.timeInDaylightToday = 30
     healthKitController.timeInDaylightWeek = 75

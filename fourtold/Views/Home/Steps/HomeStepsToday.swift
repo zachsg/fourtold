@@ -11,11 +11,16 @@ struct HomeStepsToday: View {
     @Bindable var healthKitController: HealthKitController
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
+    var isDone: Bool {
+        (Double(healthKitController.stepCountToday) / Double(dailyStepsGoal) * 100).rounded() >= 100
+    }
+    
     var body: some View {
-        HomeStatCard(headerTitle: "Steps today", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move) {
+        HomeStatCard(headerTitle: "Steps today", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move, isDone: isDone) {
             Text(healthKitController.stepCountToday, format: .number)
                 .font(.title)
-                .fontWeight(.semibold)
+                .fontWeight( isDone ? .bold : .semibold)
+                .foregroundStyle(isDone ? .move : .primary)
             
             Text("\(percentComplete(action: healthKitController.stepCountToday, goal: dailyStepsGoal)) of \(goalAbbreviated())k")
                 .foregroundStyle(.secondary)

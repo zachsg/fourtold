@@ -11,6 +11,10 @@ struct HomeSunlightToday: View {
     @Bindable var healthKitController: HealthKitController
     @AppStorage(dailySunlightGoalKey) var dailySunlightGoal: Int = dailySunlightGoalDefault
     
+    var isDone: Bool {
+        (Double(healthKitController.timeInDaylightToday) / Double(dailySunlightGoal / 60) * 100).rounded() >= 100
+    }
+    
     var timeAndUnits: (time: Double, units: String) {
         let time = healthKitController.timeInDaylightToday
         
@@ -23,7 +27,7 @@ struct HomeSunlightToday: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Sunlight today", headerImage: sunlightSystemImage, date: healthKitController.latestTimeInDaylight, color: .rest) {
+        HomeStatCard(headerTitle: "Sunlight today", headerImage: sunlightSystemImage, date: healthKitController.latestTimeInDaylight, color: .rest, isDone: isDone) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Group {
                     if timeAndUnits.units == "Minutes" {
@@ -33,7 +37,8 @@ struct HomeSunlightToday: View {
                     }
                 }
                 .font(.title)
-                .fontWeight(.semibold)
+                .fontWeight( isDone ? .bold : .semibold)
+                .foregroundStyle(isDone ? .rest : .primary)
                 
                 Text(timeAndUnits.units)
                     .foregroundStyle(.secondary)

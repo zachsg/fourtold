@@ -11,12 +11,17 @@ struct HomeMindfulnessToday: View {
     @Bindable var healthKitController: HealthKitController
     @AppStorage(dailyMindfulnessGoalKey) var dailyMindfulnessGoal: Int = dailyMindfulnessGoalDefault
     
+    var isDone: Bool {
+        (Double(healthKitController.mindfulMinutesToday) / Double(dailyMindfulnessGoal / 60) * 100).rounded() >= 100
+    }
+    
     var body: some View {
-        HomeStatCard(headerTitle: "Mindful today", headerImage: restSystemImage, date: healthKitController.latestMindfulMinutes, color: .rest) {
+        HomeStatCard(headerTitle: "Mindful today", headerImage: restSystemImage, date: healthKitController.latestMindfulMinutes, color: .rest, isDone: isDone) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(healthKitController.mindfulMinutesToday)")
                     .font(.title)
-                    .fontWeight(.semibold)
+                    .fontWeight( isDone ? .bold : .semibold)
+                    .foregroundStyle(isDone ? .rest : .primary)
                 
                 Text("Minutes")
                     .foregroundStyle(.secondary)
