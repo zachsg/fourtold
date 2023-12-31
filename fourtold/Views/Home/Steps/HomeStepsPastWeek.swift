@@ -9,10 +9,12 @@ import SwiftUI
 
 struct HomeStepsPastWeek: View {
     @Bindable var healthKitController: HealthKitController
+    @Binding var stepsWeekPercent: Double
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
     var isDone: Bool {
-        (Double(healthKitController.stepCountWeek) / Double(dailyStepsGoal * 7) * 100).rounded() >= 100
+        stepsWeekPercent = (Double(healthKitController.stepCountWeek) / Double(dailyStepsGoal * 7) * 100).rounded()
+        return stepsWeekPercent >= 100
     }
     
     var body: some View {
@@ -46,6 +48,6 @@ struct HomeStepsPastWeek: View {
     let healthKitController = HealthKitController()
     healthKitController.stepCountWeek = 75000
     
-    return HomeStepsPastWeek(healthKitController: healthKitController)
+    return HomeStepsPastWeek(healthKitController: healthKitController, stepsWeekPercent: .constant(80))
 }
 

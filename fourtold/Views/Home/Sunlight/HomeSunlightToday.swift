@@ -9,10 +9,12 @@ import SwiftUI
 
 struct HomeSunlightToday: View {
     @Bindable var healthKitController: HealthKitController
+    @Binding var sunTodayPercent: Double
     @AppStorage(dailySunlightGoalKey) var dailySunlightGoal: Int = dailySunlightGoalDefault
     
     var isDone: Bool {
-        (Double(healthKitController.timeInDaylightToday) / Double(dailySunlightGoal / 60) * 100).rounded() >= 100
+        sunTodayPercent = (Double(healthKitController.timeInDaylightToday) / Double(dailySunlightGoal / 60) * 100).rounded()
+        return sunTodayPercent >= 100
     }
     
     var timeAndUnits: (time: Double, units: String) {
@@ -70,5 +72,5 @@ struct HomeSunlightToday: View {
     healthKitController.latestTimeInDaylight = .now
     healthKitController.timeInDaylightToday = 60
     
-    return HomeSunlightToday(healthKitController: healthKitController)
+    return HomeSunlightToday(healthKitController: healthKitController, sunTodayPercent: .constant(80))
 }

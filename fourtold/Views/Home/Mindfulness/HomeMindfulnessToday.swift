@@ -9,10 +9,12 @@ import SwiftUI
 
 struct HomeMindfulnessToday: View {
     @Bindable var healthKitController: HealthKitController
+    @Binding var mindfulTodayPercent: Double
     @AppStorage(dailyMindfulnessGoalKey) var dailyMindfulnessGoal: Int = dailyMindfulnessGoalDefault
     
     var isDone: Bool {
-        (Double(healthKitController.mindfulMinutesToday) / Double(dailyMindfulnessGoal / 60) * 100).rounded() >= 100
+        mindfulTodayPercent = (Double(healthKitController.mindfulMinutesToday) / Double(dailyMindfulnessGoal / 60) * 100).rounded()
+        return mindfulTodayPercent >= 100
     }
     
     var body: some View {
@@ -49,5 +51,5 @@ struct HomeMindfulnessToday: View {
 }
 
 #Preview {
-    HomeMindfulnessToday(healthKitController: HealthKitController())
+    HomeMindfulnessToday(healthKitController: HealthKitController(), mindfulTodayPercent: .constant(80))
 }

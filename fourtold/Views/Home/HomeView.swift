@@ -11,17 +11,32 @@ struct HomeView: View {
     @Environment(\.scenePhase) var scenePhase
     @Bindable var healthKitController: HealthKitController
     
-    // Steps
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
-    
-    // Zone 2
     @AppStorage(hasZone2Key) var hasZone2: Bool = hasZone2Default
-    
-    // Time in Daylight
     @AppStorage(hasSunlightKey) var hasSunlight: Bool = hasSunlightDefault
     
-    var vO2Today: Bool {
-        Calendar.current.isDateInToday(healthKitController.latestCardioFitness)
+    @State private var stepsTodayPercent = 0.0
+    @State private var stepsWeekPercent = 0.0
+    @State private var zone2TodayPercent = 0.0
+    @State private var zone2WeekPercent = 0.0
+    @State private var mindfulTodayPercent = 0.0
+    @State private var mindfulWeekPercent = 0.0
+    @State private var sunTodayPercent = 0.0
+    @State private var sunWeekPercent = 0.0
+    
+    var numberGoalsDone: Int {
+        var count = 0
+        
+        if stepsTodayPercent >= 100 { count += 1 }
+        if stepsWeekPercent >= 100 { count += 1 }
+        if zone2TodayPercent >= 100 { count += 1 }
+        if zone2WeekPercent >= 100 { count += 1 }
+        if mindfulTodayPercent >= 100 { count += 1 }
+        if mindfulWeekPercent >= 100 { count += 1 }
+        if sunTodayPercent >= 100 { count += 1 }
+        if sunWeekPercent >= 100 { count += 1 }
+        
+        return count
     }
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
@@ -33,30 +48,30 @@ struct HomeView: View {
                     Spacer()
                     
                     VStack {
-                        HomeStepsToday(healthKitController: healthKitController)
+                        HomeStepsToday(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent)
                         
                         if hasZone2 {
-                            HomeZone2Today(healthKitController: healthKitController)
+                            HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
                         }
                         
-                        HomeMindfulnessToday(healthKitController: healthKitController)
+                        HomeMindfulnessToday(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent)
                         
                         if hasSunlight {
-                            HomeSunlightToday(healthKitController: healthKitController)
+                            HomeSunlightToday(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent)
                         }
                     }
                     
                     VStack {
-                        HomeStepsPastWeek(healthKitController: healthKitController)
+                        HomeStepsPastWeek(healthKitController: healthKitController, stepsWeekPercent: $stepsWeekPercent)
                         
                         if hasZone2 {
-                            HomeZone2PastWeek(healthKitController: healthKitController)
+                            HomeZone2PastWeek(healthKitController: healthKitController, zone2WeekPercent: $zone2WeekPercent)
                         }
                         
-                        HomeMindfulnessPastWeek(healthKitController: healthKitController)
+                        HomeMindfulnessPastWeek(healthKitController: healthKitController, mindfulWeekPercent: $mindfulWeekPercent)
                         
                         if hasSunlight {
-                            HomeSunlightPastWeek(healthKitController: healthKitController)
+                            HomeSunlightPastWeek(healthKitController: healthKitController, sunWeekPercent: $sunWeekPercent)
                         }
                     }
                     
@@ -67,6 +82,16 @@ struct HomeView: View {
                 refresh(hard: true)
             }
             .navigationTitle(homeTitle)
+            .toolbar {
+                HStack {
+                    Text("\(numberGoalsDone)")
+                        .fontWeight(.bold)
+                    Text("of")
+                    Text("8")
+                        .fontWeight(.bold)
+                    Text("goals met")
+                }
+            }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
                     let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
@@ -120,7 +145,7 @@ struct HomeView: View {
     healthKitController.mindfulMinutesToday = 20
     healthKitController.mindfulMinutesWeek = 60
     healthKitController.zone2Today = 30
-    healthKitController.zone2Week = 95
+    healthKitController.zone2Week = 145
     healthKitController.timeInDaylightToday = 30
     healthKitController.timeInDaylightWeek = 75
     

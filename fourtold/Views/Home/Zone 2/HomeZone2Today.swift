@@ -9,10 +9,12 @@ import SwiftUI
 
 struct HomeZone2Today: View {
     @Bindable var healthKitController: HealthKitController
+    @Binding var zone2TodayPercent: Double
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
     
     var isDone: Bool {
-        (Double(healthKitController.zone2Today) / Double(dailyZone2Goal / 60) * 100).rounded() >= 100
+        zone2TodayPercent = (Double(healthKitController.zone2Today) / Double(dailyZone2Goal / 60) * 100).rounded()
+        return zone2TodayPercent >= 100
     }
     
     var body: some View {
@@ -49,5 +51,5 @@ struct HomeZone2Today: View {
 }
 
 #Preview {
-    HomeZone2Today(healthKitController: HealthKitController())
+    HomeZone2Today(healthKitController: HealthKitController(), zone2TodayPercent: .constant(80))
 }
