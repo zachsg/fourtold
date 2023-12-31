@@ -51,10 +51,14 @@ struct HomeView: View {
                 VStack {
                     VStack {
                         Section {
-                            HStack {
-                                HomeStepsToday(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent)
-                                
-                                HomeStepsPastWeek(healthKitController: healthKitController, stepsWeekPercent: $stepsWeekPercent)
+                            NavigationLink {
+                                WeekStepsDetailView(healthKitController: healthKitController)
+                            } label: {
+                                HStack {
+                                    HomeStepsToday(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent)
+                                    
+                                    HomeStepsPastWeek(healthKitController: healthKitController, stepsWeekPercent: $stepsWeekPercent)
+                                }
                             }
                         } header: {
                             HStack {
@@ -72,10 +76,15 @@ struct HomeView: View {
                     if hasZone2 {
                         VStack {
                             Section {
-                                HStack {
-                                    HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
-                                    
-                                    HomeZone2PastWeek(healthKitController: healthKitController, zone2WeekPercent: $zone2WeekPercent)
+                                NavigationLink {
+                                    Text("Coming soon...")
+                                        .font(.headline)
+                                } label: {
+                                    HStack {
+                                        HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
+                                        
+                                        HomeZone2PastWeek(healthKitController: healthKitController, zone2WeekPercent: $zone2WeekPercent)
+                                    }
                                 }
                             } header: {
                                 HStack {
@@ -98,10 +107,14 @@ struct HomeView: View {
                 VStack {
                     VStack {
                         Section {
-                            HStack {
-                                HomeMindfulnessToday(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent)
-                                
-                                HomeMindfulnessPastWeek(healthKitController: healthKitController, mindfulWeekPercent: $mindfulWeekPercent)
+                            NavigationLink {
+                                WeekRestMinutesDetailView()
+                            } label: {
+                                HStack {
+                                    HomeMindfulnessToday(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent)
+                                    
+                                    HomeMindfulnessPastWeek(healthKitController: healthKitController, mindfulWeekPercent: $mindfulWeekPercent)
+                                }
                             }
                         } header: {
                             HStack {
@@ -119,10 +132,15 @@ struct HomeView: View {
                     if hasSunlight {
                         VStack {
                             Section {
-                                HStack {
-                                    HomeSunlightToday(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent)
-                                    
-                                    HomeSunlightPastWeek(healthKitController: healthKitController, sunWeekPercent: $sunWeekPercent)
+                                NavigationLink {
+                                    Text("Coming soon...")
+                                        .font(.headline)
+                                } label: {
+                                    HStack {
+                                        HomeSunlightToday(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent)
+                                        
+                                        HomeSunlightPastWeek(healthKitController: healthKitController, sunWeekPercent: $sunWeekPercent)
+                                    }
                                 }
                             } header: {
                                 HStack {
@@ -217,7 +235,7 @@ struct HomeView: View {
     }
     
     func complete() -> Double {
-        goals.done / goals.total
+        ((goals.done / goals.total) * 100).rounded() / 100
     }
 }
 
