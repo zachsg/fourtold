@@ -12,6 +12,8 @@
 		590539882B410BF9007AE8EF /* HomeMindfulnessPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590539872B410BF9007AE8EF /* HomeMindfulnessPastWeek.swift */; };
 		5905FE9B2B41D77700D2CD66 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905FE9A2B41D77700D2CD66 /* HomeView.swift */; };
 		5905FE9D2B41D7B500D2CD66 /* HomeSunlightPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905FE9C2B41D7B500D2CD66 /* HomeSunlightPastWeek.swift */; };
+		5905FE9F2B424A8800D2CD66 /* WeekZone2DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905FE9E2B424A8800D2CD66 /* WeekZone2DetailView.swift */; };
+		5905FEA12B424AB300D2CD66 /* WeekZone2BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905FEA02B424AB300D2CD66 /* WeekZone2BarChart.swift */; };
 		590861E52B1E5C790040DC72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590861E42B1E5C790040DC72 /* Constants.swift */; };
 		590E17A82B33AD9B00269FA4 /* RestTodayActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E17A72B33AD9B00269FA4 /* RestTodayActivities.swift */; };
 		590E17AA2B33B06E00269FA4 /* RestOldActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E17A92B33B06E00269FA4 /* RestOldActivities.swift */; };
@@ -66,6 +68,12 @@
 		59DAF37A2B2C047A00BB12B5 /* FTBreathType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */; };
 		59DAF37C2B2C04B900BB12B5 /* FTBreath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */; };
 		59DC47C62B1E6A1E00737EDE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC47C52B1E6A1E00737EDE /* SettingsView.swift */; };
+		59DFE25E2B42631100B02C23 /* HomeStepsCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE25D2B42631100B02C23 /* HomeStepsCards.swift */; };
+		59DFE2602B42640800B02C23 /* HomeZone2Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE25F2B42640800B02C23 /* HomeZone2Cards.swift */; };
+		59DFE2622B4264D100B02C23 /* HomeMindfulnessCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE2612B4264D100B02C23 /* HomeMindfulnessCards.swift */; };
+		59DFE2642B42657300B02C23 /* HomeSunlightCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE2632B42657300B02C23 /* HomeSunlightCards.swift */; };
+		59DFE2662B42674200B02C23 /* SunlightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE2652B42674200B02C23 /* SunlightDetailView.swift */; };
+		59DFE2682B4267CB00B02C23 /* WeekSunlightBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE2672B4267CB00B02C23 /* WeekSunlightBarChart.swift */; };
 		59FCB7E72B3D1BC0004C64B0 /* HomeStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */; };
 		59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */; };
 		59FCB7F32B3E2D6B004C64B0 /* HomeStepsPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */; };
@@ -78,6 +86,8 @@
 		590539872B410BF9007AE8EF /* HomeMindfulnessPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMindfulnessPastWeek.swift; sourceTree = "<group>"; };
 		5905FE9A2B41D77700D2CD66 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5905FE9C2B41D7B500D2CD66 /* HomeSunlightPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSunlightPastWeek.swift; sourceTree = "<group>"; };
+		5905FE9E2B424A8800D2CD66 /* WeekZone2DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekZone2DetailView.swift; sourceTree = "<group>"; };
+		5905FEA02B424AB300D2CD66 /* WeekZone2BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekZone2BarChart.swift; sourceTree = "<group>"; };
 		590861E42B1E5C790040DC72 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		590E17A72B33AD9B00269FA4 /* RestTodayActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestTodayActivities.swift; sourceTree = "<group>"; };
 		590E17A92B33B06E00269FA4 /* RestOldActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOldActivities.swift; sourceTree = "<group>"; };
@@ -135,6 +145,12 @@
 		59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreathType.swift; sourceTree = "<group>"; };
 		59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreath.swift; sourceTree = "<group>"; };
 		59DC47C52B1E6A1E00737EDE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		59DFE25D2B42631100B02C23 /* HomeStepsCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsCards.swift; sourceTree = "<group>"; };
+		59DFE25F2B42640800B02C23 /* HomeZone2Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeZone2Cards.swift; sourceTree = "<group>"; };
+		59DFE2612B4264D100B02C23 /* HomeMindfulnessCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMindfulnessCards.swift; sourceTree = "<group>"; };
+		59DFE2632B42657300B02C23 /* HomeSunlightCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSunlightCards.swift; sourceTree = "<group>"; };
+		59DFE2652B42674200B02C23 /* SunlightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunlightDetailView.swift; sourceTree = "<group>"; };
+		59DFE2672B4267CB00B02C23 /* WeekSunlightBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSunlightBarChart.swift; sourceTree = "<group>"; };
 		59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatCard.swift; sourceTree = "<group>"; };
 		59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsToday.swift; sourceTree = "<group>"; };
 		59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsPastWeek.swift; sourceTree = "<group>"; };
@@ -294,6 +310,7 @@
 		59CAEE7B2B40C6EC000E5A52 /* Steps */ = {
 			isa = PBXGroup;
 			children = (
+				59DFE25D2B42631100B02C23 /* HomeStepsCards.swift */,
 				59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */,
 				59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */,
 			);
@@ -303,6 +320,7 @@
 		59CAEE7C2B40C70E000E5A52 /* Mindfulness */ = {
 			isa = PBXGroup;
 			children = (
+				59DFE2612B4264D100B02C23 /* HomeMindfulnessCards.swift */,
 				594889022B2A885E003FD4C8 /* HomeMindfulnessToday.swift */,
 				590539872B410BF9007AE8EF /* HomeMindfulnessPastWeek.swift */,
 			);
@@ -312,8 +330,11 @@
 		59CAEE7D2B40C716000E5A52 /* Sunlight */ = {
 			isa = PBXGroup;
 			children = (
+				59DFE2632B42657300B02C23 /* HomeSunlightCards.swift */,
 				59FCB7F62B3E44F2004C64B0 /* HomeSunlightToday.swift */,
 				5905FE9C2B41D7B500D2CD66 /* HomeSunlightPastWeek.swift */,
+				59DFE2652B42674200B02C23 /* SunlightDetailView.swift */,
+				59DFE2672B4267CB00B02C23 /* WeekSunlightBarChart.swift */,
 			);
 			path = Sunlight;
 			sourceTree = "<group>";
@@ -321,6 +342,7 @@
 		59CAEE7E2B40C725000E5A52 /* Zone 2 */ = {
 			isa = PBXGroup;
 			children = (
+				59DFE25F2B42640800B02C23 /* HomeZone2Cards.swift */,
 				59CAEE7F2B40C761000E5A52 /* HomeZone2Today.swift */,
 				5905397F2B40DCD2007AE8EF /* HomeZone2PastWeek.swift */,
 			);
@@ -408,6 +430,8 @@
 				59132D862B326F1D00C113A6 /* MoveWalkRunDistanceToday.swift */,
 				5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */,
 				59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */,
+				5905FE9E2B424A8800D2CD66 /* WeekZone2DetailView.swift */,
+				5905FEA02B424AB300D2CD66 /* WeekZone2BarChart.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -513,18 +537,21 @@
 				59B57B372B2D323C00FA949C /* TimerView.swift in Sources */,
 				594B28972B39310A004F8BD6 /* RestMinutes.swift in Sources */,
 				5905FE9B2B41D77700D2CD66 /* HomeView.swift in Sources */,
+				59DFE2682B4267CB00B02C23 /* WeekSunlightBarChart.swift in Sources */,
 				5905FE9D2B41D7B500D2CD66 /* HomeSunlightPastWeek.swift in Sources */,
 				59FCB7F32B3E2D6B004C64B0 /* HomeStepsPastWeek.swift in Sources */,
 				59D28FE32B1EACDC002799C4 /* SettingsMoveGroup.swift in Sources */,
 				59511A9B2B33363E0071249A /* MeditationDoneSheet.swift in Sources */,
 				5912D1972B1BB78D00E78D6E /* ContentView.swift in Sources */,
 				594888FF2B296938003FD4C8 /* Extensions.swift in Sources */,
+				59DFE2602B42640800B02C23 /* HomeZone2Cards.swift in Sources */,
 				59B57B422B30D14D00FA949C /* FTReadGenre.swift in Sources */,
 				597550982B20E15D0070F60E /* MoveView.swift in Sources */,
 				59B96AC72B2B9415003B5106 /* FTRead.swift in Sources */,
 				59B57B3E2B30CDCC00FA949C /* FTMood.swift in Sources */,
 				590E17A82B33AD9B00269FA4 /* RestTodayActivities.swift in Sources */,
 				5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */,
+				5905FEA12B424AB300D2CD66 /* WeekZone2BarChart.swift in Sources */,
 				594889032B2A885E003FD4C8 /* HomeMindfulnessToday.swift in Sources */,
 				5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */,
 				598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */,
@@ -535,15 +562,19 @@
 				59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */,
 				591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */,
 				597550AD2B27A2580070F60E /* FTMeditateType.swift in Sources */,
+				59DFE2662B42674200B02C23 /* SunlightDetailView.swift in Sources */,
 				59D28FD82B1E8564002799C4 /* SettingsRestGroup.swift in Sources */,
+				5905FE9F2B424A8800D2CD66 /* WeekZone2DetailView.swift in Sources */,
 				597A78A72B374DCE002F1BA7 /* RestStreaks.swift in Sources */,
 				5912D1952B1BB78D00E78D6E /* fourtoldApp.swift in Sources */,
 				59511A9D2B3336660071249A /* ReadingDoneSheet.swift in Sources */,
+				59DFE2642B42657300B02C23 /* HomeSunlightCards.swift in Sources */,
 				59B57B402B30CF7F00FA949C /* FTTimeOfDay.swift in Sources */,
 				59B57B3C2B2D3E0E00FA949C /* Four78Section.swift in Sources */,
 				597550A72B27A1800070F60E /* FTActivity.swift in Sources */,
 				59B57B3A2B2D38B300FA949C /* BreathSheet.swift in Sources */,
 				59CAEE802B40C761000E5A52 /* HomeZone2Today.swift in Sources */,
+				59DFE2622B4264D100B02C23 /* HomeMindfulnessCards.swift in Sources */,
 				594889072B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift in Sources */,
 				59FCB7F72B3E44F2004C64B0 /* HomeSunlightToday.swift in Sources */,
 				5912D1A42B1BB90500E78D6E /* HealthKitController.swift in Sources */,
@@ -552,6 +583,7 @@
 				594889092B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift in Sources */,
 				59B96AC92B2B9462003B5106 /* FTReadType.swift in Sources */,
 				59FCB7E72B3D1BC0004C64B0 /* HomeStatCard.swift in Sources */,
+				59DFE25E2B42631100B02C23 /* HomeStepsCards.swift in Sources */,
 				597A78A32B363C23002F1BA7 /* FTTimeFrame.swift in Sources */,
 				590539802B40DCD2007AE8EF /* HomeZone2PastWeek.swift in Sources */,
 				59132D832B326D2F00C113A6 /* MoveStepsPastWeek.swift in Sources */,
@@ -695,7 +727,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 63;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -715,7 +747,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.59;
+				MARKETING_VERSION = 2023.12.62;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -734,7 +766,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 60;
+				CURRENT_PROJECT_VERSION = 63;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -754,7 +786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.59;
+				MARKETING_VERSION = 2023.12.62;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

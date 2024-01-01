@@ -43,122 +43,33 @@ struct HomeView: View {
         return (total, done)
     }
     
+    var complete: Double {
+        ((goals.done / goals.total) * 100).rounded() / 100
+    }
+    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    VStack {
-                        Section {
-                            NavigationLink {
-                                WeekStepsDetailView(healthKitController: healthKitController)
-                            } label: {
-                                HStack {
-                                    HomeStepsToday(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent)
-                                    
-                                    HomeStepsPastWeek(healthKitController: healthKitController, stepsWeekPercent: $stepsWeekPercent)
-                                }
-                            }
-                        } header: {
-                            HStack {
-                                Image(systemName: stepsSystemImage)
-                                Text("Steps")
-                                Spacer()
-                                dateView(date: healthKitController.latestSteps)
-                            }
-                            .font(.headline.bold())
-                            .foregroundStyle(.move)
-                        }
-                    }
-                    .padding()
+                    HomeStepsCards(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent, stepsWeekPercent: $stepsWeekPercent)
                     
-                    if hasZone2 {
-                        VStack {
-                            Section {
-                                NavigationLink {
-                                    Text("Coming soon...")
-                                        .font(.headline)
-                                } label: {
-                                    HStack {
-                                        HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
-                                        
-                                        HomeZone2PastWeek(healthKitController: healthKitController, zone2WeekPercent: $zone2WeekPercent)
-                                    }
-                                }
-                            } header: {
-                                HStack {
-                                    Image(systemName: vO2SystemImage)
-                                    Text("Zone 2+ HR")
-                                    Spacer()
-                                    dateView(date: healthKitController.latestZone2)
-                                }
-                                .font(.headline.bold())
-                                .foregroundStyle(.move)
-                            }
-                        }
-                        .padding(.horizontal)
-                        .padding(.bottom)
-                    }
+                    HomeZone2Cards(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent, zone2WeekPercent: $zone2WeekPercent)
+                    
                 }
                 .padding(2)
                 .background(.regularMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 VStack {
-                    VStack {
-                        Section {
-                            NavigationLink {
-                                WeekRestMinutesDetailView()
-                            } label: {
-                                HStack {
-                                    HomeMindfulnessToday(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent)
-                                    
-                                    HomeMindfulnessPastWeek(healthKitController: healthKitController, mindfulWeekPercent: $mindfulWeekPercent)
-                                }
-                            }
-                        } header: {
-                            HStack {
-                                Image(systemName: restSystemImage)
-                                Text("Mindfulness")
-                                Spacer()
-                                dateView(date: healthKitController.latestMindfulMinutes)
-                            }
-                            .font(.headline.bold())
-                            .foregroundStyle(.rest)
-                        }
-                    }
-                    .padding()
+                    HomeMindfulnessCards(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent, mindfulWeekPercent: $mindfulWeekPercent)
                     
-                    if hasSunlight {
-                        VStack {
-                            Section {
-                                NavigationLink {
-                                    Text("Coming soon...")
-                                        .font(.headline)
-                                } label: {
-                                    HStack {
-                                        HomeSunlightToday(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent)
-                                        
-                                        HomeSunlightPastWeek(healthKitController: healthKitController, sunWeekPercent: $sunWeekPercent)
-                                    }
-                                }
-                            } header: {
-                                HStack {
-                                    Image(systemName: sunlightSystemImage)
-                                    Text("Sunlight")
-                                    Spacer()
-                                    dateView(date: healthKitController.latestTimeInDaylight)
-                                }
-                                .font(.headline.bold())
-                                .foregroundStyle(.rest)
-                            }
-                        }
-                        .padding(.horizontal)
-                        .padding(.bottom)
-                    }
+                    HomeSunlightCards(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent, sunWeekPercent: $sunWeekPercent)
                 }
                 .padding(4)
                 .background(.regularMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             .refreshable {
                 refresh(hard: true)
@@ -166,10 +77,12 @@ struct HomeView: View {
             .navigationTitle(homeTitle)
             .toolbar {
                 HStack(spacing: 0) {
-                    Text(complete(), format: .percent)
+                    Text(complete, format: .percent)
                         .fontWeight(.bold)
-                        .foregroundStyle(complete() < 0.30 ? .red : complete() < 0.70 ? .blue : .green)
+                        .foregroundStyle(complete < 0.30 ? .red : complete < 0.70 ? .accent : .green)
                     Text(" progress")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in
@@ -204,19 +117,21 @@ struct HomeView: View {
         if hasZone2 {
             healthKitController.getZone2Today(refresh: hard)
             healthKitController.getZone2Week(refresh: hard)
+            healthKitController.getZone2WeekByDay(refresh: hard)
         }
         
         healthKitController.getStepCountToday(refresh: hard)
         healthKitController.getStepCountWeek(refresh: hard)
-        //            healthKitController.getStepCountWeekByDay(refresh: hard)
+        healthKitController.getStepCountWeekByDay(refresh: hard)
         
         healthKitController.getMindfulMinutesToday(refresh: hard)
-        healthKitController.getMindfulMinutesRecent(refresh: hard)
+        healthKitController.getMindfulMinutesWeek(refresh: hard)
         //        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
         
         if hasSunlight {
             healthKitController.getTimeInDaylightToday(refresh: hard)
             healthKitController.getTimeInDaylightWeek(refresh: hard)
+            healthKitController.getTimeInDaylightWeekByDay(refresh: hard)
         }
     }
     
@@ -232,10 +147,6 @@ struct HomeView: View {
         } else {
             return "..."
         }
-    }
-    
-    func complete() -> Double {
-        ((goals.done / goals.total) * 100).rounded() / 100
     }
 }
 
