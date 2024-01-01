@@ -15,6 +15,8 @@ struct HomeView: View {
     @AppStorage(hasZone2Key) var hasZone2: Bool = hasZone2Default
     @AppStorage(hasSunlightKey) var hasSunlight: Bool = hasSunlightDefault
     
+    @State private var tagSheetIsShowing = false
+    
     @State private var stepsTodayPercent = 0.0
     @State private var stepsWeekPercent = 0.0
     @State private var zone2TodayPercent = 0.0
@@ -70,20 +72,40 @@ struct HomeView: View {
                 .padding(4)
                 .background(.regularMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                VStack {
+                    TagsTodayView()
+                }
+                .padding()
+                .background(.regularMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding()
             }
             .refreshable {
                 refresh(hard: true)
             }
             .navigationTitle(homeTitle)
             .toolbar {
-                HStack(spacing: 0) {
-                    Text(complete, format: .percent)
-                        .fontWeight(.bold)
-                        .foregroundStyle(complete < 0.30 ? .red : complete < 0.70 ? .accent : .green)
-                    Text(" progress")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack(spacing: 0) {
+                        Text(complete, format: .percent)
+                            .fontWeight(.bold)
+                            .foregroundStyle(complete < 0.30 ? .red : complete < 0.70 ? .accent : .green)
+                        Text(" progress")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
+                
+                ToolbarItem {
+                    Button(tagTitle, systemImage: tagSystemImage) {
+                        tagSheetIsShowing.toggle()
+                    }
+                }
+            }
+            .sheet(isPresented: $tagSheetIsShowing) {
+                TagSheet(showingSheet: $tagSheetIsShowing, color: .accent)
+                    .interactiveDismissDisabled()
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {

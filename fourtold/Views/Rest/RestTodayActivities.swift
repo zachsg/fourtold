@@ -29,7 +29,7 @@ struct RestTodayActivities: View {
     
     var body: some View {
         if !todayActivities.isEmpty {
-            Section("Today") {
+            Section("Activities today") {
                 ForEach(todayActivities, id: \.id) { activity in
                     RestItemView(activity: activity)
                 }

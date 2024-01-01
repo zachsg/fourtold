@@ -31,6 +31,8 @@ struct RestView: View {
                         Text("Stats")
                     }
                     
+                    TagsTodayView()
+                    
                     RestTodayActivities()
                     
                     RestOldActivities(showOldActivities: $showOldActivities)
@@ -88,7 +90,8 @@ struct RestView: View {
                     .interactiveDismissDisabled()
             }
             .sheet(isPresented: $tagSheetIsShowing) {
-                Text("Tags coming soon")
+                TagSheet(showingSheet: $tagSheetIsShowing, color: .rest)
+                    .interactiveDismissDisabled()
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {

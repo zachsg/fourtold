@@ -41,7 +41,7 @@ struct RestOldActivities: View {
                 }
             } header: {
                 HStack {
-                    Text("Older")
+                    Text("Older activities")
                     Spacer()
                     Text(olderActivities.count, format: .number)
                         .font(.footnote)
