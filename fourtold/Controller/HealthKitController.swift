@@ -254,33 +254,33 @@ class HealthKitController {
             }
         }
         
-        query.statisticsUpdateHandler = { query, statistics, collection, error in
-            guard let collection else {
-                print("no collection found")
-                return
-            }
-            
-            let endDate = Date()
-            let oneWeekAgo = DateComponents(day: -6)
-            guard let startDate = calendar.date(byAdding: oneWeekAgo, to: endDate) else {
-                fatalError("*** Unable to calculate the start date ***")
-            }
-            
-            collection.enumerateStatistics(from: startDate, to: Date()){ (statistics, stop) in
-                guard let quantity = statistics.sumQuantity() else {
-                    return
-                }
-                
-                let date = statistics.startDate
-                let value = quantity.doubleValue(for: .count())
-                
-                self.stepCountWeekByDay[date] = Int(value)
-                
-                DispatchQueue.main.async {
-                    // Update UI
-                }
-            }
-        }
+//        query.statisticsUpdateHandler = { query, statistics, collection, error in
+//            guard let collection else {
+//                print("no collection found")
+//                return
+//            }
+//            
+//            let endDate = Date()
+//            let oneWeekAgo = DateComponents(day: -6)
+//            guard let startDate = calendar.date(byAdding: oneWeekAgo, to: endDate) else {
+//                fatalError("*** Unable to calculate the start date ***")
+//            }
+//            
+//            collection.enumerateStatistics(from: startDate, to: Date()){ (statistics, stop) in
+//                guard let quantity = statistics.sumQuantity() else {
+//                    return
+//                }
+//                
+//                let date = statistics.startDate
+//                let value = quantity.doubleValue(for: .count())
+//                
+//                self.stepCountWeekByDay[date] = Int(value)
+//                
+//                DispatchQueue.main.async {
+//                    // Update UI
+//                }
+//            }
+//        }
         
         if refresh {
             stepCountWeekByDay = [:]
