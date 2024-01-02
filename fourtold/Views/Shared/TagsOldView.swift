@@ -1,25 +1,29 @@
 //
-//  TagsTodayView.swift
+//  TagsOldView.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 12/31/23.
+//  Created by Zach Gottlieb on 1/2/24.
 //
 
 import SwiftData
 import SwiftUI
 
-struct TagsTodayView: View {
+struct TagsOldView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTTag.date, order: .reverse) var tags: [FTTag]
     
-    var todayTags: [FTTag] {
-        tags.filter { Calendar.current.isDateInToday($0.date) }
+    let color: Color
+    
+    @State private var showingOld = false
+    
+    var oldTags: [FTTag] {
+        tags.filter { !Calendar.current.isDateInToday($0.date) }
     }
     
     var body: some View {
-        if !todayTags.isEmpty {
-            Section("Tags today") {
-                ForEach(todayTags) { tag in
+        if !oldTags.isEmpty {
+            Section(isExpanded: $showingOld) {
+                ForEach(oldTags, id: \.id) { tag in
                     VStack(alignment: .leading) {
                         HStack {
                             Text(tag.title.capitalized)
@@ -42,6 +46,21 @@ struct TagsTodayView: View {
                         modelContext.delete(tag)
                     }
                 })
+            } header: {
+                HStack {
+                    Text("Older tags")
+                    Spacer()
+                    Text(oldTags.count, format: .number)
+                        .font(.footnote)
+                    Button {
+                        withAnimation {
+                            showingOld.toggle()
+                        }
+                    } label: {
+                        Image(systemName: showingOld ? "chevron.down.circle" : "chevron.forward.circle")
+                            .foregroundStyle(color)
+                    }
+                }
             }
         }
     }
@@ -56,7 +75,7 @@ struct TagsTodayView: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: FTTag.self, configurations: config)
         
-        let date: Date = .now
+        let date: Date = .distantPast
         let tag = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .neutral, title: "Sauna", type: .activity)
         let tag2 = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .unpleasant, title: "Cold Plunge", type: .activity)
         let tag3 = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .pleasant, title: "Vitamin D", type: .supplement)
@@ -65,7 +84,7 @@ struct TagsTodayView: View {
         container.mainContext.insert(tag2)
         container.mainContext.insert(tag3)
         
-        return TagsTodayView()
+        return TagsOldView(color: .move)
             .modelContainer(container)
     } catch {
         fatalError(error.localizedDescription)

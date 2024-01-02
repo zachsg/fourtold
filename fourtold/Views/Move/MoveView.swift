@@ -14,6 +14,8 @@ struct MoveView: View {
     // Steps
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
+    @State private var tagSheetIsShowing = false
+    
     var bestStepsDay: (day: Date, steps: Int) {
         var bestDay: Date = .now
         var bestSteps = 0
@@ -46,8 +48,24 @@ struct MoveView: View {
                         }
                     }
                 }
+                
+                TagsTodayView()
+                
+                TagsOldView(color: .move)
             }
             .navigationTitle(moveTitle)
+            .navigationTitle(homeTitle)
+            .toolbar {
+                ToolbarItem {
+                    Button(tagTitle, systemImage: tagSystemImage) {
+                        tagSheetIsShowing.toggle()
+                    }
+                }
+            }
+            .sheet(isPresented: $tagSheetIsShowing) {
+                TagSheet(showingSheet: $tagSheetIsShowing, color: .move)
+                    .interactiveDismissDisabled()
+            }
             .onAppear(perform: {
                 if healthKitController.stepCountWeek == 0 {
                     refresh(hard: true)

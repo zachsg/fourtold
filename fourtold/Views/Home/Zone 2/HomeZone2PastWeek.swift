@@ -18,24 +18,24 @@ struct HomeZone2PastWeek: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Past 7 days", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .move, progress: zone2WeekPercent) {
+        HomeStatCard(headerTitle: "Past 7 days", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .sweat, progress: zone2WeekPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(healthKitController.zone2Week)")
                     .font(.title)
                     .fontWeight( isDone ? .bold : .semibold)
-                    .foregroundStyle(isDone ? .move : .primary)
+                    .foregroundStyle(isDone ? .sweat : .primary)
                 
                 Text("Minutes")
-                    .foregroundStyle(.move.opacity(0.7))
+                    .foregroundStyle(.sweat.opacity(0.7))
                     .font(.footnote.bold())
             }
             
             HStack(spacing: 0) {
                 Text("\(percentComplete(action: healthKitController.zone2Week, goal: dailyZone2Goal, forWeek: true))")
-                    .foregroundStyle(isDone ? .move : .primary)
+                    .foregroundStyle(isDone ? .sweat : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated(forWeek: true))")
-                    .foregroundStyle(.move.opacity(0.7))
+                    .foregroundStyle(.sweat.opacity(0.7))
                     .fontWeight(.bold)
             }
             .font(.caption)

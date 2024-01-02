@@ -33,7 +33,7 @@ struct WeekZone2BarChart: View {
                             x: .value("Day", weekDay(for: date)),
                             y: .value("Minutes", minutes)
                         )
-                        .foregroundStyle(minutes >= dailyZone2Goal / 60 ? .move : .accent)
+                        .foregroundStyle(minutes >= dailyZone2Goal / 60 ? .sweat : .accent)
                         .annotation(position: .top, alignment: .center) {
                             Text(minutes, format: .number)
                                 .font(Calendar.current.isDateInToday(date) ? .footnote.bold() : .footnote)
@@ -42,7 +42,7 @@ struct WeekZone2BarChart: View {
                     }
                     
                     RuleMark(y: .value("Goal", dailyZone2Goal / 60))
-                        .foregroundStyle(.move.opacity(0.4))
+                        .foregroundStyle(.sweat.opacity(0.4))
                         .annotation(position: .trailing, alignment: .center) {
                             // Text(12000, format: .number)
                             //    .font(.footnote)

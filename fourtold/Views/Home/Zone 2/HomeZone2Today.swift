@@ -18,24 +18,24 @@ struct HomeZone2Today: View {
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Today", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .move, progress: zone2TodayPercent) {
+        HomeStatCard(headerTitle: "Today", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .sweat, progress: zone2TodayPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(healthKitController.zone2Today)")
                     .font(.title)
                     .fontWeight( isDone ? .bold : .semibold)
-                    .foregroundStyle(isDone ? .move : .primary)
+                    .foregroundStyle(isDone ? .sweat : .primary)
                 
                 Text("Minutes")
-                    .foregroundStyle(.move.opacity(0.7))
+                    .foregroundStyle(.sweat.opacity(0.7))
                     .font(.footnote.bold())
             }
             
             HStack(spacing: 0) {
                 Text("\(percentComplete(action: healthKitController.zone2Today, goal: dailyZone2Goal))")
-                    .foregroundStyle(isDone ? .move : .primary)
+                    .foregroundStyle(isDone ? .sweat : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated())")
-                    .foregroundStyle(.move.opacity(0.7))
+                    .foregroundStyle(.sweat.opacity(0.7))
                     .fontWeight(.bold)
             }
             .font(.caption)

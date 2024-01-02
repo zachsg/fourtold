@@ -254,33 +254,33 @@ class HealthKitController {
             }
         }
         
-//        query.statisticsUpdateHandler = { query, statistics, collection, error in
-//            guard let collection else {
-//                print("no collection found")
-//                return
-//            }
-//            
-//            let endDate = Date()
-//            let oneWeekAgo = DateComponents(day: -6)
-//            guard let startDate = calendar.date(byAdding: oneWeekAgo, to: endDate) else {
-//                fatalError("*** Unable to calculate the start date ***")
-//            }
-//            
-//            collection.enumerateStatistics(from: startDate, to: Date()){ (statistics, stop) in
-//                guard let quantity = statistics.sumQuantity() else {
-//                    return
-//                }
-//                
-//                let date = statistics.startDate
-//                let value = quantity.doubleValue(for: .count())
-//                
-//                self.stepCountWeekByDay[date] = Int(value)
-//                
-//                DispatchQueue.main.async {
-//                    // Update UI
-//                }
-//            }
-//        }
+        query.statisticsUpdateHandler = { query, statistics, collection, error in
+            guard let collection else {
+                print("no collection found")
+                return
+            }
+            
+            let endDate = Date()
+            let oneWeekAgo = DateComponents(day: -6)
+            guard let startDate = calendar.date(byAdding: oneWeekAgo, to: endDate) else {
+                fatalError("*** Unable to calculate the start date ***")
+            }
+            
+            collection.enumerateStatistics(from: startDate, to: Date()){ (statistics, stop) in
+                guard let quantity = statistics.sumQuantity() else {
+                    return
+                }
+                
+                let date = statistics.startDate
+                let value = quantity.doubleValue(for: .count())
+                
+                self.stepCountWeekByDay[date] = Int(value)
+                
+                DispatchQueue.main.async {
+                    // Update UI
+                }
+            }
+        }
         
         if refresh {
             stepCountWeekByDay = [:]
@@ -473,6 +473,7 @@ class HealthKitController {
             var latest: Date = .distantPast
             var usedComponents: [DateComponents] = []
             
+            var zone2WeekByDayTemp: [Date: Int] = [:]
             for (_, sample) in results!.enumerated() {
                 guard let currData:HKQuantitySample = sample as? HKQuantitySample else { return }
                 
@@ -482,8 +483,8 @@ class HealthKitController {
                     if !usedComponents.contains(components) {
                         usedComponents.append(components)
                         let date = calendar.startOfDay(for: sample.startDate)
-                        let value = self.zone2WeekByDay[date] ?? 0
-                        self.zone2WeekByDay[date] = value + 60
+                        let value = zone2WeekByDayTemp[date] ?? 0
+                        zone2WeekByDayTemp[date] = value + 60
                     }
                     
                     if sample.endDate > latest {
@@ -495,16 +496,21 @@ class HealthKitController {
             var checking: Date = calendar.startOfDay(for: .now)
             let dayInSeconds: TimeInterval = 86400
             for _ in 1...7 {
-                if self.zone2WeekByDay[checking] != nil {
-                    let value = self.zone2WeekByDay[checking] ?? 0
-                    self.zone2WeekByDay[checking] = Int((Double(value) / 60).rounded())
+                if zone2WeekByDayTemp[checking] != nil {
+                    let value = zone2WeekByDayTemp[checking] ?? 0
+                    zone2WeekByDayTemp[checking] = Int((Double(value) / 60).rounded())
                 } else {
-                    self.zone2WeekByDay[checking] = 0
+                    zone2WeekByDayTemp[checking] = 0
                 }
                 checking = checking.addingTimeInterval(-dayInSeconds)
             }
             
             self.latestZone2 = latest
+            
+            DispatchQueue.main.async {
+                // Update UI
+                self.zone2WeekByDay = zone2WeekByDayTemp
+            }
         })
         
         if refresh {
@@ -814,14 +820,12 @@ class HealthKitController {
             }
             
             collection.enumerateStatistics(from: startDate, to: Date()){ (statistics, stop) in
-                guard let quantity = statistics.sumQuantity() else {
-                    return
+                if let quantity = statistics.sumQuantity() {
+                    let date = statistics.startDate
+                    let value = quantity.doubleValue(for: .minute())
+                    
+                    self.timeInDaylightWeekByDay[date] = Int(value)
                 }
-                
-                let date = statistics.startDate
-                let value = quantity.doubleValue(for: .count())
-                
-                self.timeInDaylightWeekByDay[date] = Int(value)
                 
                 DispatchQueue.main.async {
                     // Update UI

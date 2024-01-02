@@ -15,7 +15,7 @@ struct WeekZone2DetailView: View {
             .navigationTitle("Time in Zone 2+ HR")
             .navigationBarTitleDisplayMode(.inline)
             .task {
-//                healthKitController.getZone2WeekByDay()
+                healthKitController.getZone2WeekByDay()
             }
     }
 }

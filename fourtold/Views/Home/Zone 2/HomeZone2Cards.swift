@@ -36,7 +36,7 @@ struct HomeZone2Cards: View {
                         dateView(date: healthKitController.latestZone2)
                     }
                     .font(.headline.bold())
-                    .foregroundStyle(.move)
+                    .foregroundStyle(.sweat)
                 }
             }
             .padding(.horizontal)

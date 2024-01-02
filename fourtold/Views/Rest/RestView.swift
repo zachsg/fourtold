@@ -35,6 +35,8 @@ struct RestView: View {
                     
                     RestTodayActivities()
                     
+                    TagsOldView(color: .rest)
+                    
                     RestOldActivities(showOldActivities: $showOldActivities)
                     
                     Section {

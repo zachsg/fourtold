@@ -26,27 +26,22 @@ struct HomeView: View {
     @State private var sunTodayPercent = 0.0
     @State private var sunWeekPercent = 0.0
     
-    var goals: (total: Double, done: Double)  {
-        var total = 8.0
-        var done = 0.0
+    var weekProgress: (total: Double, steps: Double, zone2: Double, rest: Double) {
+        let steps = stepsWeekPercent / 100
+        let zone2 = zone2WeekPercent / 100
+        let rest = if hasSunlight {
+            (((mindfulWeekPercent / 100 + sunWeekPercent / 100) / 2) * 100).rounded() / 100
+        } else {
+            sunWeekPercent / 100
+        }
         
-        if !hasZone2 { total -= 1 }
-        if !hasSunlight { total -= 1 }
+        let totalSteps = steps >= 1 ?  1 : steps
+        let totalZone2 = zone2 >= 1 ? 1 : zone2
+        let totalRest = rest >= 1 ? 1 : rest
         
-        if stepsTodayPercent >= 100 { done += 1 }
-        if stepsWeekPercent >= 100 { done += 1 }
-        if hasZone2 && zone2TodayPercent >= 100 { done += 1 }
-        if hasZone2 && zone2WeekPercent >= 100 { done += 1 }
-        if mindfulTodayPercent >= 100 { done += 1 }
-        if mindfulWeekPercent >= 100 { done += 1 }
-        if hasSunlight && sunTodayPercent >= 100 { done += 1 }
-        if hasSunlight && sunWeekPercent >= 100 { done += 1 }
+        let total = ((totalSteps + totalZone2 + totalRest) / 3 * 100).rounded() / 100
         
-        return (total, done)
-    }
-    
-    var complete: Double {
-        ((goals.done / goals.total) * 100).rounded() / 100
+        return (total, steps, zone2, rest)
     }
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
@@ -54,6 +49,100 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                VStack {
+                    VStack {
+                        Text("Past 7 days".uppercased())
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                        
+                        HStack {
+                            Spacer()
+                            
+                            VStack {
+                                Text(weekProgress.total, format: .percent)
+                                    .font(.largeTitle.bold())
+                                Text("Overall")
+                                    .font(.caption)
+                            }
+                            .padding()
+                            
+                            Rectangle()
+                                .frame(width: 2)
+                                .background(.secondary)
+                            
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text("Steps:")
+                                    Text(weekProgress.steps, format: .percent)
+                                        .fontWeight(.bold)
+                                }
+                                .foregroundStyle(.move)
+                                
+                                HStack {
+                                    Text("Zone2:")
+                                    Text(weekProgress.zone2, format: .percent)
+                                        .fontWeight(.bold)
+                                }
+                                .foregroundStyle(.sweat)
+                                
+                                HStack {
+                                    Text(" Rest:")
+                                    Text(weekProgress.rest, format: .percent)
+                                        .fontWeight(.bold)
+                                }
+                                .foregroundStyle(.rest)
+                            }
+                            
+                            Spacer()
+                        }
+                        .fontDesign(.monospaced)
+                    }
+                    .padding(48)
+                    .background(.regularMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(style: StrokeStyle(lineWidth: 16))
+                            .foregroundStyle(.move.opacity(0.3))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 1)
+                                    .stroke(style: StrokeStyle(lineWidth: 16))
+                                    .foregroundStyle(.sweat.opacity(0.3))
+                                    .padding(16)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 0)
+                                            .stroke(style: StrokeStyle(lineWidth: 16))
+                                            .padding(32)
+                                            .foregroundStyle(.rest.opacity(0.3))
+                                    }
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 1)
+                                            .trim(from: 0, to: weekProgress.rest)
+                                            .stroke(style: StrokeStyle(lineWidth: 16, lineCap: .butt, lineJoin: .round))
+                                            .rotationEffect(.degrees(180))
+                                            .padding(32)
+                                            .foregroundStyle(.rest)
+                                    }
+                            }
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 1)
+                                    .trim(from: 0, to: weekProgress.zone2)
+                                    .stroke(style: StrokeStyle(lineWidth: 16, lineCap: .butt, lineJoin: .round))
+                                    .rotationEffect(.degrees(180))
+                                    .foregroundStyle(.sweat)
+                                    .padding(16)
+                            }
+                    }
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 10)
+                            .trim(from: 0, to: weekProgress.steps)
+                            .stroke(style: StrokeStyle(lineWidth: 16, lineCap: .butt, lineJoin: .round))
+                            .rotationEffect(.degrees(180))
+                            .foregroundStyle(.move)
+                    }
+                }
+                .padding()
+                
                 VStack {
                     HomeStepsCards(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent, stepsWeekPercent: $stepsWeekPercent)
                     
@@ -86,17 +175,6 @@ struct HomeView: View {
             }
             .navigationTitle(homeTitle)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    HStack(spacing: 0) {
-                        Text(complete, format: .percent)
-                            .fontWeight(.bold)
-                            .foregroundStyle(complete < 0.30 ? .red : complete < 0.70 ? .accent : .green)
-                        Text(" progress")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                
                 ToolbarItem {
                     Button(tagTitle, systemImage: tagSystemImage) {
                         tagSheetIsShowing.toggle()
@@ -139,21 +217,17 @@ struct HomeView: View {
         if hasZone2 {
             healthKitController.getZone2Today(refresh: hard)
             healthKitController.getZone2Week(refresh: hard)
-            healthKitController.getZone2WeekByDay(refresh: hard)
         }
         
         healthKitController.getStepCountToday(refresh: hard)
         healthKitController.getStepCountWeek(refresh: hard)
-        healthKitController.getStepCountWeekByDay(refresh: hard)
         
         healthKitController.getMindfulMinutesToday(refresh: hard)
         healthKitController.getMindfulMinutesWeek(refresh: hard)
-        //        healthKitController.getMindfulMinutesWeekByDay(refresh: hard)
         
         if hasSunlight {
             healthKitController.getTimeInDaylightToday(refresh: hard)
             healthKitController.getTimeInDaylightWeek(refresh: hard)
-            healthKitController.getTimeInDaylightWeekByDay(refresh: hard)
         }
     }
     
