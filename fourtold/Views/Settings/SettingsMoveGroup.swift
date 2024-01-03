@@ -40,11 +40,11 @@ struct SettingsMoveGroup: View {
                         },
                         icon: {
                             Image(systemName: vO2SystemImage)
-                                .foregroundStyle(.move)
+                                .foregroundStyle(.sweat)
                         }
                     )
                 }
-                .tint(.move)
+                .tint(.sweat)
                 
                 if hasZone2 {
                     Stepper(value: $dailyZone2Goal, in: 60...7200, step: 60) {
@@ -62,11 +62,11 @@ struct SettingsMoveGroup: View {
                             },
                             icon: {
                                 Image(systemName: vO2SystemImage)
-                                    .foregroundStyle(.move)
+                                    .foregroundStyle(.sweat)
                             }
                         )
                     }
-                    .tint(.move)
+                    .tint(.sweat)
                 }
             }
         }

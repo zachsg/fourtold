@@ -65,6 +65,7 @@
 		59B96AD12B2B9DAD003B5106 /* ReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AD02B2B9DAD003B5106 /* ReadingView.swift */; };
 		59CAEE7A2B40C2BB000E5A52 /* SettingsMiscGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAEE792B40C2BB000E5A52 /* SettingsMiscGroup.swift */; };
 		59CAEE802B40C761000E5A52 /* HomeZone2Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAEE7F2B40C761000E5A52 /* HomeZone2Today.swift */; };
+		59D0D14D2B44C37400DEB29A /* HomeOverall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D14C2B44C37400DEB29A /* HomeOverall.swift */; };
 		59D28FD52B1E84D9002799C4 /* WeekStepsBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */; };
 		59D28FD82B1E8564002799C4 /* SettingsRestGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD72B1E8564002799C4 /* SettingsRestGroup.swift */; };
 		59D28FE32B1EACDC002799C4 /* SettingsMoveGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FE22B1EACDC002799C4 /* SettingsMoveGroup.swift */; };
@@ -149,6 +150,7 @@
 		59B96AD02B2B9DAD003B5106 /* ReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingView.swift; sourceTree = "<group>"; };
 		59CAEE792B40C2BB000E5A52 /* SettingsMiscGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMiscGroup.swift; sourceTree = "<group>"; };
 		59CAEE7F2B40C761000E5A52 /* HomeZone2Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeZone2Today.swift; sourceTree = "<group>"; };
+		59D0D14C2B44C37400DEB29A /* HomeOverall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOverall.swift; sourceTree = "<group>"; };
 		59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepsBarChart.swift; sourceTree = "<group>"; };
 		59D28FD72B1E8564002799C4 /* SettingsRestGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRestGroup.swift; sourceTree = "<group>"; };
 		59D28FE22B1EACDC002799C4 /* SettingsMoveGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMoveGroup.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				59CAEE7E2B40C725000E5A52 /* Zone 2 */,
 				59CAEE7C2B40C70E000E5A52 /* Mindfulness */,
 				59CAEE7D2B40C716000E5A52 /* Sunlight */,
+				59D0D14C2B44C37400DEB29A /* HomeOverall.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */,
 				591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */,
 				597550AD2B27A2580070F60E /* FTMeditateType.swift in Sources */,
+				59D0D14D2B44C37400DEB29A /* HomeOverall.swift in Sources */,
 				598C4D582B4495BF00CD4745 /* TagsOldView.swift in Sources */,
 				59DFE2662B42674200B02C23 /* SunlightDetailView.swift in Sources */,
 				59D28FD82B1E8564002799C4 /* SettingsRestGroup.swift in Sources */,
@@ -755,7 +759,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
+				CURRENT_PROJECT_VERSION = 72;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -775,7 +779,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.6;
+				MARKETING_VERSION = 2024.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -794,7 +798,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
+				CURRENT_PROJECT_VERSION = 72;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -814,7 +818,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.6;
+				MARKETING_VERSION = 2024.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

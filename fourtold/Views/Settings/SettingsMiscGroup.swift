@@ -34,11 +34,11 @@ struct SettingsMiscGroup: View {
                     },
                     icon: {
                         Image(systemName: vO2SystemImage)
-                            .foregroundStyle(.move)
+                            .foregroundStyle(.sweat)
                     }
                 )
             }
-            .tint(.move)
+            .tint(.sweat)
             
             Toggle(isOn: $hasVO2.animation()) {
                 Label(
@@ -47,11 +47,11 @@ struct SettingsMiscGroup: View {
                     },
                     icon: {
                         Image(systemName: vO2SystemImage)
-                            .foregroundStyle(.move)
+                            .foregroundStyle(.sweat)
                     }
                 )
             }
-            .tint(.move)
+            .tint(.sweat)
         } header: {
             Text("Misc.")
         } footer: {

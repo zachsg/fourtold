@@ -26,6 +26,27 @@ struct HomeView: View {
     @State private var sunTodayPercent = 0.0
     @State private var sunWeekPercent = 0.0
     
+    @State private var showToday = false
+    @State private var animationAmount = 0.0
+    
+    var todayProgress: (total: Double, steps: Double, zone2: Double, rest: Double) {
+        let steps = stepsTodayPercent / 100
+        let zone2 = zone2TodayPercent / 100
+        let rest = if hasSunlight {
+            (((mindfulTodayPercent / 100 + sunTodayPercent / 100) / 2) * 100).rounded() / 100
+        } else {
+            sunWeekPercent / 100
+        }
+        
+        let totalSteps = steps >= 1 ?  1 : steps
+        let totalZone2 = zone2 >= 1 ? 1 : zone2
+        let totalRest = rest >= 1 ? 1 : rest
+        
+        let total = ((totalSteps + totalZone2 + totalRest) / 3 * 100).rounded() / 100
+        
+        return (total, steps, zone2, rest)
+    }
+    
     var weekProgress: (total: Double, steps: Double, zone2: Double, rest: Double) {
         let steps = stepsWeekPercent / 100
         let zone2 = zone2WeekPercent / 100
@@ -50,98 +71,22 @@ struct HomeView: View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    VStack {
-                        Text("Past 7 days".uppercased())
-                            .font(.footnote)
-                            .foregroundStyle(.secondary)
-                        
-                        HStack {
-                            Spacer()
-                            
-                            VStack {
-                                Text(weekProgress.total, format: .percent)
-                                    .font(.largeTitle.bold())
-                                Text("Overall")
-                                    .font(.caption)
-                            }
-                            .padding()
-                            
-                            Rectangle()
-                                .frame(width: 2)
-                                .background(.secondary)
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("Steps:")
-                                    Text(weekProgress.steps, format: .percent)
-                                        .fontWeight(.bold)
-                                }
-                                .foregroundStyle(.move)
-                                
-                                HStack {
-                                    Text("Zone2:")
-                                    Text(weekProgress.zone2, format: .percent)
-                                        .fontWeight(.bold)
-                                }
-                                .foregroundStyle(.sweat)
-                                
-                                HStack {
-                                    Text(" Rest:")
-                                    Text(weekProgress.rest, format: .percent)
-                                        .fontWeight(.bold)
-                                }
-                                .foregroundStyle(.rest)
-                            }
-                            
-                            Spacer()
-                        }
-                        .fontDesign(.monospaced)
-                    }
-                    .padding(48)
-                    .background(.regularMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(style: StrokeStyle(lineWidth: 16))
-                            .foregroundStyle(.move.opacity(0.3))
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 1)
-                                    .stroke(style: StrokeStyle(lineWidth: 16))
-                                    .foregroundStyle(.sweat.opacity(0.3))
-                                    .padding(16)
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 0)
-                                            .stroke(style: StrokeStyle(lineWidth: 16))
-                                            .padding(32)
-                                            .foregroundStyle(.rest.opacity(0.3))
-                                    }
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 1)
-                                            .trim(from: 0, to: weekProgress.rest)
-                                            .stroke(style: StrokeStyle(lineWidth: 16, lineCap: .butt, lineJoin: .round))
-                                            .rotationEffect(.degrees(180))
-                                            .padding(32)
-                                            .foregroundStyle(.rest)
-                                    }
-                            }
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 1)
-                                    .trim(from: 0, to: weekProgress.zone2)
-                                    .stroke(style: StrokeStyle(lineWidth: 16, lineCap: .butt, lineJoin: .round))
-                                    .rotationEffect(.degrees(180))
-                                    .foregroundStyle(.sweat)
-                                    .padding(16)
-                            }
-                    }
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .trim(from: 0, to: weekProgress.steps)
-                            .stroke(style: StrokeStyle(lineWidth: 16, lineCap: .butt, lineJoin: .round))
-                            .rotationEffect(.degrees(180))
-                            .foregroundStyle(.move)
+                    if showToday {
+                        HomeOverall(title: "Today", progress: todayProgress)
+                            .rotation3DEffect(.degrees(animationAmount), axis: (x: 0, y: 1, z: 0))
+                    } else {
+                        HomeOverall(title: "Past 7 days", progress: weekProgress)
                     }
                 }
+                .frame(height: 320)
                 .padding()
+                .rotation3DEffect(.degrees(animationAmount), axis: (x: 0, y: 1, z: 0))
+                .onTapGesture {
+                    withAnimation {
+                        animationAmount = animationAmount == 0 ? 180 : 0
+                        showToday.toggle()
+                    }
+                }
                 
                 VStack {
                     HomeStepsCards(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent, stepsWeekPercent: $stepsWeekPercent)
@@ -174,6 +119,7 @@ struct HomeView: View {
                 refresh(hard: true)
             }
             .navigationTitle(homeTitle)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
                     Button(tagTitle, systemImage: tagSystemImage) {

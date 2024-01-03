@@ -42,7 +42,7 @@ struct TagsOldView: View {
                 }
                 .onDelete(perform: { indexSet in
                     for index in indexSet {
-                        let tag = tags[index]
+                        let tag = oldTags[index]
                         modelContext.delete(tag)
                     }
                 })

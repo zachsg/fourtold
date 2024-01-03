@@ -38,7 +38,7 @@ struct TagsTodayView: View {
                 }
                 .onDelete(perform: { indexSet in
                     for index in indexSet {
-                        let tag = tags[index]
+                        let tag = todayTags[index]
                         modelContext.delete(tag)
                     }
                 })
