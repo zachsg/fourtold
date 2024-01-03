@@ -88,7 +88,7 @@ struct MoveView: View {
     func refresh(hard: Bool = false) {
         healthKitController.getStepCountToday(refresh: hard)
         healthKitController.getStepCountWeek(refresh: hard)
-        healthKitController.getStepCountWeekByDay(refresh: hard)
+//        healthKitController.getStepCountWeekByDay(refresh: hard)
         
         healthKitController.getWalkRunDistanceToday(refresh: hard)
     }

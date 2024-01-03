@@ -101,8 +101,11 @@ class HealthKitController {
             }
             
             let steps = Int(sum.doubleValue(for: HKUnit.count()))
-            self.stepCountToday = steps
-            self.latestSteps = result.endDate
+            
+            DispatchQueue.main.async {
+                self.stepCountToday = steps
+                self.latestSteps = result.endDate
+            }
         }
         
         if refresh {
@@ -158,7 +161,10 @@ class HealthKitController {
             }
             
             let steps = Int(sum.doubleValue(for: HKUnit.count()))
-            self.stepCountWeek = steps
+            
+            DispatchQueue.main.async {
+                self.stepCountWeek = steps
+            }
         }
         
         if refresh {
@@ -238,19 +244,20 @@ class HealthKitController {
             }
             
             // Enumerate over all the statistics objects between the start and end dates.
+            var stepCountWeekByDayTemp: [Date: Int] = [:]
             statsCollection.enumerateStatistics(from: startDate, to: endDate)
             { (statistics, stop) in
                 if let quantity = statistics.sumQuantity() {
                     let date = statistics.startDate
                     let value = quantity.doubleValue(for: .count())
                     
-                    self.stepCountWeekByDay[date] = Int(value)
+                    stepCountWeekByDayTemp[date] = Int(value)
                 }
             }
             
             // Dispatch to the main queue to update the UI.
             DispatchQueue.main.async {
-                // Update UI
+                self.stepCountWeekByDay = stepCountWeekByDayTemp
             }
         }
         
@@ -334,8 +341,10 @@ class HealthKitController {
                 }
             }
             
-            self.zone2Today = Int((total / 60).rounded())
-            self.latestZone2 = latest
+            DispatchQueue.main.async {
+                self.zone2Today = Int((total / 60).rounded())
+                self.latestZone2 = latest
+            }
         })
         
         if refresh {
@@ -412,8 +421,10 @@ class HealthKitController {
                 }
             }
             
-            self.zone2Week = Int((total / 60).rounded())
-            self.latestZone2 = latest
+            DispatchQueue.main.async {
+                self.zone2Week = Int((total / 60).rounded())
+                self.latestZone2 = latest
+            }
         })
         
         if refresh {
@@ -505,10 +516,8 @@ class HealthKitController {
                 checking = checking.addingTimeInterval(-dayInSeconds)
             }
             
-            self.latestZone2 = latest
-            
             DispatchQueue.main.async {
-                // Update UI
+                self.latestZone2 = latest
                 self.zone2WeekByDay = zone2WeekByDayTemp
             }
         })
@@ -548,8 +557,11 @@ class HealthKitController {
             
             // TODO: Fix to work with Km and not just Miles
             let distance = sum.doubleValue(for: lengthUnit)
-            self.walkRunDistanceToday = distance
-            self.latestWalkRunDistance = result.endDate
+            
+            DispatchQueue.main.async {
+                self.walkRunDistanceToday = distance
+                self.latestWalkRunDistance = result.endDate
+            }
         }
         
         if refresh {
@@ -590,12 +602,10 @@ class HealthKitController {
                 let kgmin = HKUnit.gramUnit(with: .kilo).unitMultiplied(by: .minute())
                 let mL = HKUnit.literUnit(with: .milli)
                 let vo2Unit = mL.unitDivided(by: kgmin)
-                self.cardioFitnessMostRecent = bestSample.quantity.doubleValue(for: vo2Unit)
-                self.latestCardioFitness = bestSample.endDate
-            }
-            
-            DispatchQueue.main.async {
-                // Update the UI here.
+                DispatchQueue.main.async {
+                    self.cardioFitnessMostRecent = bestSample.quantity.doubleValue(for: vo2Unit)
+                    self.latestCardioFitness = bestSample.endDate
+                }
             }
         }
         
@@ -641,8 +651,10 @@ class HealthKitController {
                 }
             }
             
-            self.timeInDaylightToday = total
-            self.latestTimeInDaylight = latest
+            DispatchQueue.main.async {
+                self.timeInDaylightToday = total
+                self.latestTimeInDaylight = latest
+            }
         }
         
         if refresh {
@@ -710,8 +722,10 @@ class HealthKitController {
                 }
             }
             
-            self.timeInDaylightWeek = total
-            self.latestTimeInDaylight = latest
+            DispatchQueue.main.async {
+                self.timeInDaylightWeek = total
+                self.latestTimeInDaylight = latest
+            }
         }
         
         if refresh {
@@ -791,19 +805,19 @@ class HealthKitController {
             }
             
             // Enumerate over all the statistics objects between the start and end dates.
+            var timeInDaylightWeekByDayTemp: [Date: Int] = [:]
             statsCollection.enumerateStatistics(from: startDate, to: endDate)
             { (statistics, stop) in
                 if let quantity = statistics.sumQuantity() {
                     let date = statistics.startDate
                     let value = quantity.doubleValue(for: .minute())
                     
-                    self.timeInDaylightWeekByDay[date] = Int(value)
+                    timeInDaylightWeekByDayTemp[date] = Int(value)
                 }
             }
             
-            // Dispatch to the main queue to update the UI.
             DispatchQueue.main.async {
-                // Update UI
+                self.timeInDaylightWeekByDay = timeInDaylightWeekByDayTemp
             }
         }
         
@@ -872,8 +886,10 @@ class HealthKitController {
                 }
             }
             
-            self.mindfulMinutesToday = Int((total / 60).rounded())
-            self.latestMindfulMinutes = latest
+            DispatchQueue.main.async {
+                self.mindfulMinutesToday = Int((total / 60).rounded())
+                self.latestMindfulMinutes = latest
+            }
         }
         
         if refresh {
@@ -938,8 +954,10 @@ class HealthKitController {
                 }
             }
             
-            self.mindfulMinutesWeek = Int((total / 60).rounded())
-            self.latestMindfulMinutes = latest
+            DispatchQueue.main.async {
+                self.mindfulMinutesWeek = Int((total / 60).rounded())
+                self.latestMindfulMinutes = latest
+            }
         }
         
         if refresh {
@@ -994,15 +1012,16 @@ class HealthKitController {
                 return
             }
             
+            var mindfulMinutesWeekByDayTemp: [Date: Int] = [:]
             let today: Date = .now
             for i in 0...6 {
                 let date = calendar.date(byAdding: .day, value: -i, to: today)
                 if let date {
-                    self.mindfulMinutesWeekByDay[date] = 0
+                    mindfulMinutesWeekByDayTemp[date] = 0
                 }
             }
             
-            for (day, _) in self.mindfulMinutesWeekByDay {
+            for (day, _) in mindfulMinutesWeekByDayTemp {
                 var total = TimeInterval()
                 
                 for sample in samples {
@@ -1011,11 +1030,11 @@ class HealthKitController {
                     }
                 }
                 
-                self.mindfulMinutesWeekByDay[day] = Int((total / 60).rounded())
+                mindfulMinutesWeekByDayTemp[day] = Int((total / 60).rounded())
             }
             
             DispatchQueue.main.async {
-                // Update UI
+                self.mindfulMinutesWeekByDay = mindfulMinutesWeekByDayTemp
             }
         }
         
