@@ -8,5 +8,7 @@
 import Foundation
 
 enum FTBreathType: String, Codable, CaseIterable {
-    case four78, box, wimHof
+    case four78 = "4-7-8",
+         box,
+         wimHof = "wim hof"
 }

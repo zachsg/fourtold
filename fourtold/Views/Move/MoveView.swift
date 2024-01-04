@@ -54,12 +54,12 @@ struct MoveView: View {
                 TagsOldView(color: .move)
             }
             .navigationTitle(moveTitle)
-            .navigationTitle(homeTitle)
             .toolbar {
                 ToolbarItem {
                     Button(tagTitle, systemImage: tagSystemImage) {
                         tagSheetIsShowing.toggle()
                     }
+                    .tint(.move)
                 }
             }
             .sheet(isPresented: $tagSheetIsShowing) {
@@ -88,7 +88,6 @@ struct MoveView: View {
     func refresh(hard: Bool = false) {
         healthKitController.getStepCountToday(refresh: hard)
         healthKitController.getStepCountWeek(refresh: hard)
-//        healthKitController.getStepCountWeekByDay(refresh: hard)
         
         healthKitController.getWalkRunDistanceToday(refresh: hard)
     }

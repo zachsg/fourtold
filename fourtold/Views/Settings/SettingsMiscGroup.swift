@@ -23,7 +23,7 @@ struct SettingsMiscGroup: View {
                 Label(
                     title: {
                         HStack(alignment: .firstTextBaseline, spacing: 0) {
-                            Text("Zone 2 starts:")
+                            Text("Zone 2 base:")
                             Text(zone2Threshold, format: .number)
                                 .bold()
                                 .padding(.leading, 4)

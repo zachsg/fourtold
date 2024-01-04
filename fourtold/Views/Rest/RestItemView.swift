@@ -20,6 +20,8 @@ struct RestItemView: View {
             return ("Meditate", meditateSystemImage)
         } else if activity is FTRead {
             return ("Read", readSystemImage)
+        } else if activity is FTBreath {
+            return ("Breathe", breathSystemImage)
         } else {
             return ("Unknown", "")
         }
@@ -35,6 +37,10 @@ struct RestItemView: View {
         } else if activity is FTRead {
             if let read = activity as? FTRead {
                 d = read.duration
+            }
+        } else if activity is FTBreath {
+            if let breath = activity as? FTBreath {
+                d = breath.duration
             }
         }
         
@@ -57,6 +63,10 @@ struct RestItemView: View {
                 } else {
                     title = "Read a \(read.genre.rawValue) \(read.type.rawValue) for"
                 }
+            }
+        } else if activity is FTBreath {
+            if let breath = activity as? FTBreath {
+                title = "Did \(breath.rounds) rounds of \(breath.type.rawValue) breathing"
             }
         } else {
             title = "Unkown"
@@ -130,9 +140,15 @@ struct RestItemView: View {
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("\(activityTitle) \(TimeInterval(duration).secondsAsTime(units: .full))")
-                            .font(.headline)
-                            .foregroundStyle(.primary)
+                        if activity is FTBreath {
+                            Text(activityTitle)
+                                .font(.headline)
+                                .foregroundStyle(.primary)
+                        } else {
+                            Text("\(activityTitle) \(TimeInterval(duration).secondsAsTime(units: .full))")
+                                .font(.headline)
+                                .foregroundStyle(.primary)
+                        }
                         
                         HStack {
                             Text(activity.startMood.emoji())

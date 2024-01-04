@@ -12,12 +12,14 @@ struct RestMinutes: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
+    @Query(sort: \FTBreath.startDate) var breaths: [FTBreath]
     
     var minToday: Int {
         var minutes = 0
         
         let todayMeditates = meditates.filter { isToday(date: $0.startDate) }
         let todayReads = reads.filter { isToday(date: $0.startDate) }
+        let todayBreaths = breaths.filter { isToday(date: $0.startDate) }
         
         for read in todayReads {
             minutes += read.duration
@@ -25,6 +27,10 @@ struct RestMinutes: View {
         
         for meditate in todayMeditates {
             minutes += meditate.duration
+        }
+        
+        for breath in todayBreaths {
+            minutes += breath.duration
         }
         
         return minutes / 60
@@ -36,6 +42,7 @@ struct RestMinutes: View {
         
         let pastWeekMeditates = meditates.filter { isPastWeek(date: $0.startDate) }
         let pastWeekReads = reads.filter { isPastWeek(date: $0.startDate) }
+        let pastWeekBreaths = breaths.filter { isPastWeek(date: $0.startDate) }
         
         for read in pastWeekReads {
             minutes += read.duration
@@ -50,6 +57,14 @@ struct RestMinutes: View {
             
             if meditate.startDate > mostRecent {
                 mostRecent = meditate.startDate
+            }
+        }
+        
+        for breath in pastWeekBreaths{
+            minutes += breath.duration
+            
+            if breath.startDate > mostRecent {
+                mostRecent = breath.startDate
             }
         }
         

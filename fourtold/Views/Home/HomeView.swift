@@ -88,16 +88,23 @@ struct HomeView: View {
                     }
                 }
                 
+                /// Move
                 VStack {
                     HomeStepsCards(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent, stepsWeekPercent: $stepsWeekPercent)
-                    
-                    HomeZone2Cards(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent, zone2WeekPercent: $zone2WeekPercent)
-                    
                 }
-                .padding(2)
+                .padding(4)
                 .background(.regularMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
+                /// Sweat
+                VStack {
+                    HomeZone2Cards(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent, zone2WeekPercent: $zone2WeekPercent, canNav: true)
+                }
+                .padding(4)
+                .background(.regularMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                /// Rest
                 VStack {
                     HomeMindfulnessCards(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent, mindfulWeekPercent: $mindfulWeekPercent)
                     
@@ -194,14 +201,14 @@ struct HomeView: View {
 
 #Preview {
     let healthKitController = HealthKitController()
-    healthKitController.stepCountToday = 15000
+    healthKitController.stepCountToday = 10000
     healthKitController.stepCountWeek = 65000
     healthKitController.walkRunDistanceToday = 5.1
     healthKitController.cardioFitnessMostRecent = 44.1
     healthKitController.mindfulMinutesToday = 20
     healthKitController.mindfulMinutesWeek = 60
-    healthKitController.zone2Today = 30
-    healthKitController.zone2Week = 145
+    healthKitController.zone2Today = 15
+    healthKitController.zone2Week = 75
     healthKitController.timeInDaylightToday = 30
     healthKitController.timeInDaylightWeek = 75
     

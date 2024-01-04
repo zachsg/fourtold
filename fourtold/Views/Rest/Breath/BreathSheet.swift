@@ -15,6 +15,7 @@ struct BreathSheet: View {
     @AppStorage(breathTypeKey) var breathType: FTBreathType = breathTypeDefault
     
     @State private var rounds = 4
+    @State private var mood: FTMood = .neutral
     
     var body: some View {
         NavigationStack {
@@ -35,6 +36,10 @@ struct BreathSheet: View {
                 if breathType == .four78 {
                     Four78Section(rounds: $rounds)
                 }
+                
+                MoodPicker(mood: $mood, color: .rest) {
+                    Text("How're you feeling?")
+                }
             }
             .navigationTitle("Breathe")
             .toolbar {
@@ -48,6 +53,9 @@ struct BreathSheet: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
                         // TODO: BreathingView
+                        if breathType == .four78 {
+                            Four78ingView(healthKitController: healthKitController, rounds: $rounds, mood: $mood, showingMainSheet: $showingSheet)
+                        }
                     }
                     .foregroundStyle(.rest)
                 }

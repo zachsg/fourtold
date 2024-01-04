@@ -15,13 +15,23 @@ struct HomeZone2Cards: View {
     @Binding var zone2TodayPercent: Double
     @Binding var zone2WeekPercent: Double
     
+    let canNav: Bool
+    
     var body: some View {
         if hasZone2 {
             VStack {
                 Section {
-                    NavigationLink {
-                        WeekZone2DetailView(healthKitController: healthKitController)
-                    } label: {
+                    if canNav {
+                        NavigationLink {
+                            WeekZone2DetailView(healthKitController: healthKitController, canNav: true)
+                        } label: {
+                            HStack {
+                                HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
+                                
+                                HomeZone2PastWeek(healthKitController: healthKitController, zone2WeekPercent: $zone2WeekPercent)
+                            }
+                        }
+                    } else {
                         HStack {
                             HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
                             
@@ -39,8 +49,7 @@ struct HomeZone2Cards: View {
                     .foregroundStyle(.sweat)
                 }
             }
-            .padding(.horizontal)
-            .padding(.bottom)
+            .padding()
         }
     }
     
@@ -70,5 +79,5 @@ struct HomeZone2Cards: View {
     healthKitController.zone2Week = 70
     healthKitController.latestZone2 = .now
     
-    return HomeZone2Cards(healthKitController: healthKitController, zone2TodayPercent: .constant(80), zone2WeekPercent: .constant(70))
+    return HomeZone2Cards(healthKitController: healthKitController, zone2TodayPercent: .constant(80), zone2WeekPercent: .constant(70), canNav: true)
 }

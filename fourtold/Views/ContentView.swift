@@ -29,6 +29,13 @@ struct ContentView: View {
                 }
                 .tag(FTTabItem.move)
             
+            SweatView(healthKitController: healthKitController)
+                .tabItem {
+                    Image(systemName: sweatSystemImage)
+                    Text(sweatTitle)
+                }
+                .tag(FTTabItem.sweat)
+            
             RestView(healthKitController: healthKitController)
                 .tabItem {
                     Image(systemName: restSystemImage)
@@ -51,6 +58,8 @@ struct ContentView: View {
         switch tabSelected {
         case .move:
                 .move
+        case .sweat:
+                .sweat
         case .rest:
                 .rest
         case .settings:

@@ -18,6 +18,7 @@ struct RestStreaks: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate, order: .reverse) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate, order: .reverse) var reads: [FTRead]
+    @Query(sort: \FTBreath.startDate, order: .reverse) var breaths: [FTBreath]
     
     var doesMeditate: Bool {
         !meditates.isEmpty
@@ -25,6 +26,10 @@ struct RestStreaks: View {
     
     var doesRead: Bool {
         !reads.isEmpty
+    }
+    
+    var doesBreathe: Bool {
+        !breaths.isEmpty
     }
     
     var meditateStreak: Int {
@@ -35,12 +40,17 @@ struct RestStreaks: View {
         calculateStreak(for: reads)
     }
     
+    var breathStreak: Int {
+        calculateStreak(for: breaths)
+    }
+    
     var streaks: [Streak] {
         var s: [Streak] = []
         
         let all = [
             Streak(label: "Meditate", days: meditateStreak),
             Streak(label: "Read", days: readStreak),
+            Streak(label: "Breathe", days: breathStreak)
         ].sorted { a, b in
             a.days > b.days
         }

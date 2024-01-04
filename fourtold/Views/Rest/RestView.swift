@@ -50,11 +50,6 @@ struct RestView: View {
             .navigationTitle(restTitle)
             .toolbar {
                 ToolbarItemGroup {
-                    Button(tagTitle, systemImage: tagSystemImage) {
-                        tagSheetIsShowing.toggle()
-                    }
-                    .tint(.rest)
-                    
                     Button(journalTitle, systemImage: journalSystemImage) {
                         journalSheetIsShowing.toggle()
                     }
@@ -72,6 +67,11 @@ struct RestView: View {
                     
                     Button(meditateTitle, systemImage: meditateSystemImage) {
                         meditateSheetIsShowing.toggle()
+                    }
+                    .tint(.rest)
+                    
+                    Button(tagTitle, systemImage: tagSystemImage) {
+                        tagSheetIsShowing.toggle()
                     }
                     .tint(.rest)
                 }

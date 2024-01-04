@@ -66,6 +66,11 @@
 		59CAEE7A2B40C2BB000E5A52 /* SettingsMiscGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAEE792B40C2BB000E5A52 /* SettingsMiscGroup.swift */; };
 		59CAEE802B40C761000E5A52 /* HomeZone2Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAEE7F2B40C761000E5A52 /* HomeZone2Today.swift */; };
 		59D0D14D2B44C37400DEB29A /* HomeOverall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D14C2B44C37400DEB29A /* HomeOverall.swift */; };
+		59D0D14F2B45D25900DEB29A /* SettingsSweatGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D14E2B45D25900DEB29A /* SettingsSweatGroup.swift */; };
+		59D0D1522B45D2FE00DEB29A /* SweatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1512B45D2FE00DEB29A /* SweatView.swift */; };
+		59D0D1542B461DF300DEB29A /* Four78ingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1532B461DF300DEB29A /* Four78ingView.swift */; };
+		59D0D1562B462BF200DEB29A /* Four78DoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1552B462BF200DEB29A /* Four78DoneSheet.swift */; };
+		59D0D15A2B4646D700DEB29A /* FTBreathStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */; };
 		59D28FD52B1E84D9002799C4 /* WeekStepsBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */; };
 		59D28FD82B1E8564002799C4 /* SettingsRestGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD72B1E8564002799C4 /* SettingsRestGroup.swift */; };
 		59D28FE32B1EACDC002799C4 /* SettingsMoveGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FE22B1EACDC002799C4 /* SettingsMoveGroup.swift */; };
@@ -151,6 +156,11 @@
 		59CAEE792B40C2BB000E5A52 /* SettingsMiscGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMiscGroup.swift; sourceTree = "<group>"; };
 		59CAEE7F2B40C761000E5A52 /* HomeZone2Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeZone2Today.swift; sourceTree = "<group>"; };
 		59D0D14C2B44C37400DEB29A /* HomeOverall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOverall.swift; sourceTree = "<group>"; };
+		59D0D14E2B45D25900DEB29A /* SettingsSweatGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSweatGroup.swift; sourceTree = "<group>"; };
+		59D0D1512B45D2FE00DEB29A /* SweatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweatView.swift; sourceTree = "<group>"; };
+		59D0D1532B461DF300DEB29A /* Four78ingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Four78ingView.swift; sourceTree = "<group>"; };
+		59D0D1552B462BF200DEB29A /* Four78DoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Four78DoneSheet.swift; sourceTree = "<group>"; };
+		59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreathStatus.swift; sourceTree = "<group>"; };
 		59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepsBarChart.swift; sourceTree = "<group>"; };
 		59D28FD72B1E8564002799C4 /* SettingsRestGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRestGroup.swift; sourceTree = "<group>"; };
 		59D28FE22B1EACDC002799C4 /* SettingsMoveGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMoveGroup.swift; sourceTree = "<group>"; };
@@ -275,6 +285,8 @@
 			children = (
 				59B57B392B2D38B300FA949C /* BreathSheet.swift */,
 				59B57B3B2B2D3E0D00FA949C /* Four78Section.swift */,
+				59D0D1532B461DF300DEB29A /* Four78ingView.swift */,
+				59D0D1552B462BF200DEB29A /* Four78DoneSheet.swift */,
 			);
 			path = Breath;
 			sourceTree = "<group>";
@@ -294,6 +306,7 @@
 			children = (
 				59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */,
 				59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */,
+				59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */,
 			);
 			path = Breath;
 			sourceTree = "<group>";
@@ -369,6 +382,14 @@
 			path = "Zone 2";
 			sourceTree = "<group>";
 		};
+		59D0D1502B45D2EC00DEB29A /* Sweat */ = {
+			isa = PBXGroup;
+			children = (
+				59D0D1512B45D2FE00DEB29A /* SweatView.swift */,
+			);
+			path = Sweat;
+			sourceTree = "<group>";
+		};
 		59D28FD12B1E8274002799C4 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +411,7 @@
 				590432AA2B1FC1370012F0FA /* SettingsUserInfoGroup.swift */,
 				59D28FD72B1E8564002799C4 /* SettingsRestGroup.swift */,
 				59D28FE22B1EACDC002799C4 /* SettingsMoveGroup.swift */,
+				59D0D14E2B45D25900DEB29A /* SettingsSweatGroup.swift */,
 				59CAEE792B40C2BB000E5A52 /* SettingsMiscGroup.swift */,
 			);
 			path = Settings;
@@ -420,6 +442,7 @@
 				59D28FD62B1E8533002799C4 /* Settings */,
 				59D28FD12B1E8274002799C4 /* Home */,
 				597550942B20E1240070F60E /* Move */,
+				59D0D1502B45D2EC00DEB29A /* Sweat */,
 				597550952B20E1310070F60E /* Rest */,
 			);
 			path = Views;
@@ -563,6 +586,7 @@
 				594B28972B39310A004F8BD6 /* RestMinutes.swift in Sources */,
 				5905FE9B2B41D77700D2CD66 /* HomeView.swift in Sources */,
 				59DFE2682B4267CB00B02C23 /* WeekSunlightBarChart.swift in Sources */,
+				59D0D14F2B45D25900DEB29A /* SettingsSweatGroup.swift in Sources */,
 				5905FE9D2B41D7B500D2CD66 /* HomeSunlightPastWeek.swift in Sources */,
 				59FCB7F32B3E2D6B004C64B0 /* HomeStepsPastWeek.swift in Sources */,
 				59D28FE32B1EACDC002799C4 /* SettingsMoveGroup.swift in Sources */,
@@ -584,6 +608,7 @@
 				594889032B2A885E003FD4C8 /* HomeMindfulnessToday.swift in Sources */,
 				5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */,
 				598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */,
+				59D0D1522B45D2FE00DEB29A /* SweatView.swift in Sources */,
 				5975509A2B20E1650070F60E /* RestView.swift in Sources */,
 				59B96ACD2B2B9738003B5106 /* ReadSheet.swift in Sources */,
 				590E17AA2B33B06E00269FA4 /* RestOldActivities.swift in Sources */,
@@ -598,6 +623,8 @@
 				5905FE9F2B424A8800D2CD66 /* WeekZone2DetailView.swift in Sources */,
 				597A78A72B374DCE002F1BA7 /* RestStreaks.swift in Sources */,
 				5912D1952B1BB78D00E78D6E /* fourtoldApp.swift in Sources */,
+				59D0D1542B461DF300DEB29A /* Four78ingView.swift in Sources */,
+				59D0D15A2B4646D700DEB29A /* FTBreathStatus.swift in Sources */,
 				59511A9D2B3336660071249A /* ReadingDoneSheet.swift in Sources */,
 				59DFE2642B42657300B02C23 /* HomeSunlightCards.swift in Sources */,
 				59B57B402B30CF7F00FA949C /* FTTimeOfDay.swift in Sources */,
@@ -626,6 +653,7 @@
 				590861E52B1E5C790040DC72 /* Constants.swift in Sources */,
 				59DAF37C2B2C04B900BB12B5 /* FTBreath.swift in Sources */,
 				59B57B342B2D13EE00FA949C /* JournalSheet.swift in Sources */,
+				59D0D1562B462BF200DEB29A /* Four78DoneSheet.swift in Sources */,
 				598117942B27D22B003FAEB0 /* MeditationsSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,27 +787,27 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = fourtold/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Foretold;
+				INFOPLIST_KEY_CFBundleDisplayName = 4told;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Read Apple Health data to show in the app";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Write app data to Apple Health";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.9;
+				MARKETING_VERSION = 2024.1.14;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -798,27 +826,27 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = fourtold/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Foretold;
+				INFOPLIST_KEY_CFBundleDisplayName = 4told;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Read Apple Health data to show in the app";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Write app data to Apple Health";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.9;
+				MARKETING_VERSION = 2024.1.14;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

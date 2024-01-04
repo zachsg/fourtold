@@ -9,8 +9,6 @@ import SwiftUI
 
 struct SettingsMoveGroup: View {
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
-    @AppStorage(hasZone2Key) var hasZone2: Bool = hasZone2Default
-    @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
     
     var body: some View {
         Section("Daily \(moveTitle) goals") {
@@ -31,44 +29,6 @@ struct SettingsMoveGroup: View {
                 )
             }
             .tint(.move)
-            
-            Group {
-                Toggle(isOn: $hasZone2.animation()) {
-                    Label(
-                        title: {
-                            Text("Include Zone 2 HR?")
-                        },
-                        icon: {
-                            Image(systemName: vO2SystemImage)
-                                .foregroundStyle(.sweat)
-                        }
-                    )
-                }
-                .tint(.sweat)
-                
-                if hasZone2 {
-                    Stepper(value: $dailyZone2Goal, in: 60...7200, step: 60) {
-                        Label(
-                            title: {
-                                HStack(alignment: .firstTextBaseline, spacing: 0) {
-                                    Text("Zone 2 goal:")
-                                    Text(dailyZone2Goal / 60, format: .number)
-                                        .bold()
-                                        .padding(.leading, 4)
-                                    Text("min")
-                                        .font(.footnote)
-                                        .padding(.leading, 1)
-                                }
-                            },
-                            icon: {
-                                Image(systemName: vO2SystemImage)
-                                    .foregroundStyle(.sweat)
-                            }
-                        )
-                    }
-                    .tint(.sweat)
-                }
-            }
         }
     }
 }

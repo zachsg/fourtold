@@ -20,6 +20,7 @@ struct WeekRestMinutesBarChart: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
+    @Query(sort: \FTBreath.startDate) var breaths: [FTBreath]
     
     @Binding var timeFrame: FTTimeFrame
     
@@ -45,11 +46,23 @@ struct WeekRestMinutesBarChart: View {
         return minutes / 60
     }
     
+    var breathMinutes: Int {
+        var minutes = 0
+        
+        let pastBreaths = breaths.filter { isInPast(period: timeFrame, date: $0.startDate) }
+        for breath in pastBreaths {
+            minutes += breath.duration
+        }
+        
+        return minutes / 60
+    }
+    
     var averageMinutesPerDay: Int {
         var minutes = 0
 
         minutes += meditateMinutes
         minutes += readMinutes
+        minutes += breathMinutes
         
         let minutesPerDay = Double(minutes) / timeFrame.days()
         
@@ -61,6 +74,7 @@ struct WeekRestMinutesBarChart: View {
         
         let pastMeditates = meditates.filter { isInPast(period: timeFrame, date: $0.startDate) }
         let pastReads = reads.filter { isInPast(period: timeFrame, date: $0.startDate) }
+        let pastBreaths = breaths.filter { isInPast(period: timeFrame, date: $0.startDate) }
         
         var day = 0.0
         let calendar = Calendar.current
@@ -88,6 +102,16 @@ struct WeekRestMinutesBarChart: View {
             
             let rest2 = Rest(date: checkDate, minutes: minutes / 60, type: "Read")
             data.append(rest2)
+            
+            minutes = 0
+            for breath in pastBreaths {
+                if calendar.isDate(checkDate, equalTo: breath.startDate, toGranularity: .day) {
+                    minutes += breath.duration
+                }
+            }
+            
+            let rest3 = Rest(date: checkDate, minutes: minutes / 60, type: "Breathe")
+            data.append(rest3)
         }
         
         return data.sorted { a, b in
@@ -108,6 +132,8 @@ struct WeekRestMinutesBarChart: View {
                 .font(.headline)
                 
                 HStack {
+                    Spacer()
+                    StatItem(minutes: breathMinutes, title: "Breathe")
                     Spacer()
                     StatItem(minutes: meditateMinutes, title: "Meditate")
                     Spacer()

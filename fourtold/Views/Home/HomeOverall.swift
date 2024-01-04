@@ -33,13 +33,13 @@ struct HomeOverall: View {
                 
                 HStack {
                     VStack(alignment: .trailing) {
-                        Text("Steps:")
+                        Text("Move:")
                             .foregroundStyle(.move)
                         
-                        Text("Zone2:")
+                        Text("Sweat:")
                             .foregroundStyle(.sweat)
                         
-                        Text(" Rest:")
+                        Text("Rest:")
                             .foregroundStyle(.rest)
                     }
                     

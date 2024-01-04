@@ -12,6 +12,7 @@ struct RestTodayActivities: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
+    @Query(sort: \FTBreath.startDate) var breaths: [FTBreath]
     
     @State private var showOldActivities = false
     
@@ -20,9 +21,11 @@ struct RestTodayActivities: View {
         
         let todayMeditates = meditates.filter { isToday(date: $0.startDate) }
         let todayReads = reads.filter { isToday(date: $0.startDate) }
+        let todayBreaths = breaths.filter { isToday(date: $0.startDate) }
         
         activities.append(contentsOf: todayMeditates)
         activities.append(contentsOf: todayReads)
+        activities.append(contentsOf: todayBreaths)
         
         return activities.sorted { $0.startDate > $1.startDate }
     }
@@ -59,5 +62,5 @@ struct RestTodayActivities: View {
 
 #Preview {
     RestTodayActivities()
-        .modelContainer(for: [FTMeditate.self, FTRead.self])
+        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self])
 }
