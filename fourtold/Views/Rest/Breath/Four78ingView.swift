@@ -17,6 +17,8 @@ struct Four78ingView: View {
     @State private var showingSheet = false
     @State private var elapsed: TimeInterval = 0
     
+    @State private var vibe = false
+    
     let date: Date = .now
     
     @State private var isTimerRunning = true
@@ -54,6 +56,7 @@ struct Four78ingView: View {
             }
         }
         .navigationTitle("4-7-8 Breathing")
+        .sensoryFeedback(.impact(flexibility: .solid), trigger: vibe)
         .onTapGesture {
             rounds = round
             timerStopped()
@@ -79,6 +82,7 @@ struct Four78ingView: View {
                             count += 0.1
                         }
                     } else {
+                        vibe.toggle()
                         status = .hold
                     }
                 } else if status == .hold {
@@ -89,6 +93,7 @@ struct Four78ingView: View {
                     if holdCount < 7 {
                         holdCount += 0.1
                     } else {
+                        vibe.toggle()
                         status = .exhale
                         holdCount = 0
                     }
@@ -102,6 +107,7 @@ struct Four78ingView: View {
                             count -= 0.05
                         }
                     } else {
+                        vibe.toggle()
                         status = .inhale
                         withAnimation {
                             round += 1

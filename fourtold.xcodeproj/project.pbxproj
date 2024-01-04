@@ -394,12 +394,12 @@
 			isa = PBXGroup;
 			children = (
 				5905FE9A2B41D77700D2CD66 /* HomeView.swift */,
+				59D0D14C2B44C37400DEB29A /* HomeOverall.swift */,
 				59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */,
 				59CAEE7B2B40C6EC000E5A52 /* Steps */,
 				59CAEE7E2B40C725000E5A52 /* Zone 2 */,
 				59CAEE7C2B40C70E000E5A52 /* Mindfulness */,
 				59CAEE7D2B40C716000E5A52 /* Sunlight */,
-				59D0D14C2B44C37400DEB29A /* HomeOverall.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -787,7 +787,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 78;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -807,7 +807,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.14;
+				MARKETING_VERSION = 2024.1.15;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -826,7 +826,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 78;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -846,7 +846,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.14;
+				MARKETING_VERSION = 2024.1.15;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

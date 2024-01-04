@@ -25,7 +25,7 @@ struct TagSheet: View {
             Form {
                 if !tags.isEmpty {
                     Section("My tags") {
-                        NavigationLink("Use a recent tags") {
+                        NavigationLink("Use a recent tag") {
                             TagOptionPicker(title: $title, type: $type)
                         }
                     }
