@@ -43,12 +43,12 @@ struct ContentView: View {
                 }
                 .tag(FTTabItem.rest)
             
-            SettingsView()
+            TagView()
                 .tabItem {
-                    Image(systemName: settingsSystemImage)
-                    Text(settingsTitle)
+                    Image(systemName: tagCircleSystemImage)
+                    Text(tagTitle)
                 }
-                .tag(FTTabItem.settings)
+                .tag(FTTabItem.tag)
         }
         .tint(tabColor())
         .onAppear(perform: NotificationController.requestAuthorization)
@@ -62,6 +62,8 @@ struct ContentView: View {
                 .sweat
         case .rest:
                 .rest
+        case .tag:
+                .tag
         case .settings:
 //                .settings
                 .accentColor

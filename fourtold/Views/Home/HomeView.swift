@@ -128,6 +128,14 @@ struct HomeView: View {
             .navigationTitle(homeTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItemGroup(placement: .topBarLeading) {
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        Label(settingsTitle, systemImage: settingsSystemImage)
+                    }
+                }
+                
                 ToolbarItem {
                     Button(tagTitle, systemImage: tagSystemImage) {
                         tagSheetIsShowing.toggle()

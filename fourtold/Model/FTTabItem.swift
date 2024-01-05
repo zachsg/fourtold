@@ -8,5 +8,5 @@
 import Foundation
 
 enum FTTabItem: String, Codable, Equatable {
-    case overview, move, sweat, lift, rest, settings
+    case overview, move, sweat, tag, rest, settings
 }

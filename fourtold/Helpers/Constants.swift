@@ -17,6 +17,7 @@ let progressSystemImage = "location.north.circle.fill"
 
 // Tags
 let tagTitle = "Tag"
+let tagCircleSystemImage = "tag.circle"
 let tagSystemImage = "tag"
 
 // MARK: - User
@@ -113,4 +114,4 @@ let readGoalDefault = 1800 // 30 minutes
 
 // MARK: -  Settings
 let settingsTitle = "Settings"
-let settingsSystemImage = "gearshape"
+let settingsSystemImage = "gear"

@@ -71,6 +71,8 @@
 		59D0D1542B461DF300DEB29A /* Four78ingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1532B461DF300DEB29A /* Four78ingView.swift */; };
 		59D0D1562B462BF200DEB29A /* Four78DoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1552B462BF200DEB29A /* Four78DoneSheet.swift */; };
 		59D0D15A2B4646D700DEB29A /* FTBreathStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */; };
+		59D0D15D2B47814600DEB29A /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D15C2B47814600DEB29A /* TagView.swift */; };
+		59D0D15F2B47831A00DEB29A /* FTTagStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D15E2B47831A00DEB29A /* FTTagStats.swift */; };
 		59D28FD52B1E84D9002799C4 /* WeekStepsBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */; };
 		59D28FD82B1E8564002799C4 /* SettingsRestGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FD72B1E8564002799C4 /* SettingsRestGroup.swift */; };
 		59D28FE32B1EACDC002799C4 /* SettingsMoveGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D28FE22B1EACDC002799C4 /* SettingsMoveGroup.swift */; };
@@ -161,6 +163,8 @@
 		59D0D1532B461DF300DEB29A /* Four78ingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Four78ingView.swift; sourceTree = "<group>"; };
 		59D0D1552B462BF200DEB29A /* Four78DoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Four78DoneSheet.swift; sourceTree = "<group>"; };
 		59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreathStatus.swift; sourceTree = "<group>"; };
+		59D0D15C2B47814600DEB29A /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		59D0D15E2B47831A00DEB29A /* FTTagStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTagStats.swift; sourceTree = "<group>"; };
 		59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepsBarChart.swift; sourceTree = "<group>"; };
 		59D28FD72B1E8564002799C4 /* SettingsRestGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRestGroup.swift; sourceTree = "<group>"; };
 		59D28FE22B1EACDC002799C4 /* SettingsMoveGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMoveGroup.swift; sourceTree = "<group>"; };
@@ -272,10 +276,6 @@
 			children = (
 				59B57B362B2D323C00FA949C /* TimerView.swift */,
 				591CC1E12B32074200B731B7 /* MoodPicker.swift */,
-				59DFE2702B42766400B02C23 /* TagSheet.swift */,
-				593A560E2B42953A008DBC0E /* TagOptionPicker.swift */,
-				59554E252B42982C0089BA88 /* TagsTodayView.swift */,
-				598C4D572B4495BF00CD4745 /* TagsOldView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -390,6 +390,18 @@
 			path = Sweat;
 			sourceTree = "<group>";
 		};
+		59D0D15B2B47813500DEB29A /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				59D0D15C2B47814600DEB29A /* TagView.swift */,
+				59DFE2702B42766400B02C23 /* TagSheet.swift */,
+				593A560E2B42953A008DBC0E /* TagOptionPicker.swift */,
+				59554E252B42982C0089BA88 /* TagsTodayView.swift */,
+				598C4D572B4495BF00CD4745 /* TagsOldView.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
 		59D28FD12B1E8274002799C4 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +456,7 @@
 				597550942B20E1240070F60E /* Move */,
 				59D0D1502B45D2EC00DEB29A /* Sweat */,
 				597550952B20E1310070F60E /* Rest */,
+				59D0D15B2B47813500DEB29A /* Tag */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -499,6 +512,7 @@
 				59DFE26A2B42720B00B02C23 /* FTTag.swift */,
 				59DFE26C2B42721300B02C23 /* FTTagOption.swift */,
 				59DFE26E2B42742700B02C23 /* FTTagType.swift */,
+				59D0D15E2B47831A00DEB29A /* FTTagStats.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -600,6 +614,7 @@
 				59B57B422B30D14D00FA949C /* FTReadGenre.swift in Sources */,
 				597550982B20E15D0070F60E /* MoveView.swift in Sources */,
 				59B96AC72B2B9415003B5106 /* FTRead.swift in Sources */,
+				59D0D15D2B47814600DEB29A /* TagView.swift in Sources */,
 				59B57B3E2B30CDCC00FA949C /* FTMood.swift in Sources */,
 				590E17A82B33AD9B00269FA4 /* RestTodayActivities.swift in Sources */,
 				5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */,
@@ -616,6 +631,7 @@
 				59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */,
 				591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */,
 				597550AD2B27A2580070F60E /* FTMeditateType.swift in Sources */,
+				59D0D15F2B47831A00DEB29A /* FTTagStats.swift in Sources */,
 				59D0D14D2B44C37400DEB29A /* HomeOverall.swift in Sources */,
 				598C4D582B4495BF00CD4745 /* TagsOldView.swift in Sources */,
 				59DFE2662B42674200B02C23 /* SunlightDetailView.swift in Sources */,
@@ -787,7 +803,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 81;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -807,7 +823,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.15;
+				MARKETING_VERSION = 2024.1.17;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -826,7 +842,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 81;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -846,7 +862,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.15;
+				MARKETING_VERSION = 2024.1.17;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
