@@ -98,7 +98,7 @@ struct HomeView: View {
                 
                 /// Sweat
                 VStack {
-                    HomeZone2Cards(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent, zone2WeekPercent: $zone2WeekPercent, canNav: true)
+                    HomeZone2Cards(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent, zone2WeekPercent: $zone2WeekPercent)
                 }
                 .padding(4)
                 .background(.regularMaterial)

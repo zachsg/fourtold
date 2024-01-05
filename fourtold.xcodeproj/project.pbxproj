@@ -23,9 +23,6 @@
 		5912D19C2B1BB78F00E78D6E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5912D19B2B1BB78F00E78D6E /* Preview Assets.xcassets */; };
 		5912D1A42B1BB90500E78D6E /* HealthKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A32B1BB90500E78D6E /* HealthKitController.swift */; };
 		5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */; };
-		59132D832B326D2F00C113A6 /* MoveStepsPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59132D822B326D2F00C113A6 /* MoveStepsPastWeek.swift */; };
-		59132D852B326D5700C113A6 /* MoveStepsToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59132D842B326D5700C113A6 /* MoveStepsToday.swift */; };
-		59132D872B326F1D00C113A6 /* MoveWalkRunDistanceToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59132D862B326F1D00C113A6 /* MoveWalkRunDistanceToday.swift */; };
 		591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591CC1E12B32074200B731B7 /* MoodPicker.swift */; };
 		593A560F2B42953B008DBC0E /* TagOptionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A560E2B42953A008DBC0E /* TagOptionPicker.swift */; };
 		594888FF2B296938003FD4C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594888FE2B296938003FD4C8 /* Extensions.swift */; };
@@ -90,6 +87,7 @@
 		59DFE26F2B42742700B02C23 /* FTTagType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE26E2B42742700B02C23 /* FTTagType.swift */; };
 		59DFE2712B42766400B02C23 /* TagSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE2702B42766400B02C23 /* TagSheet.swift */; };
 		59F2DB242B48578A00FD0137 /* FTTagSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F2DB232B48578A00FD0137 /* FTTagSort.swift */; };
+		59F2DB262B48782100FD0137 /* StatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F2DB252B48782100FD0137 /* StatRow.swift */; };
 		59FCB7E72B3D1BC0004C64B0 /* HomeStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */; };
 		59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */; };
 		59FCB7F32B3E2D6B004C64B0 /* HomeStepsPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */; };
@@ -115,9 +113,6 @@
 		5912D1A22B1BB7DF00E78D6E /* fourtold.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fourtold.entitlements; sourceTree = "<group>"; };
 		5912D1A32B1BB90500E78D6E /* HealthKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitController.swift; sourceTree = "<group>"; };
 		5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepsDetailView.swift; sourceTree = "<group>"; };
-		59132D822B326D2F00C113A6 /* MoveStepsPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveStepsPastWeek.swift; sourceTree = "<group>"; };
-		59132D842B326D5700C113A6 /* MoveStepsToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveStepsToday.swift; sourceTree = "<group>"; };
-		59132D862B326F1D00C113A6 /* MoveWalkRunDistanceToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveWalkRunDistanceToday.swift; sourceTree = "<group>"; };
 		591CC1E12B32074200B731B7 /* MoodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPicker.swift; sourceTree = "<group>"; };
 		593A560E2B42953A008DBC0E /* TagOptionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagOptionPicker.swift; sourceTree = "<group>"; };
 		594888FE2B296938003FD4C8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -183,6 +178,7 @@
 		59DFE26E2B42742700B02C23 /* FTTagType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTagType.swift; sourceTree = "<group>"; };
 		59DFE2702B42766400B02C23 /* TagSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSheet.swift; sourceTree = "<group>"; };
 		59F2DB232B48578A00FD0137 /* FTTagSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTagSort.swift; sourceTree = "<group>"; };
+		59F2DB252B48782100FD0137 /* StatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatRow.swift; sourceTree = "<group>"; };
 		59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatCard.swift; sourceTree = "<group>"; };
 		59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsToday.swift; sourceTree = "<group>"; };
 		59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsPastWeek.swift; sourceTree = "<group>"; };
@@ -244,7 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				597550972B20E15D0070F60E /* MoveView.swift */,
-				59EF3A7D2B328F2000BDBB7F /* Stats */,
+				5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */,
+				59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */,
 			);
 			path = Move;
 			sourceTree = "<group>";
@@ -278,6 +275,7 @@
 			children = (
 				59B57B362B2D323C00FA949C /* TimerView.swift */,
 				591CC1E12B32074200B731B7 /* MoodPicker.swift */,
+				59F2DB252B48782100FD0137 /* StatRow.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -388,6 +386,8 @@
 			isa = PBXGroup;
 			children = (
 				59D0D1512B45D2FE00DEB29A /* SweatView.swift */,
+				5905FE9E2B424A8800D2CD66 /* WeekZone2DetailView.swift */,
+				5905FEA02B424AB300D2CD66 /* WeekZone2BarChart.swift */,
 			);
 			path = Sweat;
 			sourceTree = "<group>";
@@ -479,20 +479,6 @@
 				594888FE2B296938003FD4C8 /* Extensions.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		59EF3A7D2B328F2000BDBB7F /* Stats */ = {
-			isa = PBXGroup;
-			children = (
-				59132D842B326D5700C113A6 /* MoveStepsToday.swift */,
-				59132D822B326D2F00C113A6 /* MoveStepsPastWeek.swift */,
-				59132D862B326F1D00C113A6 /* MoveWalkRunDistanceToday.swift */,
-				5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */,
-				59D28FD42B1E84D9002799C4 /* WeekStepsBarChart.swift */,
-				5905FE9E2B424A8800D2CD66 /* WeekZone2DetailView.swift */,
-				5905FEA02B424AB300D2CD66 /* WeekZone2BarChart.swift */,
-			);
-			path = Stats;
 			sourceTree = "<group>";
 		};
 		59EF3A7E2B328F4B00BDBB7F /* Stats */ = {
@@ -598,7 +584,6 @@
 				597550A92B27A1D50070F60E /* FTMeditate.swift in Sources */,
 				590432AB2B1FC1370012F0FA /* SettingsUserInfoGroup.swift in Sources */,
 				593A560F2B42953B008DBC0E /* TagOptionPicker.swift in Sources */,
-				59132D872B326F1D00C113A6 /* MoveWalkRunDistanceToday.swift in Sources */,
 				59B57B372B2D323C00FA949C /* TimerView.swift in Sources */,
 				594B28972B39310A004F8BD6 /* RestMinutes.swift in Sources */,
 				5905FE9B2B41D77700D2CD66 /* HomeView.swift in Sources */,
@@ -630,10 +615,10 @@
 				5975509A2B20E1650070F60E /* RestView.swift in Sources */,
 				59B96ACD2B2B9738003B5106 /* ReadSheet.swift in Sources */,
 				590E17AA2B33B06E00269FA4 /* RestOldActivities.swift in Sources */,
-				59132D852B326D5700C113A6 /* MoveStepsToday.swift in Sources */,
 				59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */,
 				591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */,
 				597550AD2B27A2580070F60E /* FTMeditateType.swift in Sources */,
+				59F2DB262B48782100FD0137 /* StatRow.swift in Sources */,
 				59D0D15F2B47831A00DEB29A /* FTTagStats.swift in Sources */,
 				59D0D14D2B44C37400DEB29A /* HomeOverall.swift in Sources */,
 				598C4D582B4495BF00CD4745 /* TagsOldView.swift in Sources */,
@@ -665,7 +650,6 @@
 				59DFE25E2B42631100B02C23 /* HomeStepsCards.swift in Sources */,
 				597A78A32B363C23002F1BA7 /* FTTimeFrame.swift in Sources */,
 				590539802B40DCD2007AE8EF /* HomeZone2PastWeek.swift in Sources */,
-				59132D832B326D2F00C113A6 /* MoveStepsPastWeek.swift in Sources */,
 				59CAEE7A2B40C2BB000E5A52 /* SettingsMiscGroup.swift in Sources */,
 				594B28952B392728004F8BD6 /* StatItem.swift in Sources */,
 				597A78A52B365C37002F1BA7 /* RestItemView.swift in Sources */,
@@ -807,7 +791,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 84;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -827,7 +811,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.19;
+				MARKETING_VERSION = 2024.1.20;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -846,7 +830,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 84;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -866,7 +850,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.19;
+				MARKETING_VERSION = 2024.1.20;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

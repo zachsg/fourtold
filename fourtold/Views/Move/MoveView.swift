@@ -34,11 +34,15 @@ struct MoveView: View {
         NavigationStack {
             List {
                 Section {
-                    MoveStepsToday(healthKitController: healthKitController)
+                    StatRow(headerImage: stepsSystemImage, headerTitle: "Steps today", date: healthKitController.latestSteps, stat: Double(healthKitController.stepCountToday), color: .move, goal: dailyStepsGoal)
                     
-                    MoveStepsPastWeek(healthKitController: healthKitController)
+                    StatRow(headerImage: stepsSystemImage, headerTitle: "Steps past 7 days", date: healthKitController.latestSteps, stat: Double(healthKitController.stepCountWeek), color: .move, goal: dailyStepsGoal * 7) {
+                        WeekStepsDetailView(healthKitController: healthKitController)
+                    }
                     
-                    MoveWalkRunDistanceToday(healthKitController: healthKitController)
+                    StatRow(headerImage: distanceSystemImage, headerTitle: "Distance today", date: healthKitController.latestWalkRunDistance, stat: healthKitController.walkRunDistanceToday, color: .move, units: "Miles")
+                } header: {
+                    Text("Activity")
                 } footer: {
                     if bestStepsDay.steps > 0 {
                         HStack(spacing: 0) {
