@@ -11,7 +11,6 @@ struct MoveView: View {
     @Environment(\.scenePhase) var scenePhase
     @Bindable var healthKitController: HealthKitController
     
-    // Steps
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
     @State private var tagSheetIsShowing = false

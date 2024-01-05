@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SweatView: View {
+    @Environment(\.scenePhase) var scenePhase
     @Bindable var healthKitController: HealthKitController
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
@@ -48,7 +49,30 @@ struct SweatView: View {
                 TagSheet(showingSheet: $tagSheetIsShowing, color: .sweat)
                     .interactiveDismissDisabled()
             }
+            .onAppear(perform: {
+                if healthKitController.zone2Week == 0 {
+                    refresh(hard: true)
+                } else {
+                    refresh()
+                }
+            })
+            .onChange(of: scenePhase) { oldPhase, newPhase in
+                if newPhase == .active {
+                    let today = Calendar.current.isDateInToday(healthKitController.latestZone2)
+                    refresh(hard: !today)
+                }
+            }
+            .refreshable {
+                refresh()
+            }
         }
+    }
+    
+    private func refresh(hard: Bool = false) {
+        healthKitController.getCardioFitnessRecent(refresh: hard)
+        
+        healthKitController.getZone2Today(refresh: hard)
+        healthKitController.getZone2Week(refresh: hard)
     }
 }
 
