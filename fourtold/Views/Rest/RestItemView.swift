@@ -66,7 +66,7 @@ struct RestItemView: View {
             }
         } else if activity is FTBreath {
             if let breath = activity as? FTBreath {
-                title = "Did \(breath.rounds) rounds of \(breath.type.rawValue) breathing"
+                title = "\(breath.rounds) rounds of \(breath.type.rawValue) breathing"
             }
         } else {
             title = "Unkown"
