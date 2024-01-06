@@ -205,4 +205,26 @@ extension Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }
+
+    func vO2Status() -> FTVO2Status {
+        @AppStorage(userAgeKey) var userAge: Int = userAgeDefault
+        @AppStorage(userGenderKey) var userGender: FTGender = userGenderDefault
+
+        if self > 0 {
+            let vO2TableForGender = vO2Lookup[userGender]
+            if let vO2TableForGender {
+                let status = vO2TableForGender.first(where:  { $0.ageRange.contains(userAge) })
+                
+                if let status {
+                    let category = status.categories.first(where: { $0.vO2Range.contains(self.rounded()) })
+                    
+                    if let category {
+                        return category.status
+                    }
+                }
+            }
+        }
+
+        return .unknown
+    }
 }

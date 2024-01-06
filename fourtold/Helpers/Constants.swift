@@ -15,11 +15,6 @@ let cancelSystemImage = "xmark.circle"
 let arrowSystemImage = "arrowshape.forward"
 let progressSystemImage = "location.north.circle.fill"
 
-// Tags
-let tagTitle = "Tag"
-let tagCircleSystemImage = "tag.circle"
-let tagSystemImage = "tag"
-
 // MARK: - User
 let userAgeKey = "userAge"
 let userAgeDefault = 30
@@ -65,6 +60,7 @@ let sweatSystemImage = "drop.circle"
 let hasVO2Key = "hasVO2"
 let hasVO2Default = true
 let vO2SystemImage = "heart"
+let vO2Title = "VO₂max"
 
 // Zone 2
 let hasZone2Key = "hasZone2"
@@ -111,6 +107,11 @@ let readOpenSystemImage = "stopwatch"
 let readTimedSystemImage = "alarm"
 let readGoalKey = "readGoal"
 let readGoalDefault = 1800 // 30 minutes
+
+// MARK: - Tags
+let tagTitle = "Tag"
+let tagCircleSystemImage = "tag.circle"
+let tagSystemImage = "tag"
 
 // MARK: -  Settings
 let settingsTitle = "Settings"

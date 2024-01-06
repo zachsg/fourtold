@@ -12,7 +12,8 @@ struct SweatView: View {
     @Bindable var healthKitController: HealthKitController
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
-    
+    @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
+
     @State private var tagSheetIsShowing = false
     @State private var zone2TodayPercent = 0.0
     @State private var zone2WeekPercent = 0.0
@@ -20,10 +21,22 @@ struct SweatView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section("Progress") {
-                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat)
+                Section {
+                    if hasVO2 {
+                        StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat, units: vO2Title)
+                    }
+                } header: {
+                    Text("Progress")
+                } footer: {
+                    if hasVO2 {
+                        HStack(spacing: 0) {
+                            Text("\(vO2Title) is currently ")
+                            Text("\(healthKitController.cardioFitnessMostRecent.vO2Status().rawValue)")
+                                .fontWeight(.bold)
+                        }
+                    }
                 }
-                
+
                 Section("Activity") {
                     StatRow(headerImage: vO2SystemImage, headerTitle: "Zone 2 today", date: healthKitController.latestZone2, stat: Double(healthKitController.zone2Today), color: .sweat, goal: dailyZone2Goal / 60, units: "min")
                     
