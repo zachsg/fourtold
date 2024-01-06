@@ -212,6 +212,7 @@ extension Double {
 
         if self > 0 {
             let vO2TableForGender = vO2Lookup[userGender]
+
             if let vO2TableForGender {
                 let status = vO2TableForGender.first(where:  { $0.ageRange.contains(userAge) })
                 
@@ -226,5 +227,15 @@ extension Double {
         }
 
         return .unknown
+    }
+
+    func vO2Trend(given average: Double) -> FTVO2Trend {
+        return if self >= average + 0.5 {
+            .improving
+        } else if self <= average - 0.5 {
+            .declining
+        } else {
+            .stable
+        }
     }
 }

@@ -31,6 +31,7 @@ class HealthKitController {
     
     // VO2 max
     var cardioFitnessMostRecent = 0.0
+    var cardioFitnessAverage = 0.0
     var latestCardioFitness: Date = .now
     
     // Time in Daylight
@@ -577,7 +578,7 @@ class HealthKitController {
             fatalError("*** Unable to create a vo2max type ***")
         }
         
-        let startDate = Calendar.current.startOfDay(for: .now.addingTimeInterval(-1029600))
+        let startDate = Calendar.current.startOfDay(for: .now.addingTimeInterval(-5148000))
         let predicate = HKQuery.predicateForSamples(
             withStart: startDate,
             end: .now,
@@ -591,19 +592,28 @@ class HealthKitController {
             
             var latest: Date = .distantPast
             var bestSample: HKQuantitySample?
+
+            var count = 0
+            var sum = 0.0
+
+            let kgmin = HKUnit.gramUnit(with: .kilo).unitMultiplied(by: .minute())
+            let mL = HKUnit.literUnit(with: .milli)
+            let vo2Unit = mL.unitDivided(by: kgmin)
+
             for sample in samples {
                 if sample.endDate > latest {
                     latest = sample.endDate
                     bestSample = sample
                 }
+
+                count += 1
+                sum += sample.quantity.doubleValue(for: vo2Unit)
             }
             
             if let bestSample {
-                let kgmin = HKUnit.gramUnit(with: .kilo).unitMultiplied(by: .minute())
-                let mL = HKUnit.literUnit(with: .milli)
-                let vo2Unit = mL.unitDivided(by: kgmin)
                 DispatchQueue.main.async {
                     self.cardioFitnessMostRecent = bestSample.quantity.doubleValue(for: vo2Unit)
+                    self.cardioFitnessAverage = sum / Double(count)
                     self.latestCardioFitness = bestSample.endDate
                 }
             }

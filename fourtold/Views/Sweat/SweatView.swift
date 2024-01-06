@@ -33,6 +33,7 @@ struct SweatView: View {
                             Text("\(vO2Title) is currently ")
                             Text("\(healthKitController.cardioFitnessMostRecent.vO2Status().rawValue)")
                                 .fontWeight(.bold)
+                            vO2Trend()
                         }
                     }
                 }
@@ -86,6 +87,28 @@ struct SweatView: View {
         
         healthKitController.getZone2Today(refresh: hard)
         healthKitController.getZone2Week(refresh: hard)
+    }
+
+    private func vO2Trend() -> some View {
+        let vO2Average = healthKitController.cardioFitnessAverage
+        let vO2Current = healthKitController.cardioFitnessMostRecent
+        let trend = vO2Current.vO2Trend(given: vO2Average)
+
+        return HStack(spacing: 0) {
+            if trend == .declining {
+                Text(" but ")
+                Text(trend.rawValue)
+                    .fontWeight(.bold)
+            } else if trend == .improving {
+                Text(" and ")
+                Text(trend.rawValue)
+                    .fontWeight(.bold)
+            } else {
+                Text(" and staying ")
+                Text(trend.rawValue)
+                    .fontWeight(.bold)
+            }
+        }
     }
 }
 
