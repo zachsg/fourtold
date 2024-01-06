@@ -63,7 +63,7 @@ struct StatRow<Destination: View>: View {
             .font(.footnote.bold())
             
             HStack(alignment: units != nil && goal == nil ? .firstTextBaseline : .center, spacing: 0) {
-                Text(((stat * 1000).rounded())/1000, format: .number)
+                Text(((stat * 100).rounded())/100, format: .number)
                     .font(.title.weight(.semibold))
                 
                 
