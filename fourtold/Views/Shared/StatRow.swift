@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension StatRow {
-    init(headerImage: String, headerTitle: String, date: Date, stat: Double, color: Color, goal: Int? = nil, units: String? = nil, @ViewBuilder destination: @escaping () -> Destination) {
+    init(headerImage: String, headerTitle: String, date: Date, stat: Double, color: Color, goal: Int? = nil, units: String? = nil, @ViewBuilder destination: @escaping () -> Destination, @ViewBuilder badge: @escaping () -> Badge) {
         self.headerImage = headerImage
         self.headerTitle = headerTitle
         self.date = date
@@ -17,14 +17,23 @@ extension StatRow {
         self.goal = goal
         self.units = units
         self.destination = destination
+        self.badge = badge
     }
     
-    init(headerImage: String, headerTitle: String, date: Date, stat: Double, color: Color, goal: Int? = nil, units: String? = nil) where Destination == EmptyView {
-        self.init(headerImage: headerImage, headerTitle: headerTitle, date: date, stat: stat, color: color, goal: goal, units: units, destination: nil)
+    init(headerImage: String, headerTitle: String, date: Date, stat: Double, color: Color, goal: Int? = nil, units: String? = nil, @ViewBuilder badge: @escaping () -> Badge) where Destination == EmptyView {
+        self.init(headerImage: headerImage, headerTitle: headerTitle, date: date, stat: stat, color: color, goal: goal, units: units, destination: nil, badge: badge)
+    }
+
+    init(headerImage: String, headerTitle: String, date: Date, stat: Double, color: Color, goal: Int? = nil, units: String? = nil, @ViewBuilder destination: @escaping () -> Destination) where Badge == EmptyView {
+        self.init(headerImage: headerImage, headerTitle: headerTitle, date: date, stat: stat, color: color, goal: goal, units: units, destination: destination, badge: nil)
+    }
+
+    init(headerImage: String, headerTitle: String, date: Date, stat: Double, color: Color, goal: Int? = nil, units: String? = nil) where Destination == EmptyView, Badge == EmptyView {
+        self.init(headerImage: headerImage, headerTitle: headerTitle, date: date, stat: stat, color: color, goal: goal, units: units, destination: nil, badge: nil)
     }
 }
 
-struct StatRow<Destination: View>: View {
+struct StatRow<Destination: View, Badge: View>: View {
     let headerImage: String
     let headerTitle: String
     let date: Date
@@ -33,7 +42,8 @@ struct StatRow<Destination: View>: View {
     let goal: Int?
     let units: String?
     let destination: (() -> Destination)?
-    
+    let badge: (() -> Badge)?
+
     var body: some View {
         if let destination {
             NavigationLink {
@@ -62,34 +72,42 @@ struct StatRow<Destination: View>: View {
             }
             .font(.footnote.bold())
             
-            HStack(alignment: units != nil && goal == nil ? .firstTextBaseline : .center, spacing: 0) {
-                Text(((stat * 100).rounded())/100, format: .number)
-                    .font(.title.weight(.semibold))
-                
-                
-                VStack(alignment: .leading) {
-                    if let goal {
-                        VStack(alignment: .leading) {
-                            Text("\(percentComplete(action: stat, goal: goal))")
-                            
-                            HStack(spacing: 0) {
-                                Text("of \(goal)")
-                                
-                                if let units {
-                                    Text(units)
-                                        .padding(.leading, 2)
+            HStack {
+                HStack(alignment: units != nil && goal == nil ? .firstTextBaseline : .center, spacing: 0) {
+                    Text(((stat * 100).rounded())/100, format: .number)
+                        .font(.title.weight(.semibold))
+
+
+                    VStack(alignment: .leading) {
+                        if let goal {
+                            VStack(alignment: .leading) {
+                                Text("\(percentComplete(action: stat, goal: goal))")
+
+                                HStack(spacing: 0) {
+                                    Text("of \(goal)")
+
+                                    if let units {
+                                        Text(units)
+                                            .padding(.leading, 2)
+                                    }
                                 }
                             }
+                        } else if let units {
+                            Text(units)
                         }
-                    } else if let units {
-                        Text(units)
                     }
+                    .font(.caption.bold())
+                    .foregroundStyle(.secondary)
+                    .padding(.leading, 2)
                 }
-                .font(.caption.bold())
-                .foregroundStyle(.secondary)
-                .padding(.leading, 2)
+                .padding(.top, 2)
+
+                Spacer()
+
+                if let badge {
+                    badge()
+                }
             }
-            .padding(.top, 2)
         }
     }
     
@@ -101,7 +119,14 @@ struct StatRow<Destination: View>: View {
 }
 
 #Preview {
-    StatRow(headerImage: stepsSystemImage, headerTitle: "Steps today", date: .now, stat: 7000, color: .move, goal: 10000, units: nil) {
+    let healthKitController = HealthKitController()
+    healthKitController.cardioFitnessMostRecent = 44.5
+    healthKitController.cardioFitnessAverage = 42.2
+    healthKitController.latestCardioFitness = .now
+
+    return StatRow(headerImage: stepsSystemImage, headerTitle: "Steps today", date: .now, stat: 7000, color: .move, goal: 10000, units: nil) {
         Text("Destination")
+    } badge: {
+        VO2Badge(healthKitController: healthKitController)
     }
 }

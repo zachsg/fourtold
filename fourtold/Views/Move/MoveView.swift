@@ -35,10 +35,10 @@ struct MoveView: View {
                 Section {
                     StatRow(headerImage: stepsSystemImage, headerTitle: "Steps today", date: healthKitController.latestSteps, stat: Double(healthKitController.stepCountToday), color: .move, goal: dailyStepsGoal)
                     
-                    StatRow(headerImage: stepsSystemImage, headerTitle: "Steps past 7 days", date: healthKitController.latestSteps, stat: Double(healthKitController.stepCountWeek), color: .move, goal: dailyStepsGoal * 7) {
+                    StatRow(headerImage: stepsSystemImage, headerTitle: "Steps past 7 days", date: healthKitController.latestSteps, stat: Double(healthKitController.stepCountWeek), color: .move, goal: dailyStepsGoal * 7, destination: {
                         WeekStepsDetailView(healthKitController: healthKitController)
-                    }
-                    
+                    })
+
                     StatRow(headerImage: distanceSystemImage, headerTitle: "Distance today", date: healthKitController.latestWalkRunDistance, stat: healthKitController.walkRunDistanceToday, color: .move, units: "Miles")
                 } header: {
                     Text("Activity")

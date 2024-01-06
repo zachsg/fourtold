@@ -600,14 +600,18 @@ class HealthKitController {
             let mL = HKUnit.literUnit(with: .milli)
             let vo2Unit = mL.unitDivided(by: kgmin)
 
+            let twoWeeksAgo = Calendar.current.startOfDay(for: .now.addingTimeInterval(-1209600))
+
             for sample in samples {
                 if sample.endDate > latest {
                     latest = sample.endDate
                     bestSample = sample
                 }
 
-                count += 1
-                sum += sample.quantity.doubleValue(for: vo2Unit)
+                if sample.endDate < twoWeeksAgo {
+                    count += 1
+                    sum += sample.quantity.doubleValue(for: vo2Unit)
+                }
             }
             
             if let bestSample {

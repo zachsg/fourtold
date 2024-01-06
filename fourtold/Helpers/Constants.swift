@@ -61,6 +61,9 @@ let hasVO2Key = "hasVO2"
 let hasVO2Default = true
 let vO2SystemImage = "heart"
 let vO2Title = "VO₂max"
+let improvingSystemImage = "chart.line.uptrend.xyaxis.circle.fill"
+let decliningSystemImage = "chart.line.downtrend.xyaxis.circle.fill"
+let stableSystemImage = "chart.line.flattrend.xyaxis.circle.fill"
 
 // Zone 2
 let hasZone2Key = "hasZone2"
