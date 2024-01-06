@@ -30,7 +30,7 @@ struct WeekZone2BarChart: View {
                 Chart {
                     ForEach(healthKitController.zone2WeekByDay.sorted { $0.key < $1.key }, id: \.key) { date, minutes in
                         BarMark(
-                            x: .value("Day", weekDay(for: date)),
+                            x: .value("Day", date.weekDay()),
                             y: .value("Minutes", minutes)
                         )
                         .foregroundStyle(minutes >= dailyZone2Goal / 60 ? .sweat : .accent)
@@ -51,14 +51,6 @@ struct WeekZone2BarChart: View {
             }
             .padding()
         }
-    }
-    
-    private func weekDay(for date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE"
-        let weekday = dateFormatter.string(from: date)
-        
-        return weekday
     }
 }
 

@@ -30,7 +30,7 @@ struct WeekSunlightBarChart: View {
                 Chart {
                     ForEach(healthKitController.timeInDaylightWeekByDay.sorted { $0.key < $1.key }, id: \.key) { date, minutes in
                         BarMark(
-                            x: .value("Day", weekDay(for: date)),
+                            x: .value("Day", date.weekDay()),
                             y: .value("Minutes", minutes)
                         )
                         .foregroundStyle(minutes >= dailySunlightGoal / 60 ? .move : .accent)
@@ -51,14 +51,6 @@ struct WeekSunlightBarChart: View {
             }
             .padding()
         }
-    }
-    
-    private func weekDay(for date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE"
-        let weekday = dateFormatter.string(from: date)
-        
-        return weekday
     }
 }
 

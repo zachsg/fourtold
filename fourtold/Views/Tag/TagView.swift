@@ -19,25 +19,22 @@ struct TagView: View {
     var tagStats: [FTTagStats] {
         var stats: [FTTagStats] = []
         
-        var uniqueTags: [String] = []
-        for tag in tags {
-            if !uniqueTags.contains(tag.title) {
-                uniqueTags.append(tag.title)
-            }
-        }
+        let uniqueTagTitles = Set(tags.map { $0.title })
         
-        var count = 0
-        var mostRecent: Date = .distantPast
-        var title = ""
-        var uses: [Date] = []
-        for tagTitle in uniqueTags {
+        for tagTitle in uniqueTagTitles {
+            var count = 0
+            var mostRecent: Date = .distantPast
+            var title = ""
+            var uses: [FTTagSubStats] = []
+            
             for t in tags {
                 if t.title == tagTitle {
                     if title.isEmpty {
                         title = t.title
                     }
                     
-                    uses.append(t.date)
+                    let dateAndTimeOfDay = FTTagSubStats(date: t.date, timeOfDay: t.timeOfDay, mood: t.mood)
+                    uses.append(dateAndTimeOfDay)
                     
                     count += 1
                     
@@ -49,11 +46,6 @@ struct TagView: View {
             
             let stat = FTTagStats(title: title, usedMostRecent: mostRecent, uses: uses, count: count)
             stats.append(stat)
-            
-            count = 0
-            mostRecent = .distantPast
-            title = ""
-            uses = []
         }
         
         stats.sort { a, b in
@@ -82,27 +74,7 @@ struct TagView: View {
                 ForEach(tagStats) { stat in
                     DisclosureGroup(
                         content: {
-                            ScrollView {
-                                VStack(alignment: .leading) {
-                                    Text("All uses")
-                                        .font(.subheadline.bold())
-                                        .foregroundStyle(.tag)
-                                        .padding(.bottom, 8)
-                                    
-                                    ForEach(stat.uses, id: \.self) { use in
-                                        HStack {
-                                            Image(systemName: "circle.fill")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 6)
-                                                .foregroundStyle(.tag)
-                                            Text(use, format: dateFormat(for: use))
-                                                .font(.subheadline)
-                                        }
-                                    }
-                                }
-                                .padding(.leading, 14)
-                            }
+                            TagDetails(allUses: stat.uses)
                         },
                         label: {
                             HStack {
@@ -114,9 +86,10 @@ struct TagView: View {
                                 HStack {
                                     Text(stat.title)
                                         .font(.headline)
+                                    
                                     Spacer()
                                     
-                                    Text(stat.usedMostRecent, format: dateFormat(for: stat.usedMostRecent))
+                                    Text(stat.usedMostRecent, format: stat.usedMostRecent.dateFormat())
                                         .font(.footnote)
                                         .foregroundStyle(.secondary)
                                 }
@@ -158,18 +131,6 @@ struct TagView: View {
             "calendar"
         case .title:
             "textformat.abc"
-        }
-    }
-    
-    private func dateFormat(for date: Date) -> Date.FormatStyle {
-        let calendar = Calendar.current
-        
-        return if calendar.isDateInToday(date) {
-            .dateTime.hour().minute()
-        } else if calendar.component(.year, from: date) == calendar.component(.year, from: .now) {
-            .dateTime.day().month()
-        } else {
-            .dateTime.day().month().year()
         }
     }
 }

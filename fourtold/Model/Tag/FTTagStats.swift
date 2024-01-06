@@ -11,6 +11,6 @@ struct FTTagStats: Identifiable {
     var id: UUID = UUID()
     var title: String
     var usedMostRecent: Date
-    var uses: [Date]
+    var uses: [FTTagSubStats]
     var count: Int
 }

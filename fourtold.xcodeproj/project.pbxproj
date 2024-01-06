@@ -31,6 +31,8 @@
 		594889092B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889082B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift */; };
 		594B28952B392728004F8BD6 /* StatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28942B392728004F8BD6 /* StatItem.swift */; };
 		594B28972B39310A004F8BD6 /* RestMinutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28962B39310A004F8BD6 /* RestMinutes.swift */; };
+		594FCD522B48F83B003C9640 /* FTTagSubStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD512B48F83B003C9640 /* FTTagSubStats.swift */; };
+		594FCD542B48FA19003C9640 /* TagDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD532B48FA19003C9640 /* TagDetails.swift */; };
 		59511A9B2B33363E0071249A /* MeditationDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */; };
 		59511A9D2B3336660071249A /* ReadingDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59511A9C2B3336660071249A /* ReadingDoneSheet.swift */; };
 		59554E262B42982C0089BA88 /* TagsTodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59554E252B42982C0089BA88 /* TagsTodayView.swift */; };
@@ -121,6 +123,8 @@
 		594889082B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRestMinutesBarChart.swift; sourceTree = "<group>"; };
 		594B28942B392728004F8BD6 /* StatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatItem.swift; sourceTree = "<group>"; };
 		594B28962B39310A004F8BD6 /* RestMinutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestMinutes.swift; sourceTree = "<group>"; };
+		594FCD512B48F83B003C9640 /* FTTagSubStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTagSubStats.swift; sourceTree = "<group>"; };
+		594FCD532B48FA19003C9640 /* TagDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetails.swift; sourceTree = "<group>"; };
 		59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDoneSheet.swift; sourceTree = "<group>"; };
 		59511A9C2B3336660071249A /* ReadingDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingDoneSheet.swift; sourceTree = "<group>"; };
 		59554E252B42982C0089BA88 /* TagsTodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsTodayView.swift; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				59D0D15C2B47814600DEB29A /* TagView.swift */,
+				594FCD532B48FA19003C9640 /* TagDetails.swift */,
 				59DFE2702B42766400B02C23 /* TagSheet.swift */,
 				593A560E2B42953A008DBC0E /* TagOptionPicker.swift */,
 				59554E252B42982C0089BA88 /* TagsTodayView.swift */,
@@ -502,6 +507,7 @@
 				59DFE26E2B42742700B02C23 /* FTTagType.swift */,
 				59D0D15E2B47831A00DEB29A /* FTTagStats.swift */,
 				59F2DB232B48578A00FD0137 /* FTTagSort.swift */,
+				594FCD512B48F83B003C9640 /* FTTagSubStats.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 				59B96AD12B2B9DAD003B5106 /* ReadingView.swift in Sources */,
 				59DAF37A2B2C047A00BB12B5 /* FTBreathType.swift in Sources */,
 				590539882B410BF9007AE8EF /* HomeMindfulnessPastWeek.swift in Sources */,
+				594FCD542B48FA19003C9640 /* TagDetails.swift in Sources */,
 				597550A92B27A1D50070F60E /* FTMeditate.swift in Sources */,
 				590432AB2B1FC1370012F0FA /* SettingsUserInfoGroup.swift in Sources */,
 				593A560F2B42953B008DBC0E /* TagOptionPicker.swift in Sources */,
@@ -600,6 +607,7 @@
 				594888FF2B296938003FD4C8 /* Extensions.swift in Sources */,
 				59DFE2602B42640800B02C23 /* HomeZone2Cards.swift in Sources */,
 				59B57B422B30D14D00FA949C /* FTReadGenre.swift in Sources */,
+				594FCD522B48F83B003C9640 /* FTTagSubStats.swift in Sources */,
 				597550982B20E15D0070F60E /* MoveView.swift in Sources */,
 				59B96AC72B2B9415003B5106 /* FTRead.swift in Sources */,
 				59D0D15D2B47814600DEB29A /* TagView.swift in Sources */,
@@ -791,7 +799,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 88;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -811,7 +819,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.21;
+				MARKETING_VERSION = 2024.1.24;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -830,7 +838,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 88;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -850,7 +858,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.21;
+				MARKETING_VERSION = 2024.1.24;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

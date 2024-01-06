@@ -57,7 +57,7 @@ struct StatRow<Destination: View>: View {
                 
                 Spacer()
                 
-                Text(date, format: .dateTime.hour().minute())
+                Text(date, format: date.dateFormat())
                     .foregroundStyle(.tertiary)
             }
             .font(.footnote.bold())
@@ -77,7 +77,7 @@ struct StatRow<Destination: View>: View {
                                 
                                 if let units {
                                     Text(units)
-                                        .padding(.leading, 4)
+                                        .padding(.leading, 2)
                                 }
                             }
                         }
@@ -93,7 +93,7 @@ struct StatRow<Destination: View>: View {
         }
     }
     
-    func percentComplete(action: Double, goal: Int) -> String {
+    private func percentComplete(action: Double, goal: Int) -> String {
         let percent = ((action / Double(goal)) * 100).rounded()
         
         return String(format: "%.0f%%", percent)

@@ -56,6 +56,26 @@ extension Date {
         }
     }
     
+    func dateFormat() -> Date.FormatStyle {
+        let calendar = Calendar.current
+        
+        return if calendar.isDateInToday(self) {
+            .dateTime.hour().minute()
+        } else if calendar.component(.year, from: self) == calendar.component(.year, from: .now) {
+            .dateTime.day().month()
+        } else {
+            .dateTime.day().month().year()
+        }
+    }
+    
+    func weekDay() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE"
+        let weekday = dateFormatter.string(from: self)
+        
+        return weekday
+    }
+    
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
         return calendar.dateComponents(Set(components), from: self)
     }

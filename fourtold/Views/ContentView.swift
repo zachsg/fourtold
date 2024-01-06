@@ -52,6 +52,7 @@ struct ContentView: View {
         }
         .tint(tabColor())
         .onAppear(perform: NotificationController.requestAuthorization)
+        .sensoryFeedback(.impact(weight: .light, intensity: 0.8), trigger: tabSelected)
     }
     
     func tabColor() -> Color {

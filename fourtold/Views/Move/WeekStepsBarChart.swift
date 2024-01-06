@@ -30,7 +30,7 @@ struct WeekStepsBarChart: View {
                 Chart {
                     ForEach(healthKitController.stepCountWeekByDay.sorted { $0.key < $1.key }, id: \.key) { date, steps in
                         BarMark(
-                            x: .value("Day", weekDay(for: date)),
+                            x: .value("Day", date.weekDay()),
                             y: .value("Steps", steps)
                         )
                         .foregroundStyle(steps >= dailyStepsGoal ? .move : .accent)
@@ -51,14 +51,6 @@ struct WeekStepsBarChart: View {
             }
             .padding()
         }
-    }
-    
-    private func weekDay(for date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE"
-        let weekday = dateFormatter.string(from: date)
-        
-        return weekday
     }
 }
 

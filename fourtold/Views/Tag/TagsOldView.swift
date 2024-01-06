@@ -29,7 +29,7 @@ struct TagsOldView: View {
                             Text(tag.title.capitalized)
                                 .font(.subheadline.bold())
                             Spacer()
-                            Text(tag.date, format: dateFormat(for: tag.date))
+                            Text(tag.date, format: tag.date.dateFormat())
                                 .font(.footnote)
                                 .foregroundStyle(.tertiary)
                             Image(systemName: tag.timeOfDay.systemImage())
@@ -63,10 +63,6 @@ struct TagsOldView: View {
                 }
             }
         }
-    }
-    
-    func dateFormat(for date: Date) -> Date.FormatStyle {
-        Calendar.current.isDateInToday(date) ? .dateTime.hour().minute() : .dateTime.day().month()
     }
 }
 

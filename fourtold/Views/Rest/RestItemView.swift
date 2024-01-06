@@ -126,7 +126,7 @@ struct RestItemView: View {
                     
                     Spacer()
                     
-                    Text(activity.startDate, format: dateFormat(for: activity.startDate))
+                    Text(activity.startDate, format: activity.startDate.dateFormat())
                         .foregroundStyle(.tertiary)
                     
                     Image(systemName: activity.timeOfDay.systemImage())
@@ -164,10 +164,6 @@ struct RestItemView: View {
             }
         }
         .tint(activity.endMood.color())
-    }
-    
-    func dateFormat(for date: Date) -> Date.FormatStyle {
-        Calendar.current.isDateInToday(date) ? .dateTime.hour().minute() : .dateTime.day().month()
     }
 }
 

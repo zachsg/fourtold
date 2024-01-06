@@ -162,24 +162,14 @@ struct WeekRestMinutesBarChart: View {
     }
     
     private func day(for date: Date) -> String {
-        if timeFrame == .sevenDays {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEE"
-            let weekday = dateFormatter.string(from: date)
-            
-            return weekday
+        return if timeFrame == .sevenDays {
+            date.weekDay()
         } else if timeFrame == .twoWeeks {
-            let day = date.get(.day)
-            
-            return String(day)
+            String(date.get(.day))
         } else if timeFrame == .sixMonths {
-            let month = date.get(.month)
-            
-            return month.monthName()
+            date.get(.month).monthName()
         } else {
-            let week = date.get(.weekOfYear)
-            
-            return String(week)
+            String(date.get(.weekOfYear))
         }
     }
     

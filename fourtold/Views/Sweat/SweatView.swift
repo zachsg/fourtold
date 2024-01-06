@@ -21,7 +21,7 @@ struct SweatView: View {
         NavigationStack {
             List {
                 Section("Progress") {
-                    StatRow(headerImage: vO2SystemImage, headerTitle: "Lasest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat)
+                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat)
                 }
                 
                 Section("Activity") {
