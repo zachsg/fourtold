@@ -23,9 +23,12 @@ struct SweatView: View {
             List {
                 Section("Progress") {
                     if hasVO2 {
-                        StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat, units: vO2Title, badge: {
+                        StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat, units: vO2Title) {
+                            VO2Chart(healthKitController: healthKitController)
+                        }
+                        badge: {
                             VO2Badge(healthKitController: healthKitController)
-                        })
+                        }
                     }
                 }
 

@@ -32,6 +32,7 @@ class HealthKitController {
     // VO2 max
     var cardioFitnessMostRecent = 0.0
     var cardioFitnessAverage = 0.0
+    var cardioFitnessByDay: [Date: Double] = [:]
     var latestCardioFitness: Date = .now
     
     // Time in Daylight
@@ -595,6 +596,7 @@ class HealthKitController {
 
             var count = 0
             var sum = 0.0
+            var cardioByDay: [Date: Double] = [:]
 
             let kgmin = HKUnit.gramUnit(with: .kilo).unitMultiplied(by: .minute())
             let mL = HKUnit.literUnit(with: .milli)
@@ -612,12 +614,20 @@ class HealthKitController {
                     count += 1
                     sum += sample.quantity.doubleValue(for: vo2Unit)
                 }
+
+                if let cardio = cardioByDay[sample.endDate] {
+                    let c = (cardio + sample.quantity.doubleValue(for: vo2Unit)) / 2
+                    cardioByDay[sample.endDate] = c
+                } else {
+                    cardioByDay[sample.endDate] = sample.quantity.doubleValue(for: vo2Unit)
+                }
             }
             
             if let bestSample {
                 DispatchQueue.main.async {
                     self.cardioFitnessMostRecent = bestSample.quantity.doubleValue(for: vo2Unit)
                     self.cardioFitnessAverage = sum / Double(count)
+                    self.cardioFitnessByDay = cardioByDay
                     self.latestCardioFitness = bestSample.endDate
                 }
             }

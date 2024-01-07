@@ -35,6 +35,7 @@
 		594FCD542B48FA19003C9640 /* TagDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD532B48FA19003C9640 /* TagDetails.swift */; };
 		594FCD592B49DE76003C9640 /* VO2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD582B49DE76003C9640 /* VO2.swift */; };
 		594FCD5B2B4A18FB003C9640 /* VO2Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD5A2B4A18FB003C9640 /* VO2Badge.swift */; };
+		594FCD5D2B4A3845003C9640 /* VO2Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD5C2B4A3845003C9640 /* VO2Chart.swift */; };
 		59511A9B2B33363E0071249A /* MeditationDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */; };
 		59511A9D2B3336660071249A /* ReadingDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59511A9C2B3336660071249A /* ReadingDoneSheet.swift */; };
 		59554E262B42982C0089BA88 /* TagsTodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59554E252B42982C0089BA88 /* TagsTodayView.swift */; };
@@ -129,6 +130,7 @@
 		594FCD532B48FA19003C9640 /* TagDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetails.swift; sourceTree = "<group>"; };
 		594FCD582B49DE76003C9640 /* VO2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VO2.swift; sourceTree = "<group>"; };
 		594FCD5A2B4A18FB003C9640 /* VO2Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VO2Badge.swift; sourceTree = "<group>"; };
+		594FCD5C2B4A3845003C9640 /* VO2Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VO2Chart.swift; sourceTree = "<group>"; };
 		59511A9A2B33363E0071249A /* MeditationDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDoneSheet.swift; sourceTree = "<group>"; };
 		59511A9C2B3336660071249A /* ReadingDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingDoneSheet.swift; sourceTree = "<group>"; };
 		59554E252B42982C0089BA88 /* TagsTodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsTodayView.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				59D0D1512B45D2FE00DEB29A /* SweatView.swift */,
 				5905FE9E2B424A8800D2CD66 /* WeekZone2DetailView.swift */,
 				5905FEA02B424AB300D2CD66 /* WeekZone2BarChart.swift */,
+				594FCD5C2B4A3845003C9640 /* VO2Chart.swift */,
 				594FCD5A2B4A18FB003C9640 /* VO2Badge.swift */,
 			);
 			path = Sweat;
@@ -630,6 +633,7 @@
 				5975509A2B20E1650070F60E /* RestView.swift in Sources */,
 				59B96ACD2B2B9738003B5106 /* ReadSheet.swift in Sources */,
 				590E17AA2B33B06E00269FA4 /* RestOldActivities.swift in Sources */,
+				594FCD5D2B4A3845003C9640 /* VO2Chart.swift in Sources */,
 				59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */,
 				591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */,
 				597550AD2B27A2580070F60E /* FTMeditateType.swift in Sources */,
@@ -807,7 +811,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 92;
+				CURRENT_PROJECT_VERSION = 93;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -827,7 +831,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.28;
+				MARKETING_VERSION = 2024.1.29;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -846,7 +850,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 92;
+				CURRENT_PROJECT_VERSION = 93;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -866,7 +870,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.28;
+				MARKETING_VERSION = 2024.1.29;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
