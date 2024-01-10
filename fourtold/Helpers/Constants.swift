@@ -90,6 +90,10 @@ let breathTitle = "Breath"
 let breathSystemImage = "lungs"
 let breathTypeKey = "breathType"
 let breathTypeDefault: FTBreathType = .four78
+let four78RoundsKey = "four78Rounds"
+let four78RoundsDefault = 6
+let boxRoundsKey = "boxRounds"
+let boxRoundsDefault = 40
 
 // Meditate
 let meditateTitle = "Meditate"

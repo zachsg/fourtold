@@ -13,8 +13,9 @@ struct BreathSheet: View {
     @Binding var showingSheet: Bool
     
     @AppStorage(breathTypeKey) var breathType: FTBreathType = breathTypeDefault
-    
-    @State private var rounds = 4
+    @AppStorage(four78RoundsKey) var four78Rounds: Int = four78RoundsDefault
+    @AppStorage(boxRoundsKey) var boxRounds: Int = boxRoundsDefault
+
     @State private var mood: FTMood = .neutral
     
     var body: some View {
@@ -34,9 +35,11 @@ struct BreathSheet: View {
                 }
                 
                 if breathType == .four78 {
-                    Four78Section(rounds: $rounds)
+                    Four78Section(rounds: $four78Rounds)
+                } else if breathType == .box {
+                    BoxSection(rounds: $boxRounds)
                 }
-                
+
                 MoodPicker(mood: $mood, color: .rest) {
                     Text("How're you feeling?")
                 }
@@ -52,9 +55,10 @@ struct BreathSheet: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
-                        // TODO: BreathingView
                         if breathType == .four78 {
-                            Four78ingView(healthKitController: healthKitController, rounds: $rounds, mood: $mood, showingMainSheet: $showingSheet)
+                            Four78ingView(healthKitController: healthKitController, type: $breathType, rounds: $four78Rounds, mood: $mood, showingMainSheet: $showingSheet)
+                        } else if breathType == .box {
+                            BoxingView(healthKitController: healthKitController, type: $breathType, rounds: $boxRounds, mood: $mood, showingMainSheet: $showingSheet)
                         }
                     }
                     .foregroundStyle(.rest)

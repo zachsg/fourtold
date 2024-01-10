@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct Four78DoneSheet: View {
+struct BreathDoneSheet: View {
     @Environment(\.modelContext) var modelContext
     @Bindable var healthKitController: HealthKitController
     
     let date: Date
     let elapsed: TimeInterval
+    @Binding var type: FTBreathType
     @Binding var rounds: Int
     @Binding var mood: FTMood
     @Binding var endMood: FTMood
@@ -21,13 +22,13 @@ struct Four78DoneSheet: View {
     
     var body: some View {
         VStack {
-            Text("Done 4-7-8 Breathing")
+            Text("Done \(type.rawValue.capitalized) Breathing")
                 .font(.title)
                 .padding(.bottom, 8)
             
             VStack {
                 if rounds > 1 {
-                    Text("You did \(rounds) \(rounds == 1 ? "round" : "rounds") of 4-7-8 breathing.")
+                    Text("You did \(rounds) \(rounds == 1 ? "round" : "rounds") of \(type.rawValue) breathing.")
                 } else {
                     Text("You have to do at least 1 round to save your breath work.")
                 }
@@ -67,8 +68,8 @@ struct Four78DoneSheet: View {
                         
                         healthKitController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: date)
                         
-                        let breath = FTBreath(startDate: date, timeOfDay: date.timeOfDay(), startMood: mood, endMood: endMood, type: .four78, duration: Int(elapsed.rounded()), rounds: rounds)
-                        
+                        let breath = FTBreath(startDate: date, timeOfDay: date.timeOfDay(), startMood: mood, endMood: endMood, type: type, duration: Int(elapsed.rounded()), rounds: rounds)
+
                         modelContext.insert(breath)
                         
                         showingSheet.toggle()
@@ -84,5 +85,5 @@ struct Four78DoneSheet: View {
 }
 
 #Preview {
-    Four78DoneSheet(healthKitController: HealthKitController(), date: .now, elapsed: 300.0, rounds: .constant(4), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingMainSheet: .constant(true))
+    BreathDoneSheet(healthKitController: HealthKitController(), date: .now, elapsed: 300.0, type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingMainSheet: .constant(true))
 }

@@ -31,6 +31,8 @@
 		594889092B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889082B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift */; };
 		594B28952B392728004F8BD6 /* StatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28942B392728004F8BD6 /* StatItem.swift */; };
 		594B28972B39310A004F8BD6 /* RestMinutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594B28962B39310A004F8BD6 /* RestMinutes.swift */; };
+		594F09782B4E0B100010E544 /* BoxSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F09772B4E0B100010E544 /* BoxSection.swift */; };
+		594F097A2B4E1FB70010E544 /* BoxingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F09792B4E1FB70010E544 /* BoxingView.swift */; };
 		594FCD522B48F83B003C9640 /* FTTagSubStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD512B48F83B003C9640 /* FTTagSubStats.swift */; };
 		594FCD542B48FA19003C9640 /* TagDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD532B48FA19003C9640 /* TagDetails.swift */; };
 		594FCD592B49DE76003C9640 /* VO2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD582B49DE76003C9640 /* VO2.swift */; };
@@ -71,7 +73,7 @@
 		59D0D14F2B45D25900DEB29A /* SettingsSweatGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D14E2B45D25900DEB29A /* SettingsSweatGroup.swift */; };
 		59D0D1522B45D2FE00DEB29A /* SweatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1512B45D2FE00DEB29A /* SweatView.swift */; };
 		59D0D1542B461DF300DEB29A /* Four78ingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1532B461DF300DEB29A /* Four78ingView.swift */; };
-		59D0D1562B462BF200DEB29A /* Four78DoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1552B462BF200DEB29A /* Four78DoneSheet.swift */; };
+		59D0D1562B462BF200DEB29A /* BreathDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1552B462BF200DEB29A /* BreathDoneSheet.swift */; };
 		59D0D15A2B4646D700DEB29A /* FTBreathStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */; };
 		59D0D15D2B47814600DEB29A /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D15C2B47814600DEB29A /* TagView.swift */; };
 		59D0D15F2B47831A00DEB29A /* FTTagStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D15E2B47831A00DEB29A /* FTTagStats.swift */; };
@@ -126,6 +128,8 @@
 		594889082B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRestMinutesBarChart.swift; sourceTree = "<group>"; };
 		594B28942B392728004F8BD6 /* StatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatItem.swift; sourceTree = "<group>"; };
 		594B28962B39310A004F8BD6 /* RestMinutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestMinutes.swift; sourceTree = "<group>"; };
+		594F09772B4E0B100010E544 /* BoxSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxSection.swift; sourceTree = "<group>"; };
+		594F09792B4E1FB70010E544 /* BoxingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxingView.swift; sourceTree = "<group>"; };
 		594FCD512B48F83B003C9640 /* FTTagSubStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTagSubStats.swift; sourceTree = "<group>"; };
 		594FCD532B48FA19003C9640 /* TagDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetails.swift; sourceTree = "<group>"; };
 		594FCD582B49DE76003C9640 /* VO2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VO2.swift; sourceTree = "<group>"; };
@@ -167,7 +171,7 @@
 		59D0D14E2B45D25900DEB29A /* SettingsSweatGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSweatGroup.swift; sourceTree = "<group>"; };
 		59D0D1512B45D2FE00DEB29A /* SweatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweatView.swift; sourceTree = "<group>"; };
 		59D0D1532B461DF300DEB29A /* Four78ingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Four78ingView.swift; sourceTree = "<group>"; };
-		59D0D1552B462BF200DEB29A /* Four78DoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Four78DoneSheet.swift; sourceTree = "<group>"; };
+		59D0D1552B462BF200DEB29A /* BreathDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathDoneSheet.swift; sourceTree = "<group>"; };
 		59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreathStatus.swift; sourceTree = "<group>"; };
 		59D0D15C2B47814600DEB29A /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		59D0D15E2B47831A00DEB29A /* FTTagStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTagStats.swift; sourceTree = "<group>"; };
@@ -295,8 +299,10 @@
 			children = (
 				59B57B392B2D38B300FA949C /* BreathSheet.swift */,
 				59B57B3B2B2D3E0D00FA949C /* Four78Section.swift */,
+				594F09772B4E0B100010E544 /* BoxSection.swift */,
 				59D0D1532B461DF300DEB29A /* Four78ingView.swift */,
-				59D0D1552B462BF200DEB29A /* Four78DoneSheet.swift */,
+				59D0D1552B462BF200DEB29A /* BreathDoneSheet.swift */,
+				594F09792B4E1FB70010E544 /* BoxingView.swift */,
 			);
 			path = Breath;
 			sourceTree = "<group>";
@@ -657,6 +663,7 @@
 				59B57B3A2B2D38B300FA949C /* BreathSheet.swift in Sources */,
 				59CAEE802B40C761000E5A52 /* HomeZone2Today.swift in Sources */,
 				59DFE26F2B42742700B02C23 /* FTTagType.swift in Sources */,
+				594F09782B4E0B100010E544 /* BoxSection.swift in Sources */,
 				59DFE2622B4264D100B02C23 /* HomeMindfulnessCards.swift in Sources */,
 				594889072B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift in Sources */,
 				59FCB7F72B3E44F2004C64B0 /* HomeSunlightToday.swift in Sources */,
@@ -677,8 +684,9 @@
 				590861E52B1E5C790040DC72 /* Constants.swift in Sources */,
 				59DAF37C2B2C04B900BB12B5 /* FTBreath.swift in Sources */,
 				59B57B342B2D13EE00FA949C /* JournalSheet.swift in Sources */,
-				59D0D1562B462BF200DEB29A /* Four78DoneSheet.swift in Sources */,
+				59D0D1562B462BF200DEB29A /* BreathDoneSheet.swift in Sources */,
 				598117942B27D22B003FAEB0 /* MeditationsSheet.swift in Sources */,
+				594F097A2B4E1FB70010E544 /* BoxingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,7 +819,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 93;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -831,12 +839,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.29;
+				MARKETING_VERSION = 2024.1.31;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -850,7 +859,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 93;
+				CURRENT_PROJECT_VERSION = 95;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -870,12 +879,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.29;
+				MARKETING_VERSION = 2024.1.31;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

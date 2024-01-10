@@ -8,5 +8,8 @@
 import Foundation
 
 enum FTBreathStatus: String, Codable, CaseIterable {
-    case inhale, exhale, hold
+    case inhale, 
+         exhale,
+         holdInhale = "hold inhale",
+         holdExhale = "hold exhale"
 }

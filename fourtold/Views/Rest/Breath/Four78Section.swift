@@ -24,13 +24,13 @@ struct Four78Section: View {
             Text("4-7-8 breath")
         } footer: {
             VStack(alignment: .leading) {
-                Text("The 4-7-8 breathing technique was popularized by Dr. Andrew Weil.")
-                
+                Text("4-7-8 breathing, popularized by Dr. Andrew Weil, calms the mind and body. It can reduce stress and improving sleep.")
+
                 Text("Learn more:")
                     .padding(.top, 4)
                 
                 Label {
-                    Link("Andrew Weil: 4-7-8 Breathing", destination: URL(string: "https://www.drweil.com/videos-features/videos/breathing-exercises-4-7-8-breath/")!)
+                    Link("Andrew Weil", destination: URL(string: "https://www.drweil.com/videos-features/videos/breathing-exercises-4-7-8-breath/")!)
                         .font(.footnote)
                 } icon: {
                     Image(systemName: "circle.fill")
@@ -41,7 +41,7 @@ struct Four78Section: View {
                 .padding(.leading, 4)
                 
                 Label {
-                    Link("Cleveland Clinic: How To Do 4-7-8 Breathing", destination: URL(string: "https://health.clevelandclinic.org/4-7-8-breathing")!)
+                    Link("Cleveland Clinic", destination: URL(string: "https://health.clevelandclinic.org/4-7-8-breathing")!)
                         .font(.footnote)
                 } icon: {
                     Image(systemName: "circle.fill")
@@ -52,7 +52,7 @@ struct Four78Section: View {
                 .padding(.leading, 4)
                 
                 Label {
-                    Link("WebMD: What to Know About 4-7-8 Breathing", destination: URL(string: "https://www.webmd.com/balance/what-to-know-4-7-8-breathing")!)
+                    Link("WebMD", destination: URL(string: "https://www.webmd.com/balance/what-to-know-4-7-8-breathing")!)
                         .font(.footnote)
                 } icon: {
                     Image(systemName: "circle.fill")

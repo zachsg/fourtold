@@ -17,7 +17,7 @@ struct VO2Badge: View {
         return vO2Current.vO2Trend(given: vO2Average)
     }
 
-    var badgeParts: (main: Text, sub: Text, image: Image) {
+    var badgeParts: (main: Text, sub: Text, subJoiner: Text, image: Image) {
         let vO2Average = healthKitController.cardioFitnessAverage
         let vO2Current = healthKitController.cardioFitnessMostRecent
         let trend = vO2Current.vO2Trend(given: vO2Average)
@@ -25,19 +25,23 @@ struct VO2Badge: View {
         let main = Text(vO2Current.vO2Status().rawValue.capitalized)
 
         var sub: Text
+        var subJoiner: Text
         var image: Image
         if trend == .declining {
-            sub = Text("but")
+            subJoiner = Text("but")
+            sub = Text(trend.rawValue.capitalized)
             image = Image(systemName: decliningSystemImage)
         } else if trend == .improving {
-            sub = Text("and")
+            subJoiner = Text("and")
+            sub = Text(trend.rawValue.capitalized)
             image = Image(systemName: improvingSystemImage)
         } else {
-            sub = Text("and")
+            subJoiner = Text("and")
+            sub = Text(trend.rawValue.capitalized)
             image = Image(systemName: stableSystemImage)
         }
 
-        return (main, sub, image)
+        return (main, sub, subJoiner, image)
     }
 
     var body: some View {
@@ -45,7 +49,11 @@ struct VO2Badge: View {
             VStack(alignment: .trailing) {
                 badgeParts.main
                     .fontWeight(.bold)
-                badgeParts.sub
+                HStack(spacing: 4) {
+                    badgeParts.subJoiner
+                    badgeParts.sub
+                        .fontWeight(.bold)
+                }
             }
 
             badgeParts.image
