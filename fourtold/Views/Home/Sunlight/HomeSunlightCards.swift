@@ -8,40 +8,37 @@
 import SwiftUI
 
 struct HomeSunlightCards: View {
-    @AppStorage(hasSunlightKey) var hasSunlight: Bool = hasSunlightDefault
-    
+
     @Bindable var healthKitController: HealthKitController
     
     @Binding var sunTodayPercent: Double
     @Binding var sunWeekPercent: Double
     
     var body: some View {
-        if hasSunlight {
-            VStack {
-                Section {
-                    NavigationLink {
-                        SunlightDetailView(healthKitController: healthKitController)
-                    } label: {
-                        HStack {
-                            HomeSunlightToday(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent)
-                            
-                            HomeSunlightPastWeek(healthKitController: healthKitController, sunWeekPercent: $sunWeekPercent)
-                        }
-                    }
-                } header: {
+        VStack {
+            Section {
+                NavigationLink {
+                    SunlightDetailView(healthKitController: healthKitController)
+                } label: {
                     HStack {
-                        Image(systemName: sunlightSystemImage)
-                        Text("Sunlight")
-                        Spacer()
-                        dateView(date: healthKitController.latestTimeInDaylight)
+                        HomeSunlightToday(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent)
+
+                        HomeSunlightPastWeek(healthKitController: healthKitController, sunWeekPercent: $sunWeekPercent)
                     }
-                    .font(.headline.bold())
-                    .foregroundStyle(.rest)
                 }
+            } header: {
+                HStack {
+                    Image(systemName: sunlightSystemImage)
+                    Text("Sunlight")
+                    Spacer()
+                    dateView(date: healthKitController.latestTimeInDaylight)
+                }
+                .font(.headline.bold())
+                .foregroundStyle(.rest)
             }
-            .padding(.horizontal)
-            .padding(.bottom)
         }
+        .padding(.horizontal)
+        .padding(.bottom)
     }
     
     func dateView(date: Date) -> some View {

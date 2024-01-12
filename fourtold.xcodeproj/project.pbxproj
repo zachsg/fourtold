@@ -417,11 +417,11 @@
 				5905FE9E2B424A8800D2CD66 /* WeekZone2DetailView.swift */,
 				5905FEA02B424AB300D2CD66 /* WeekZone2BarChart.swift */,
 				594FCD5C2B4A3845003C9640 /* VO2Chart.swift */,
-				5912322F2B50C6D8004C50D6 /* RecoveryChart.swift */,
+				594FCD5A2B4A18FB003C9640 /* VO2Badge.swift */,
 				594F097D2B506BDC0010E544 /* RHRChart.swift */,
 				594F09812B506DE90010E544 /* RHRBadge.swift */,
+				5912322F2B50C6D8004C50D6 /* RecoveryChart.swift */,
 				594F09872B50C4990010E544 /* RecoveryBadge.swift */,
-				594FCD5A2B4A18FB003C9640 /* VO2Badge.swift */,
 			);
 			path = Sweat;
 			sourceTree = "<group>";
@@ -843,7 +843,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 97;
+				CURRENT_PROJECT_VERSION = 98;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -863,7 +863,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.33;
+				MARKETING_VERSION = 2024.1.34;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -883,7 +883,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 97;
+				CURRENT_PROJECT_VERSION = 98;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -903,7 +903,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.1.33;
+				MARKETING_VERSION = 2024.1.34;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

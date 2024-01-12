@@ -12,9 +12,7 @@ struct HomeView: View {
     @Bindable var healthKitController: HealthKitController
     
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
-    @AppStorage(hasZone2Key) var hasZone2: Bool = hasZone2Default
-    @AppStorage(hasSunlightKey) var hasSunlight: Bool = hasSunlightDefault
-    
+
     @State private var tagSheetIsShowing = false
     
     @State private var stepsTodayPercent = 0.0
@@ -32,12 +30,8 @@ struct HomeView: View {
     var todayProgress: (total: Double, steps: Double, zone2: Double, rest: Double) {
         let steps = stepsTodayPercent / 100
         let zone2 = zone2TodayPercent / 100
-        let rest = if hasSunlight {
-            (((mindfulTodayPercent / 100 + sunTodayPercent / 100) / 2) * 100).rounded() / 100
-        } else {
-            sunWeekPercent / 100
-        }
-        
+        let rest = (((mindfulTodayPercent / 100 + sunTodayPercent / 100) / 2) * 100).rounded() / 100
+
         let totalSteps = steps >= 1 ?  1 : steps
         let totalZone2 = zone2 >= 1 ? 1 : zone2
         let totalRest = rest >= 1 ? 1 : rest
@@ -50,12 +44,8 @@ struct HomeView: View {
     var weekProgress: (total: Double, steps: Double, zone2: Double, rest: Double) {
         let steps = stepsWeekPercent / 100
         let zone2 = zone2WeekPercent / 100
-        let rest = if hasSunlight {
-            (((mindfulWeekPercent / 100 + sunWeekPercent / 100) / 2) * 100).rounded() / 100
-        } else {
-            sunWeekPercent / 100
-        }
-        
+        let rest = (((mindfulWeekPercent / 100 + sunWeekPercent / 100) / 2) * 100).rounded() / 100
+
         let totalSteps = steps >= 1 ?  1 : steps
         let totalZone2 = zone2 >= 1 ? 1 : zone2
         let totalRest = rest >= 1 ? 1 : rest
@@ -175,21 +165,17 @@ struct HomeView: View {
     }
     
     func refresh(hard: Bool = false) {
-        if hasZone2 {
-            healthKitController.getZone2Today(refresh: hard)
-            healthKitController.getZone2Week(refresh: hard)
-        }
-        
+        healthKitController.getZone2Today(refresh: hard)
+        healthKitController.getZone2Week(refresh: hard)
+
         healthKitController.getStepCountToday(refresh: hard)
         healthKitController.getStepCountWeek(refresh: hard)
         
         healthKitController.getMindfulMinutesToday(refresh: hard)
         healthKitController.getMindfulMinutesWeek(refresh: hard)
         
-        if hasSunlight {
-            healthKitController.getTimeInDaylightToday(refresh: hard)
-            healthKitController.getTimeInDaylightWeek(refresh: hard)
-        }
+        healthKitController.getTimeInDaylightToday(refresh: hard)
+        healthKitController.getTimeInDaylightWeek(refresh: hard)
     }
     
     func stepsPerMile() -> String {

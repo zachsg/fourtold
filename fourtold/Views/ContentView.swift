@@ -11,8 +11,6 @@ struct ContentView: View {
     @State private var tabSelected: FTTabItem = .overview
     @State private var healthKitController = HealthKitController()
     
-    @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
-    
     var body: some View {
         TabView(selection: $tabSelected) {
             HomeView(healthKitController: healthKitController)

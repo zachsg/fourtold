@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SettingsRestGroup: View {
     @AppStorage(dailyMindfulnessGoalKey) var dailyMindfulnessGoal: Int = dailyMindfulnessGoalDefault
-    @AppStorage(hasSunlightKey) var hasSunlight: Bool = hasSunlightDefault
     @AppStorage(dailySunlightGoalKey) var dailySunlightGoal: Int = dailySunlightGoalDefault
     
     var body: some View {
@@ -35,43 +34,26 @@ struct SettingsRestGroup: View {
             }
             .tint(.rest)
             
-            Group {
-                Toggle(isOn: $hasSunlight.animation()) {
-                    Label(
-                        title: {
-                            Text("Include sunlight?")
-                        },
-                        icon: {
-                            Image(systemName: sunlightSystemImage)
-                                .foregroundStyle(.rest)
+            Stepper(value: $dailySunlightGoal, in: 300...10800, step: 300) {
+                Label(
+                    title: {
+                        HStack(alignment: .firstTextBaseline, spacing: 0) {
+                            Text("Sunlight goal:")
+                            Text(dailySunlightGoal / 60, format: .number)
+                                .bold()
+                                .padding(.leading, 4)
+                            Text("min")
+                                .font(.footnote)
+                                .padding(.leading, 1)
                         }
-                    )
-                }
-                .tint(.rest)
-                
-                if hasSunlight {
-                    Stepper(value: $dailySunlightGoal, in: 300...10800, step: 300) {
-                        Label(
-                            title: {
-                                HStack(alignment: .firstTextBaseline, spacing: 0) {
-                                    Text("Sunlight goal:")
-                                    Text(dailySunlightGoal / 60, format: .number)
-                                        .bold()
-                                        .padding(.leading, 4)
-                                    Text("min")
-                                        .font(.footnote)
-                                        .padding(.leading, 1)
-                                }
-                            },
-                            icon: {
-                                Image(systemName: sunlightSystemImage)
-                                    .foregroundStyle(.rest)
-                            }
-                        )
+                    },
+                    icon: {
+                        Image(systemName: sunlightSystemImage)
+                            .foregroundStyle(.rest)
                     }
-                    .tint(.rest)
-                }
+                )
             }
+            .tint(.rest)
         } header: {
             Text("Daily \(restTitle) goals")
         }

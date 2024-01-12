@@ -57,8 +57,6 @@ let sweatTitle = "Sweat"
 let sweatSystemImage = "drop.circle"
 
 // VO2 max
-let hasVO2Key = "hasVO2"
-let hasVO2Default = true
 let vO2SystemImage = "heart"
 let vO2Units = "VO₂max"
 
@@ -66,8 +64,6 @@ let vO2Units = "VO₂max"
 let heartUnits = "bpm"
 
 // Zone 2
-let hasZone2Key = "hasZone2"
-let hasZone2Default = true
 let zone2ThresholdKey = "zone2Threshold"
 let zone2ThresholdDefault = 136
 
@@ -80,8 +76,6 @@ let restTitle = "Rest"
 let restSystemImage = "sleep.circle"
 
 // Time in Daylight
-let hasSunlightKey = "hasSunlight"
-let hasSunlightDefault = true
 let sunlightSystemImage = "sun.max"
 let sunlightTitle = "Sunlight"
 

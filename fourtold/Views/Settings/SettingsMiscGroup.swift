@@ -10,7 +10,6 @@ import SwiftUI
 struct SettingsMiscGroup: View {
     @AppStorage(userAgeKey) var userAge: Int = userAgeDefault
     @AppStorage(zone2ThresholdKey) var zone2Threshold: Int = zone2ThresholdDefault
-    @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
     
     var zone2Rec: Int {
         let max = Double(220 - userAge)
@@ -31,19 +30,6 @@ struct SettingsMiscGroup: View {
                                 .font(.footnote)
                                 .padding(.leading, 1)
                         }
-                    },
-                    icon: {
-                        Image(systemName: vO2SystemImage)
-                            .foregroundStyle(.sweat)
-                    }
-                )
-            }
-            .tint(.sweat)
-            
-            Toggle(isOn: $hasVO2.animation()) {
-                Label(
-                    title: {
-                        Text("Include cardio fitness?")
                     },
                     icon: {
                         Image(systemName: vO2SystemImage)

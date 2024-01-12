@@ -12,7 +12,6 @@ struct SweatView: View {
     @Bindable var healthKitController: HealthKitController
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
-    @AppStorage(hasVO2Key) var hasVO2: Bool = hasVO2Default
 
     @State private var tagSheetIsShowing = false
     @State private var zone2TodayPercent = 0.0
@@ -22,12 +21,10 @@ struct SweatView: View {
         NavigationStack {
             List {
                 Section("Progress") {
-                    if hasVO2 {
-                        StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat, units: vO2Units) {
-                            VO2Chart(healthKitController: healthKitController)
-                        } badge: {
-                            VO2Badge(healthKitController: healthKitController)
-                        }
+                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat, units: vO2Units) {
+                        VO2Chart(healthKitController: healthKitController)
+                    } badge: {
+                        VO2Badge(healthKitController: healthKitController)
                     }
 
                     StatRow(headerImage: vO2SystemImage, headerTitle: "Latest resting heart rate", date: healthKitController.latestRhr, stat: Double(healthKitController.rhrMostRecent), color: .sweat, units: heartUnits) {
@@ -99,6 +96,35 @@ struct SweatView: View {
 
 #Preview {
     let healthKitController = HealthKitController()
-    
+
+    let today: Date = .now
+
+    healthKitController.cardioFitnessMostRecent = 45
+    healthKitController.cardioFitnessAverage = 43
+    for i in 0...30 {
+        let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
+        if let date {
+            healthKitController.cardioFitnessByDay[date] = Double.random(in: 40...45)
+        }
+    }
+
+    healthKitController.rhrMostRecent = 60
+    healthKitController.rhrAverage = 63
+    for i in 0...30 {
+        let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
+        if let date {
+            healthKitController.rhrByDay[date] = Int.random(in: 60...70)
+        }
+    }
+
+    healthKitController.recoveryMostRecent = 32
+    healthKitController.recoveryAverage = 30
+    for i in 0...30 {
+        let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
+        if let date {
+            healthKitController.recoveryByDay[date] = Int.random(in: 28...33)
+        }
+    }
+
     return SweatView(healthKitController: healthKitController)
 }

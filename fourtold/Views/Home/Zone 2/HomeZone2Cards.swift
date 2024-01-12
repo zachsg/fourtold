@@ -8,39 +8,35 @@
 import SwiftUI
 
 struct HomeZone2Cards: View {
-    @AppStorage(hasZone2Key) var hasZone2: Bool = hasZone2Default
-    
     @Bindable var healthKitController: HealthKitController
     
     @Binding var zone2TodayPercent: Double
     @Binding var zone2WeekPercent: Double
     
     var body: some View {
-        if hasZone2 {
-            VStack {
-                Section {
-                    NavigationLink {
-                        WeekZone2DetailView(healthKitController: healthKitController)
-                    } label: {
-                        HStack {
-                            HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
-                            
-                            HomeZone2PastWeek(healthKitController: healthKitController, zone2WeekPercent: $zone2WeekPercent)
-                        }
-                    }
-                } header: {
+        VStack {
+            Section {
+                NavigationLink {
+                    WeekZone2DetailView(healthKitController: healthKitController)
+                } label: {
                     HStack {
-                        Image(systemName: vO2SystemImage)
-                        Text("Zone 2+ HR")
-                        Spacer()
-                        dateView(date: healthKitController.latestZone2)
+                        HomeZone2Today(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent)
+
+                        HomeZone2PastWeek(healthKitController: healthKitController, zone2WeekPercent: $zone2WeekPercent)
                     }
-                    .font(.headline.bold())
-                    .foregroundStyle(.sweat)
                 }
+            } header: {
+                HStack {
+                    Image(systemName: vO2SystemImage)
+                    Text("Zone 2+ HR")
+                    Spacer()
+                    dateView(date: healthKitController.latestZone2)
+                }
+                .font(.headline.bold())
+                .foregroundStyle(.sweat)
             }
-            .padding()
         }
+        .padding()
     }
     
     func dateView(date: Date) -> some View {
