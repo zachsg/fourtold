@@ -45,10 +45,12 @@ struct VO2Badge: View {
             VStack(alignment: .trailing) {
                 badgeParts.main
                     .fontWeight(.bold)
+                    .foregroundStyle(vo2Color())
                 HStack(spacing: 4) {
                     badgeParts.subJoiner
                     badgeParts.sub
                         .fontWeight(.bold)
+                        .foregroundStyle(trend == .improving ? .sweat : trend == .worsening ? .yellow : .accent)
                 }
             }
 
@@ -61,11 +63,35 @@ struct VO2Badge: View {
         .foregroundStyle(.secondary)
         .font(.caption)
     }
+
+    func vo2Color() -> Color {
+        let vO2Current = healthKitController.cardioFitnessMostRecent
+        let status = vO2Current.vO2Status()
+
+        return switch status {
+        case .veryPoor:
+                .red
+        case .poor:
+                .pink
+        case .belowAverage:
+                .orange
+        case .average:
+                .yellow
+        case .aboveAverage:
+                .accentColor
+        case .good:
+                .blue
+        case .excellent:
+                .green
+        case .unknown:
+                .gray
+        }
+    }
 }
 
 #Preview {
     let healthKitController = HealthKitController()
-    healthKitController.cardioFitnessMostRecent = 44.5
+    healthKitController.cardioFitnessMostRecent = 45
     healthKitController.cardioFitnessAverage = 44.2
     healthKitController.latestCardioFitness = .now
 

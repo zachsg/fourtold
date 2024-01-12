@@ -32,6 +32,7 @@ struct RecoveryBadge: View {
             VStack(alignment: .trailing) {
                 badgeParts
                     .fontWeight(.bold)
+                    .foregroundStyle(trend == .improving ? .sweat : trend == .worsening ? .yellow : .accent)
             }
 
             Image(systemName: progressSystemImage)
