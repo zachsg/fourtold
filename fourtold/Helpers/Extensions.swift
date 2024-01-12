@@ -197,6 +197,26 @@ extension Int {
             "N/A"
         }
     }
+
+    func rhrTrend(given average: Int) -> FTRHRTrend {
+        return if self >= average + 2 {
+            .worsening
+        } else if self <= average - 2 {
+            .improving
+        } else {
+            .stable
+        }
+    }
+
+    func recoveryTrend(given average: Int) -> FTRecoveryTrend {
+        return if self >= average + 2 {
+            .improving
+        } else if self <= average - 2 {
+            .worsening
+        } else {
+            .stable
+        }
+    }
 }
 
 extension Double {
@@ -233,7 +253,7 @@ extension Double {
         return if self >= average + 0.5 {
             .improving
         } else if self <= average - 0.5 {
-            .declining
+            .worsening
         } else {
             .stable
         }

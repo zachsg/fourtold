@@ -22,7 +22,7 @@ struct VO2Chart: View {
 
         sum /= Double(count)
 
-        return (sum * 100).rounded() / 100
+        return (sum * 10).rounded() / 10
     }
 
     var lowHigh: (low: Double, high: Double) {
@@ -52,7 +52,7 @@ struct VO2Chart: View {
                     Text("Past 60 Days (avg: ")
                     Text(averageVO2, format: .number)
                         .fontWeight(.bold)
-                    Text(" \(vO2Title)")
+                    Text(" \(vO2Units)")
                         .font(.caption)
                     Text(")")
                 }
@@ -61,7 +61,7 @@ struct VO2Chart: View {
                     ForEach(healthKitController.cardioFitnessByDay.sorted { $0.key < $1.key }, id: \.key) { date, vO2 in
                         LineMark(
                             x: .value("Day", date),
-                            y: .value(vO2Title, vO2)
+                            y: .value(vO2Units, vO2)
                         )
                         .foregroundStyle(.sweat)
                     }
@@ -72,8 +72,15 @@ struct VO2Chart: View {
                 .chartYScale(domain: lowHigh.low...lowHigh.high)
             }
             .padding()
+
+            Section {
+                Text("Your \(vO2Units) (also known as cardio fitness) is the maximum amount of oxygen your body can consume during exercise. A higher \(vO2Units) is an indicator of better cardiovascular fitness and endurance.")
+                    .foregroundStyle(.secondary)
+            }
+            .padding([.leading, .trailing, .bottom])
         }
         .navigationTitle("Cardio Fitness Trend")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

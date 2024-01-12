@@ -17,7 +17,7 @@ struct VO2Badge: View {
         return vO2Current.vO2Trend(given: vO2Average)
     }
 
-    var badgeParts: (main: Text, sub: Text, subJoiner: Text, image: Image) {
+    var badgeParts: (main: Text, sub: Text, subJoiner: Text) {
         let vO2Average = healthKitController.cardioFitnessAverage
         let vO2Current = healthKitController.cardioFitnessMostRecent
         let trend = vO2Current.vO2Trend(given: vO2Average)
@@ -26,22 +26,18 @@ struct VO2Badge: View {
 
         var sub: Text
         var subJoiner: Text
-        var image: Image
-        if trend == .declining {
+        if trend == .worsening {
             subJoiner = Text("but")
             sub = Text(trend.rawValue.capitalized)
-            image = Image(systemName: decliningSystemImage)
         } else if trend == .improving {
             subJoiner = Text("and")
             sub = Text(trend.rawValue.capitalized)
-            image = Image(systemName: improvingSystemImage)
         } else {
             subJoiner = Text("and")
             sub = Text(trend.rawValue.capitalized)
-            image = Image(systemName: stableSystemImage)
         }
 
-        return (main, sub, subJoiner, image)
+        return (main, sub, subJoiner)
     }
 
     var body: some View {
@@ -56,11 +52,11 @@ struct VO2Badge: View {
                 }
             }
 
-            badgeParts.image
+            Image(systemName: progressSystemImage)
                 .resizable()
-                .scaledToFit()
-                .frame(width: 30)
-                .foregroundStyle(trend == .improving ? .sweat : trend == .declining ? .yellow : .accent)
+                .frame(width: 30, height: 30)
+                .foregroundStyle(trend == .improving ? .sweat : trend == .worsening ? .yellow : .accent)
+                .rotationEffect(.degrees(trend == .improving ? 45 : trend == .worsening ? 135 : 90))
         }
         .foregroundStyle(.secondary)
         .font(.caption)

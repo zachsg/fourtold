@@ -34,7 +34,19 @@ class HealthKitController {
     var cardioFitnessAverage = 0.0
     var cardioFitnessByDay: [Date: Double] = [:]
     var latestCardioFitness: Date = .now
-    
+
+    // Resting heart rate
+    var rhrMostRecent = 0
+    var rhrAverage = 0
+    var rhrByDay: [Date: Int] = [:]
+    var latestRhr: Date = .now
+
+    // Cardio recovery
+    var recoveryMostRecent = 0
+    var recoveryAverage = 0
+    var recoveryByDay: [Date: Int] = [:]
+    var latestRecovery: Date = .now
+
     // Time in Daylight
     var timeInDaylightToday = 0
     var timeInDaylightWeek = 0
@@ -56,6 +68,8 @@ class HealthKitController {
         let toRead = Set([
             HKObjectType.quantityType(forIdentifier: .stepCount)!,
             HKObjectType.quantityType(forIdentifier: .heartRate)!,
+            HKObjectType.quantityType(forIdentifier: .restingHeartRate)!,
+            HKObjectType.quantityType(forIdentifier: .heartRateRecoveryOneMinute)!,
             HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
             HKObjectType.quantityType(forIdentifier: .vo2Max)!,
             HKObjectType.quantityType(forIdentifier: .timeInDaylight)!,
@@ -530,7 +544,143 @@ class HealthKitController {
         
         healthStore.execute(query)
     }
-    
+
+    // MARK: - Resting Heart Rate
+    func getRhrRecent(refresh: Bool = false) {
+        guard let quantityType = HKObjectType.quantityType(forIdentifier: .restingHeartRate) else {
+            fatalError("*** Unable to create a heart rate type ***")
+        }
+
+        let startDate = Calendar.current.startOfDay(for: .now.addingTimeInterval(-5148000))
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: .now,
+            options: .strictStartDate
+        )
+
+        let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: .none) { query, results, error in
+            guard let samples = results as? [HKQuantitySample] else {
+                return
+            }
+
+            var latest: Date = .distantPast
+            var bestSample: HKQuantitySample?
+
+            var count = 0
+            var sum = 0
+            var byDay: [Date: Int] = [:]
+
+            let heartRateUnit: HKUnit = HKUnit(from: "count/min")
+
+            let twoWeeksAgo = Calendar.current.startOfDay(for: .now.addingTimeInterval(-1209600))
+
+            for sample in samples {
+                if sample.endDate > latest {
+                    latest = sample.endDate
+                    bestSample = sample
+                }
+
+                let h = sample.quantity.doubleValue(for: heartRateUnit)
+
+                if sample.endDate < twoWeeksAgo {
+                    count += 1
+                    sum += Int(h.rounded())
+                }
+
+                if let heart = byDay[sample.endDate] {
+                    byDay[sample.endDate] = heart + Int(h.rounded())
+                } else {
+                    byDay[sample.endDate] = Int(h.rounded())
+                }
+            }
+
+            if let bestSample {
+                DispatchQueue.main.async {
+                    self.rhrMostRecent = Int(bestSample.quantity.doubleValue(for: heartRateUnit).rounded())
+                    self.rhrAverage = Int((Double(sum) / Double(count)).rounded())
+                    self.rhrByDay = byDay
+                    self.latestRhr = bestSample.endDate
+                }
+            }
+        }
+
+        if refresh {
+            rhrMostRecent = 0
+            rhrAverage = 0
+            rhrByDay = [:]
+        }
+
+        healthStore.execute(query)
+    }
+
+    // MARK: - Cardio Recovery
+    func getRecoveryRecent(refresh: Bool = false) {
+        guard let quantityType = HKObjectType.quantityType(forIdentifier: .heartRateRecoveryOneMinute) else {
+            fatalError("*** Unable to create a heart rate type ***")
+        }
+
+        let startDate = Calendar.current.startOfDay(for: .now.addingTimeInterval(-5148000))
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: .now,
+            options: .strictStartDate
+        )
+
+        let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: .none) { query, results, error in
+            guard let samples = results as? [HKQuantitySample] else {
+                return
+            }
+
+            var latest: Date = .distantPast
+            var bestSample: HKQuantitySample?
+
+            var count = 0
+            var sum = 0
+            var byDay: [Date: Int] = [:]
+
+            let heartRateUnit: HKUnit = HKUnit(from: "count/min")
+
+            let twoWeeksAgo = Calendar.current.startOfDay(for: .now.addingTimeInterval(-1209600))
+
+            for sample in samples {
+                if sample.endDate > latest {
+                    latest = sample.endDate
+                    bestSample = sample
+                }
+
+                let h = sample.quantity.doubleValue(for: heartRateUnit)
+
+                if sample.endDate < twoWeeksAgo {
+                    count += 1
+                    sum += Int(h.rounded())
+                }
+
+                if let heart = byDay[sample.endDate] {
+                    byDay[sample.endDate] = heart + Int(h.rounded())
+                } else {
+                    byDay[sample.endDate] = Int(h.rounded())
+                }
+            }
+
+            if let bestSample {
+                DispatchQueue.main.async {
+                    self.recoveryMostRecent = Int(bestSample.quantity.doubleValue(for: heartRateUnit).rounded())
+                    self.recoveryAverage = Int((Double(sum) / Double(count)).rounded())
+                    self.recoveryByDay = byDay
+                    self.latestRecovery = bestSample.endDate
+                }
+            }
+        }
+
+        if refresh {
+            recoveryMostRecent = 0
+            recoveryAverage = 0
+            recoveryByDay = [:]
+        }
+
+        healthStore.execute(query)
+    }
+
     // MARK: - Distance
     func getWalkRunDistanceToday(refresh: Bool = false) {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning) else {

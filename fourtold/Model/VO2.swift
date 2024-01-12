@@ -144,5 +144,5 @@ enum FTVO2Status: String, Codable, CaseIterable {
 }
 
 enum FTVO2Trend: String, Codable, CaseIterable {
-    case stable, improving, declining
+    case stable, improving, worsening
 }

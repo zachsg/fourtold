@@ -27,7 +27,7 @@ struct SettingsMiscGroup: View {
                             Text(zone2Threshold, format: .number)
                                 .bold()
                                 .padding(.leading, 4)
-                            Text("bpm")
+                            Text(heartUnits)
                                 .font(.footnote)
                                 .padding(.leading, 1)
                         }

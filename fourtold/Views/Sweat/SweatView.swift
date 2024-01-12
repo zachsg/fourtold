@@ -23,12 +23,23 @@ struct SweatView: View {
             List {
                 Section("Progress") {
                     if hasVO2 {
-                        StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat, units: vO2Title) {
+                        StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat, units: vO2Units) {
                             VO2Chart(healthKitController: healthKitController)
-                        }
-                        badge: {
+                        } badge: {
                             VO2Badge(healthKitController: healthKitController)
                         }
+                    }
+
+                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest resting heart rate", date: healthKitController.latestRhr, stat: Double(healthKitController.rhrMostRecent), color: .sweat, units: heartUnits) {
+                        RHRChart(healthKitController: healthKitController)
+                    } badge: {
+                        RHRBadge(healthKitController: healthKitController)
+                    }
+
+                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio recovery", date: healthKitController.latestRecovery, stat: Double(healthKitController.recoveryMostRecent), color: .sweat, units: heartUnits) {
+                        RecoveryChart(healthKitController: healthKitController)
+                    } badge: {
+                        RecoveryBadge(healthKitController: healthKitController)
                     }
                 }
 
@@ -78,31 +89,11 @@ struct SweatView: View {
     
     private func refresh(hard: Bool = false) {
         healthKitController.getCardioFitnessRecent(refresh: hard)
-        
+        healthKitController.getRhrRecent(refresh: hard)
+        healthKitController.getRecoveryRecent(refresh: hard)
+
         healthKitController.getZone2Today(refresh: hard)
         healthKitController.getZone2Week(refresh: hard)
-    }
-
-    private func vO2Trend() -> some View {
-        let vO2Average = healthKitController.cardioFitnessAverage
-        let vO2Current = healthKitController.cardioFitnessMostRecent
-        let trend = vO2Current.vO2Trend(given: vO2Average)
-
-        return HStack(spacing: 0) {
-            if trend == .declining {
-                Text(" but ")
-                Text(trend.rawValue)
-                    .fontWeight(.bold)
-            } else if trend == .improving {
-                Text(" and ")
-                Text(trend.rawValue)
-                    .fontWeight(.bold)
-            } else {
-                Text(" and staying ")
-                Text(trend.rawValue)
-                    .fontWeight(.bold)
-            }
-        }
     }
 }
 

@@ -74,7 +74,7 @@ struct StatRow<Destination: View, Badge: View>: View {
             
             HStack {
                 HStack(alignment: units != nil && goal == nil ? .firstTextBaseline : .center, spacing: 0) {
-                    Text(((stat * 100).rounded())/100, format: .number)
+                    Text(((stat * 10).rounded())/10, format: .number)
                         .font(.title.weight(.semibold))
 
 

@@ -36,7 +36,7 @@ enum FTTimeFrame: String, Codable, CaseIterable {
         case .twoWeeks:
             "2 weeks"
         case .month:
-            "month"
+            "30 days"
         case .threeMonths:
             "3 months"
         case .sixMonths:
