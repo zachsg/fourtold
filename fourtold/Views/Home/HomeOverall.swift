@@ -30,7 +30,8 @@ struct HomeOverall: View {
                 
                 Divider()
                     .foregroundStyle(.thinMaterial)
-                
+                    .padding(.horizontal)
+
                 HStack {
                     VStack(alignment: .trailing) {
                         Text("Move:")

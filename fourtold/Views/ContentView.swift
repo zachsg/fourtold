@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tabSelected: FTTabItem = .overview
+    @State private var tabSelected: FTTabItem = .summary
     @State private var healthKitController = HealthKitController()
     
     var body: some View {
         TabView(selection: $tabSelected) {
             HomeView(healthKitController: healthKitController)
                 .tabItem {
-                    Image(systemName: homeSystemImage)
-                    Text(homeTitle)
+                    Image(systemName: summarySystemImage)
+                    Text(summaryTitle)
                 }
-                .tag(FTTabItem.overview)
+                .tag(FTTabItem.summary)
             
             MoveView(healthKitController: healthKitController)
                 .tabItem {

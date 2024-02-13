@@ -82,16 +82,16 @@ struct HomeView: View {
                 VStack {
                     HomeStepsCards(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent, stepsWeekPercent: $stepsWeekPercent)
                 }
-                .padding(4)
-                .background(.regularMaterial)
+                .padding(2)
+                .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 /// Sweat
                 VStack {
                     HomeZone2Cards(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent, zone2WeekPercent: $zone2WeekPercent)
                 }
-                .padding(4)
-                .background(.regularMaterial)
+                .padding(2)
+                .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 /// Rest
@@ -100,22 +100,22 @@ struct HomeView: View {
                     
                     HomeSunlightCards(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent, sunWeekPercent: $sunWeekPercent)
                 }
-                .padding(4)
-                .background(.regularMaterial)
+                .padding(2)
+                .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 VStack {
                     TagsTodayView()
                 }
                 .padding()
-                .background(.regularMaterial)
+                .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding()
             }
             .refreshable {
                 refresh(hard: true)
             }
-            .navigationTitle(homeTitle)
+            .navigationTitle(summaryTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {

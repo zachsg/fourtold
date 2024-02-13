@@ -34,8 +34,8 @@ let dailySunlightGoalKey = "dailySunlightGoal"
 let dailySunlightGoalDefault = 1800 // 30 minutes
 
 // MARK: - Home
-let homeTitle = "Summary"
-let homeSystemImage = "house.circle"
+let summaryTitle = "Summary"
+let summarySystemImage = "house.circle"
 
 // MARK: - Move
 let moveTitle = "Move"
