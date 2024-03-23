@@ -33,27 +33,6 @@ struct SettingsRestGroup: View {
                 )
             }
             .tint(.rest)
-            
-            Stepper(value: $dailySunlightGoal, in: 300...10800, step: 300) {
-                Label(
-                    title: {
-                        HStack(alignment: .firstTextBaseline, spacing: 0) {
-                            Text("Sunlight goal:")
-                            Text(dailySunlightGoal / 60, format: .number)
-                                .bold()
-                                .padding(.leading, 4)
-                            Text("min")
-                                .font(.footnote)
-                                .padding(.leading, 1)
-                        }
-                    },
-                    icon: {
-                        Image(systemName: sunlightSystemImage)
-                            .foregroundStyle(.rest)
-                    }
-                )
-            }
-            .tint(.rest)
         } header: {
             Text("Daily \(restTitle) goals")
         }

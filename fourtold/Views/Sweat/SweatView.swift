@@ -13,7 +13,6 @@ struct SweatView: View {
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
 
-    @State private var tagSheetIsShowing = false
     @State private var zone2TodayPercent = 0.0
     @State private var zone2WeekPercent = 0.0
     
@@ -47,35 +46,18 @@ struct SweatView: View {
                         WeekZone2DetailView(healthKitController: healthKitController)
                     })
                 }
-                
-                TagsTodayView()
-                
-                TagsOldView(color: .sweat)
             }
             .navigationTitle(sweatTitle)
-            .toolbar {
-                ToolbarItem {
-                    Button(tagTitle, systemImage: tagSystemImage) {
-                        tagSheetIsShowing.toggle()
-                    }
-                    .tint(.sweat)
-                }
-            }
-            .sheet(isPresented: $tagSheetIsShowing) {
-                TagSheet(showingSheet: $tagSheetIsShowing, color: .sweat)
-                    .interactiveDismissDisabled()
-            }
             .onAppear(perform: {
                 if healthKitController.zone2Week == 0 {
-                    refresh(hard: true)
+                    refresh()
                 } else {
                     refresh()
                 }
             })
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
-                    let today = Calendar.current.isDateInToday(healthKitController.latestZone2)
-                    refresh(hard: !today)
+                    refresh()
                 }
             }
             .refreshable {
@@ -84,13 +66,13 @@ struct SweatView: View {
         }
     }
     
-    private func refresh(hard: Bool = false) {
-        healthKitController.getCardioFitnessRecent(refresh: hard)
-        healthKitController.getRhrRecent(refresh: hard)
-        healthKitController.getRecoveryRecent(refresh: hard)
+    private func refresh() {
+        healthKitController.getCardioFitnessRecent()
+        healthKitController.getRhrRecent()
+        healthKitController.getRecoveryRecent()
 
-        healthKitController.getZone2Today(refresh: hard)
-        healthKitController.getZone2Week(refresh: hard)
+        healthKitController.getZone2Today()
+        healthKitController.getZone2Week()
     }
 }
 

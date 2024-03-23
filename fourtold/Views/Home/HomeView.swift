@@ -21,16 +21,14 @@ struct HomeView: View {
     @State private var zone2WeekPercent = 0.0
     @State private var mindfulTodayPercent = 0.0
     @State private var mindfulWeekPercent = 0.0
-    @State private var sunTodayPercent = 0.0
-    @State private var sunWeekPercent = 0.0
-    
+
     @State private var showToday = false
     @State private var animationAmount = 0.0
     
     var todayProgress: (total: Double, steps: Double, zone2: Double, rest: Double) {
         let steps = stepsTodayPercent / 100
         let zone2 = zone2TodayPercent / 100
-        let rest = (((mindfulTodayPercent / 100 + sunTodayPercent / 100) / 2) * 100).rounded() / 100
+        let rest = ((mindfulTodayPercent / 100) * 100).rounded() / 100
 
         let totalSteps = steps >= 1 ?  1 : steps
         let totalZone2 = zone2 >= 1 ? 1 : zone2
@@ -44,7 +42,7 @@ struct HomeView: View {
     var weekProgress: (total: Double, steps: Double, zone2: Double, rest: Double) {
         let steps = stepsWeekPercent / 100
         let zone2 = zone2WeekPercent / 100
-        let rest = (((mindfulWeekPercent / 100 + sunWeekPercent / 100) / 2) * 100).rounded() / 100
+        let rest = ((mindfulWeekPercent / 100) * 100).rounded() / 100
 
         let totalSteps = steps >= 1 ?  1 : steps
         let totalZone2 = zone2 >= 1 ? 1 : zone2
@@ -97,23 +95,13 @@ struct HomeView: View {
                 /// Rest
                 VStack {
                     HomeMindfulnessCards(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent, mindfulWeekPercent: $mindfulWeekPercent)
-                    
-                    HomeSunlightCards(healthKitController: healthKitController, sunTodayPercent: $sunTodayPercent, sunWeekPercent: $sunWeekPercent)
                 }
                 .padding(2)
                 .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                
-                VStack {
-                    TagsTodayView()
-                }
-                .padding()
-                .background(.thinMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding()
             }
             .refreshable {
-                refresh(hard: true)
+                refresh()
             }
             .navigationTitle(summaryTitle)
             .navigationBarTitleDisplayMode(.inline)
@@ -125,12 +113,6 @@ struct HomeView: View {
                         Label(settingsTitle, systemImage: settingsSystemImage)
                     }
                 }
-                
-                ToolbarItem {
-                    Button(tagTitle, systemImage: tagSystemImage) {
-                        tagSheetIsShowing.toggle()
-                    }
-                }
             }
             .sheet(isPresented: $tagSheetIsShowing) {
                 TagSheet(showingSheet: $tagSheetIsShowing, color: .accent)
@@ -138,8 +120,7 @@ struct HomeView: View {
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
-                    let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
-                    refresh(hard: !today)
+                    refresh()
                 }
             }
         }
@@ -164,18 +145,15 @@ struct HomeView: View {
         .foregroundStyle(.secondary)
     }
     
-    func refresh(hard: Bool = false) {
-        healthKitController.getZone2Today(refresh: hard)
-        healthKitController.getZone2Week(refresh: hard)
+    func refresh() {
+        healthKitController.getZone2Today()
+        healthKitController.getZone2Week()
 
-        healthKitController.getStepCountToday(refresh: hard)
-        healthKitController.getStepCountWeek(refresh: hard)
+        healthKitController.getStepCountToday()
+        healthKitController.getStepCountWeek()
         
-        healthKitController.getMindfulMinutesToday(refresh: hard)
-        healthKitController.getMindfulMinutesWeek(refresh: hard)
-        
-        healthKitController.getTimeInDaylightToday(refresh: hard)
-        healthKitController.getTimeInDaylightWeek(refresh: hard)
+        healthKitController.getMindfulMinutesToday()
+        healthKitController.getMindfulMinutesWeek()
     }
     
     func stepsPerMile() -> String {
@@ -203,8 +181,6 @@ struct HomeView: View {
     healthKitController.mindfulMinutesWeek = 60
     healthKitController.zone2Today = 15
     healthKitController.zone2Week = 75
-    healthKitController.timeInDaylightToday = 30
-    healthKitController.timeInDaylightWeek = 75
     
     let today: Date = .now
     for i in 0...6 {

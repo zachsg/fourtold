@@ -75,10 +75,6 @@ let buildSystemImage = "scalemass.fill"
 let restTitle = "Rest"
 let restSystemImage = "sleep.circle"
 
-// Time in Daylight
-let sunlightSystemImage = "sun.max"
-let sunlightTitle = "Sunlight"
-
 // Breath
 let breathTitle = "Breath"
 let breathSystemImage = "lungs"

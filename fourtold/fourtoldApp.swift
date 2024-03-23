@@ -13,7 +13,7 @@ struct fourtoldApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self])
+                .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
         }
     }
 }

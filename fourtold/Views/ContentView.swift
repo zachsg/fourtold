@@ -5,6 +5,7 @@
 //  Created by Zach Gottlieb on 12/2/23.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
@@ -73,4 +74,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }

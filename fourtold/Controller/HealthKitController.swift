@@ -46,12 +46,6 @@ class HealthKitController {
     var recoveryAverage = 0
     var recoveryByDay: [Date: Int] = [:]
     var latestRecovery: Date = .now
-
-    // Time in Daylight
-    var timeInDaylightToday = 0
-    var timeInDaylightWeek = 0
-    var timeInDaylightWeekByDay: [Date: Int] = [:]
-    var latestTimeInDaylight: Date = .now
     
     // Mindful Minutes
     var mindfulMinutesToday = 0
@@ -72,7 +66,6 @@ class HealthKitController {
             HKObjectType.quantityType(forIdentifier: .heartRateRecoveryOneMinute)!,
             HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
             HKObjectType.quantityType(forIdentifier: .vo2Max)!,
-            HKObjectType.quantityType(forIdentifier: .timeInDaylight)!,
             HKObjectType.categoryType(forIdentifier: .mindfulSession)!
         ])
         let toShare = Set([
@@ -94,7 +87,7 @@ class HealthKitController {
     }
     
     // MARK: - Steps
-    func getStepCountToday(refresh: Bool = false) {
+    func getStepCountToday() {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
             fatalError("*** Unable to create a step count type ***")
         }
@@ -124,14 +117,10 @@ class HealthKitController {
             }
         }
         
-        if refresh {
-            stepCountToday = 0
-        }
-        
         healthStore.execute(query)
     }
     
-    func getStepCountWeek(refresh: Bool = false) {
+    func getStepCountWeek() {
         let calendar = Calendar.current
         
         // Set the anchor for 3 a.m. 6 days ago.
@@ -181,10 +170,6 @@ class HealthKitController {
             DispatchQueue.main.async {
                 self.stepCountWeek = steps
             }
-        }
-        
-        if refresh {
-            stepCountWeek = 0
         }
         
         healthStore.execute(query)
@@ -313,7 +298,7 @@ class HealthKitController {
     }
     
     // MARK: - Zone 2
-    func getZone2Today(refresh: Bool = false) {
+    func getZone2Today() {
         @AppStorage(zone2ThresholdKey) var zone2Threshold: Int = zone2ThresholdDefault
         
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .heartRate) else {
@@ -363,14 +348,10 @@ class HealthKitController {
             }
         })
         
-        if refresh {
-            zone2Today = 0
-        }
-        
         healthStore.execute(query)
     }
     
-    func getZone2Week(refresh: Bool = false) {
+    func getZone2Week() {
         @AppStorage(zone2ThresholdKey) var zone2Threshold: Int = zone2ThresholdDefault
         
         let calendar = Calendar.current
@@ -442,10 +423,6 @@ class HealthKitController {
                 self.latestZone2 = latest
             }
         })
-        
-        if refresh {
-            zone2Week = 0
-        }
         
         healthStore.execute(query)
     }
@@ -546,7 +523,7 @@ class HealthKitController {
     }
 
     // MARK: - Resting Heart Rate
-    func getRhrRecent(refresh: Bool = false) {
+    func getRhrRecent() {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .restingHeartRate) else {
             fatalError("*** Unable to create a heart rate type ***")
         }
@@ -604,17 +581,11 @@ class HealthKitController {
             }
         }
 
-        if refresh {
-            rhrMostRecent = 0
-            rhrAverage = 0
-            rhrByDay = [:]
-        }
-
         healthStore.execute(query)
     }
 
     // MARK: - Cardio Recovery
-    func getRecoveryRecent(refresh: Bool = false) {
+    func getRecoveryRecent() {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .heartRateRecoveryOneMinute) else {
             fatalError("*** Unable to create a heart rate type ***")
         }
@@ -672,17 +643,11 @@ class HealthKitController {
             }
         }
 
-        if refresh {
-            recoveryMostRecent = 0
-            recoveryAverage = 0
-            recoveryByDay = [:]
-        }
-
         healthStore.execute(query)
     }
 
     // MARK: - Distance
-    func getWalkRunDistanceToday(refresh: Bool = false) {
+    func getWalkRunDistanceToday() {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning) else {
             fatalError("*** Unable to create a distance type ***")
         }
@@ -716,15 +681,11 @@ class HealthKitController {
             }
         }
         
-        if refresh {
-            walkRunDistanceToday = 0
-        }
-        
         healthStore.execute(query)
     }
     
     // MARK: - Cardio Fitness
-    func getCardioFitnessRecent(refresh: Bool = false) {
+    func getCardioFitnessRecent() {
         guard let quantityType = HKObjectType.quantityType(forIdentifier: .vo2Max) else {
             fatalError("*** Unable to create a vo2max type ***")
         }
@@ -783,253 +744,11 @@ class HealthKitController {
             }
         }
         
-        if refresh {
-            cardioFitnessMostRecent = 0.0
-        }
-        
-        healthStore.execute(query)
-    }
-    
-    // MARK: - Time in Daylight
-    func getTimeInDaylightToday(refresh: Bool = false) {
-        guard let sampleType = HKObjectType.quantityType(forIdentifier: .timeInDaylight) else {
-            fatalError("*** Unable to create a step count type ***")
-        }
-        
-        let startDate = Calendar.current.startOfDay(for: .now)
-        let predicate = HKQuery.predicateForSamples(
-            withStart: startDate,
-            end: .now,
-            options: .strictStartDate
-        )
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
-        
-        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { query, samples, error in
-            guard let samples else {
-                if let error {
-                    print(error.localizedDescription)
-                }
-                return
-            }
-            
-            var total = 0
-            var latest: Date = .distantPast
-            for sample in samples {
-                guard let hksample = sample as? HKQuantitySample else { return }
-                let minutes = hksample.quantity.doubleValue(for: HKUnit.minute())
-                
-                total += Int(minutes)
-                
-                if sample.endDate > latest {
-                    latest = sample.endDate
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.timeInDaylightToday = total
-                self.latestTimeInDaylight = latest
-            }
-        }
-        
-        if refresh {
-            timeInDaylightToday = 0
-        }
-        
-        healthStore.execute(query)
-    }
-    
-    func getTimeInDaylightWeek(refresh: Bool = false) {
-        guard let sampleType = HKObjectType.quantityType(forIdentifier: .timeInDaylight) else {
-            fatalError("*** Unable to create a step count type ***")
-        }
-        
-        let calendar = Calendar.current
-        
-        // Set the anchor for 3 a.m. 6 days ago.
-        let todayNumber = calendar.component(.weekday, from: .now)
-        let sixDaysAgo = todayNumber == 7 ? 1 : todayNumber + 1
-        let components = DateComponents(
-            calendar: calendar,
-            timeZone: calendar.timeZone,
-            hour: 3,
-            minute: 0,
-            second: 0,
-            weekday: sixDaysAgo
-        )
-        
-        guard let anchorDate = calendar.nextDate(
-            after: .now,
-            matching: components,
-            matchingPolicy: .nextTime,
-            repeatedTimePolicy: .first,
-            direction: .backward
-        ) else {
-            fatalError("*** unable to find the previous Monday. ***")
-        }
-        
-        let predicate = HKQuery.predicateForSamples(
-            withStart: anchorDate,
-            end: .now,
-            options: .strictStartDate
-        )
-        
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
-        
-        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { query, samples, error in
-            guard let samples else {
-                if let error {
-                    print(error.localizedDescription)
-                }
-                return
-            }
-            
-            var total = 0
-            var latest: Date = .distantPast
-            for sample in samples {
-                guard let hksample = sample as? HKQuantitySample else { return }
-                let minutes = hksample.quantity.doubleValue(for: HKUnit.minute())
-                
-                total += Int(minutes)
-                
-                if sample.endDate > latest {
-                    latest = sample.endDate
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.timeInDaylightWeek = total
-                self.latestTimeInDaylight = latest
-            }
-        }
-        
-        if refresh {
-            timeInDaylightWeek = 0
-        }
-        
-        healthStore.execute(query)
-    }
-    
-    func getTimeInDaylightWeekByDay(refresh: Bool = false) {
-        let calendar = Calendar.current
-        
-        // Create a 1-week interval.
-        let interval = DateComponents(day: 1)
-        
-        // Set the anchor for 3 a.m. 6 days ago.
-        let todayNumber = calendar.component(.weekday, from: .now)
-        let sixDaysAgo = todayNumber == 7 ? 1 : todayNumber + 1
-        let components = DateComponents(
-            calendar: calendar,
-            timeZone: calendar.timeZone,
-            hour: 3,
-            minute: 0,
-            second: 0,
-            weekday: sixDaysAgo
-        )
-        
-        guard let anchorDate = calendar.nextDate(
-            after: Date(),
-            matching: components,
-            matchingPolicy: .nextTime,
-            repeatedTimePolicy: .first,
-            direction: .backward
-        ) else {
-            fatalError("*** unable to find the previous Monday. ***")
-        }
-        
-        guard let quantityType = HKObjectType.quantityType(forIdentifier: .timeInDaylight) else {
-            fatalError("*** Unable to create a step count type ***")
-        }
-        
-        // Create the query.
-        let query = HKStatisticsCollectionQuery(
-            quantityType: quantityType,
-            quantitySamplePredicate: nil,
-            options: .cumulativeSum,
-            anchorDate: anchorDate,
-            intervalComponents: interval
-        )
-        
-        // Set the results handler.
-        query.initialResultsHandler = { query, results, error in
-            // Handle errors here.
-            if let error = error as? HKError {
-                switch (error.code) {
-                case .errorDatabaseInaccessible:
-                    // HealthKit couldn't access the database because the device is locked.
-                    return
-                default:
-                    // Handle other HealthKit errors here.
-                    return
-                }
-            }
-            
-            guard let statsCollection = results else {
-                // You should only hit this case if you have an unhandled error. Check for bugs
-                // in your code that creates the query, or explicitly handle the error.
-                assertionFailure("")
-                return
-            }
-            
-            let endDate = Date()
-            let oneWeekAgo = DateComponents(day: -6)
-            
-            guard let startDate = calendar.date(byAdding: oneWeekAgo, to: endDate) else {
-                fatalError("*** Unable to calculate the start date ***")
-            }
-            
-            // Enumerate over all the statistics objects between the start and end dates.
-            var timeInDaylightWeekByDayTemp: [Date: Int] = [:]
-            statsCollection.enumerateStatistics(from: startDate, to: endDate)
-            { (statistics, stop) in
-                if let quantity = statistics.sumQuantity() {
-                    let date = statistics.startDate
-                    let value = quantity.doubleValue(for: .minute())
-                    
-                    timeInDaylightWeekByDayTemp[date] = Int(value)
-                }
-            }
-            
-            DispatchQueue.main.async {
-                self.timeInDaylightWeekByDay = timeInDaylightWeekByDayTemp
-            }
-        }
-        
-//        query.statisticsUpdateHandler = { query, statistics, collection, error in
-//            guard let collection else {
-//                print("no collection found")
-//                return
-//            }
-//            
-//            let endDate = Date()
-//            let oneWeekAgo = DateComponents(day: -6)
-//            guard let startDate = calendar.date(byAdding: oneWeekAgo, to: endDate) else {
-//                fatalError("*** Unable to calculate the start date ***")
-//            }
-//            
-//            collection.enumerateStatistics(from: startDate, to: Date()){ (statistics, stop) in
-//                if let quantity = statistics.sumQuantity() {
-//                    let date = statistics.startDate
-//                    let value = quantity.doubleValue(for: .minute())
-//                    
-//                    self.timeInDaylightWeekByDay[date] = Int(value)
-//                }
-//                
-//                DispatchQueue.main.async {
-//                    // Update UI
-//                }
-//            }
-//        }
-        
-        if refresh {
-            timeInDaylightWeekByDay = [:]
-        }
-        
         healthStore.execute(query)
     }
     
     // MARK: - Mindful Minutes
-    func getMindfulMinutesToday(refresh: Bool = false) {
+    func getMindfulMinutesToday() {
         guard let sampleType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
             fatalError("*** Unable to create a step count type ***")
         }
@@ -1065,15 +784,11 @@ class HealthKitController {
                 self.latestMindfulMinutes = latest
             }
         }
-        
-        if refresh {
-            mindfulMinutesToday = 0
-        }
-        
+
         healthStore.execute(query)
     }
     
-    func getMindfulMinutesWeek(refresh: Bool = false) {
+    func getMindfulMinutesWeek() {
         guard let sampleType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
             fatalError("*** Unable to create a step count type ***")
         }
@@ -1133,11 +848,7 @@ class HealthKitController {
                 self.latestMindfulMinutes = latest
             }
         }
-        
-        if refresh {
-            mindfulMinutesWeek = 0
-        }
-        
+
         healthStore.execute(query)
     }
     

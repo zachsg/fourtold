@@ -68,5 +68,5 @@ struct RestOldActivities: View {
 
 #Preview {
     RestOldActivities(showOldActivities: .constant(true))
-        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self])
+        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }

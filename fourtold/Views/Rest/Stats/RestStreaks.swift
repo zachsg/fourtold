@@ -129,4 +129,5 @@ struct RestStreaks: View {
 
 #Preview {
     return RestStreaks()
+        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }

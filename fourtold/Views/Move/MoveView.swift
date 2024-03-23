@@ -13,8 +13,6 @@ struct MoveView: View {
     
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
-    @State private var tagSheetIsShowing = false
-    
     var bestStepsDay: (day: Date, steps: Int) {
         var bestDay: Date = .now
         var bestSteps = 0
@@ -51,35 +49,14 @@ struct MoveView: View {
                         }
                     }
                 }
-                
-                TagsTodayView()
-                
-                TagsOldView(color: .move)
             }
             .navigationTitle(moveTitle)
-            .toolbar {
-                ToolbarItem {
-                    Button(tagTitle, systemImage: tagSystemImage) {
-                        tagSheetIsShowing.toggle()
-                    }
-                    .tint(.move)
-                }
-            }
-            .sheet(isPresented: $tagSheetIsShowing) {
-                TagSheet(showingSheet: $tagSheetIsShowing, color: .move)
-                    .interactiveDismissDisabled()
-            }
             .onAppear(perform: {
-                if healthKitController.stepCountWeek == 0 {
-                    refresh(hard: true)
-                } else {
-                    refresh()
-                }
+                refresh()
             })
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
-                    let today = Calendar.current.isDateInToday(healthKitController.latestSteps)
-                    refresh(hard: !today)
+                    refresh()
                 }
             }
             .refreshable {
@@ -88,11 +65,11 @@ struct MoveView: View {
         }
     }
     
-    func refresh(hard: Bool = false) {
-        healthKitController.getStepCountToday(refresh: hard)
-        healthKitController.getStepCountWeek(refresh: hard)
+    func refresh() {
+        healthKitController.getStepCountToday()
+        healthKitController.getStepCountWeek()
         
-        healthKitController.getWalkRunDistanceToday(refresh: hard)
+        healthKitController.getWalkRunDistanceToday()
     }
 }
 

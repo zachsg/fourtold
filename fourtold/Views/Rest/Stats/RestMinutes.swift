@@ -133,4 +133,5 @@ struct RestMinutes: View {
 
 #Preview {
     RestMinutes()
+        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }

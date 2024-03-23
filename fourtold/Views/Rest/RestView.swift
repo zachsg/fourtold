@@ -5,6 +5,7 @@
 //  Created by Zach Gottlieb on 12/6/23.
 //
 
+import SwiftData
 import SwiftUI
 
 struct RestView: View {
@@ -16,7 +17,6 @@ struct RestView: View {
     @State private var breathworkSheetIsShowing = false
     @State private var journalSheetIsShowing = false
     @State private var readSheetIsShowing = false
-    @State private var tagSheetIsShowing = false
     @State private var lastDate: Date = .now
     @State private var showOldActivities = false
     
@@ -30,13 +30,9 @@ struct RestView: View {
                     } header: {
                         Text("Stats")
                     }
-                    
-                    TagsTodayView()
-                    
+
                     RestTodayActivities()
-                    
-                    TagsOldView(color: .rest)
-                    
+
                     RestOldActivities(showOldActivities: $showOldActivities)
                     
                     Section {
@@ -69,11 +65,6 @@ struct RestView: View {
                         meditateSheetIsShowing.toggle()
                     }
                     .tint(.rest)
-                    
-                    Button(tagTitle, systemImage: tagSystemImage) {
-                        tagSheetIsShowing.toggle()
-                    }
-                    .tint(.rest)
                 }
             }
             .sheet(isPresented: $readSheetIsShowing) {
@@ -91,10 +82,6 @@ struct RestView: View {
                 MeditationsSheet(healthKitController: healthKitController, showingSheet: $meditateSheetIsShowing)
                     .interactiveDismissDisabled()
             }
-            .sheet(isPresented: $tagSheetIsShowing) {
-                TagSheet(showingSheet: $tagSheetIsShowing, color: .rest)
-                    .interactiveDismissDisabled()
-            }
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
                     if !Calendar.current.isDateInToday(lastDate) {
@@ -110,4 +97,5 @@ struct RestView: View {
 
 #Preview {
     RestView(healthKitController: HealthKitController())
+        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }
