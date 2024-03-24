@@ -20,7 +20,7 @@ struct VO2Chart: View {
             count += 1
         }
 
-        sum /= Double(count)
+        sum /= Double(count > 0 ? count : 1)
 
         return (sum * 10).rounded() / 10
     }
@@ -42,7 +42,11 @@ struct VO2Chart: View {
         low -= 1
         high += 1
 
-        return (low, high)
+        if low > high {
+            return (0, 0)
+        } else {
+            return (low, high)
+        }
     }
 
     var body: some View {

@@ -20,7 +20,7 @@ struct RecoveryChart: View {
             count += 1
         }
 
-        let average = Double(sum) / Double(count)
+        let average = Double(sum) / Double(count > 0 ? count : 1)
 
         return Int((average * 100).rounded() / 100)
     }
@@ -42,7 +42,11 @@ struct RecoveryChart: View {
         low -= 2
         high += 2
 
-        return (low, high)
+        if low > high {
+            return (0, 0)
+        } else {
+            return (low, high)
+        }
     }
 
     var body: some View {

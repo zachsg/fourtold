@@ -344,7 +344,10 @@ class HealthKitController {
             
             DispatchQueue.main.async {
                 self.zone2Today = Int((total / 60).rounded())
-                self.latestZone2 = latest
+                
+                if latest != .distantPast {
+                    self.latestZone2 = latest
+                }
             }
         })
         
@@ -420,7 +423,10 @@ class HealthKitController {
             
             DispatchQueue.main.async {
                 self.zone2Week = Int((total / 60).rounded())
-                self.latestZone2 = latest
+
+                if latest != .distantPast {
+                    self.latestZone2 = latest
+                }
             }
         })
         

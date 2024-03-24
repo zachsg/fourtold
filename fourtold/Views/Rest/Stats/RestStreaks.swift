@@ -77,7 +77,7 @@ struct RestStreaks: View {
             .font(.footnote.bold())
             
             ScrollView(.horizontal) {
-                if doesMeditate || doesRead {
+                if doesMeditate || doesRead || doesBreathe {
                     HStack {
                         ForEach(streaks, id: \.self) { streak in
                             RestStreakItem(label: streak.label, streak: streak.days)
