@@ -47,7 +47,6 @@ struct TagDetails: View {
                     }
 
                     if let tag {
-                        print(tag.title)
                         modelContext.delete(tag)
                     }
                 }
