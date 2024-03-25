@@ -46,7 +46,14 @@ struct TagDetails: View {
                         t.id == tagStat.id
                     }
 
+                    for t in tags {
+                        print("\(t.id): \(t.title)")
+                    }
+
+                    print(tagStat.id)
+
                     if let tag {
+                        print(tag.title)
                         modelContext.delete(tag)
                     }
                 }

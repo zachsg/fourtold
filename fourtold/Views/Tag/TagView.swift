@@ -22,18 +22,21 @@ struct TagView: View {
         let uniqueTagTitles = Set(tags.map { $0.title })
         
         for tagTitle in uniqueTagTitles {
+            var id = UUID()
             var count = 0
             var mostRecent: Date = .distantPast
             var title = ""
             var uses: [FTTagSubStats] = []
             
             for t in tags {
+                id = t.id
+
                 if t.title == tagTitle {
                     if title.isEmpty {
                         title = t.title
                     }
                     
-                    let dateAndTimeOfDay = FTTagSubStats(date: t.date, timeOfDay: t.timeOfDay, mood: t.mood)
+                    let dateAndTimeOfDay = FTTagSubStats(id: id, date: t.date, timeOfDay: t.timeOfDay, mood: t.mood)
                     uses.append(dateAndTimeOfDay)
                     
                     count += 1
