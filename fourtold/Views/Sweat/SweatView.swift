@@ -49,11 +49,7 @@ struct SweatView: View {
             }
             .navigationTitle(sweatTitle)
             .onAppear(perform: {
-                if healthKitController.zone2Week == 0 {
-                    refresh()
-                } else {
-                    refresh()
-                }
+                refresh()
             })
             .onChange(of: scenePhase) { oldPhase, newPhase in
                 if newPhase == .active {
@@ -73,6 +69,7 @@ struct SweatView: View {
 
         healthKitController.getZone2Today()
         healthKitController.getZone2Week()
+        healthKitController.getZone2Recent()
     }
 }
 

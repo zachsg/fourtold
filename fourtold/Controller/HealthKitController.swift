@@ -23,8 +23,9 @@ class HealthKitController {
     var zone2Today = 0
     var zone2Week = 0
     var zone2WeekByDay: [Date: Int] = [:]
+    var zone2ByDay: [Date: Int] = [:]
     var latestZone2: Date = .now
-    
+
     // Walk/run distance
     var walkRunDistanceToday = 0.0
     var latestWalkRunDistance: Date = .now
@@ -344,7 +345,7 @@ class HealthKitController {
             
             DispatchQueue.main.async {
                 self.zone2Today = Int((total / 60).rounded())
-                
+
                 if latest != .distantPast {
                     self.latestZone2 = latest
                 }
@@ -525,6 +526,76 @@ class HealthKitController {
             zone2WeekByDay = [:]
         }
         
+        healthStore.execute(query)
+    }
+
+    func getZone2Recent() {
+        @AppStorage(zone2ThresholdKey) var zone2Threshold: Int = zone2ThresholdDefault
+
+        guard let quantityType = HKObjectType.quantityType(forIdentifier: .heartRate) else {
+            fatalError("*** Unable to create a heart rate type ***")
+        }
+
+        let heartRateUnit:HKUnit = HKUnit(from: "count/min")
+
+        let sortDescriptors = [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)]
+
+        let calendar = Calendar.current
+
+        let startDate = calendar.startOfDay(for: .now.addingTimeInterval(-5148000))
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: .now,
+            options: .strictStartDate
+        )
+
+        let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: sortDescriptors, resultsHandler: { (query, results, error) in
+            guard error == nil else {
+                print("error")
+                return
+            }
+
+            var latest: Date = .distantPast
+            var usedComponents: [DateComponents] = []
+
+            var zone2ByDayTemp: [Date: Int] = [:]
+            for (_, sample) in results!.enumerated() {
+                guard let currData:HKQuantitySample = sample as? HKQuantitySample else { return }
+
+                let heartRate = currData.quantity.doubleValue(for: heartRateUnit)
+                if heartRate >= Double(zone2Threshold) {
+                    let components = sample.startDate.get(.minute, .hour, .day)
+                    if !usedComponents.contains(components) {
+                        usedComponents.append(components)
+                        let date = calendar.startOfDay(for: sample.startDate)
+                        let value = zone2ByDayTemp[date] ?? 0
+                        zone2ByDayTemp[date] = value + 60
+                    }
+
+                    if sample.endDate > latest {
+                        latest = sample.endDate
+                    }
+                }
+            }
+
+            var checking: Date = calendar.startOfDay(for: .now)
+            let dayInSeconds: TimeInterval = 86400
+            for _ in 1...60 {
+                if zone2ByDayTemp[checking] != nil {
+                    let value = zone2ByDayTemp[checking] ?? 0
+                    zone2ByDayTemp[checking] = Int((Double(value) / 60).rounded())
+                } else {
+                    zone2ByDayTemp[checking] = 0
+                }
+                checking = checking.addingTimeInterval(-dayInSeconds)
+            }
+
+            DispatchQueue.main.async {
+                self.latestZone2 = latest
+                self.zone2ByDay = zone2ByDayTemp
+            }
+        })
+
         healthStore.execute(query)
     }
 
