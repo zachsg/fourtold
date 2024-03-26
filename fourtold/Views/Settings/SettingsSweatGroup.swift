@@ -9,9 +9,10 @@ import SwiftUI
 
 struct SettingsSweatGroup: View {
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
-    
+    @AppStorage(zone2ThresholdKey) var zone2Threshold: Int = zone2ThresholdDefault
+
     var body: some View {
-        Section("Daily \(sweatTitle) goals") {
+        Section {
             Stepper(value: $dailyZone2Goal, in: 60...7200, step: 60) {
                 Label(
                     title: {
@@ -32,6 +33,10 @@ struct SettingsSweatGroup: View {
                 )
             }
             .tint(.sweat)
+        } header: {
+            Text("Daily \(sweatTitle) goals")
+        } footer: {
+            Text("Contributors: Any time spent with your heart rate at or above \(zone2Threshold) \(heartUnits).")
         }
     }
 }

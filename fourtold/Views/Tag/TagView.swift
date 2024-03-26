@@ -75,31 +75,27 @@ struct TagView: View {
         NavigationStack {
             List {
                 ForEach(tagStats) { stat in
-                    DisclosureGroup(
-                        content: {
-                            TagDetails(allUses: stat.uses)
-                        },
-                        label: {
+                    NavigationLink {
+                        TagDetails(title: stat.title, allUses: stat.uses)
+                    } label: {
+                        HStack {
+                            Image(systemName: "\(stat.count).circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24)
+
                             HStack {
-                                Image(systemName: "\(stat.count).circle")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24)
-                                
-                                HStack {
-                                    Text(stat.title)
-                                        .font(.headline)
-                                    
-                                    Spacer()
-                                    
-                                    Text(stat.usedMostRecent, format: stat.usedMostRecent.dateFormat())
-                                        .font(.footnote)
-                                        .foregroundStyle(.secondary)
-                                }
+                                Text(stat.title)
+                                    .font(.headline)
+
+                                Spacer()
+
+                                Text(stat.usedMostRecent, format: stat.usedMostRecent.dateFormat())
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
                             }
                         }
-                    )
-                    .tint(.tag)
+                    }
                 }
             }
             .navigationTitle("\(tagTitle) Stats")

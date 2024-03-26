@@ -35,6 +35,8 @@ struct SettingsRestGroup: View {
             .tint(.rest)
         } header: {
             Text("Daily \(restTitle) goals")
+        } footer: {
+            Text("Contributors: Meditation and breathwork minutes.")
         }
     }
 }

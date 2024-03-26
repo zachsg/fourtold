@@ -121,7 +121,7 @@ struct VO2Chart: View {
                             x: .value("Day", date),
                             y: .value(heartUnits, zone2)
                         )
-                        .foregroundStyle(.secondary.opacity(0.5))
+                        .foregroundStyle(.sweat)
                     }
 
                     RuleMark(y: .value("Average", averageZone2))
@@ -151,14 +151,14 @@ struct VO2Chart: View {
     healthKitController.cardioFitnessAverage = 43
 
     let today: Date = .now
-    for i in 0...30 {
+    for i in 0...60 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
             healthKitController.cardioFitnessByDay[date] = Double.random(in: 40...45)
         }
     }
 
-    for i in 0...30 {
+    for i in 0...60 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
             healthKitController.zone2ByDay[date] = Int.random(in: 0...50)

@@ -12,57 +12,57 @@ struct TagDetails: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTTag.date, order: .reverse) var tags: [FTTag]
 
+    var title: String
     var allUses: [FTTagSubStats]
     
     var body: some View {
-        List {
-            Text("All uses")
-                .font(.subheadline.bold())
-                .foregroundStyle(.tag)
-                .padding(.bottom, 8)
+        NavigationStack {
+            List {
+                ForEach(allUses) { use in
+                    HStack {
+                        Image(systemName: use.timeOfDay.systemImage())
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24)
 
-            ForEach(allUses) { use in
-                HStack {
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 6)
-                        .foregroundStyle(.tag)
+                        Text(use.date, format: use.date.dateFormat())
+                            .font(.subheadline)
+                            .padding(.trailing, 8)
 
-                    Text(use.date, format: use.date.dateFormat())
-                        .font(.subheadline)
+                        Image(systemName: "arrow.triangle.merge")
+                            .resizable()
+                            .scaledToFit()
+                            .rotationEffect(.degrees(90))
+                            .frame(width: 12)
+                            .foregroundStyle(.tag)
+                            .padding(.trailing, 4)
 
-                    Image(systemName: use.timeOfDay.systemImage())
-
-                    Text(use.mood.rawValue.capitalized)
-                        .font(.subheadline.italic())
-                        .foregroundStyle(.secondary)
+                        HStack(spacing: 0) {
+                            Text(use.mood.emoji())
+                                .padding(.trailing, 4)
+                            Text(use.mood.rawValue.capitalized)
+                                .font(.caption)
+                                .foregroundStyle(use.mood.color())
+                        }
+                    }
                 }
+                .onDelete(perform: { indexSet in
+                    for index in indexSet {
+                        let tagStat = allUses[index]
+                        let tag = tags.first { t in
+                            t.id == tagStat.id
+                        }
+
+                        if let tag {
+                            modelContext.delete(tag)
+                        }
+                    }
+                })
             }
-            .onDelete(perform: { indexSet in
-                for index in indexSet {
-                    let tagStat = allUses[index]
-                    let tag = tags.first { t in
-                        t.id == tagStat.id
-                    }
-
-                    if let tag {
-                        modelContext.delete(tag)
-                    }
-                }
-            })
-        }
-        .listStyle(.plain)
-        .frame(height: listHeight)
-    }
-
-    private var listHeight: CGFloat {
-        return if allUses.isEmpty {
-            0
-        } else if allUses.count < 6 {
-            CGFloat(allUses.count * 50 + 30)
-        } else {
-            302
+            .navigationTitle("#\(title)")
+            .toolbar {
+                EditButton()
+            }
         }
     }
 }
@@ -72,13 +72,12 @@ struct TagDetails: View {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try ModelContainer(for: FTTag.self, configurations: config)
         
-        return TagDetails(allUses: [
-            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .pleasant),
-            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .pleasant),
-            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .pleasant),
-            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .pleasant),
-            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .pleasant),
-            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .pleasant),
+        return TagDetails(title: "Sauna", allUses: [
+            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .unpleasant),
+            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .slightlyPleasant),
+            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .neutral),
+            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .slightlyUnpleasant),
+            FTTagSubStats(date: .now, timeOfDay: .evening, mood: .veryPleasant),
         ])
             .modelContainer(container)
     } catch {

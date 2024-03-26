@@ -87,6 +87,13 @@ struct SweatView: View {
         }
     }
 
+    for i in 0...30 {
+        let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
+        if let date {
+            healthKitController.zone2ByDay[date] = Int.random(in: 0...45)
+        }
+    }
+
     healthKitController.rhrMostRecent = 60
     healthKitController.rhrAverage = 63
     for i in 0...30 {
