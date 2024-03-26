@@ -34,7 +34,7 @@ struct TagDetails: View {
                             .scaledToFit()
                             .rotationEffect(.degrees(90))
                             .frame(width: 12)
-                            .foregroundStyle(.tag)
+                            .foregroundStyle(use.mood.color())
                             .padding(.trailing, 4)
 
                         HStack(spacing: 0) {
