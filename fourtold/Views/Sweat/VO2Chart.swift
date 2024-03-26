@@ -128,7 +128,7 @@ struct VO2Chart: View {
                         .foregroundStyle(.accent.opacity(0.4))
                 }
                 .chartYScale(domain: lowHighZone2.low...lowHighZone2.high)
-                .chartForegroundStyleScale(["Zone 2 HR": .sweat])
+                .chartForegroundStyleScale(["Zone 2 HR minutes": .sweat])
                 .chartLegend(.visible)
 
             }
@@ -161,7 +161,7 @@ struct VO2Chart: View {
     for i in 0...30 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.zone2ByDay[date] = Int.random(in: 30...50)
+            healthKitController.zone2ByDay[date] = Int.random(in: 0...50)
         }
     }
 
