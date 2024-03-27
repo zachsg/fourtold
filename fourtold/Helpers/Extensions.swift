@@ -8,11 +8,13 @@
 import Foundation
 import SwiftUI
 
+#if os(iOS)
 extension UIApplication {
     static var appVersion: String? {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
 }
+#endif
 
 extension TimeInterval {
     func secondsAsTime(units: DateComponentsFormatter.UnitsStyle) -> String {

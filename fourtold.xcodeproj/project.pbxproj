@@ -24,6 +24,37 @@
 		5912D1A42B1BB90500E78D6E /* HealthKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A32B1BB90500E78D6E /* HealthKitController.swift */; };
 		5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */; };
 		591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591CC1E12B32074200B731B7 /* MoodPicker.swift */; };
+		592E0F352BB39431003DF532 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E0F342BB39431003DF532 /* ContentView.swift */; };
+		592E0F372BB39432003DF532 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 592E0F362BB39432003DF532 /* Assets.xcassets */; };
+		592E0F3A2BB39432003DF532 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 592E0F392BB39432003DF532 /* Preview Assets.xcassets */; };
+		592E0F3D2BB39432003DF532 /* fourtoldwatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 592E0F302BB39431003DF532 /* fourtoldwatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		592E0F412BB39527003DF532 /* fourtoldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1942B1BB78D00E78D6E /* fourtoldApp.swift */; };
+		592E0F422BB39589003DF532 /* FTMeditateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550AC2B27A2580070F60E /* FTMeditateType.swift */; };
+		592E0F432BB39589003DF532 /* FTMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B3D2B30CDCC00FA949C /* FTMood.swift */; };
+		592E0F442BB39589003DF532 /* FTTimeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A78A22B363C23002F1BA7 /* FTTimeFrame.swift */; };
+		592E0F452BB39589003DF532 /* FTMeditate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550A82B27A1D50070F60E /* FTMeditate.swift */; };
+		592E0F462BB39589003DF532 /* FTBreathType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF3792B2C047A00BB12B5 /* FTBreathType.swift */; };
+		592E0F472BB39589003DF532 /* FTTimeOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B3F2B30CF7F00FA949C /* FTTimeOfDay.swift */; };
+		592E0F482BB39589003DF532 /* FTTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975509E2B226FA00070F60E /* FTTabItem.swift */; };
+		592E0F492BB39589003DF532 /* FTBreathStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */; };
+		592E0F4A2BB39589003DF532 /* FTGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550922B1FC3620070F60E /* FTGender.swift */; };
+		592E0F4B2BB39589003DF532 /* FTBreath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */; };
+		592E0F4C2BB39589003DF532 /* FTActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550A62B27A1800070F60E /* FTActivity.swift */; };
+		592E0F4D2BB39593003DF532 /* HealthKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A32B1BB90500E78D6E /* HealthKitController.swift */; };
+		592E0F4E2BB395F0003DF532 /* RHR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F097F2B506D9B0010E544 /* RHR.swift */; };
+		592E0F4F2BB395F0003DF532 /* VO2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD582B49DE76003C9640 /* VO2.swift */; };
+		592E0F502BB395F6003DF532 /* FTReadGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B412B30D14D00FA949C /* FTReadGenre.swift */; };
+		592E0F512BB395F6003DF532 /* FTRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AC62B2B9415003B5106 /* FTRead.swift */; };
+		592E0F522BB395F6003DF532 /* FTReadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B96AC82B2B9462003B5106 /* FTReadType.swift */; };
+		592E0F532BB395FA003DF532 /* FTTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE26A2B42720B00B02C23 /* FTTag.swift */; };
+		592E0F542BB395FA003DF532 /* FTTagSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F2DB232B48578A00FD0137 /* FTTagSort.swift */; };
+		592E0F552BB395FA003DF532 /* FTTagSubStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD512B48F83B003C9640 /* FTTagSubStats.swift */; };
+		592E0F562BB395FA003DF532 /* FTTagType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE26E2B42742700B02C23 /* FTTagType.swift */; };
+		592E0F572BB395FA003DF532 /* FTTagOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DFE26C2B42721300B02C23 /* FTTagOption.swift */; };
+		592E0F582BB395FA003DF532 /* FTTagStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D15E2B47831A00DEB29A /* FTTagStats.swift */; };
+		592E0F592BB395FE003DF532 /* Recovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F09892B50C65D0010E544 /* Recovery.swift */; };
+		592E0F5A2BB39615003DF532 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590861E42B1E5C790040DC72 /* Constants.swift */; };
+		592E0F5C2BB39623003DF532 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5997A6192B295EBE00CDDF76 /* NotificationController.swift */; };
 		593A560F2B42953B008DBC0E /* TagOptionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593A560E2B42953A008DBC0E /* TagOptionPicker.swift */; };
 		594888FF2B296938003FD4C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594888FE2B296938003FD4C8 /* Extensions.swift */; };
 		594889032B2A885E003FD4C8 /* HomeMindfulnessToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594889022B2A885E003FD4C8 /* HomeMindfulnessToday.swift */; };
@@ -59,6 +90,23 @@
 		597A78A92B37CA35002F1BA7 /* RestStreakItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A78A82B37CA35002F1BA7 /* RestStreakItem.swift */; };
 		598117942B27D22B003FAEB0 /* MeditationsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117932B27D22B003FAEB0 /* MeditationsSheet.swift */; };
 		598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598117952B27F462003FAEB0 /* MeditatingView.swift */; };
+		5986B8E02BB39BC9006E9F86 /* RestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8DF2BB39BC9006E9F86 /* RestView.swift */; };
+		5986B8E12BB39C10006E9F86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5912D1982B1BB78F00E78D6E /* Assets.xcassets */; };
+		5986B8E42BB39D5F006E9F86 /* RestItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8E32BB39D5F006E9F86 /* RestItemView.swift */; };
+		5986B8E52BB3A0C6006E9F86 /* Four78Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B3B2B2D3E0D00FA949C /* Four78Section.swift */; };
+		5986B8E62BB3A0C6006E9F86 /* BreathDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1552B462BF200DEB29A /* BreathDoneSheet.swift */; };
+		5986B8E72BB3A0C6006E9F86 /* Four78ingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1532B461DF300DEB29A /* Four78ingView.swift */; };
+		5986B8E82BB3A0C6006E9F86 /* BoxingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F097B2B506B8F0010E544 /* BoxingView.swift */; };
+		5986B8E92BB3A0C6006E9F86 /* BreathSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B392B2D38B300FA949C /* BreathSheet.swift */; };
+		5986B8EA2BB3A0C6006E9F86 /* BoxSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F09772B4E0B100010E544 /* BoxSection.swift */; };
+		5986B8EF2BB3A109006E9F86 /* MoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591CC1E12B32074200B731B7 /* MoodPicker.swift */; };
+		5986B8F12BB3B713006E9F86 /* MeditateSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8F02BB3B713006E9F86 /* MeditateSetup.swift */; };
+		5986B8F32BB3B75B006E9F86 /* MeditateDuring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8F22BB3B75B006E9F86 /* MeditateDuring.swift */; };
+		5986B8F52BB3B784006E9F86 /* MeditateDone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8F42BB3B784006E9F86 /* MeditateDone.swift */; };
+		5986B8F72BB3BA1E006E9F86 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8F62BB3BA1E006E9F86 /* TimerView.swift */; };
+		5986B8F92BB3CC9C006E9F86 /* RestOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8F82BB3CC9C006E9F86 /* RestOption.swift */; };
+		5986B8FC2BB3D342006E9F86 /* MeditateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8FB2BB3D342006E9F86 /* MeditateStatus.swift */; };
+		5987C6DE2BB39ABB0065F5A3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594888FE2B296938003FD4C8 /* Extensions.swift */; };
 		598C4D582B4495BF00CD4745 /* TagsOldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C4D572B4495BF00CD4745 /* TagsOldView.swift */; };
 		5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5997A6192B295EBE00CDDF76 /* NotificationController.swift */; };
 		59B57B342B2D13EE00FA949C /* JournalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B332B2D13EE00FA949C /* JournalSheet.swift */; };
@@ -102,6 +150,30 @@
 		59FCB7F32B3E2D6B004C64B0 /* HomeStepsPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		592E0F3B2BB39432003DF532 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5912D1892B1BB78D00E78D6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 592E0F2F2BB39431003DF532;
+			remoteInfo = "fourtoldwatch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		592E0F282BB39319003DF532 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				592E0F3D2BB39432003DF532 /* fourtoldwatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		590432AA2B1FC1370012F0FA /* SettingsUserInfoGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUserInfoGroup.swift; sourceTree = "<group>"; };
 		5905397F2B40DCD2007AE8EF /* HomeZone2PastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeZone2PastWeek.swift; sourceTree = "<group>"; };
@@ -122,6 +194,12 @@
 		5912D1A32B1BB90500E78D6E /* HealthKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitController.swift; sourceTree = "<group>"; };
 		5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepsDetailView.swift; sourceTree = "<group>"; };
 		591CC1E12B32074200B731B7 /* MoodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPicker.swift; sourceTree = "<group>"; };
+		592E0F302BB39431003DF532 /* fourtoldwatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fourtoldwatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		592E0F342BB39431003DF532 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		592E0F362BB39432003DF532 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		592E0F392BB39432003DF532 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		592E0F5D2BB396AC003DF532 /* fourtoldwatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "fourtoldwatch Watch App.entitlements"; sourceTree = "<group>"; };
+		592E0F5E2BB396BA003DF532 /* fourtoldwatch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "fourtoldwatch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		593A560E2B42953A008DBC0E /* TagOptionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagOptionPicker.swift; sourceTree = "<group>"; };
 		594888FE2B296938003FD4C8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		594889022B2A885E003FD4C8 /* HomeMindfulnessToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMindfulnessToday.swift; sourceTree = "<group>"; };
@@ -157,6 +235,14 @@
 		597A78A82B37CA35002F1BA7 /* RestStreakItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestStreakItem.swift; sourceTree = "<group>"; };
 		598117932B27D22B003FAEB0 /* MeditationsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationsSheet.swift; sourceTree = "<group>"; };
 		598117952B27F462003FAEB0 /* MeditatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditatingView.swift; sourceTree = "<group>"; };
+		5986B8DF2BB39BC9006E9F86 /* RestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestView.swift; sourceTree = "<group>"; };
+		5986B8E32BB39D5F006E9F86 /* RestItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestItemView.swift; sourceTree = "<group>"; };
+		5986B8F02BB3B713006E9F86 /* MeditateSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateSetup.swift; sourceTree = "<group>"; };
+		5986B8F22BB3B75B006E9F86 /* MeditateDuring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateDuring.swift; sourceTree = "<group>"; };
+		5986B8F42BB3B784006E9F86 /* MeditateDone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateDone.swift; sourceTree = "<group>"; };
+		5986B8F62BB3BA1E006E9F86 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		5986B8F82BB3CC9C006E9F86 /* RestOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOption.swift; sourceTree = "<group>"; };
+		5986B8FB2BB3D342006E9F86 /* MeditateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditateStatus.swift; sourceTree = "<group>"; };
 		598C4D572B4495BF00CD4745 /* TagsOldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsOldView.swift; sourceTree = "<group>"; };
 		5997A6182B2917C800CDDF76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5997A6192B295EBE00CDDF76 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -209,6 +295,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		592E0F2D2BB39431003DF532 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -216,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				5912D1932B1BB78D00E78D6E /* fourtold */,
+				592E0F312BB39431003DF532 /* fourtoldwatch Watch App */,
 				5912D1922B1BB78D00E78D6E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -224,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				5912D1912B1BB78D00E78D6E /* fourtold.app */,
+				592E0F302BB39431003DF532 /* fourtoldwatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,6 +347,31 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		592E0F312BB39431003DF532 /* fourtoldwatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				592E0F5E2BB396BA003DF532 /* fourtoldwatch-Watch-App-Info.plist */,
+				592E0F5D2BB396AC003DF532 /* fourtoldwatch Watch App.entitlements */,
+				592E0F342BB39431003DF532 /* ContentView.swift */,
+				5986B8DF2BB39BC9006E9F86 /* RestView.swift */,
+				5986B8F82BB3CC9C006E9F86 /* RestOption.swift */,
+				5986B8FB2BB3D342006E9F86 /* MeditateStatus.swift */,
+				5986B8E32BB39D5F006E9F86 /* RestItemView.swift */,
+				5986B8FA2BB3CCAF006E9F86 /* Meditate */,
+				592E0F362BB39432003DF532 /* Assets.xcassets */,
+				592E0F382BB39432003DF532 /* Preview Content */,
+			);
+			path = "fourtoldwatch Watch App";
+			sourceTree = "<group>";
+		};
+		592E0F382BB39432003DF532 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				592E0F392BB39432003DF532 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		597550942B20E1240070F60E /* Move */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +396,17 @@
 				59EF3A7E2B328F4B00BDBB7F /* Stats */,
 			);
 			path = Rest;
+			sourceTree = "<group>";
+		};
+		5986B8FA2BB3CCAF006E9F86 /* Meditate */ = {
+			isa = PBXGroup;
+			children = (
+				5986B8F62BB3BA1E006E9F86 /* TimerView.swift */,
+				5986B8F02BB3B713006E9F86 /* MeditateSetup.swift */,
+				5986B8F22BB3B75B006E9F86 /* MeditateDuring.swift */,
+				5986B8F42BB3B784006E9F86 /* MeditateDone.swift */,
+			);
+			path = Meditate;
 			sourceTree = "<group>";
 		};
 		59B57B322B2D13DB00FA949C /* Journal */ = {
@@ -532,14 +663,33 @@
 				5912D18D2B1BB78D00E78D6E /* Sources */,
 				5912D18E2B1BB78D00E78D6E /* Frameworks */,
 				5912D18F2B1BB78D00E78D6E /* Resources */,
+				592E0F282BB39319003DF532 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				592E0F3C2BB39432003DF532 /* PBXTargetDependency */,
+			);
+			name = fourtold;
+			productName = fourtold;
+			productReference = 5912D1912B1BB78D00E78D6E /* fourtold.app */;
+			productType = "com.apple.product-type.application";
+		};
+		592E0F2F2BB39431003DF532 /* fourtoldwatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 592E0F3E2BB39432003DF532 /* Build configuration list for PBXNativeTarget "fourtoldwatch Watch App" */;
+			buildPhases = (
+				592E0F2C2BB39431003DF532 /* Sources */,
+				592E0F2D2BB39431003DF532 /* Frameworks */,
+				592E0F2E2BB39431003DF532 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = fourtold;
-			productName = fourtold;
-			productReference = 5912D1912B1BB78D00E78D6E /* fourtold.app */;
+			name = "fourtoldwatch Watch App";
+			productName = "fourtoldwatch Watch App";
+			productReference = 592E0F302BB39431003DF532 /* fourtoldwatch Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -549,11 +699,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					5912D1902B1BB78D00E78D6E = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					592E0F2F2BB39431003DF532 = {
+						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
@@ -571,6 +724,7 @@
 			projectRoot = "";
 			targets = (
 				5912D1902B1BB78D00E78D6E /* fourtold */,
+				592E0F2F2BB39431003DF532 /* fourtoldwatch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -582,6 +736,16 @@
 			files = (
 				5912D19C2B1BB78F00E78D6E /* Preview Assets.xcassets in Resources */,
 				5912D1992B1BB78F00E78D6E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		592E0F2E2BB39431003DF532 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				592E0F3A2BB39432003DF532 /* Preview Assets.xcassets in Resources */,
+				5986B8E12BB39C10006E9F86 /* Assets.xcassets in Resources */,
+				592E0F372BB39432003DF532 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,7 +850,66 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		592E0F2C2BB39431003DF532 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5986B8FC2BB3D342006E9F86 /* MeditateStatus.swift in Sources */,
+				592E0F422BB39589003DF532 /* FTMeditateType.swift in Sources */,
+				592E0F432BB39589003DF532 /* FTMood.swift in Sources */,
+				592E0F4D2BB39593003DF532 /* HealthKitController.swift in Sources */,
+				592E0F442BB39589003DF532 /* FTTimeFrame.swift in Sources */,
+				592E0F452BB39589003DF532 /* FTMeditate.swift in Sources */,
+				592E0F462BB39589003DF532 /* FTBreathType.swift in Sources */,
+				592E0F472BB39589003DF532 /* FTTimeOfDay.swift in Sources */,
+				5987C6DE2BB39ABB0065F5A3 /* Extensions.swift in Sources */,
+				592E0F482BB39589003DF532 /* FTTabItem.swift in Sources */,
+				592E0F492BB39589003DF532 /* FTBreathStatus.swift in Sources */,
+				592E0F4A2BB39589003DF532 /* FTGender.swift in Sources */,
+				592E0F532BB395FA003DF532 /* FTTag.swift in Sources */,
+				5986B8F52BB3B784006E9F86 /* MeditateDone.swift in Sources */,
+				592E0F542BB395FA003DF532 /* FTTagSort.swift in Sources */,
+				592E0F5A2BB39615003DF532 /* Constants.swift in Sources */,
+				592E0F5C2BB39623003DF532 /* NotificationController.swift in Sources */,
+				592E0F552BB395FA003DF532 /* FTTagSubStats.swift in Sources */,
+				592E0F562BB395FA003DF532 /* FTTagType.swift in Sources */,
+				592E0F572BB395FA003DF532 /* FTTagOption.swift in Sources */,
+				592E0F582BB395FA003DF532 /* FTTagStats.swift in Sources */,
+				592E0F4B2BB39589003DF532 /* FTBreath.swift in Sources */,
+				592E0F502BB395F6003DF532 /* FTReadGenre.swift in Sources */,
+				592E0F512BB395F6003DF532 /* FTRead.swift in Sources */,
+				5986B8E52BB3A0C6006E9F86 /* Four78Section.swift in Sources */,
+				5986B8F92BB3CC9C006E9F86 /* RestOption.swift in Sources */,
+				5986B8E62BB3A0C6006E9F86 /* BreathDoneSheet.swift in Sources */,
+				5986B8E72BB3A0C6006E9F86 /* Four78ingView.swift in Sources */,
+				5986B8E82BB3A0C6006E9F86 /* BoxingView.swift in Sources */,
+				5986B8F72BB3BA1E006E9F86 /* TimerView.swift in Sources */,
+				5986B8E92BB3A0C6006E9F86 /* BreathSheet.swift in Sources */,
+				5986B8EA2BB3A0C6006E9F86 /* BoxSection.swift in Sources */,
+				5986B8F32BB3B75B006E9F86 /* MeditateDuring.swift in Sources */,
+				5986B8E02BB39BC9006E9F86 /* RestView.swift in Sources */,
+				592E0F522BB395F6003DF532 /* FTReadType.swift in Sources */,
+				592E0F4E2BB395F0003DF532 /* RHR.swift in Sources */,
+				592E0F4F2BB395F0003DF532 /* VO2.swift in Sources */,
+				592E0F592BB395FE003DF532 /* Recovery.swift in Sources */,
+				5986B8EF2BB3A109006E9F86 /* MoodPicker.swift in Sources */,
+				5986B8E42BB39D5F006E9F86 /* RestItemView.swift in Sources */,
+				592E0F4C2BB39589003DF532 /* FTActivity.swift in Sources */,
+				592E0F412BB39527003DF532 /* fourtoldApp.swift in Sources */,
+				5986B8F12BB3B713006E9F86 /* MeditateSetup.swift in Sources */,
+				592E0F352BB39431003DF532 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		592E0F3C2BB39432003DF532 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 592E0F2F2BB39431003DF532 /* fourtoldwatch Watch App */;
+			targetProxy = 592E0F3B2BB39432003DF532 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5912D19D2B1BB78F00E78D6E /* Debug */ = {
@@ -749,6 +972,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -805,17 +1029,19 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
 		5912D1A02B1BB78F00E78D6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 117;
+				CURRENT_PROJECT_VERSION = 125;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -835,7 +1061,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.13;
+				MARKETING_VERSION = 2024.3.21;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -851,11 +1077,12 @@
 		5912D1A12B1BB78F00E78D6E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 117;
+				CURRENT_PROJECT_VERSION = 125;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -875,7 +1102,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.13;
+				MARKETING_VERSION = 2024.3.21;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -885,6 +1112,82 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		592E0F3F2BB39432003DF532 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 9DTKH8BRLR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "fourtoldwatch-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = fourtoldwatch;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Fourtold uses health data to personalize the app experience";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Fourtold uses health data to personalize the app experience";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Fourtold uses health data to personalize the app experience";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = io.4told.fourtold;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2024.3.7;
+				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.4;
+			};
+			name = Debug;
+		};
+		592E0F402BB39432003DF532 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 9DTKH8BRLR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "fourtoldwatch-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = fourtoldwatch;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Fourtold uses health data to personalize the app experience";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Fourtold uses health data to personalize the app experience";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Fourtold uses health data to personalize the app experience";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = io.4told.fourtold;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2024.3.7;
+				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.4;
 			};
 			name = Release;
 		};
@@ -905,6 +1208,15 @@
 			buildConfigurations = (
 				5912D1A02B1BB78F00E78D6E /* Debug */,
 				5912D1A12B1BB78F00E78D6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		592E0F3E2BB39432003DF532 /* Build configuration list for PBXNativeTarget "fourtoldwatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				592E0F3F2BB39432003DF532 /* Debug */,
+				592E0F402BB39432003DF532 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
