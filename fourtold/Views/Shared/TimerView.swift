@@ -30,22 +30,24 @@ struct TimerView: View {
     
     var body: some View {
         ZStack(alignment: .center) {
-            Circle()
-                .fill(Color.clear)
-                .frame(width: 250, height: 250)
-                .overlay(Circle().stroke(.secondary.opacity(0.2), lineWidth: 25))
-            
-            Circle()
-                .fill(Color.clear)
-                .frame(width: 250, height: 250)
-                .overlay(Circle()
-                    .trim(from: 0, to: progress)
-                    .stroke(style: StrokeStyle(lineWidth: 25, lineCap: .round, lineJoin: .round))
-                    .foregroundStyle(color)
-                    .rotationEffect(.degrees(-90))
-                    .animation(.easeInOut, value: 0.2)
-                )
-            
+            if isTimed {
+                Circle()
+                    .fill(Color.clear)
+                    .frame(width: 250, height: 250)
+                    .overlay(Circle().stroke(.secondary.opacity(0.2), lineWidth: 25))
+
+                Circle()
+                    .fill(Color.clear)
+                    .frame(width: 250, height: 250)
+                    .overlay(Circle()
+                        .trim(from: 0, to: progress)
+                        .stroke(style: StrokeStyle(lineWidth: 25, lineCap: .round, lineJoin: .round))
+                        .foregroundStyle(color)
+                        .rotationEffect(.degrees(-90))
+                        .animation(.easeInOut, value: 0.2)
+                    )
+            }
+
             VStack {
                 Text(timerString)
                     .font(Font.system(.title, design: .monospaced))
