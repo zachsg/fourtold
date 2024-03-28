@@ -48,8 +48,7 @@ struct TimerView: View {
 
             VStack {
                 Text(timerString)
-                    .font(Font.system(.title3, design: .monospaced))
-                    .padding()
+                    .font(Font.system(.title3, design: .monospaced).bold())
                     .onReceive(timer) { _ in
                         if isTimerRunning {
                             elapsed = Date().timeIntervalSince(startTime)

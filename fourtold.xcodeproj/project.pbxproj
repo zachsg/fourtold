@@ -353,10 +353,7 @@
 				592E0F5E2BB396BA003DF532 /* fourtoldwatch-Watch-App-Info.plist */,
 				592E0F5D2BB396AC003DF532 /* fourtoldwatch Watch App.entitlements */,
 				592E0F342BB39431003DF532 /* ContentView.swift */,
-				5986B8DF2BB39BC9006E9F86 /* RestView.swift */,
-				5986B8F82BB3CC9C006E9F86 /* RestOption.swift */,
-				5986B8E32BB39D5F006E9F86 /* RestItemView.swift */,
-				5986B8FA2BB3CCAF006E9F86 /* Meditate */,
+				5986B8FD2BB4EE64006E9F86 /* Rest */,
 				592E0F362BB39432003DF532 /* Assets.xcassets */,
 				592E0F382BB39432003DF532 /* Preview Content */,
 			);
@@ -407,6 +404,17 @@
 				5986B8FB2BB3D342006E9F86 /* MeditateStatus.swift */,
 			);
 			path = Meditate;
+			sourceTree = "<group>";
+		};
+		5986B8FD2BB4EE64006E9F86 /* Rest */ = {
+			isa = PBXGroup;
+			children = (
+				5986B8DF2BB39BC9006E9F86 /* RestView.swift */,
+				5986B8F82BB3CC9C006E9F86 /* RestOption.swift */,
+				5986B8E32BB39D5F006E9F86 /* RestItemView.swift */,
+				5986B8FA2BB3CCAF006E9F86 /* Meditate */,
+			);
+			path = Rest;
 			sourceTree = "<group>";
 		};
 		59B57B322B2D13DB00FA949C /* Journal */ = {
@@ -1041,7 +1049,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 127;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1061,7 +1069,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.23;
+				MARKETING_VERSION = 2024.3.24;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1082,7 +1090,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 127;
+				CURRENT_PROJECT_VERSION = 128;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1102,7 +1110,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.23;
+				MARKETING_VERSION = 2024.3.24;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1123,7 +1131,7 @@
 				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1140,7 +1148,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.9;
+				MARKETING_VERSION = 2024.3.10;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1161,7 +1169,7 @@
 				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1178,7 +1186,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.9;
+				MARKETING_VERSION = 2024.3.10;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

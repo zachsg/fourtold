@@ -67,7 +67,7 @@ struct RestView: View {
                 } else {
                     Section {
                         HStack {
-                            Text("It's a new day. Time to take action!")
+                            Text("It's a new day.\nTake action!")
                             Image(systemName: arrowSystemImage)
                                 .rotationEffect(.degrees(-90))
                                 .foregroundStyle(.rest)
