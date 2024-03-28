@@ -33,11 +33,16 @@ struct MeditateSetup: View {
                 if meditateType == .timed {
                     Stepper(value: $meditateGoal, in: 60...5400, step: 60) {
                         VStack {
+                            Text("Goal".uppercased())
+                                .font(.footnote.bold())
+                                .foregroundStyle(.rest)
+
                             Text(meditateGoal / 60, format: .number)
                                 .font(.title.bold())
 
-                            Text("minutes")
-                                .font(.footnote)
+                            Text("minutes".uppercased())
+                                .font(.footnote.bold())
+                                .foregroundStyle(.rest)
                         }
                     }
                 }

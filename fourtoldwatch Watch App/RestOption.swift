@@ -8,5 +8,5 @@
 import Foundation
 
 enum RestOption {
-    case meditate, breathe, meditateDuring, breatheDuring, meditateDone, breatheDone
+    case meditate, breathe
 }

@@ -51,11 +51,6 @@ struct MeditateDuring: View {
             session.delegate = delegate
             session.start()
         })
-        .navigationDestination(for: RestOption.self) { option in
-            if option == .meditateDone {
-                MeditateDone(healthKitController: healthKitController, type: $meditateType, startDate: $startDate, elapsed: $elapsed, goal: $meditateGoal, mood: $mood, endMood: $endMood, path: $path)
-            }
-        }
     }
 }
 

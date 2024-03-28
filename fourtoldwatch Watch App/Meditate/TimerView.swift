@@ -62,7 +62,8 @@ struct TimerView: View {
                             if isTimed {
                                 if elapsedTemp < 0 {
                                     stopTimer()
-                                    path.append(RestOption.meditateDone)
+                                    WKInterfaceDevice.current().play(.notification)
+                                    path.append(MeditateStatus.done)
                                 }
                             }
                         }
@@ -70,8 +71,10 @@ struct TimerView: View {
                     .onTapGesture {
                         timerStopped()
                     }
-                Text("Tap to end")
+
+                Text("Tap to end".uppercased())
                     .font(.footnote)
+                    .foregroundStyle(.secondary)
             }
         }
         .onAppear(perform: {
@@ -82,10 +85,11 @@ struct TimerView: View {
     }
 
     func timerStopped() {
+        NotificationController.cancelAllPending()
+
         if isTimerRunning {
             stopTimer()
             path.append(MeditateStatus.done)
-//            NavigationLink("blah", value: MeditateStatus.done)
         } else {
             timerString = "0.00"
             startTime = Date()
