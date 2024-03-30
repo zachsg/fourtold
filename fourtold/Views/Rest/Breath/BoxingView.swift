@@ -135,14 +135,10 @@ struct BoxingView: View {
             }
         }
         .onAppear(perform: {
-            #if os(iOS)
             UIApplication.shared.isIdleTimerDisabled = true
-            #endif
         })
         .onDisappear(perform: {
-            #if os(iOS)
             UIApplication.shared.isIdleTimerDisabled = false
-            #endif
         })
         .sheet(isPresented: $showingSheet, content: {
             BreathDoneSheet(healthKitController: healthKitController, date: date, elapsed: elapsed, type: $type, rounds: $rounds, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingMainSheet: $showingMainSheet)

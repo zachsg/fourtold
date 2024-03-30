@@ -39,13 +39,17 @@ struct RestView: View {
         NavigationStack(path: $path) {
             List {
                 Section {
-                    Button {
-                        path.append(RestOption.meditate)
-                    } label: {
-                        HStack {
-                            Spacer()
-                            Text("Meditate")
-                            Spacer()
+                    HStack {
+                        Button {
+                            path.append(RestOption.breathe)
+                        } label: {
+                            Image(systemName: breathSystemImage)
+                        }
+
+                        Button {
+                            path.append(RestOption.meditate)
+                        } label: {
+                            Image(systemName: meditateSystemImage)
                         }
                     }
                     .buttonStyle(.borderedProminent)
@@ -81,7 +85,7 @@ struct RestView: View {
                 if option == .meditate {
                     MeditateSetup(healthKitController: healthKitController, path: $path)
                 } else if option == .breathe {
-                    BreathSheet(healthKitController: healthKitController, showingSheet: $breathworkSheetIsShowing)
+                    BreatheSetup(healthKitController: healthKitController, path: $path)
                 }
             }
         }

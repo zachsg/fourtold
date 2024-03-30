@@ -69,6 +69,12 @@
 		594F09822B506DE90010E544 /* RHRBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F09812B506DE90010E544 /* RHRBadge.swift */; };
 		594F09882B50C4990010E544 /* RecoveryBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F09872B50C4990010E544 /* RecoveryBadge.swift */; };
 		594F098A2B50C65D0010E544 /* Recovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F09892B50C65D0010E544 /* Recovery.swift */; };
+		594F59C22BB772AA0067F0D3 /* BreatheSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F59C12BB772AA0067F0D3 /* BreatheSetup.swift */; };
+		594F59C42BB773CC0067F0D3 /* BreatheStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F59C32BB773CC0067F0D3 /* BreatheStatus.swift */; };
+		594F59C82BB779DB0067F0D3 /* Four78ingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F59C72BB779DB0067F0D3 /* Four78ingView.swift */; };
+		594F59CA2BB779FD0067F0D3 /* WKDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F59C92BB779FD0067F0D3 /* WKDelegate.swift */; };
+		594F59CC2BB77E4F0067F0D3 /* BoxingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F59CB2BB77E4F0067F0D3 /* BoxingView.swift */; };
+		594F59D02BB7844F0067F0D3 /* DoneBreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F59CF2BB7844F0067F0D3 /* DoneBreathingView.swift */; };
 		594FCD522B48F83B003C9640 /* FTTagSubStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD512B48F83B003C9640 /* FTTagSubStats.swift */; };
 		594FCD542B48FA19003C9640 /* TagDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD532B48FA19003C9640 /* TagDetails.swift */; };
 		594FCD592B49DE76003C9640 /* VO2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD582B49DE76003C9640 /* VO2.swift */; };
@@ -93,12 +99,6 @@
 		5986B8E02BB39BC9006E9F86 /* RestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8DF2BB39BC9006E9F86 /* RestView.swift */; };
 		5986B8E12BB39C10006E9F86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5912D1982B1BB78F00E78D6E /* Assets.xcassets */; };
 		5986B8E42BB39D5F006E9F86 /* RestItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8E32BB39D5F006E9F86 /* RestItemView.swift */; };
-		5986B8E52BB3A0C6006E9F86 /* Four78Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B3B2B2D3E0D00FA949C /* Four78Section.swift */; };
-		5986B8E62BB3A0C6006E9F86 /* BreathDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1552B462BF200DEB29A /* BreathDoneSheet.swift */; };
-		5986B8E72BB3A0C6006E9F86 /* Four78ingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1532B461DF300DEB29A /* Four78ingView.swift */; };
-		5986B8E82BB3A0C6006E9F86 /* BoxingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F097B2B506B8F0010E544 /* BoxingView.swift */; };
-		5986B8E92BB3A0C6006E9F86 /* BreathSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B392B2D38B300FA949C /* BreathSheet.swift */; };
-		5986B8EA2BB3A0C6006E9F86 /* BoxSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F09772B4E0B100010E544 /* BoxSection.swift */; };
 		5986B8EF2BB3A109006E9F86 /* MoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591CC1E12B32074200B731B7 /* MoodPicker.swift */; };
 		5986B8F12BB3B713006E9F86 /* MeditateSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8F02BB3B713006E9F86 /* MeditateSetup.swift */; };
 		5986B8F32BB3B75B006E9F86 /* MeditateDuring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5986B8F22BB3B75B006E9F86 /* MeditateDuring.swift */; };
@@ -214,6 +214,12 @@
 		594F09812B506DE90010E544 /* RHRBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHRBadge.swift; sourceTree = "<group>"; };
 		594F09872B50C4990010E544 /* RecoveryBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryBadge.swift; sourceTree = "<group>"; };
 		594F09892B50C65D0010E544 /* Recovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recovery.swift; sourceTree = "<group>"; };
+		594F59C12BB772AA0067F0D3 /* BreatheSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheSetup.swift; sourceTree = "<group>"; };
+		594F59C32BB773CC0067F0D3 /* BreatheStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheStatus.swift; sourceTree = "<group>"; };
+		594F59C72BB779DB0067F0D3 /* Four78ingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Four78ingView.swift; sourceTree = "<group>"; };
+		594F59C92BB779FD0067F0D3 /* WKDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKDelegate.swift; sourceTree = "<group>"; };
+		594F59CB2BB77E4F0067F0D3 /* BoxingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxingView.swift; sourceTree = "<group>"; };
+		594F59CF2BB7844F0067F0D3 /* DoneBreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneBreathingView.swift; sourceTree = "<group>"; };
 		594FCD512B48F83B003C9640 /* FTTagSubStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTagSubStats.swift; sourceTree = "<group>"; };
 		594FCD532B48FA19003C9640 /* TagDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetails.swift; sourceTree = "<group>"; };
 		594FCD582B49DE76003C9640 /* VO2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VO2.swift; sourceTree = "<group>"; };
@@ -368,6 +374,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		593B03E82BB792C700D4FEF2 /* Breathe */ = {
+			isa = PBXGroup;
+			children = (
+				594F59C12BB772AA0067F0D3 /* BreatheSetup.swift */,
+				594F59C32BB773CC0067F0D3 /* BreatheStatus.swift */,
+				594F59C72BB779DB0067F0D3 /* Four78ingView.swift */,
+				594F59CB2BB77E4F0067F0D3 /* BoxingView.swift */,
+				594F59CF2BB7844F0067F0D3 /* DoneBreathingView.swift */,
+			);
+			path = Breathe;
+			sourceTree = "<group>";
+		};
 		597550942B20E1240070F60E /* Move */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,7 +430,9 @@
 				5986B8DF2BB39BC9006E9F86 /* RestView.swift */,
 				5986B8F82BB3CC9C006E9F86 /* RestOption.swift */,
 				5986B8E32BB39D5F006E9F86 /* RestItemView.swift */,
+				593B03E82BB792C700D4FEF2 /* Breathe */,
 				5986B8FA2BB3CCAF006E9F86 /* Meditate */,
+				594F59C92BB779FD0067F0D3 /* WKDelegate.swift */,
 			);
 			path = Rest;
 			sourceTree = "<group>";
@@ -862,8 +882,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				594F59CC2BB77E4F0067F0D3 /* BoxingView.swift in Sources */,
 				5986B8FC2BB3D342006E9F86 /* MeditateStatus.swift in Sources */,
 				592E0F422BB39589003DF532 /* FTMeditateType.swift in Sources */,
+				594F59D02BB7844F0067F0D3 /* DoneBreathingView.swift in Sources */,
 				592E0F432BB39589003DF532 /* FTMood.swift in Sources */,
 				592E0F4D2BB39593003DF532 /* HealthKitController.swift in Sources */,
 				592E0F442BB39589003DF532 /* FTTimeFrame.swift in Sources */,
@@ -878,22 +900,20 @@
 				5986B8F52BB3B784006E9F86 /* MeditateDone.swift in Sources */,
 				592E0F542BB395FA003DF532 /* FTTagSort.swift in Sources */,
 				592E0F5A2BB39615003DF532 /* Constants.swift in Sources */,
+				594F59CA2BB779FD0067F0D3 /* WKDelegate.swift in Sources */,
 				592E0F5C2BB39623003DF532 /* NotificationController.swift in Sources */,
 				592E0F552BB395FA003DF532 /* FTTagSubStats.swift in Sources */,
 				592E0F562BB395FA003DF532 /* FTTagType.swift in Sources */,
+				594F59C22BB772AA0067F0D3 /* BreatheSetup.swift in Sources */,
+				594F59C82BB779DB0067F0D3 /* Four78ingView.swift in Sources */,
 				592E0F572BB395FA003DF532 /* FTTagOption.swift in Sources */,
+				594F59C42BB773CC0067F0D3 /* BreatheStatus.swift in Sources */,
 				592E0F582BB395FA003DF532 /* FTTagStats.swift in Sources */,
 				592E0F4B2BB39589003DF532 /* FTBreath.swift in Sources */,
 				592E0F502BB395F6003DF532 /* FTReadGenre.swift in Sources */,
 				592E0F512BB395F6003DF532 /* FTRead.swift in Sources */,
-				5986B8E52BB3A0C6006E9F86 /* Four78Section.swift in Sources */,
 				5986B8F92BB3CC9C006E9F86 /* RestOption.swift in Sources */,
-				5986B8E62BB3A0C6006E9F86 /* BreathDoneSheet.swift in Sources */,
-				5986B8E72BB3A0C6006E9F86 /* Four78ingView.swift in Sources */,
-				5986B8E82BB3A0C6006E9F86 /* BoxingView.swift in Sources */,
 				5986B8F72BB3BA1E006E9F86 /* TimerView.swift in Sources */,
-				5986B8E92BB3A0C6006E9F86 /* BreathSheet.swift in Sources */,
-				5986B8EA2BB3A0C6006E9F86 /* BoxSection.swift in Sources */,
 				5986B8F32BB3B75B006E9F86 /* MeditateDuring.swift in Sources */,
 				5986B8E02BB39BC9006E9F86 /* RestView.swift in Sources */,
 				592E0F522BB395F6003DF532 /* FTReadType.swift in Sources */,
@@ -1049,7 +1069,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 131;
+				CURRENT_PROJECT_VERSION = 134;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1069,7 +1089,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.27;
+				MARKETING_VERSION = 2024.3.30;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1090,7 +1110,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 131;
+				CURRENT_PROJECT_VERSION = 134;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1110,7 +1130,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.27;
+				MARKETING_VERSION = 2024.3.30;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1131,7 +1151,7 @@
 				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1148,7 +1168,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.13;
+				MARKETING_VERSION = 2024.3.16;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1169,7 +1189,7 @@
 				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1186,7 +1206,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.13;
+				MARKETING_VERSION = 2024.3.16;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

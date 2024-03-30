@@ -38,7 +38,6 @@ struct MeditateDone: View {
                         Text("You meditated for \(elapsed.secondsAsTimeRoundedToMinutes(units: .full)).")
                     }
                 }
-                .padding(.bottom, 12)
 
                 if elapsed > 30 {
                     MoodPicker(mood: $endMood, color: .rest) {
@@ -55,7 +54,6 @@ struct MeditateDone: View {
                         path.removeLast(path.count-1)
                     }
                     .foregroundStyle(.rest)
-                    .padding()
 
                     if elapsed > 30 {
                         Button("Save") {

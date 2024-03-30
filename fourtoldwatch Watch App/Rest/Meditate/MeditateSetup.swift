@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MeditateSetup: View {
     @Bindable var healthKitController: HealthKitController
-
+    
     @Binding var path: NavigationPath
 
     @AppStorage(meditateGoalKey) var meditateGoal: Int = meditateGoalDefault
