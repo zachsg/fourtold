@@ -10,10 +10,30 @@ import SwiftUI
 
 @main
 struct fourtoldApp: App {
+    @State private var healthKitController = HealthKitController()
+    
+    var sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FTMeditate.self,
+            FTRead.self,
+            FTBreath.self,
+            FTTag.self,
+            FTTagOption.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self])
+                .modelContainer(sharedModelContainer)
+                .environment(healthKitController)
         }
     }
 }

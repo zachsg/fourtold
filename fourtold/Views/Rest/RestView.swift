@@ -10,8 +10,7 @@ import SwiftUI
 
 struct RestView: View {
     @Environment(\.scenePhase) var scenePhase
-    
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @State private var meditateSheetIsShowing = false
     @State private var breathworkSheetIsShowing = false
@@ -96,6 +95,9 @@ struct RestView: View {
 }
 
 #Preview {
-    RestView(healthKitController: HealthKitController())
+    let healthKitController = HealthKitController()
+    
+    return RestView()
+        .environment(healthKitController)
         .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }

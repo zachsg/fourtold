@@ -9,33 +9,34 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(HealthKitController.self) private var healthKitController
+    
     @State private var tabSelected: FTTabItem = .summary
-    @State private var healthKitController = HealthKitController()
     
     var body: some View {
         TabView(selection: $tabSelected) {
-            HomeView(healthKitController: healthKitController)
+            HomeView()
                 .tabItem {
                     Image(systemName: summarySystemImage)
                     Text(summaryTitle)
                 }
                 .tag(FTTabItem.summary)
             
-            MoveView(healthKitController: healthKitController)
+            MoveView()
                 .tabItem {
                     Image(systemName: moveSystemImage)
                     Text(moveTitle)
                 }
                 .tag(FTTabItem.move)
             
-            SweatView(healthKitController: healthKitController)
+            SweatView()
                 .tabItem {
                     Image(systemName: sweatSystemImage)
                     Text(sweatTitle)
                 }
                 .tag(FTTabItem.sweat)
             
-            RestView(healthKitController: healthKitController)
+            RestView()
                 .tabItem {
                     Image(systemName: restSystemImage)
                     Text(restTitle)
@@ -73,6 +74,30 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
+    let healthKitController = HealthKitController()
+    healthKitController.stepCountToday = 3000
+    healthKitController.stepCountWeek = 50000
+    healthKitController.zone2Today = 5
+    healthKitController.zone2Week = 60
+    
+    let sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FTMeditate.self,
+            FTRead.self,
+            FTBreath.self,
+            FTTag.self,
+            FTTagOption.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
+    return ContentView()
+        .modelContainer(sharedModelContainer)
+        .environment(healthKitController)
 }

@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct RestView: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     @Environment(\.modelContext) var modelContext
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
@@ -98,6 +98,24 @@ struct RestView: View {
 }
 
 #Preview {
-    RestView(healthKitController: HealthKitController())
-        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
+    let healthKitController = HealthKitController()
+    
+    let sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FTMeditate.self,
+            FTRead.self,
+            FTBreath.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
+    return RestView()
+        .environment(healthKitController)
+        .modelContainer(sharedModelContainer)
 }

@@ -1069,13 +1069,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 134;
+				CURRENT_PROJECT_VERSION = 135;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = fourtold/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = 4told;
+				INFOPLIST_KEY_CFBundleDisplayName = Foretold;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Read Apple Health data to show in the app";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Write app data to Apple Health";
@@ -1089,7 +1089,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.30;
+				MARKETING_VERSION = 2024.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1110,13 +1110,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 134;
+				CURRENT_PROJECT_VERSION = 135;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = fourtold/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = 4told;
+				INFOPLIST_KEY_CFBundleDisplayName = Foretold;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Read Apple Health data to show in the app";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Write app data to Apple Health";
@@ -1130,7 +1130,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.30;
+				MARKETING_VERSION = 2024.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1151,7 +1151,7 @@
 				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1168,7 +1168,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.16;
+				MARKETING_VERSION = 2024.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1189,7 +1189,7 @@
 				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1206,7 +1206,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.3.16;
+				MARKETING_VERSION = 2024.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

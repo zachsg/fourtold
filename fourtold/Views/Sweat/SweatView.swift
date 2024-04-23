@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SweatView: View {
     @Environment(\.scenePhase) var scenePhase
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
 
@@ -112,5 +112,6 @@ struct SweatView: View {
         }
     }
 
-    return SweatView(healthKitController: healthKitController)
+    return SweatView()
+        .environment(healthKitController)
 }

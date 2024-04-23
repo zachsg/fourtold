@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoveView: View {
     @Environment(\.scenePhase) var scenePhase
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
@@ -87,5 +87,6 @@ struct MoveView: View {
         }
     }
     
-    return MoveView(healthKitController: healthKitController)
+    return MoveView()
+        .environment(healthKitController)
 }
