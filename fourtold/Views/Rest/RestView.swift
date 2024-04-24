@@ -107,7 +107,13 @@ struct RestView: View {
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            
+            let meditation = FTMeditate(startDate: .now, timeOfDay: .morning, startMood: .neutral, endMood: .pleasant, type: .timed, duration: 300)
+            
+            container.mainContext.insert(meditation)
+            
+            return container
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }

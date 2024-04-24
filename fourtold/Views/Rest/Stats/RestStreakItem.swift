@@ -21,7 +21,8 @@ struct RestStreakItem: View {
             }
             .padding(6)
             .padding(.horizontal, 2)
-            .background(streak == 0 ? .red : .rest)
+            .foregroundStyle(.white)
+            .background(.rest)
             .clipShape(RoundedRectangle(cornerSize: CGSize(width: 4, height: 4)))
             
             Text(label)

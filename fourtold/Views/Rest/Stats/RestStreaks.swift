@@ -65,30 +65,32 @@ struct RestStreaks: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
+        if !streaks.isEmpty {
+            VStack(alignment: .leading) {
                 HStack {
-                    Image(systemName: restSystemImage)
-                    
-                    Text("Rest current streaks")
-                }
-                .foregroundStyle(.rest)
-            }
-            .font(.footnote.bold())
-            
-            ScrollView(.horizontal) {
-                if doesMeditate || doesRead || doesBreathe {
                     HStack {
-                        ForEach(streaks, id: \.self) { streak in
-                            RestStreakItem(label: streak.label, streak: streak.days)
-                        }
+                        Image(systemName: restSystemImage)
+                        
+                        Text("Rest current streaks")
                     }
-                } else {
-                    Text("No actions taken yet!")
-                        .font(.headline)
+                    .foregroundStyle(.rest)
                 }
+                .font(.footnote.bold())
+                
+                ScrollView(.horizontal) {
+                    if doesMeditate || doesRead || doesBreathe {
+                        HStack {
+                            ForEach(streaks, id: \.self) { streak in
+                                RestStreakItem(label: streak.label, streak: streak.days)
+                            }
+                        }
+                    } else {
+                        Text("No actions taken yet!")
+                            .font(.headline)
+                    }
+                }
+                .padding(.top, 4)
             }
-            .padding(.top, 4)
         }
     }
     
@@ -139,7 +141,13 @@ struct RestStreaks: View {
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            
+            let meditation = FTMeditate(startDate: .now, timeOfDay: .morning, startMood: .neutral, endMood: .pleasant, type: .timed, duration: 300)
+            
+            container.mainContext.insert(meditation)
+            
+            return container
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
