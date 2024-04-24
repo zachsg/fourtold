@@ -9,9 +9,9 @@ import SwiftData
 import SwiftUI
 
 struct RestView: View {
-    @Environment(HealthKitController.self) private var healthKitController
-
+    @Environment(HKController.self) private var hkController
     @Environment(\.modelContext) var modelContext
+    
     @Query(sort: \FTMeditate.startDate) var meditates: [FTMeditate]
     @Query(sort: \FTRead.startDate) var reads: [FTRead]
     @Query(sort: \FTBreath.startDate) var breaths: [FTBreath]
@@ -98,7 +98,7 @@ struct RestView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
     
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -116,6 +116,6 @@ struct RestView: View {
     }()
     
     return RestView()
-        .environment(healthKitController)
         .modelContainer(sharedModelContainer)
+        .environment(hkController)
 }

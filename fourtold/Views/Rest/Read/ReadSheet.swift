@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ReadSheet: View {
-    @Environment(HealthKitController.self) private var healthKitController
-    
     @AppStorage(readGoalKey) var readGoal: Int = readGoalDefault
     
     @Binding var showingSheet: Bool
@@ -96,9 +94,5 @@ struct ReadSheet: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    return ReadSheet( showingSheet: .constant(true))
-        .environment(healthKitController)
+    ReadSheet(showingSheet: .constant(true))
 }
-

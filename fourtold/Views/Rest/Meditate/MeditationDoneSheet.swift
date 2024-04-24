@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MeditationDoneSheet: View {
     @Environment(\.modelContext) var modelContext
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var type: FTMeditateType
     @Binding var startDate: Date
@@ -73,9 +73,9 @@ struct MeditationDoneSheet: View {
                     Button("Save") {
                         NotificationController.cancelAllPending()
                         
-                        healthKitController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: startDate)
+                        hkController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: startDate)
                         
-                        healthKitController.getMindfulMinutesToday()
+                        hkController.getMindfulMinutesToday()
                         
                         let mediation = FTMeditate(startDate: startDate, timeOfDay: startDate.timeOfDay(), startMood: mood, endMood: endMood, type: type, duration: elapsed.secondsToMinutesRounded())
                         
@@ -94,8 +94,22 @@ struct MeditationDoneSheet: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
+    
+    let sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FTMeditate.self,
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
     
     return MeditationDoneSheet(type: .constant(.timed), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingAlert: .constant(true))
-        .environment(healthKitController)
+        .modelContainer(sharedModelContainer)
+        .environment(hkController)
 }

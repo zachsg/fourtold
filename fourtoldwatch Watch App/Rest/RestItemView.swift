@@ -5,7 +5,6 @@
 //  Created by Zach Gottlieb on 3/26/24.
 //
 
-import SwiftData
 import SwiftUI
 
 struct RestItemView: View {
@@ -123,16 +122,5 @@ struct RestItemView: View {
 }
 
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: FTRead.self, configurations: config)
-
-        let read = FTRead(startDate: .now, timeOfDay: .morning, startMood: .neutral, endMood: .pleasant, type: .book, genre: .fiction, duration: 30, isTimed: false)
-
-        return RestItemView(activity: read)
-            .modelContainer(container)
-    } catch {
-        fatalError(error.localizedDescription)
-    }
+    RestItemView(activity: FTActivityData.all.first!)
 }
-

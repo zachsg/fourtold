@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct MeditatingView: View {
-    @Environment(\.modelContext) var modelContext
-    @Environment(HealthKitController.self) private var healthKitController
-    
     @Binding var meditateType: FTMeditateType
     @Binding var meditateGoal: Int
     @Binding var startDate: Date
@@ -41,8 +38,5 @@ struct MeditatingView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    return MeditatingView(meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), mood: .constant(.neutral), showingSheet: .constant(true))
-        .environment(healthKitController)
+    MeditatingView(meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), mood: .constant(.neutral), showingSheet: .constant(true))
 }

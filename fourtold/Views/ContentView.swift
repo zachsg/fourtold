@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @State private var tabSelected: FTTabItem = .summary
     
@@ -74,11 +74,11 @@ struct ContentView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.stepCountToday = 3000
-    healthKitController.stepCountWeek = 50000
-    healthKitController.zone2Today = 5
-    healthKitController.zone2Week = 60
+    let hkController = HKController()
+    hkController.stepCountToday = 3000
+    hkController.stepCountWeek = 50000
+    hkController.zone2Today = 5
+    hkController.zone2Week = 60
     
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -99,5 +99,5 @@ struct ContentView: View {
     
     return ContentView()
         .modelContainer(sharedModelContainer)
-        .environment(healthKitController)
+        .environment(hkController)
 }

@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct BoxingView: View {
-    @Environment(HealthKitController.self) private var healthKitController
-    
     @Binding var type: FTBreathType
     @Binding var rounds: Int
     @Binding var mood: FTMood
@@ -168,9 +166,5 @@ struct BoxingView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    return BoxingView(type: .constant(.box), rounds: .constant(20), mood: .constant(.neutral), showingMainSheet: .constant(true))
-        .environment(healthKitController)
+    BoxingView(type: .constant(.box), rounds: .constant(20), mood: .constant(.neutral), showingMainSheet: .constant(true))
 }
-

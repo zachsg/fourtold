@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct MeditationsSheet: View {
-    @Environment(HealthKitController.self) private var healthKitController
-
     @AppStorage(meditateGoalKey) var meditateGoal: Int = meditateGoalDefault
     
     @Binding var showingSheet: Bool
@@ -74,8 +72,5 @@ struct MeditationsSheet: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    return MeditationsSheet(showingSheet: .constant(true))
-        .environment(healthKitController)
+    MeditationsSheet(showingSheet: .constant(true))
 }

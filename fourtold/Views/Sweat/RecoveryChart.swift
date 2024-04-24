@@ -9,13 +9,13 @@ import Charts
 import SwiftUI
 
 struct RecoveryChart: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
 
     var averageRecovery: Int {
         var sum = 0
         var count = 0
 
-        for (_, hr) in healthKitController.recoveryByDay {
+        for (_, hr) in hkController.recoveryByDay {
             sum += hr
             count += 1
         }
@@ -29,7 +29,7 @@ struct RecoveryChart: View {
         var low = 120
         var high = 0
 
-        for (_, hr) in healthKitController.recoveryByDay {
+        for (_, hr) in hkController.recoveryByDay {
             if hr > high {
                 high = hr
             }
@@ -62,7 +62,7 @@ struct RecoveryChart: View {
             }
             ) {
                 Chart {
-                    ForEach(healthKitController.recoveryByDay.sorted { $0.key < $1.key }, id: \.key) { date, hr in
+                    ForEach(hkController.recoveryByDay.sorted { $0.key < $1.key }, id: \.key) { date, hr in
                         LineMark(
                             x: .value("Day", date),
                             y: .value(heartUnits, hr)
@@ -89,19 +89,19 @@ struct RecoveryChart: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
 
-    healthKitController.recoveryAverage = 30
+    hkController.recoveryAverage = 30
 
     let today: Date = .now
     for i in 0...30 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.recoveryByDay[date] = Int.random(in: 28...33)
+            hkController.recoveryByDay[date] = Int.random(in: 28...33)
         }
     }
 
     return RecoveryChart()
-        .environment(healthKitController)
+        .environment(hkController)
 }
 

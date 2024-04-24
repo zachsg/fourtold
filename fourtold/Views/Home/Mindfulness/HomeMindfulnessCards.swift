@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeMindfulnessCards: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var mindfulTodayPercent: Double
     @Binding var mindfulWeekPercent: Double
@@ -30,7 +30,7 @@ struct HomeMindfulnessCards: View {
                     Image(systemName: restSystemImage)
                     Text("Mindfulness")
                     Spacer()
-                    dateView(date: healthKitController.latestMindfulMinutes)
+                    dateView(date: hkController.latestMindfulMinutes)
                 }
                 .font(.headline.bold())
                 .foregroundStyle(.rest)
@@ -60,11 +60,11 @@ struct HomeMindfulnessCards: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.mindfulMinutesToday = 15
-    healthKitController.mindfulMinutesWeek = 70
-    healthKitController.latestMindfulMinutes = .now
+    let hkController = HKController()
+    hkController.mindfulMinutesToday = 15
+    hkController.mindfulMinutesWeek = 70
+    hkController.latestMindfulMinutes = .now
     
     return HomeMindfulnessCards(mindfulTodayPercent: .constant(15), mindfulWeekPercent: .constant(60))
-        .environment(healthKitController)
+        .environment(hkController)
 }

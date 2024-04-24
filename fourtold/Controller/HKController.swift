@@ -1,5 +1,5 @@
 //
-//  HealthKitController.swift
+//  HKController.swift
 //  fourtold
 //
 //  Created by Zach Gottlieb on 12/2/23.
@@ -10,7 +10,7 @@ import HealthKit
 import SwiftUI
 
 @Observable
-class HealthKitController {
+class HKController {
     var healthStore = HKHealthStore()
     
     // Steps

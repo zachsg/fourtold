@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ReadingView: View {
-    @Environment(\.modelContext) var modelContext
-    @Environment(HealthKitController.self) private var healthKitController
-    
     @Binding var readType: FTReadType
     @Binding var genre: FTReadGenre
     @Binding var mood: FTMood
@@ -46,9 +43,5 @@ struct ReadingView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    return ReadingView(readType: .constant(.book), genre: .constant(.fantasy), mood: .constant(.neutral), isTimed: .constant(true), readGoal: .constant(1800), startDate: .constant(.now), showingSheet: .constant(true))
-        .environment(healthKitController)
+    ReadingView(readType: .constant(.book), genre: .constant(.fantasy), mood: .constant(.neutral), isTimed: .constant(true), readGoal: .constant(1800), startDate: .constant(.now), showingSheet: .constant(true))
 }
-

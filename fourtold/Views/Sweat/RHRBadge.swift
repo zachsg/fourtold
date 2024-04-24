@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct RHRBadge: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
 
     var trend: FTRHRTrend {
-        let rhrAverage = healthKitController.rhrAverage
-        let rhrCurrent = healthKitController.rhrMostRecent
+        let rhrAverage = hkController.rhrAverage
+        let rhrCurrent = hkController.rhrMostRecent
 
         return rhrCurrent.rhrTrend(given: rhrAverage)
     }
 
     var badgeParts: Text {
-        let rhrAverage = healthKitController.rhrAverage
-        let rhrCurrent = healthKitController.rhrMostRecent
+        let rhrAverage = hkController.rhrAverage
+        let rhrCurrent = hkController.rhrMostRecent
         let trend = rhrCurrent.rhrTrend(given: rhrAverage)
 
         let main = Text(trend.rawValue.capitalized)
@@ -47,11 +47,11 @@ struct RHRBadge: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.rhrMostRecent = 58
-    healthKitController.rhrAverage = 60
-    healthKitController.latestRhr = .now
+    let hkController = HKController()
+    hkController.rhrMostRecent = 58
+    hkController.rhrAverage = 60
+    hkController.latestRhr = .now
 
     return RHRBadge()
-        .environment(healthKitController)
+        .environment(hkController)
 }

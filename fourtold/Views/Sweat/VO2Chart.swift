@@ -9,13 +9,13 @@ import Charts
 import SwiftUI
 
 struct VO2Chart: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
 
     var averageVO2: Double {
         var sum = 0.0
         var count = 0
 
-        for (_, vO2) in healthKitController.cardioFitnessByDay {
+        for (_, vO2) in hkController.cardioFitnessByDay {
             sum += vO2
             count += 1
         }
@@ -29,7 +29,7 @@ struct VO2Chart: View {
         var low = 100.0
         var high = 0.0
 
-        for (_, vO2) in healthKitController.cardioFitnessByDay {
+        for (_, vO2) in hkController.cardioFitnessByDay {
             if vO2 > high {
                 high = vO2
             }
@@ -53,7 +53,7 @@ struct VO2Chart: View {
         var sum = 0.0
         var count = 0
 
-        for (_, zone2) in healthKitController.zone2ByDay {
+        for (_, zone2) in hkController.zone2ByDay {
             sum += Double(zone2)
             count += 1
         }
@@ -67,7 +67,7 @@ struct VO2Chart: View {
         var low = 120
         var high = 0
 
-        for (_, rhr) in healthKitController.zone2ByDay {
+        for (_, rhr) in hkController.zone2ByDay {
             if rhr > high {
                 high = rhr
             }
@@ -100,7 +100,7 @@ struct VO2Chart: View {
                 }
             ) {
                 Chart {
-                    ForEach(healthKitController.cardioFitnessByDay.sorted { $0.key < $1.key }, id: \.key) { date, vO2 in
+                    ForEach(hkController.cardioFitnessByDay.sorted { $0.key < $1.key }, id: \.key) { date, vO2 in
                         LineMark(
                             x: .value("Day", date),
                             y: .value(vO2Units, vO2)
@@ -116,7 +116,7 @@ struct VO2Chart: View {
                 .chartLegend(.visible)
 
                 Chart {
-                    ForEach(healthKitController.zone2ByDay.sorted { $0.key < $1.key }, id: \.key) { date, zone2 in
+                    ForEach(hkController.zone2ByDay.sorted { $0.key < $1.key }, id: \.key) { date, zone2 in
                         BarMark(
                             x: .value("Day", date),
                             y: .value(heartUnits, zone2)
@@ -146,25 +146,25 @@ struct VO2Chart: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
 
-    healthKitController.cardioFitnessAverage = 43
+    hkController.cardioFitnessAverage = 43
 
     let today: Date = .now
     for i in 0...60 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.cardioFitnessByDay[date] = Double.random(in: 40...45)
+            hkController.cardioFitnessByDay[date] = Double.random(in: 40...45)
         }
     }
 
     for i in 0...60 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.zone2ByDay[date] = Int.random(in: 0...50)
+            hkController.zone2ByDay[date] = Int.random(in: 0...50)
         }
     }
 
     return VO2Chart()
-        .environment(healthKitController)
+        .environment(hkController)
 }

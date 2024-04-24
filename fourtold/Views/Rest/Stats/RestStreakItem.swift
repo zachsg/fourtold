@@ -15,15 +15,15 @@ struct RestStreakItem: View {
         VStack {
             HStack(alignment: .firstTextBaseline, spacing: 0) {
                 Text("\(streak)")
-                    .font(.headline)
+                    .font(.title3.bold())
                 Text(" \(streak == 1 ? "day" : "days")")
-                    .font(.caption)
+                    .font(.footnote)
             }
             .padding(6)
-            .padding(.horizontal, 2)
+            .padding(.horizontal, 6)
             .foregroundStyle(.white)
-            .background(.rest)
-            .clipShape(RoundedRectangle(cornerSize: CGSize(width: 4, height: 4)))
+            .background(streak < 5 ? .rest : .accent)
+            .clipShape(RoundedRectangle(cornerSize: CGSize(width: 8, height: 8)))
             
             Text(label)
                 .font(.caption.bold())
@@ -34,5 +34,5 @@ struct RestStreakItem: View {
 }
 
 #Preview {
-    RestStreakItem(label: "Meditate", streak: 1)
+    RestStreakItem(label: "Meditate", streak: 2)
 }

@@ -9,13 +9,13 @@ import Charts
 import SwiftUI
 
 struct RHRChart: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
 
     var averageRhr: Int {
         var sum = 0
         var count = 0
 
-        for (_, rhr) in healthKitController.rhrByDay {
+        for (_, rhr) in hkController.rhrByDay {
             sum += rhr
             count += 1
         }
@@ -29,7 +29,7 @@ struct RHRChart: View {
         var low = 120
         var high = 0
 
-        for (_, rhr) in healthKitController.rhrByDay {
+        for (_, rhr) in hkController.rhrByDay {
             if rhr > high {
                 high = rhr
             }
@@ -62,7 +62,7 @@ struct RHRChart: View {
             }
             ) {
                 Chart {
-                    ForEach(healthKitController.rhrByDay.sorted { $0.key < $1.key }, id: \.key) { date, rhr in
+                    ForEach(hkController.rhrByDay.sorted { $0.key < $1.key }, id: \.key) { date, rhr in
                         PointMark(
                             x: .value("Day", date),
                             y: .value(heartUnits, rhr)
@@ -89,18 +89,18 @@ struct RHRChart: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
 
-    healthKitController.rhrAverage = 63
+    hkController.rhrAverage = 63
 
     let today: Date = .now
     for i in 0...30 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.rhrByDay[date] = Int.random(in: 60...70)
+            hkController.rhrByDay[date] = Int.random(in: 60...70)
         }
     }
 
     return RHRChart()
-        .environment(healthKitController)
+        .environment(hkController)
 }

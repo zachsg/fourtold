@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoveView: View {
     @Environment(\.scenePhase) var scenePhase
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
@@ -17,7 +17,7 @@ struct MoveView: View {
         var bestDay: Date = .now
         var bestSteps = 0
         
-        for (day, minutes) in healthKitController.stepCountWeekByDay {
+        for (day, minutes) in hkController.stepCountWeekByDay {
             if minutes > bestSteps {
                 bestDay = day
                 bestSteps = minutes
@@ -31,13 +31,13 @@ struct MoveView: View {
         NavigationStack {
             List {
                 Section {
-                    StatRow(headerImage: stepsSystemImage, headerTitle: "Steps today", date: healthKitController.latestSteps, stat: Double(healthKitController.stepCountToday), color: .move, goal: dailyStepsGoal)
+                    StatRow(headerImage: stepsSystemImage, headerTitle: "Steps today", date: hkController.latestSteps, stat: Double(hkController.stepCountToday), color: .move, goal: dailyStepsGoal)
                     
-                    StatRow(headerImage: stepsSystemImage, headerTitle: "Steps past 7 days", date: healthKitController.latestSteps, stat: Double(healthKitController.stepCountWeek), color: .move, goal: dailyStepsGoal * 7, destination: {
+                    StatRow(headerImage: stepsSystemImage, headerTitle: "Steps past 7 days", date: hkController.latestSteps, stat: Double(hkController.stepCountWeek), color: .move, goal: dailyStepsGoal * 7, destination: {
                         WeekStepsDetailView()
                     })
 
-                    StatRow(headerImage: distanceSystemImage, headerTitle: "Distance today", date: healthKitController.latestWalkRunDistance, stat: healthKitController.walkRunDistanceToday, color: .move, units: "Miles")
+                    StatRow(headerImage: distanceSystemImage, headerTitle: "Distance today", date: hkController.latestWalkRunDistance, stat: hkController.walkRunDistanceToday, color: .move, units: "Miles")
                 } header: {
                     Text("Activity")
                 } footer: {
@@ -66,27 +66,27 @@ struct MoveView: View {
     }
     
     func refresh() {
-        healthKitController.getStepCountToday()
-        healthKitController.getStepCountWeek()
+        hkController.getStepCountToday()
+        hkController.getStepCountWeek()
         
-        healthKitController.getWalkRunDistanceToday()
+        hkController.getWalkRunDistanceToday()
     }
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.stepCountToday = 2000
-    healthKitController.stepCountWeek = 12000
-    healthKitController.walkRunDistanceToday = 5.1
+    let hkController = HKController()
+    hkController.stepCountToday = 2000
+    hkController.stepCountWeek = 12000
+    hkController.walkRunDistanceToday = 5.1
     
     let today: Date = .now
     for i in 0...6 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.stepCountWeekByDay[date] = Int.random(in: 0...15000)
+            hkController.stepCountWeekByDay[date] = Int.random(in: 0...15000)
         }
     }
     
     return MoveView()
-        .environment(healthKitController)
+        .environment(hkController)
 }

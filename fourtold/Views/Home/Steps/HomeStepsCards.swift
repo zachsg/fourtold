@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeStepsCards: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var stepsTodayPercent: Double
     @Binding var stepsWeekPercent: Double
@@ -30,7 +30,7 @@ struct HomeStepsCards: View {
                     Image(systemName: stepsSystemImage)
                     Text("Steps")
                     Spacer()
-                    dateView(date: healthKitController.latestSteps)
+                    dateView(date: hkController.latestSteps)
                 }
                 .font(.headline.bold())
                 .foregroundStyle(.move)
@@ -60,11 +60,11 @@ struct HomeStepsCards: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.stepCountToday = 8000
-    healthKitController.stepCountWeek = 30000
-    healthKitController.latestSteps = .now
+    let hkController = HKController()
+    hkController.stepCountToday = 8000
+    hkController.stepCountWeek = 30000
+    hkController.latestSteps = .now
     
     return HomeStepsCards(stepsTodayPercent: .constant(80), stepsWeekPercent: .constant(65))
-        .environment(healthKitController)
+        .environment(hkController)
 }

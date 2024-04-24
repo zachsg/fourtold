@@ -21,7 +21,7 @@
 		5912D1972B1BB78D00E78D6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1962B1BB78D00E78D6E /* ContentView.swift */; };
 		5912D1992B1BB78F00E78D6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5912D1982B1BB78F00E78D6E /* Assets.xcassets */; };
 		5912D19C2B1BB78F00E78D6E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5912D19B2B1BB78F00E78D6E /* Preview Assets.xcassets */; };
-		5912D1A42B1BB90500E78D6E /* HealthKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A32B1BB90500E78D6E /* HealthKitController.swift */; };
+		5912D1A42B1BB90500E78D6E /* HKController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A32B1BB90500E78D6E /* HKController.swift */; };
 		5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */; };
 		591CC1E22B32074200B731B7 /* MoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591CC1E12B32074200B731B7 /* MoodPicker.swift */; };
 		592E0F352BB39431003DF532 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E0F342BB39431003DF532 /* ContentView.swift */; };
@@ -40,7 +40,7 @@
 		592E0F4A2BB39589003DF532 /* FTGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550922B1FC3620070F60E /* FTGender.swift */; };
 		592E0F4B2BB39589003DF532 /* FTBreath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DAF37B2B2C04B900BB12B5 /* FTBreath.swift */; };
 		592E0F4C2BB39589003DF532 /* FTActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597550A62B27A1800070F60E /* FTActivity.swift */; };
-		592E0F4D2BB39593003DF532 /* HealthKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A32B1BB90500E78D6E /* HealthKitController.swift */; };
+		592E0F4D2BB39593003DF532 /* HKController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5912D1A32B1BB90500E78D6E /* HKController.swift */; };
 		592E0F4E2BB395F0003DF532 /* RHR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594F097F2B506D9B0010E544 /* RHR.swift */; };
 		592E0F4F2BB395F0003DF532 /* VO2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594FCD582B49DE76003C9640 /* VO2.swift */; };
 		592E0F502BB395F6003DF532 /* FTReadGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B57B412B30D14D00FA949C /* FTReadGenre.swift */; };
@@ -124,7 +124,6 @@
 		59CAEE802B40C761000E5A52 /* HomeZone2Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CAEE7F2B40C761000E5A52 /* HomeZone2Today.swift */; };
 		59D0D14D2B44C37400DEB29A /* HomeOverall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D14C2B44C37400DEB29A /* HomeOverall.swift */; };
 		59D0D14F2B45D25900DEB29A /* SettingsSweatGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D14E2B45D25900DEB29A /* SettingsSweatGroup.swift */; };
-		59D0D1522B45D2FE00DEB29A /* SweatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1512B45D2FE00DEB29A /* SweatView.swift */; };
 		59D0D1542B461DF300DEB29A /* Four78ingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1532B461DF300DEB29A /* Four78ingView.swift */; };
 		59D0D1562B462BF200DEB29A /* BreathDoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1552B462BF200DEB29A /* BreathDoneSheet.swift */; };
 		59D0D15A2B4646D700DEB29A /* FTBreathStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */; };
@@ -148,6 +147,11 @@
 		59FCB7E72B3D1BC0004C64B0 /* HomeStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */; };
 		59FCB7F12B3E2C2A004C64B0 /* HomeStepsToday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */; };
 		59FCB7F32B3E2D6B004C64B0 /* HomeStepsPastWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */; };
+		9213E9BB2BD9589C00D4F6E5 /* FTTagData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9213E9BA2BD9589C00D4F6E5 /* FTTagData.swift */; };
+		9213E9BD2BD95A2000D4F6E5 /* FTActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9213E9BC2BD95A2000D4F6E5 /* FTActivityData.swift */; };
+		9213E9BF2BD96DAC00D4F6E5 /* SweatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9213E9BE2BD96DAC00D4F6E5 /* SweatView.swift */; };
+		922B6BD02BD97C110006AA9D /* FTTagData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9213E9BA2BD9589C00D4F6E5 /* FTTagData.swift */; };
+		922B6BD12BD97C140006AA9D /* FTActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9213E9BC2BD95A2000D4F6E5 /* FTActivityData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,7 +195,7 @@
 		5912D1982B1BB78F00E78D6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5912D19B2B1BB78F00E78D6E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5912D1A22B1BB7DF00E78D6E /* fourtold.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fourtold.entitlements; sourceTree = "<group>"; };
-		5912D1A32B1BB90500E78D6E /* HealthKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitController.swift; sourceTree = "<group>"; };
+		5912D1A32B1BB90500E78D6E /* HKController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKController.swift; sourceTree = "<group>"; };
 		5912D1A52B1BE00B00E78D6E /* WeekStepsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStepsDetailView.swift; sourceTree = "<group>"; };
 		591CC1E12B32074200B731B7 /* MoodPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPicker.swift; sourceTree = "<group>"; };
 		592E0F302BB39431003DF532 /* fourtoldwatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fourtoldwatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -267,7 +271,6 @@
 		59CAEE7F2B40C761000E5A52 /* HomeZone2Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeZone2Today.swift; sourceTree = "<group>"; };
 		59D0D14C2B44C37400DEB29A /* HomeOverall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOverall.swift; sourceTree = "<group>"; };
 		59D0D14E2B45D25900DEB29A /* SettingsSweatGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSweatGroup.swift; sourceTree = "<group>"; };
-		59D0D1512B45D2FE00DEB29A /* SweatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweatView.swift; sourceTree = "<group>"; };
 		59D0D1532B461DF300DEB29A /* Four78ingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Four78ingView.swift; sourceTree = "<group>"; };
 		59D0D1552B462BF200DEB29A /* BreathDoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathDoneSheet.swift; sourceTree = "<group>"; };
 		59D0D1592B4646D700DEB29A /* FTBreathStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTBreathStatus.swift; sourceTree = "<group>"; };
@@ -291,6 +294,9 @@
 		59FCB7E62B3D1BC0004C64B0 /* HomeStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatCard.swift; sourceTree = "<group>"; };
 		59FCB7F02B3E2C2A004C64B0 /* HomeStepsToday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsToday.swift; sourceTree = "<group>"; };
 		59FCB7F22B3E2D6B004C64B0 /* HomeStepsPastWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStepsPastWeek.swift; sourceTree = "<group>"; };
+		9213E9BA2BD9589C00D4F6E5 /* FTTagData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTagData.swift; sourceTree = "<group>"; };
+		9213E9BC2BD95A2000D4F6E5 /* FTActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTActivityData.swift; sourceTree = "<group>"; };
+		9213E9BE2BD96DAC00D4F6E5 /* SweatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweatView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -550,7 +556,6 @@
 		59D0D1502B45D2EC00DEB29A /* Sweat */ = {
 			isa = PBXGroup;
 			children = (
-				59D0D1512B45D2FE00DEB29A /* SweatView.swift */,
 				5905FE9E2B424A8800D2CD66 /* WeekZone2DetailView.swift */,
 				5905FEA02B424AB300D2CD66 /* WeekZone2BarChart.swift */,
 				594FCD5C2B4A3845003C9640 /* VO2Chart.swift */,
@@ -559,6 +564,7 @@
 				594F09812B506DE90010E544 /* RHRBadge.swift */,
 				5912322F2B50C6D8004C50D6 /* RecoveryChart.swift */,
 				594F09872B50C4990010E544 /* RecoveryBadge.swift */,
+				9213E9BE2BD96DAC00D4F6E5 /* SweatView.swift */,
 			);
 			path = Sweat;
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				5912D1962B1BB78D00E78D6E /* ContentView.swift */,
+				9213E9B92BD9587C00D4F6E5 /* Data */,
 				59B57B352B2D322500FA949C /* Shared */,
 				59D28FD62B1E8533002799C4 /* Settings */,
 				59D28FD12B1E8274002799C4 /* Home */,
@@ -640,7 +647,7 @@
 		59DC47C82B1E80A600737EDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5912D1A32B1BB90500E78D6E /* HealthKitController.swift */,
+				5912D1A32B1BB90500E78D6E /* HKController.swift */,
 				5997A6192B295EBE00CDDF76 /* NotificationController.swift */,
 			);
 			path = Controller;
@@ -679,6 +686,15 @@
 				594FCD512B48F83B003C9640 /* FTTagSubStats.swift */,
 			);
 			path = Tag;
+			sourceTree = "<group>";
+		};
+		9213E9B92BD9587C00D4F6E5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9213E9BA2BD9589C00D4F6E5 /* FTTagData.swift */,
+				9213E9BC2BD95A2000D4F6E5 /* FTActivityData.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -818,12 +834,12 @@
 				590E17A82B33AD9B00269FA4 /* RestTodayActivities.swift in Sources */,
 				5997A61A2B295EBE00CDDF76 /* NotificationController.swift in Sources */,
 				5905FEA12B424AB300D2CD66 /* WeekZone2BarChart.swift in Sources */,
+				9213E9BF2BD96DAC00D4F6E5 /* SweatView.swift in Sources */,
 				59DFE26B2B42720B00B02C23 /* FTTag.swift in Sources */,
 				594889032B2A885E003FD4C8 /* HomeMindfulnessToday.swift in Sources */,
 				5912D1A62B1BE00B00E78D6E /* WeekStepsDetailView.swift in Sources */,
 				598117962B27F462003FAEB0 /* MeditatingView.swift in Sources */,
 				594FCD592B49DE76003C9640 /* VO2.swift in Sources */,
-				59D0D1522B45D2FE00DEB29A /* SweatView.swift in Sources */,
 				5975509A2B20E1650070F60E /* RestView.swift in Sources */,
 				59B96ACD2B2B9738003B5106 /* ReadSheet.swift in Sources */,
 				590E17AA2B33B06E00269FA4 /* RestOldActivities.swift in Sources */,
@@ -844,6 +860,7 @@
 				59D0D1542B461DF300DEB29A /* Four78ingView.swift in Sources */,
 				59D0D15A2B4646D700DEB29A /* FTBreathStatus.swift in Sources */,
 				59511A9D2B3336660071249A /* ReadingDoneSheet.swift in Sources */,
+				9213E9BD2BD95A2000D4F6E5 /* FTActivityData.swift in Sources */,
 				59B57B402B30CF7F00FA949C /* FTTimeOfDay.swift in Sources */,
 				594F09882B50C4990010E544 /* RecoveryBadge.swift in Sources */,
 				59B57B3C2B2D3E0E00FA949C /* Four78Section.swift in Sources */,
@@ -854,7 +871,7 @@
 				594F09782B4E0B100010E544 /* BoxSection.swift in Sources */,
 				59DFE2622B4264D100B02C23 /* HomeMindfulnessCards.swift in Sources */,
 				594889072B2A8E60003FD4C8 /* WeekRestMinutesDetailView.swift in Sources */,
-				5912D1A42B1BB90500E78D6E /* HealthKitController.swift in Sources */,
+				5912D1A42B1BB90500E78D6E /* HKController.swift in Sources */,
 				597A78A92B37CA35002F1BA7 /* RestStreakItem.swift in Sources */,
 				597550932B1FC3620070F60E /* FTGender.swift in Sources */,
 				594889092B2A8EF8003FD4C8 /* WeekRestMinutesBarChart.swift in Sources */,
@@ -866,6 +883,7 @@
 				590539802B40DCD2007AE8EF /* HomeZone2PastWeek.swift in Sources */,
 				59CAEE7A2B40C2BB000E5A52 /* SettingsMiscGroup.swift in Sources */,
 				594B28952B392728004F8BD6 /* StatItem.swift in Sources */,
+				9213E9BB2BD9589C00D4F6E5 /* FTTagData.swift in Sources */,
 				597A78A52B365C37002F1BA7 /* RestItemView.swift in Sources */,
 				5975509F2B226FA00070F60E /* FTTabItem.swift in Sources */,
 				590861E52B1E5C790040DC72 /* Constants.swift in Sources */,
@@ -887,13 +905,14 @@
 				592E0F422BB39589003DF532 /* FTMeditateType.swift in Sources */,
 				594F59D02BB7844F0067F0D3 /* DoneBreathingView.swift in Sources */,
 				592E0F432BB39589003DF532 /* FTMood.swift in Sources */,
-				592E0F4D2BB39593003DF532 /* HealthKitController.swift in Sources */,
+				592E0F4D2BB39593003DF532 /* HKController.swift in Sources */,
 				592E0F442BB39589003DF532 /* FTTimeFrame.swift in Sources */,
 				592E0F452BB39589003DF532 /* FTMeditate.swift in Sources */,
 				592E0F462BB39589003DF532 /* FTBreathType.swift in Sources */,
 				592E0F472BB39589003DF532 /* FTTimeOfDay.swift in Sources */,
 				5987C6DE2BB39ABB0065F5A3 /* Extensions.swift in Sources */,
 				592E0F482BB39589003DF532 /* FTTabItem.swift in Sources */,
+				922B6BD02BD97C110006AA9D /* FTTagData.swift in Sources */,
 				592E0F492BB39589003DF532 /* FTBreathStatus.swift in Sources */,
 				592E0F4A2BB39589003DF532 /* FTGender.swift in Sources */,
 				592E0F532BB395FA003DF532 /* FTTag.swift in Sources */,
@@ -915,6 +934,7 @@
 				5986B8F92BB3CC9C006E9F86 /* RestOption.swift in Sources */,
 				5986B8F72BB3BA1E006E9F86 /* TimerView.swift in Sources */,
 				5986B8F32BB3B75B006E9F86 /* MeditateDuring.swift in Sources */,
+				922B6BD12BD97C140006AA9D /* FTActivityData.swift in Sources */,
 				5986B8E02BB39BC9006E9F86 /* RestView.swift in Sources */,
 				592E0F522BB395F6003DF532 /* FTReadType.swift in Sources */,
 				592E0F4E2BB395F0003DF532 /* RHR.swift in Sources */,
@@ -1069,7 +1089,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 137;
+				CURRENT_PROJECT_VERSION = 138;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1089,7 +1109,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.4.3;
+				MARKETING_VERSION = 2024.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1110,7 +1130,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 137;
+				CURRENT_PROJECT_VERSION = 138;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1130,7 +1150,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.4.3;
+				MARKETING_VERSION = 2024.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

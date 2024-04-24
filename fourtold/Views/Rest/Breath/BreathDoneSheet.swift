@@ -5,14 +5,16 @@
 //  Created by Zach Gottlieb on 1/3/24.
 //
 
+import SwiftData
 import SwiftUI
 
 struct BreathDoneSheet: View {
     @Environment(\.modelContext) var modelContext
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     let date: Date
     let elapsed: TimeInterval
+    
     @Binding var type: FTBreathType
     @Binding var rounds: Int
     @Binding var mood: FTMood
@@ -66,7 +68,7 @@ struct BreathDoneSheet: View {
                     Button("Save") {
                         NotificationController.cancelAllPending()
                         
-                        healthKitController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: date)
+                        hkController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: date)
                         
                         let breath = FTBreath(startDate: date, timeOfDay: date.timeOfDay(), startMood: mood, endMood: endMood, type: type, duration: Int(elapsed.rounded()), rounds: rounds)
 
@@ -85,8 +87,22 @@ struct BreathDoneSheet: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
+    
+    let sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FTBreath.self,
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
     
     return BreathDoneSheet(date: .now, elapsed: 300.0, type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingMainSheet: .constant(true))
-        .environment(healthKitController)
+        .modelContainer(sharedModelContainer)
+        .environment(hkController)
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DoneBreathingView: View {
     @Environment(\.modelContext) var modelContext
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
 
     let date: Date
     let elapsed: TimeInterval
@@ -50,7 +50,7 @@ struct DoneBreathingView: View {
                         Button("Save") {
                             NotificationController.cancelAllPending()
 
-                            healthKitController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: date)
+                            hkController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: date)
 
                             let breath = FTBreath(startDate: date, timeOfDay: date.timeOfDay(), startMood: mood, endMood: endMood, type: type, duration: Int(elapsed.rounded()), rounds: rounds)
 
@@ -70,7 +70,7 @@ struct DoneBreathingView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
     
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -90,6 +90,6 @@ struct DoneBreathingView: View {
     }()
     
     return DoneBreathingView(date: .now, elapsed: 300.0, type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), endMood: .constant(.neutral), path: .constant(NavigationPath()))
-        .environment(healthKitController)
+        .environment(hkController)
         .modelContainer(sharedModelContainer)
 }

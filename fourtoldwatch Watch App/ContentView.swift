@@ -9,19 +9,23 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(HKController.self) private var hkController
+    
     var body: some View {
         RestView()
     }
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
     
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([
             FTMeditate.self,
             FTRead.self,
-            FTBreath.self
+            FTBreath.self,
+            FTTag.self,
+            FTTagOption.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
@@ -33,6 +37,6 @@ struct ContentView: View {
     }()
     
     return ContentView()
-        .environment(healthKitController)
         .modelContainer(sharedModelContainer)
+        .environment(hkController)
 }

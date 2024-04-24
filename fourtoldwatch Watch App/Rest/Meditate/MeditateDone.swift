@@ -12,7 +12,7 @@ import SwiftUI
 
 struct MeditateDone: View {
     @Environment(\.modelContext) var modelContext
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
 
     @Binding var type: FTMeditateType
     @Binding var startDate: Date
@@ -59,9 +59,9 @@ struct MeditateDone: View {
                         Button("Save") {
                             NotificationController.cancelAllPending()
 
-                            healthKitController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: startDate)
+                            hkController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: startDate)
 
-                            healthKitController.getMindfulMinutesToday()
+                            hkController.getMindfulMinutesToday()
 
                             let mediation = FTMeditate(startDate: startDate, timeOfDay: startDate.timeOfDay(), startMood: mood, endMood: endMood, type: type, duration: elapsed.secondsToMinutesRounded())
 
@@ -81,7 +81,7 @@ struct MeditateDone: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
     
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -101,6 +101,6 @@ struct MeditateDone: View {
     }()
     
     return MeditateDone(type: .constant(.timed), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), path: .constant(NavigationPath()))
-        .environment(healthKitController)
+        .environment(hkController)
         .modelContainer(sharedModelContainer)
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(\.scenePhase) var scenePhase
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
 
@@ -152,19 +152,19 @@ struct HomeView: View {
     }
     
     func refresh() {
-        healthKitController.getZone2Today()
-        healthKitController.getZone2Week()
+        hkController.getZone2Today()
+        hkController.getZone2Week()
 
-        healthKitController.getStepCountToday()
-        healthKitController.getStepCountWeek()
+        hkController.getStepCountToday()
+        hkController.getStepCountWeek()
         
-        healthKitController.getMindfulMinutesToday()
-        healthKitController.getMindfulMinutesWeek()
+        hkController.getMindfulMinutesToday()
+        hkController.getMindfulMinutesWeek()
     }
     
     func stepsPerMile() -> String {
-        let stepsToday = Double(healthKitController.stepCountToday)
-        let distanceToday = healthKitController.walkRunDistanceToday
+        let stepsToday = Double(hkController.stepCountToday)
+        let distanceToday = hkController.walkRunDistanceToday
         
         if distanceToday > 0 {
             let formatter = NumberFormatter()
@@ -178,31 +178,31 @@ struct HomeView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.stepCountToday = 10000
-    healthKitController.stepCountWeek = 65000
-    healthKitController.walkRunDistanceToday = 5.1
-    healthKitController.cardioFitnessMostRecent = 44.1
-    healthKitController.mindfulMinutesToday = 20
-    healthKitController.mindfulMinutesWeek = 60
-    healthKitController.zone2Today = 15
-    healthKitController.zone2Week = 75
+    let hkController = HKController()
+    hkController.stepCountToday = 10000
+    hkController.stepCountWeek = 65000
+    hkController.walkRunDistanceToday = 5.1
+    hkController.cardioFitnessMostRecent = 44.1
+    hkController.mindfulMinutesToday = 20
+    hkController.mindfulMinutesWeek = 60
+    hkController.zone2Today = 15
+    hkController.zone2Week = 75
     
     let today: Date = .now
     for i in 0...6 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.mindfulMinutesWeekByDay[date] = Int.random(in: 0...20)
+            hkController.mindfulMinutesWeekByDay[date] = Int.random(in: 0...20)
         }
     }
     
     for i in 0...6 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.stepCountWeekByDay[date] = Int.random(in: 0...15000)
+            hkController.stepCountWeekByDay[date] = Int.random(in: 0...15000)
         }
     }
     
     return HomeView()
-        .environment(healthKitController)
+        .environment(hkController)
 }

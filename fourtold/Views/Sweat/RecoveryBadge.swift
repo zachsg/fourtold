@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct RecoveryBadge: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
 
     var trend: FTRecoveryTrend {
-        let recoveryAverage = healthKitController.recoveryAverage
-        let recoveryCurrent = healthKitController.recoveryMostRecent
+        let recoveryAverage = hkController.recoveryAverage
+        let recoveryCurrent = hkController.recoveryMostRecent
 
         return recoveryCurrent.recoveryTrend(given: recoveryAverage)
     }
 
     var badgeParts: Text {
-        let recoveryAverage = healthKitController.recoveryAverage
-        let recoveryCurrent = healthKitController.recoveryMostRecent
+        let recoveryAverage = hkController.recoveryAverage
+        let recoveryCurrent = hkController.recoveryMostRecent
         let trend = recoveryCurrent.recoveryTrend(given: recoveryAverage)
 
         let main = Text(trend.rawValue.capitalized)
@@ -47,11 +47,11 @@ struct RecoveryBadge: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.recoveryMostRecent = 36
-    healthKitController.recoveryAverage = 32
-    healthKitController.latestRecovery = .now
+    let hkController = HKController()
+    hkController.recoveryMostRecent = 36
+    hkController.recoveryAverage = 32
+    hkController.latestRecovery = .now
 
     return RecoveryBadge()
-        .environment(healthKitController)
+        .environment(hkController)
 }

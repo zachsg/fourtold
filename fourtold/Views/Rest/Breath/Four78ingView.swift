@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct Four78ingView: View {
-    @Environment(HealthKitController.self) private var healthKitController
-    
     @Binding var type: FTBreathType
     @Binding var rounds: Int
     @Binding var mood: FTMood
@@ -156,8 +154,5 @@ struct Four78ingView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    return Four78ingView(type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), showingMainSheet: .constant(true))
-        .environment(healthKitController)
+    Four78ingView(type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), showingMainSheet: .constant(true))
 }

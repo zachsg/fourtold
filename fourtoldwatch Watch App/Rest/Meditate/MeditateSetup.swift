@@ -5,12 +5,9 @@
 //  Created by Zach Gottlieb on 3/26/24.
 //
 
-import SwiftData
 import SwiftUI
 
 struct MeditateSetup: View {
-    @Environment(HealthKitController.self) private var healthKitController
-    
     @Binding var path: NavigationPath
 
     @AppStorage(meditateGoalKey) var meditateGoal: Int = meditateGoalDefault
@@ -45,6 +42,7 @@ struct MeditateSetup: View {
                                 .foregroundStyle(.rest)
                         }
                     }
+                    .tint(.rest)
                 }
 
                 MoodPicker(mood: $mood, color: .rest) {
@@ -63,6 +61,7 @@ struct MeditateSetup: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
+                .tint(.rest)
             }
             .listRowBackground(Color.clear)
         }
@@ -77,27 +76,5 @@ struct MeditateSetup: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    let sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            FTMeditate.self,
-            FTRead.self,
-            FTBreath.self,
-            FTTag.self,
-            FTTagOption.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
-    return MeditateSetup(path: .constant(NavigationPath()))
-        .environment(healthKitController)
-        .modelContainer(sharedModelContainer)
+    MeditateSetup(path: .constant(NavigationPath()))
 }
-

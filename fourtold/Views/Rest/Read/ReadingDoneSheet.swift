@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ReadingDoneSheet: View {
     @Environment(\.modelContext) var modelContext
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var type: FTReadType
     @Binding var genre: FTReadGenre
@@ -76,7 +76,7 @@ struct ReadingDoneSheet: View {
                         NotificationController.cancelAllPending()
                         
                         // Write mindful minutes to Apple Health
-                        // healthKitController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: startDate)
+                        // hkController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: startDate)
                         
                         let read = FTRead(startDate: startDate, timeOfDay: startDate.timeOfDay(), startMood: mood, endMood: endMood, type: type, genre: genre, duration: elapsed.secondsToMinutesRounded(), isTimed: isTimed)
                         
@@ -95,8 +95,22 @@ struct ReadingDoneSheet: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
+    
+    let sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FTRead.self,
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
     
     return ReadingDoneSheet(type: .constant(.book), genre: .constant(.fantasy), isTimed: .constant(true), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingAlert: .constant(true))
-        .environment(healthKitController)
+        .modelContainer(sharedModelContainer)
+        .environment(hkController)
 }

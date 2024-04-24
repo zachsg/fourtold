@@ -10,7 +10,6 @@ import SwiftUI
 
 struct RestView: View {
     @Environment(\.scenePhase) var scenePhase
-    @Environment(HealthKitController.self) private var healthKitController
     
     @State private var meditateSheetIsShowing = false
     @State private var breathworkSheetIsShowing = false
@@ -95,8 +94,6 @@ struct RestView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([
             FTMeditate.self,
@@ -109,9 +106,9 @@ struct RestView: View {
         do {
             let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
             
-            let meditation = FTMeditate(startDate: .now, timeOfDay: .morning, startMood: .neutral, endMood: .pleasant, type: .timed, duration: 300)
-            
-            container.mainContext.insert(meditation)
+            for activity in FTActivityData.all {
+                container.mainContext.insert(activity)
+            }
             
             return container
         } catch {
@@ -120,6 +117,5 @@ struct RestView: View {
     }()
     
     return RestView()
-        .environment(healthKitController)
         .modelContainer(sharedModelContainer)
 }

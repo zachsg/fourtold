@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeZone2Cards: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var zone2TodayPercent: Double
     @Binding var zone2WeekPercent: Double
@@ -30,7 +30,7 @@ struct HomeZone2Cards: View {
                     Image(systemName: vO2SystemImage)
                     Text("Zone 2+ HR")
                     Spacer()
-                    dateView(date: healthKitController.latestZone2)
+                    dateView(date: hkController.latestZone2)
                 }
                 .font(.headline.bold())
                 .foregroundStyle(.sweat)
@@ -60,11 +60,11 @@ struct HomeZone2Cards: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.zone2Today = 15
-    healthKitController.zone2Week = 70
-    healthKitController.latestZone2 = .now
+    let hkController = HKController()
+    hkController.zone2Today = 15
+    hkController.zone2Week = 70
+    hkController.latestZone2 = .now
     
     return HomeZone2Cards(zone2TodayPercent: .constant(80), zone2WeekPercent: .constant(70))
-        .environment(healthKitController)
+        .environment(hkController)
 }

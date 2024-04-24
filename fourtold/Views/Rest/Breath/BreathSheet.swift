@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct BreathSheet: View {
-    @Environment(HealthKitController.self) private var healthKitController
-    
     @Binding var showingSheet: Bool
     
     @AppStorage(breathTypeKey) var breathType: FTBreathType = breathTypeDefault
@@ -69,8 +67,5 @@ struct BreathSheet: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    return BreathSheet(showingSheet: .constant(false))
-        .environment(healthKitController)
+    BreathSheet(showingSheet: .constant(false))
 }

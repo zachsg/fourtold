@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct HomeZone2Today: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var zone2TodayPercent: Double
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
     
     var isDone: Bool {
-        zone2TodayPercent = (Double(healthKitController.zone2Today) / Double(dailyZone2Goal / 60) * 100).rounded()
+        zone2TodayPercent = (Double(hkController.zone2Today) / Double(dailyZone2Goal / 60) * 100).rounded()
         return zone2TodayPercent >= 100
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Today", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .sweat, progress: zone2TodayPercent) {
+        HomeStatCard(headerTitle: "Today", headerImage: vO2SystemImage, date: hkController.latestZone2, color: .sweat, progress: zone2TodayPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
-                Text("\(healthKitController.zone2Today)")
+                Text("\(hkController.zone2Today)")
                     .font(.title)
                     .fontWeight( isDone ? .bold : .semibold)
                     .foregroundStyle(isDone ? .sweat : .primary)
@@ -33,7 +33,7 @@ struct HomeZone2Today: View {
             }
             
             HStack(spacing: 0) {
-                Text("\(percentComplete(action: healthKitController.zone2Today, goal: dailyZone2Goal))")
+                Text("\(percentComplete(action: hkController.zone2Today, goal: dailyZone2Goal))")
                     .foregroundStyle(isDone ? .sweat : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated())")
@@ -58,8 +58,8 @@ struct HomeZone2Today: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
     
     return HomeZone2Today(zone2TodayPercent: .constant(80))
-        .environment(healthKitController)
+        .environment(hkController)
 }

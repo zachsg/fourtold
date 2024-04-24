@@ -119,15 +119,15 @@ struct StatRow<Destination: View, Badge: View>: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.cardioFitnessMostRecent = 44.5
-    healthKitController.cardioFitnessAverage = 42.2
-    healthKitController.latestCardioFitness = .now
+    let hkController = HKController()
+    hkController.cardioFitnessMostRecent = 44.5
+    hkController.cardioFitnessAverage = 42.2
+    hkController.latestCardioFitness = .now
 
     return StatRow(headerImage: stepsSystemImage, headerTitle: "Steps today", date: .now, stat: 7000, color: .move, goal: 10000, units: nil) {
         Text("Destination")
     } badge: {
         VO2Badge()
-            .environment(healthKitController)
+            .environment(hkController)
     }
 }

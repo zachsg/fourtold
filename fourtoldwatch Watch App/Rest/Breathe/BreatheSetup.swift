@@ -9,8 +9,6 @@ import SwiftData
 import SwiftUI
 
 struct BreatheSetup: View {
-    @Environment(HealthKitController.self) private var healthKitController
-
     @Binding var path: NavigationPath
 
     @AppStorage(breathTypeKey) var breathType: FTBreathType = breathTypeDefault
@@ -118,8 +116,6 @@ struct BreatheSetup: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([
             FTMeditate.self,
@@ -137,6 +133,5 @@ struct BreatheSetup: View {
     }()
     
     return BreatheSetup(path: .constant(NavigationPath()))
-        .environment(healthKitController)
         .modelContainer(sharedModelContainer)
 }

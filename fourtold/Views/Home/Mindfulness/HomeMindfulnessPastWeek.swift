@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct HomeMindfulnessPastWeek: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var mindfulWeekPercent: Double
     
     @AppStorage(dailyMindfulnessGoalKey) var dailyMindfulnessGoal: Int = dailyMindfulnessGoalDefault
     
     var isDone: Bool {
-        mindfulWeekPercent = (Double(healthKitController.mindfulMinutesWeek) / Double((dailyMindfulnessGoal * 7) / 60) * 100).rounded()
+        mindfulWeekPercent = (Double(hkController.mindfulMinutesWeek) / Double((dailyMindfulnessGoal * 7) / 60) * 100).rounded()
         return mindfulWeekPercent >= 100
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Past 7 days", headerImage: restSystemImage, date: healthKitController.latestMindfulMinutes, color: .rest, progress: mindfulWeekPercent) {
+        HomeStatCard(headerTitle: "Past 7 days", headerImage: restSystemImage, date: hkController.latestMindfulMinutes, color: .rest, progress: mindfulWeekPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
-                Text("\(healthKitController.mindfulMinutesWeek)")
+                Text("\(hkController.mindfulMinutesWeek)")
                     .font(.title)
                     .fontWeight( isDone ? .bold : .semibold)
                     .foregroundStyle(isDone ? .rest : .primary)
@@ -33,7 +33,7 @@ struct HomeMindfulnessPastWeek: View {
             }
             
             HStack(spacing: 0) {
-                Text("\(percentComplete(action: healthKitController.mindfulMinutesWeek, goal: dailyMindfulnessGoal, forWeek: true))")
+                Text("\(percentComplete(action: hkController.mindfulMinutesWeek, goal: dailyMindfulnessGoal, forWeek: true))")
                     .foregroundStyle(isDone ? .rest : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated(forWeek: true))")
@@ -58,8 +58,8 @@ struct HomeMindfulnessPastWeek: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
     
     return HomeMindfulnessPastWeek(mindfulWeekPercent: .constant(80))
-        .environment(healthKitController)
+        .environment(hkController)
 }

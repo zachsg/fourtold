@@ -10,7 +10,7 @@ import SwiftUI
 
 @main
 struct fourtoldApp: App {
-    @State private var healthKitController = HealthKitController()
+    @State private var hkController = HKController()
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -33,7 +33,7 @@ struct fourtoldApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(sharedModelContainer)
-                .environment(healthKitController)
+                .environment(hkController)
         }
     }
 }

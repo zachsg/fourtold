@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct HomeStepsToday: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var stepsTodayPercent: Double
     
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
     var isDone: Bool {
-        stepsTodayPercent = (Double(healthKitController.stepCountToday) / Double(dailyStepsGoal) * 100).rounded()
+        stepsTodayPercent = (Double(hkController.stepCountToday) / Double(dailyStepsGoal) * 100).rounded()
         return stepsTodayPercent >= 100
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Today", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move, progress: stepsTodayPercent) {
-            Text(healthKitController.stepCountToday, format: .number)
+        HomeStatCard(headerTitle: "Today", headerImage: stepsSystemImage, date: hkController.latestSteps, color: .move, progress: stepsTodayPercent) {
+            Text(hkController.stepCountToday, format: .number)
                 .font(.title)
                 .fontWeight( isDone ? .bold : .semibold)
                 .foregroundStyle(isDone ? .move : .primary)
             
             HStack(spacing: 0) {
-                Text("\(percentComplete(action: healthKitController.stepCountToday, goal: dailyStepsGoal))")
+                Text("\(percentComplete(action: hkController.stepCountToday, goal: dailyStepsGoal))")
                     .foregroundStyle(isDone ? .move : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated())k")
@@ -52,9 +52,9 @@ struct HomeStepsToday: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.stepCountToday = 8000
+    let hkController = HKController()
+    hkController.stepCountToday = 8000
     
     return HomeStepsToday(stepsTodayPercent: .constant(80))
-        .environment(healthKitController)
+        .environment(hkController)
 }

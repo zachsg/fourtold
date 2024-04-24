@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct HomeStepsPastWeek: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var stepsWeekPercent: Double
     
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
     
     var isDone: Bool {
-        stepsWeekPercent = (Double(healthKitController.stepCountWeek) / Double(dailyStepsGoal * 7) * 100).rounded()
+        stepsWeekPercent = (Double(hkController.stepCountWeek) / Double(dailyStepsGoal * 7) * 100).rounded()
         return stepsWeekPercent >= 100
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Past 7 days", headerImage: stepsSystemImage, date: healthKitController.latestSteps, color: .move, progress: stepsWeekPercent) {
-            Text(healthKitController.stepCountWeek, format: .number)
+        HomeStatCard(headerTitle: "Past 7 days", headerImage: stepsSystemImage, date: hkController.latestSteps, color: .move, progress: stepsWeekPercent) {
+            Text(hkController.stepCountWeek, format: .number)
                 .font(.title)
                 .fontWeight( isDone ? .bold : .semibold)
                 .foregroundStyle(isDone ? .move : .primary)
             
             HStack(spacing: 0) {
-                Text("\(percentComplete(action: healthKitController.stepCountWeek, goal: dailyStepsGoal, forWeek: true))")
+                Text("\(percentComplete(action: hkController.stepCountWeek, goal: dailyStepsGoal, forWeek: true))")
                     .foregroundStyle(isDone ? .move : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated(forWeek: true))k goal")
@@ -52,10 +52,10 @@ struct HomeStepsPastWeek: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.stepCountWeek = 75000
+    let hkController = HKController()
+    hkController.stepCountWeek = 75000
     
     return HomeStepsPastWeek(stepsWeekPercent: .constant(80))
-        .environment(healthKitController)
+        .environment(hkController)
 }
 

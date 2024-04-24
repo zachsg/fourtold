@@ -2,14 +2,14 @@
 //  SweatView.swift
 //  fourtold
 //
-//  Created by Zach Gottlieb on 1/3/24.
+//  Created by Zach Gottlieb on 4/24/24.
 //
 
 import SwiftUI
 
 struct SweatView: View {
     @Environment(\.scenePhase) var scenePhase
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
 
@@ -20,19 +20,19 @@ struct SweatView: View {
         NavigationStack {
             List {
                 Section("Progress") {
-                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat, units: vO2Units) {
+                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: hkController.latestCardioFitness, stat: hkController.cardioFitnessMostRecent, color: .sweat, units: vO2Units) {
                         VO2Chart()
                     } badge: {
                         VO2Badge()
                     }
 
-                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest resting heart rate", date: healthKitController.latestRhr, stat: Double(healthKitController.rhrMostRecent), color: .sweat, units: heartUnits) {
+                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest resting heart rate", date: hkController.latestRhr, stat: Double(hkController.rhrMostRecent), color: .sweat, units: heartUnits) {
                         RHRChart()
                     } badge: {
                         RHRBadge()
                     }
 
-                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio recovery", date: healthKitController.latestRecovery, stat: Double(healthKitController.recoveryMostRecent), color: .sweat, units: heartUnits) {
+                    StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio recovery", date: hkController.latestRecovery, stat: Double(hkController.recoveryMostRecent), color: .sweat, units: heartUnits) {
                         RecoveryChart()
                     } badge: {
                         RecoveryBadge()
@@ -40,9 +40,9 @@ struct SweatView: View {
                 }
 
                 Section("Activity") {
-                    StatRow(headerImage: vO2SystemImage, headerTitle: "Zone 2 today", date: healthKitController.latestZone2, stat: Double(healthKitController.zone2Today), color: .sweat, goal: dailyZone2Goal / 60, units: "min")
+                    StatRow(headerImage: vO2SystemImage, headerTitle: "Zone 2 today", date: hkController.latestZone2, stat: Double(hkController.zone2Today), color: .sweat, goal: dailyZone2Goal / 60, units: "min")
                     
-                    StatRow(headerImage: vO2SystemImage, headerTitle: "Zone 2 past 7 days", date: healthKitController.latestZone2, stat: Double(healthKitController.zone2Week), color: .sweat, goal: (dailyZone2Goal * 7) / 60, units: "min", destination: {
+                    StatRow(headerImage: vO2SystemImage, headerTitle: "Zone 2 past 7 days", date: hkController.latestZone2, stat: Double(hkController.zone2Week), color: .sweat, goal: (dailyZone2Goal * 7) / 60, units: "min", destination: {
                         WeekZone2DetailView()
                     })
                 }
@@ -63,55 +63,55 @@ struct SweatView: View {
     }
     
     private func refresh() {
-        healthKitController.getCardioFitnessRecent()
-        healthKitController.getRhrRecent()
-        healthKitController.getRecoveryRecent()
+        hkController.getCardioFitnessRecent()
+        hkController.getRhrRecent()
+        hkController.getRecoveryRecent()
 
-        healthKitController.getZone2Today()
-        healthKitController.getZone2Week()
-        healthKitController.getZone2Recent()
+        hkController.getZone2Today()
+        hkController.getZone2Week()
+        hkController.getZone2Recent()
     }
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
 
     let today: Date = .now
 
-    healthKitController.cardioFitnessMostRecent = 45
-    healthKitController.cardioFitnessAverage = 43
+    hkController.cardioFitnessMostRecent = 45
+    hkController.cardioFitnessAverage = 43
     for i in 0...30 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.cardioFitnessByDay[date] = Double.random(in: 40...45)
+            hkController.cardioFitnessByDay[date] = Double.random(in: 40...45)
         }
     }
 
     for i in 0...30 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.zone2ByDay[date] = Int.random(in: 0...45)
+            hkController.zone2ByDay[date] = Int.random(in: 0...45)
         }
     }
 
-    healthKitController.rhrMostRecent = 60
-    healthKitController.rhrAverage = 63
+    hkController.rhrMostRecent = 60
+    hkController.rhrAverage = 63
     for i in 0...30 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.rhrByDay[date] = Int.random(in: 60...70)
+            hkController.rhrByDay[date] = Int.random(in: 60...70)
         }
     }
 
-    healthKitController.recoveryMostRecent = 32
-    healthKitController.recoveryAverage = 30
+    hkController.recoveryMostRecent = 32
+    hkController.recoveryAverage = 30
     for i in 0...30 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.recoveryByDay[date] = Int.random(in: 28...33)
+            hkController.recoveryByDay[date] = Int.random(in: 28...33)
         }
     }
 
     return SweatView()
-        .environment(healthKitController)
+        .environment(hkController)
 }

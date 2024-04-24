@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct VO2Badge: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
 
     var trend: FTVO2Trend {
-        let vO2Average = healthKitController.cardioFitnessAverage
-        let vO2Current = healthKitController.cardioFitnessMostRecent
+        let vO2Average = hkController.cardioFitnessAverage
+        let vO2Current = hkController.cardioFitnessMostRecent
 
         return vO2Current.vO2Trend(given: vO2Average)
     }
 
     var badgeParts: (main: Text, sub: Text, subJoiner: Text) {
-        let vO2Average = healthKitController.cardioFitnessAverage
-        let vO2Current = healthKitController.cardioFitnessMostRecent
+        let vO2Average = hkController.cardioFitnessAverage
+        let vO2Current = hkController.cardioFitnessMostRecent
         let trend = vO2Current.vO2Trend(given: vO2Average)
 
         let main = Text(vO2Current.vO2Status().rawValue.capitalized)
@@ -65,7 +65,7 @@ struct VO2Badge: View {
     }
 
     func vo2Color() -> Color {
-        let vO2Current = healthKitController.cardioFitnessMostRecent
+        let vO2Current = hkController.cardioFitnessMostRecent
         let status = vO2Current.vO2Status()
 
         return switch status {
@@ -90,11 +90,11 @@ struct VO2Badge: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    healthKitController.cardioFitnessMostRecent = 45
-    healthKitController.cardioFitnessAverage = 44.2
-    healthKitController.latestCardioFitness = .now
+    let hkController = HKController()
+    hkController.cardioFitnessMostRecent = 45
+    hkController.cardioFitnessAverage = 44.2
+    hkController.latestCardioFitness = .now
 
     return VO2Badge()
-        .environment(healthKitController)
+        .environment(hkController)
 }

@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct HomeZone2PastWeek: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @Binding var zone2WeekPercent: Double
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
     
     var isDone: Bool {
-        zone2WeekPercent = (Double(healthKitController.zone2Week) / Double((dailyZone2Goal * 7) / 60) * 100).rounded()
+        zone2WeekPercent = (Double(hkController.zone2Week) / Double((dailyZone2Goal * 7) / 60) * 100).rounded()
         return zone2WeekPercent >= 100
     }
     
     var body: some View {
-        HomeStatCard(headerTitle: "Past 7 days", headerImage: vO2SystemImage, date: healthKitController.latestZone2, color: .sweat, progress: zone2WeekPercent) {
+        HomeStatCard(headerTitle: "Past 7 days", headerImage: vO2SystemImage, date: hkController.latestZone2, color: .sweat, progress: zone2WeekPercent) {
             HStack(alignment: .firstTextBaseline, spacing: 2) {
-                Text("\(healthKitController.zone2Week)")
+                Text("\(hkController.zone2Week)")
                     .font(.title)
                     .fontWeight( isDone ? .bold : .semibold)
                     .foregroundStyle(isDone ? .sweat : .primary)
@@ -33,7 +33,7 @@ struct HomeZone2PastWeek: View {
             }
             
             HStack(spacing: 0) {
-                Text("\(percentComplete(action: healthKitController.zone2Week, goal: dailyZone2Goal, forWeek: true))")
+                Text("\(percentComplete(action: hkController.zone2Week, goal: dailyZone2Goal, forWeek: true))")
                     .foregroundStyle(isDone ? .sweat : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated(forWeek: true))")
@@ -58,9 +58,9 @@ struct HomeZone2PastWeek: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
     
     return HomeZone2PastWeek(zone2WeekPercent: .constant(80))
-        .environment(healthKitController)
+        .environment(hkController)
 }
 

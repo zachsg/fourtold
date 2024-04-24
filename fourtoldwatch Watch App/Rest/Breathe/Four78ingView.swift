@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct Four78ingView: View {
-    @Environment(HealthKitController.self) private var healthKitController
-    
     @Binding var rounds: Int
     @Binding var elapsed: TimeInterval
     @Binding var mood: FTMood
@@ -151,8 +149,5 @@ struct Four78ingView: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    return Four78ingView(rounds: .constant(4), elapsed: .constant(0), mood: .constant(.neutral), endMood: .constant(.neutral), date: .constant(.now), type: .constant(.four78), path: .constant(NavigationPath()))
-        .environment(healthKitController)
+    Four78ingView(rounds: .constant(4), elapsed: .constant(0), mood: .constant(.neutral), endMood: .constant(.neutral), date: .constant(.now), type: .constant(.four78), path: .constant(NavigationPath()))
 }

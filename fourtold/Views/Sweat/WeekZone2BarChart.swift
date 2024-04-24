@@ -9,14 +9,14 @@ import Charts
 import SwiftUI
 
 struct WeekZone2BarChart: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
     
     var averageZone2PerDay: Int {
         var cumulative = 0
         var days = 0
-        for (_, minutes) in healthKitController.zone2WeekByDay {
+        for (_, minutes) in hkController.zone2WeekByDay {
             days += 1
             cumulative += minutes
         }
@@ -28,7 +28,7 @@ struct WeekZone2BarChart: View {
         VStack {
             GroupBox("Past 7 Days (avg: \(averageZone2PerDay)min)") {
                 Chart {
-                    ForEach(healthKitController.zone2WeekByDay.sorted { $0.key < $1.key }, id: \.key) { date, minutes in
+                    ForEach(hkController.zone2WeekByDay.sorted { $0.key < $1.key }, id: \.key) { date, minutes in
                         BarMark(
                             x: .value("Day", date.weekDay()),
                             y: .value("Minutes", minutes)
@@ -55,16 +55,16 @@ struct WeekZone2BarChart: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
     
     let today: Date = .now
     for i in 0...6 {
         let date = Calendar.current.date(byAdding: .day, value: -i, to: today)
         if let date {
-            healthKitController.zone2WeekByDay[date] = Int.random(in: 0...90)
+            hkController.zone2WeekByDay[date] = Int.random(in: 0...90)
         }
     }
     
     return WeekZone2BarChart()
-        .environment(healthKitController)
+        .environment(hkController)
 }

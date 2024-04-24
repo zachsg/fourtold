@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct WeekStepsDetailView: View {
-    @Environment(HealthKitController.self) private var healthKitController
+    @Environment(HKController.self) private var hkController
     
     var body: some View {
         WeekStepsBarChart()
             .navigationTitle("Steps")
             .navigationBarTitleDisplayMode(.inline)
             .task {
-                healthKitController.getStepCountWeekByDay()
+                hkController.getStepCountWeekByDay()
             }
     }
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
+    let hkController = HKController()
     
     return WeekStepsDetailView()
-        .environment(healthKitController)
+        .environment(hkController)
 }

@@ -5,13 +5,9 @@
 //  Created by Zach Gottlieb on 3/26/24.
 //
 
-import SwiftData
 import SwiftUI
 
 struct MeditateDuring: View {
-    @Environment(\.modelContext) var modelContext
-    @Environment(HealthKitController.self) private var healthKitController
-
     @Binding var meditateType: FTMeditateType
     @Binding var meditateGoal: Int
     @Binding var startDate: Date
@@ -37,26 +33,5 @@ struct MeditateDuring: View {
 }
 
 #Preview {
-    let healthKitController = HealthKitController()
-    
-    let sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            FTMeditate.self,
-            FTRead.self,
-            FTBreath.self,
-            FTTag.self,
-            FTTagOption.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
-    return MeditateDuring(meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), mood: .constant(.neutral), endMood: .constant(.neutral), elapsed: .constant(0), path: .constant(NavigationPath()))
-        .environment(healthKitController)
-        .modelContainer(sharedModelContainer)
+    MeditateDuring(meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), mood: .constant(.neutral), endMood: .constant(.neutral), elapsed: .constant(0), path: .constant(NavigationPath()))
 }

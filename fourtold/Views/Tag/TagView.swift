@@ -135,32 +135,26 @@ struct TagView: View {
 }
 
 #Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: FTTag.self, configurations: config)
-        
-        let date: Date = .now
-        let tag = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .neutral, title: "Sauna", type: .activity)
-        let tag2 = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .unpleasant, title: "Cold Plunge", type: .activity)
-        let tag3 = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .pleasant, title: "Vitamin D", type: .supplement)
-        let tag4 = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .pleasant, title: "Vitamin D", type: .supplement)
-        let tag5 = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .pleasant, title: "Vitamin D", type: .supplement)
-        let tag6 = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .pleasant, title: "Vitamin D", type: .supplement)
-        let tag7 = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .pleasant, title: "Vitamin D", type: .supplement)
-        let tag8 = FTTag(date: date, timeOfDay: date.timeOfDay(), mood: .pleasant, title: "Vitamin D", type: .supplement)
+    let sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FTTag.self,
+            FTTagOption.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
 
-        container.mainContext.insert(tag)
-        container.mainContext.insert(tag2)
-        container.mainContext.insert(tag3)
-        container.mainContext.insert(tag4)
-        container.mainContext.insert(tag5)
-        container.mainContext.insert(tag6)
-        container.mainContext.insert(tag7)
-        container.mainContext.insert(tag8)
-
-        return TagView()
-            .modelContainer(container)
-    } catch {
-        fatalError(error.localizedDescription)
-    }
+        do {
+            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            
+            for tag in FTTagData.all {
+                container.mainContext.insert(tag)
+            }
+            
+            return container
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
+    
+    return TagView()
+        .modelContainer(sharedModelContainer)
 }
