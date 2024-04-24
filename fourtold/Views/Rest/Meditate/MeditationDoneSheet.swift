@@ -75,8 +75,6 @@ struct MeditationDoneSheet: View {
                         
                         hkController.setMindfulMinutes(seconds: elapsed.secondsToMinutesRounded(), startDate: startDate)
                         
-                        hkController.getMindfulMinutesToday()
-                        
                         let mediation = FTMeditate(startDate: startDate, timeOfDay: startDate.timeOfDay(), startMood: mood, endMood: endMood, type: type, duration: elapsed.secondsToMinutesRounded())
                         
                         modelContext.insert(mediation)

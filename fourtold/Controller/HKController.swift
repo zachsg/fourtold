@@ -1018,6 +1018,8 @@ class HKController {
             healthStore.save(mindfulSample, withCompletion: { (success, error) -> Void in
                 if success {
                    // Saved to Apple Health
+                    self.getMindfulMinutesToday()
+                    self.getMindfulMinutesWeek()
                 } else {
                     // Something wrong
                     if let error {
