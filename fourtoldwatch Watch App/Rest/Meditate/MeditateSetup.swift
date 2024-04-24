@@ -78,9 +78,26 @@ struct MeditateSetup: View {
 
 #Preview {
     let healthKitController = HealthKitController()
+    
+    let sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FTMeditate.self,
+            FTRead.self,
+            FTBreath.self,
+            FTTag.self,
+            FTTagOption.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
 
     return MeditateSetup(path: .constant(NavigationPath()))
         .environment(healthKitController)
-        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
+        .modelContainer(sharedModelContainer)
 }
 

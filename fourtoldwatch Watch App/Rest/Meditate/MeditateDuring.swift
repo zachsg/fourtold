@@ -38,8 +38,25 @@ struct MeditateDuring: View {
 
 #Preview {
     let healthKitController = HealthKitController()
+    
+    let sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            FTMeditate.self,
+            FTRead.self,
+            FTBreath.self,
+            FTTag.self,
+            FTTagOption.self
+        ])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+
+        do {
+            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Could not create ModelContainer: \(error)")
+        }
+    }()
 
     return MeditateDuring(meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), mood: .constant(.neutral), endMood: .constant(.neutral), elapsed: .constant(0), path: .constant(NavigationPath()))
         .environment(healthKitController)
-        .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
+        .modelContainer(sharedModelContainer)
 }
