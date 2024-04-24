@@ -67,18 +67,18 @@ struct RestView: View {
                 }
             }
             .sheet(isPresented: $readSheetIsShowing) {
-                ReadSheet(healthKitController: healthKitController, showingSheet: $readSheetIsShowing)
+                ReadSheet(showingSheet: $readSheetIsShowing)
                     .interactiveDismissDisabled()
             }
             .sheet(isPresented: $journalSheetIsShowing) {
                 JournalSheet()
             }
             .sheet(isPresented: $breathworkSheetIsShowing) {
-                BreathSheet(healthKitController: healthKitController, showingSheet: $breathworkSheetIsShowing)
+                BreathSheet(showingSheet: $breathworkSheetIsShowing)
                     .interactiveDismissDisabled()
             }
             .sheet(isPresented: $meditateSheetIsShowing) {
-                MeditationsSheet(healthKitController: healthKitController, showingSheet: $meditateSheetIsShowing)
+                MeditationsSheet(showingSheet: $meditateSheetIsShowing)
                     .interactiveDismissDisabled()
             }
             .onChange(of: scenePhase) { oldPhase, newPhase in

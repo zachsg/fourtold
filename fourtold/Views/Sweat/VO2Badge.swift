@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VO2Badge: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     var trend: FTVO2Trend {
         let vO2Average = healthKitController.cardioFitnessAverage
@@ -95,5 +95,6 @@ struct VO2Badge: View {
     healthKitController.cardioFitnessAverage = 44.2
     healthKitController.latestCardioFitness = .now
 
-    return VO2Badge(healthKitController: healthKitController)
+    return VO2Badge()
+        .environment(healthKitController)
 }

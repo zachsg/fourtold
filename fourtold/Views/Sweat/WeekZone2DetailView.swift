@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct WeekZone2DetailView: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     var body: some View {
-        WeekZone2BarChart(healthKitController: healthKitController)
+        WeekZone2BarChart()
             .navigationTitle("Time in Zone 2+ HR")
             .navigationBarTitleDisplayMode(.inline)
             .task {
@@ -21,5 +21,8 @@ struct WeekZone2DetailView: View {
 }
 
 #Preview {
-    WeekZone2DetailView(healthKitController: HealthKitController())
+    let healthKitController = HealthKitController()
+    
+    return WeekZone2DetailView()
+        .environment(healthKitController)
 }

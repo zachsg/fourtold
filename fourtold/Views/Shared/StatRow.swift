@@ -127,6 +127,7 @@ struct StatRow<Destination: View, Badge: View>: View {
     return StatRow(headerImage: stepsSystemImage, headerTitle: "Steps today", date: .now, stat: 7000, color: .move, goal: 10000, units: nil) {
         Text("Destination")
     } badge: {
-        VO2Badge(healthKitController: healthKitController)
+        VO2Badge()
+            .environment(healthKitController)
     }
 }

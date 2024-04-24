@@ -9,7 +9,7 @@ import Charts
 import SwiftUI
 
 struct RHRChart: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     var averageRhr: Int {
         var sum = 0
@@ -101,5 +101,6 @@ struct RHRChart: View {
         }
     }
 
-    return RHRChart(healthKitController: healthKitController)
+    return RHRChart()
+        .environment(healthKitController)
 }

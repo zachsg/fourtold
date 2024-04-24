@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeStepsCards: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @Binding var stepsTodayPercent: Double
     @Binding var stepsWeekPercent: Double
@@ -17,12 +17,12 @@ struct HomeStepsCards: View {
         VStack {
             Section {
                 NavigationLink {
-                    WeekStepsDetailView(healthKitController: healthKitController)
+                    WeekStepsDetailView()
                 } label: {
                     HStack {
-                        HomeStepsToday(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent)
+                        HomeStepsToday(stepsTodayPercent: $stepsTodayPercent)
                         
-                        HomeStepsPastWeek(healthKitController: healthKitController, stepsWeekPercent: $stepsWeekPercent)
+                        HomeStepsPastWeek(stepsWeekPercent: $stepsWeekPercent)
                     }
                 }
             } header: {
@@ -65,5 +65,6 @@ struct HomeStepsCards: View {
     healthKitController.stepCountWeek = 30000
     healthKitController.latestSteps = .now
     
-    return HomeStepsCards(healthKitController: healthKitController, stepsTodayPercent: .constant(80), stepsWeekPercent: .constant(65))
+    return HomeStepsCards(stepsTodayPercent: .constant(80), stepsWeekPercent: .constant(65))
+        .environment(healthKitController)
 }

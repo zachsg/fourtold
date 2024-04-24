@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DoneBreathingView: View {
     @Environment(\.modelContext) var modelContext
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     let date: Date
     let elapsed: TimeInterval
@@ -70,6 +70,9 @@ struct DoneBreathingView: View {
 }
 
 #Preview {
-    DoneBreathingView(healthKitController: HealthKitController(), date: .now, elapsed: 300.0, type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), endMood: .constant(.neutral), path: .constant(NavigationPath()))
+    let healthKitController = HealthKitController()
+    
+    return DoneBreathingView(date: .now, elapsed: 300.0, type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), endMood: .constant(.neutral), path: .constant(NavigationPath()))
+        .environment(healthKitController)
         .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BreathDoneSheet: View {
     @Environment(\.modelContext) var modelContext
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     let date: Date
     let elapsed: TimeInterval
@@ -85,5 +85,8 @@ struct BreathDoneSheet: View {
 }
 
 #Preview {
-    BreathDoneSheet(healthKitController: HealthKitController(), date: .now, elapsed: 300.0, type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingMainSheet: .constant(true))
+    let healthKitController = HealthKitController()
+    
+    return BreathDoneSheet(date: .now, elapsed: 300.0, type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingMainSheet: .constant(true))
+        .environment(healthKitController)
 }

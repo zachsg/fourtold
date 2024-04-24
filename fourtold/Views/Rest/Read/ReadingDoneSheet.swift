@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ReadingDoneSheet: View {
     @Environment(\.modelContext) var modelContext
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @Binding var type: FTReadType
     @Binding var genre: FTReadGenre
@@ -95,5 +95,8 @@ struct ReadingDoneSheet: View {
 }
 
 #Preview {
-    ReadingDoneSheet(healthKitController: HealthKitController(), type: .constant(.book), genre: .constant(.fantasy), isTimed: .constant(true), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingAlert: .constant(true))
+    let healthKitController = HealthKitController()
+    
+    return ReadingDoneSheet(type: .constant(.book), genre: .constant(.fantasy), isTimed: .constant(true), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingAlert: .constant(true))
+        .environment(healthKitController)
 }

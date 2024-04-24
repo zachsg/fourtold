@@ -12,7 +12,7 @@ import SwiftUI
 
 struct MeditateDone: View {
     @Environment(\.modelContext) var modelContext
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     @Binding var type: FTMeditateType
     @Binding var startDate: Date
@@ -81,6 +81,9 @@ struct MeditateDone: View {
 }
 
 #Preview {
-    MeditateDone(healthKitController: HealthKitController(), type: .constant(.timed), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), path: .constant(NavigationPath()))
+    let healthKitController = HealthKitController()
+    
+    return MeditateDone(type: .constant(.timed), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), path: .constant(NavigationPath()))
+        .environment(healthKitController)
         .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }

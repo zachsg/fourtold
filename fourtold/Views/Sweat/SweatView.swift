@@ -21,21 +21,21 @@ struct SweatView: View {
             List {
                 Section("Progress") {
                     StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio fitness", date: healthKitController.latestCardioFitness, stat: healthKitController.cardioFitnessMostRecent, color: .sweat, units: vO2Units) {
-                        VO2Chart(healthKitController: healthKitController)
+                        VO2Chart()
                     } badge: {
-                        VO2Badge(healthKitController: healthKitController)
+                        VO2Badge()
                     }
 
                     StatRow(headerImage: vO2SystemImage, headerTitle: "Latest resting heart rate", date: healthKitController.latestRhr, stat: Double(healthKitController.rhrMostRecent), color: .sweat, units: heartUnits) {
-                        RHRChart(healthKitController: healthKitController)
+                        RHRChart()
                     } badge: {
-                        RHRBadge(healthKitController: healthKitController)
+                        RHRBadge()
                     }
 
                     StatRow(headerImage: vO2SystemImage, headerTitle: "Latest cardio recovery", date: healthKitController.latestRecovery, stat: Double(healthKitController.recoveryMostRecent), color: .sweat, units: heartUnits) {
-                        RecoveryChart(healthKitController: healthKitController)
+                        RecoveryChart()
                     } badge: {
-                        RecoveryBadge(healthKitController: healthKitController)
+                        RecoveryBadge()
                     }
                 }
 
@@ -43,7 +43,7 @@ struct SweatView: View {
                     StatRow(headerImage: vO2SystemImage, headerTitle: "Zone 2 today", date: healthKitController.latestZone2, stat: Double(healthKitController.zone2Today), color: .sweat, goal: dailyZone2Goal / 60, units: "min")
                     
                     StatRow(headerImage: vO2SystemImage, headerTitle: "Zone 2 past 7 days", date: healthKitController.latestZone2, stat: Double(healthKitController.zone2Week), color: .sweat, goal: (dailyZone2Goal * 7) / 60, units: "min", destination: {
-                        WeekZone2DetailView(healthKitController: healthKitController)
+                        WeekZone2DetailView()
                     })
                 }
             }

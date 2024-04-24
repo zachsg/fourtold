@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReadingView: View {
     @Environment(\.modelContext) var modelContext
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @Binding var readType: FTReadType
     @Binding var genre: FTReadGenre
@@ -34,7 +34,7 @@ struct ReadingView: View {
             endMood = mood
         })
         .sheet(isPresented: $showingAlert, content: {
-            ReadingDoneSheet(healthKitController: healthKitController, type: $readType, genre: $genre, isTimed: $isTimed, startDate: $startDate, elapsed: $elapsed, goal: $readGoal, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingAlert: $showingAlert)
+            ReadingDoneSheet(type: $readType, genre: $genre, isTimed: $isTimed, startDate: $startDate, elapsed: $elapsed, goal: $readGoal, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingAlert: $showingAlert)
                 .presentationDetents([.medium])
                 .interactiveDismissDisabled()
         })
@@ -48,6 +48,7 @@ struct ReadingView: View {
 #Preview {
     let healthKitController = HealthKitController()
     
-    return ReadingView(healthKitController: healthKitController, readType: .constant(.book), genre: .constant(.fantasy), mood: .constant(.neutral), isTimed: .constant(true), readGoal: .constant(1800), startDate: .constant(.now), showingSheet: .constant(true))
+    return ReadingView(readType: .constant(.book), genre: .constant(.fantasy), mood: .constant(.neutral), isTimed: .constant(true), readGoal: .constant(1800), startDate: .constant(.now), showingSheet: .constant(true))
+        .environment(healthKitController)
 }
 

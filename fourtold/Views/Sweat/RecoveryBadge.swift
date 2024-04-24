@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecoveryBadge: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     var trend: FTRecoveryTrend {
         let recoveryAverage = healthKitController.recoveryAverage
@@ -52,5 +52,6 @@ struct RecoveryBadge: View {
     healthKitController.recoveryAverage = 32
     healthKitController.latestRecovery = .now
 
-    return RecoveryBadge(healthKitController: healthKitController)
+    return RecoveryBadge()
+        .environment(healthKitController)
 }

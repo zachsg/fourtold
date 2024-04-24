@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MeditatingView: View {
     @Environment(\.modelContext) var modelContext
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @Binding var meditateType: FTMeditateType
     @Binding var meditateGoal: Int
@@ -33,7 +33,7 @@ struct MeditatingView: View {
             endMood = mood
         })
         .sheet(isPresented: $showingAlert, content: {
-            MeditationDoneSheet(healthKitController: healthKitController, type: $meditateType, startDate: $startDate, elapsed: $elapsed, goal: $meditateGoal, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingAlert: $showingAlert)
+            MeditationDoneSheet(type: $meditateType, startDate: $startDate, elapsed: $elapsed, goal: $meditateGoal, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingAlert: $showingAlert)
                 .presentationDetents([.medium])
                 .interactiveDismissDisabled()
         })
@@ -43,5 +43,6 @@ struct MeditatingView: View {
 #Preview {
     let healthKitController = HealthKitController()
     
-    return MeditatingView(healthKitController: healthKitController, meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), mood: .constant(.neutral), showingSheet: .constant(true))
+    return MeditatingView(meditateType: .constant(.timed), meditateGoal: .constant(300), startDate: .constant(.now), mood: .constant(.neutral), showingSheet: .constant(true))
+        .environment(healthKitController)
 }

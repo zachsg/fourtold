@@ -9,7 +9,7 @@ import Charts
 import SwiftUI
 
 struct VO2Chart: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     var averageVO2: Double {
         var sum = 0.0
@@ -165,5 +165,6 @@ struct VO2Chart: View {
         }
     }
 
-    return VO2Chart(healthKitController: healthKitController)
+    return VO2Chart()
+        .environment(healthKitController)
 }

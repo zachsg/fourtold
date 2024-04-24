@@ -76,7 +76,7 @@ struct HomeView: View {
 
                 /// Move
                 VStack {
-                    HomeStepsCards(healthKitController: healthKitController, stepsTodayPercent: $stepsTodayPercent, stepsWeekPercent: $stepsWeekPercent)
+                    HomeStepsCards(stepsTodayPercent: $stepsTodayPercent, stepsWeekPercent: $stepsWeekPercent)
                 }
                 .padding(2)
                 .background(.thickMaterial)
@@ -87,7 +87,7 @@ struct HomeView: View {
 
                 /// Sweat
                 VStack {
-                    HomeZone2Cards(healthKitController: healthKitController, zone2TodayPercent: $zone2TodayPercent, zone2WeekPercent: $zone2WeekPercent)
+                    HomeZone2Cards(zone2TodayPercent: $zone2TodayPercent, zone2WeekPercent: $zone2WeekPercent)
                 }
                 .padding(2)
                 .background(.thickMaterial)
@@ -98,7 +98,7 @@ struct HomeView: View {
 
                 /// Rest
                 VStack {
-                    HomeMindfulnessCards(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent, mindfulWeekPercent: $mindfulWeekPercent)
+                    HomeMindfulnessCards(mindfulTodayPercent: $mindfulTodayPercent, mindfulWeekPercent: $mindfulWeekPercent)
                 }
                 .padding(2)
                 .background(.thickMaterial)

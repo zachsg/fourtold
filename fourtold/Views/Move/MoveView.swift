@@ -34,7 +34,7 @@ struct MoveView: View {
                     StatRow(headerImage: stepsSystemImage, headerTitle: "Steps today", date: healthKitController.latestSteps, stat: Double(healthKitController.stepCountToday), color: .move, goal: dailyStepsGoal)
                     
                     StatRow(headerImage: stepsSystemImage, headerTitle: "Steps past 7 days", date: healthKitController.latestSteps, stat: Double(healthKitController.stepCountWeek), color: .move, goal: dailyStepsGoal * 7, destination: {
-                        WeekStepsDetailView(healthKitController: healthKitController)
+                        WeekStepsDetailView()
                     })
 
                     StatRow(headerImage: distanceSystemImage, headerTitle: "Distance today", date: healthKitController.latestWalkRunDistance, stat: healthKitController.walkRunDistanceToday, color: .move, units: "Miles")

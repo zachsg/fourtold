@@ -9,7 +9,7 @@ import Charts
 import SwiftUI
 
 struct RecoveryChart: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     var averageRecovery: Int {
         var sum = 0
@@ -101,6 +101,7 @@ struct RecoveryChart: View {
         }
     }
 
-    return RecoveryChart(healthKitController: healthKitController)
+    return RecoveryChart()
+        .environment(healthKitController)
 }
 

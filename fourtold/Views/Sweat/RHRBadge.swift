@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RHRBadge: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     var trend: FTRHRTrend {
         let rhrAverage = healthKitController.rhrAverage
@@ -52,5 +52,6 @@ struct RHRBadge: View {
     healthKitController.rhrAverage = 60
     healthKitController.latestRhr = .now
 
-    return RHRBadge(healthKitController: healthKitController)
+    return RHRBadge()
+        .environment(healthKitController)
 }

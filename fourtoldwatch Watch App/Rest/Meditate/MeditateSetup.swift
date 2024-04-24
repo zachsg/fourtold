@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct MeditateSetup: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @Binding var path: NavigationPath
 
@@ -68,9 +68,9 @@ struct MeditateSetup: View {
         }
         .navigationDestination(for: MeditateStatus.self) { option in
             if option == .during {
-                MeditateDuring(healthKitController: healthKitController, meditateType: $meditateType, meditateGoal: $meditateGoal, startDate: $startDate, mood: $mood, endMood: $endMood, elapsed: $elapsed, path: $path)
+                MeditateDuring(meditateType: $meditateType, meditateGoal: $meditateGoal, startDate: $startDate, mood: $mood, endMood: $endMood, elapsed: $elapsed, path: $path)
             } else if option == .done {
-                MeditateDone(healthKitController: healthKitController, type: $meditateType, startDate: $startDate, elapsed: $elapsed, goal: $meditateGoal, mood: $mood, endMood: $endMood, path: $path)
+                MeditateDone(type: $meditateType, startDate: $startDate, elapsed: $elapsed, goal: $meditateGoal, mood: $mood, endMood: $endMood, path: $path)
             }
         }
     }
@@ -79,7 +79,8 @@ struct MeditateSetup: View {
 #Preview {
     let healthKitController = HealthKitController()
 
-    return MeditateSetup(healthKitController: healthKitController, path: .constant(NavigationPath()))
+    return MeditateSetup(path: .constant(NavigationPath()))
+        .environment(healthKitController)
         .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }
 

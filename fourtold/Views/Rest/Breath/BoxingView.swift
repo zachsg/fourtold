@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BoxingView: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
+    
     @Binding var type: FTBreathType
     @Binding var rounds: Int
     @Binding var mood: FTMood
@@ -141,7 +142,7 @@ struct BoxingView: View {
             UIApplication.shared.isIdleTimerDisabled = false
         })
         .sheet(isPresented: $showingSheet, content: {
-            BreathDoneSheet(healthKitController: healthKitController, date: date, elapsed: elapsed, type: $type, rounds: $rounds, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingMainSheet: $showingMainSheet)
+            BreathDoneSheet(date: date, elapsed: elapsed, type: $type, rounds: $rounds, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingMainSheet: $showingMainSheet)
                 .presentationDetents([.medium])
                 .interactiveDismissDisabled()
         })
@@ -167,6 +168,9 @@ struct BoxingView: View {
 }
 
 #Preview {
-    BoxingView(healthKitController: HealthKitController(), type: .constant(.box), rounds: .constant(20), mood: .constant(.neutral), showingMainSheet: .constant(true))
+    let healthKitController = HealthKitController()
+    
+    return BoxingView(type: .constant(.box), rounds: .constant(20), mood: .constant(.neutral), showingMainSheet: .constant(true))
+        .environment(healthKitController)
 }
 

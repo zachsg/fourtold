@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct WeekStepsDetailView: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     var body: some View {
-        WeekStepsBarChart(healthKitController: healthKitController)
+        WeekStepsBarChart()
             .navigationTitle("Steps")
             .navigationBarTitleDisplayMode(.inline)
             .task {
@@ -21,5 +21,8 @@ struct WeekStepsDetailView: View {
 }
 
 #Preview {
-    WeekStepsDetailView(healthKitController: HealthKitController())
+    let healthKitController = HealthKitController()
+    
+    return WeekStepsDetailView()
+        .environment(healthKitController)
 }

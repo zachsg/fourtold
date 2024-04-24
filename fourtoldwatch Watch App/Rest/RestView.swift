@@ -83,9 +83,9 @@ struct RestView: View {
             }
             .navigationDestination(for: RestOption.self) { option in
                 if option == .meditate {
-                    MeditateSetup(healthKitController: healthKitController, path: $path)
+                    MeditateSetup(path: $path)
                 } else if option == .breathe {
-                    BreatheSetup(healthKitController: healthKitController, path: $path)
+                    BreatheSetup(path: $path)
                 }
             }
         }

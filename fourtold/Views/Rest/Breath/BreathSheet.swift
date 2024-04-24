@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BreathSheet: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @Binding var showingSheet: Bool
     
@@ -56,9 +56,9 @@ struct BreathSheet: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
                         if breathType == .four78 {
-                            Four78ingView(healthKitController: healthKitController, type: $breathType, rounds: $four78Rounds, mood: $mood, showingMainSheet: $showingSheet)
+                            Four78ingView(type: $breathType, rounds: $four78Rounds, mood: $mood, showingMainSheet: $showingSheet)
                         } else if breathType == .box {
-                            BoxingView(healthKitController: healthKitController, type: $breathType, rounds: $boxRounds, mood: $mood, showingMainSheet: $showingSheet)
+                            BoxingView(type: $breathType, rounds: $boxRounds, mood: $mood, showingMainSheet: $showingSheet)
                         }
                     }
                     .foregroundStyle(.rest)
@@ -69,5 +69,8 @@ struct BreathSheet: View {
 }
 
 #Preview {
-    BreathSheet(healthKitController: HealthKitController(), showingSheet: .constant(false))
+    let healthKitController = HealthKitController()
+    
+    return BreathSheet(showingSheet: .constant(false))
+        .environment(healthKitController)
 }

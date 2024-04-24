@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct BreatheSetup: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     @Binding var path: NavigationPath
 
@@ -96,11 +96,11 @@ struct BreatheSetup: View {
         .navigationDestination(for: BreatheStatus.self) { option in
             switch option {
             case .four78:
-                Four78ingView(healthKitController: healthKitController, rounds: $rounds, elapsed: $elapsed, mood: $mood, endMood: $endMood, date: $date, type: $breathType, path: $path)
+                Four78ingView(rounds: $rounds, elapsed: $elapsed, mood: $mood, endMood: $endMood, date: $date, type: $breathType, path: $path)
             case .box:
-                BoxingView(healthKitController: healthKitController, rounds: $rounds, elapsed: $elapsed, mood: $mood, endMood: $endMood, date: $date, type: $breathType, path: $path)
+                BoxingView(rounds: $rounds, elapsed: $elapsed, mood: $mood, endMood: $endMood, date: $date, type: $breathType, path: $path)
             case .done:
-                DoneBreathingView(healthKitController: healthKitController, date: date, elapsed: elapsed, type: $breathType, rounds: $rounds, mood: $mood, endMood: $endMood, path: $path)
+                DoneBreathingView(date: date, elapsed: elapsed, type: $breathType, rounds: $rounds, mood: $mood, endMood: $endMood, path: $path)
             }
         }
     }
@@ -118,6 +118,9 @@ struct BreatheSetup: View {
 }
 
 #Preview {
-    BreatheSetup(healthKitController: HealthKitController(), path: .constant(NavigationPath()))
+    let healthKitController = HealthKitController()
+    
+    BreatheSetup(path: .constant(NavigationPath()))
+        .environment(healthKitController)
         .modelContainer(for: [FTMeditate.self, FTRead.self, FTBreath.self, FTTag.self, FTTagOption.self], inMemory: true)
 }

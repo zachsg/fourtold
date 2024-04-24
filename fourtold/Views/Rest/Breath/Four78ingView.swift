@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Four78ingView: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
+    
     @Binding var type: FTBreathType
     @Binding var rounds: Int
     @Binding var mood: FTMood
@@ -129,7 +130,7 @@ struct Four78ingView: View {
             UIApplication.shared.isIdleTimerDisabled = false
         })
         .sheet(isPresented: $showingSheet, content: {
-            BreathDoneSheet(healthKitController: healthKitController, date: date, elapsed: elapsed, type: $type, rounds: $rounds, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingMainSheet: $showingMainSheet)
+            BreathDoneSheet(date: date, elapsed: elapsed, type: $type, rounds: $rounds, mood: $mood, endMood: $endMood, showingSheet: $showingSheet, showingMainSheet: $showingMainSheet)
                 .presentationDetents([.medium])
                 .interactiveDismissDisabled()
         })
@@ -155,5 +156,8 @@ struct Four78ingView: View {
 }
 
 #Preview {
-    Four78ingView(healthKitController: HealthKitController(), type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), showingMainSheet: .constant(true))
+    let healthKitController = HealthKitController()
+    
+    return Four78ingView(type: .constant(.four78), rounds: .constant(4), mood: .constant(.neutral), showingMainSheet: .constant(true))
+        .environment(healthKitController)
 }

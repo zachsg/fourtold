@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ReadSheet: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @AppStorage(readGoalKey) var readGoal: Int = readGoalDefault
     
@@ -86,7 +86,7 @@ struct ReadSheet: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
-                        ReadingView(healthKitController: healthKitController, readType: $readType, genre: $genre, mood: $mood, isTimed: $isTimed, readGoal: $readGoal, startDate: $startDate, showingSheet: $showingSheet)
+                        ReadingView(readType: $readType, genre: $genre, mood: $mood, isTimed: $isTimed, readGoal: $readGoal, startDate: $startDate, showingSheet: $showingSheet)
                     }
                     .foregroundStyle(.rest)
                 }
@@ -98,6 +98,7 @@ struct ReadSheet: View {
 #Preview {
     let healthKitController = HealthKitController()
     
-    return ReadSheet(healthKitController: healthKitController, showingSheet: .constant(true))
+    return ReadSheet( showingSheet: .constant(true))
+        .environment(healthKitController)
 }
 

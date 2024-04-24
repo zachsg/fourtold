@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeMindfulnessCards: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @Binding var mindfulTodayPercent: Double
     @Binding var mindfulWeekPercent: Double
@@ -20,9 +20,9 @@ struct HomeMindfulnessCards: View {
                     WeekRestMinutesDetailView()
                 } label: {
                     HStack {
-                        HomeMindfulnessToday(healthKitController: healthKitController, mindfulTodayPercent: $mindfulTodayPercent)
+                        HomeMindfulnessToday(mindfulTodayPercent: $mindfulTodayPercent)
                         
-                        HomeMindfulnessPastWeek(healthKitController: healthKitController, mindfulWeekPercent: $mindfulWeekPercent)
+                        HomeMindfulnessPastWeek(mindfulWeekPercent: $mindfulWeekPercent)
                     }
                 }
             } header: {
@@ -65,5 +65,6 @@ struct HomeMindfulnessCards: View {
     healthKitController.mindfulMinutesWeek = 70
     healthKitController.latestMindfulMinutes = .now
     
-    return HomeMindfulnessCards(healthKitController: healthKitController, mindfulTodayPercent: .constant(15), mindfulWeekPercent: .constant(60))
+    return HomeMindfulnessCards(mindfulTodayPercent: .constant(15), mindfulWeekPercent: .constant(60))
+        .environment(healthKitController)
 }

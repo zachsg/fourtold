@@ -9,7 +9,7 @@ import Charts
 import SwiftUI
 
 struct WeekZone2BarChart: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
     
@@ -65,5 +65,6 @@ struct WeekZone2BarChart: View {
         }
     }
     
-    return WeekZone2BarChart(healthKitController: healthKitController)
+    return WeekZone2BarChart()
+        .environment(healthKitController)
 }

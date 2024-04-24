@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MeditationDoneSheet: View {
     @Environment(\.modelContext) var modelContext
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
     
     @Binding var type: FTMeditateType
     @Binding var startDate: Date
@@ -94,5 +94,8 @@ struct MeditationDoneSheet: View {
 }
 
 #Preview {
-    MeditationDoneSheet(healthKitController: HealthKitController(), type: .constant(.timed), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingAlert: .constant(true))
+    let healthKitController = HealthKitController()
+    
+    return MeditationDoneSheet(type: .constant(.timed), startDate: .constant(.now), elapsed: .constant(300.0), goal: .constant(500), mood: .constant(.neutral), endMood: .constant(.neutral), showingSheet: .constant(true), showingAlert: .constant(true))
+        .environment(healthKitController)
 }

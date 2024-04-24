@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MeditationsSheet: View {
-    @Bindable var healthKitController: HealthKitController
+    @Environment(HealthKitController.self) private var healthKitController
 
     @AppStorage(meditateGoalKey) var meditateGoal: Int = meditateGoalDefault
     
@@ -64,7 +64,7 @@ struct MeditationsSheet: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink("Start") {
-                        MeditatingView(healthKitController: healthKitController, meditateType: $meditateType, meditateGoal: $meditateGoal, startDate: $startDate, mood: $mood, showingSheet: $showingSheet)
+                        MeditatingView(meditateType: $meditateType, meditateGoal: $meditateGoal, startDate: $startDate, mood: $mood, showingSheet: $showingSheet)
                     }
                     .foregroundStyle(.rest)
                 }
@@ -76,5 +76,6 @@ struct MeditationsSheet: View {
 #Preview {
     let healthKitController = HealthKitController()
     
-    return MeditationsSheet(healthKitController: healthKitController, showingSheet: .constant(true))
+    return MeditationsSheet(showingSheet: .constant(true))
+        .environment(healthKitController)
 }
