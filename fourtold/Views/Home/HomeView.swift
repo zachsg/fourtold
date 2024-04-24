@@ -13,8 +13,6 @@ struct HomeView: View {
     
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
 
-    @State private var tagSheetIsShowing = false
-    
     @State private var stepsTodayPercent = 0.0
     @State private var stepsWeekPercent = 0.0
     @State private var zone2TodayPercent = 0.0
@@ -22,6 +20,7 @@ struct HomeView: View {
     @State private var mindfulTodayPercent = 0.0
     @State private var mindfulWeekPercent = 0.0
 
+    @State private var tagSheetIsShowing = false
     @State private var showToday = false
     @State private var animationAmount = 0.0
     
@@ -52,8 +51,6 @@ struct HomeView: View {
         
         return (total, steps, zone2, rest)
     }
-    
-    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationStack {

@@ -16,53 +16,51 @@ struct TagDetails: View {
     var allUses: [FTTagSubStats]
     
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(allUses) { use in
-                    HStack {
-                        Image(systemName: use.timeOfDay.systemImage())
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24)
+        List {
+            ForEach(allUses) { use in
+                HStack {
+                    Image(systemName: use.timeOfDay.systemImage())
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24)
 
-                        Text(use.date, format: use.date.dateFormat())
-                            .font(.subheadline)
-                            .padding(.trailing, 8)
+                    Text(use.date, format: use.date.dateFormat())
+                        .font(.subheadline)
+                        .padding(.trailing, 8)
 
-                        Image(systemName: "arrow.triangle.merge")
-                            .resizable()
-                            .scaledToFit()
-                            .rotationEffect(.degrees(90))
-                            .frame(width: 12)
-                            .foregroundStyle(use.mood.color())
+                    Image(systemName: "arrow.triangle.merge")
+                        .resizable()
+                        .scaledToFit()
+                        .rotationEffect(.degrees(90))
+                        .frame(width: 12)
+                        .foregroundStyle(use.mood.color())
+                        .padding(.trailing, 4)
+
+                    HStack(spacing: 0) {
+                        Text(use.mood.emoji())
                             .padding(.trailing, 4)
-
-                        HStack(spacing: 0) {
-                            Text(use.mood.emoji())
-                                .padding(.trailing, 4)
-                            Text(use.mood.rawValue.capitalized)
-                                .font(.caption)
-                                .foregroundStyle(use.mood.color())
-                        }
+                        Text(use.mood.rawValue.capitalized)
+                            .font(.caption)
+                            .foregroundStyle(use.mood.color())
                     }
                 }
-                .onDelete(perform: { indexSet in
-                    for index in indexSet {
-                        let tagStat = allUses[index]
-                        let tag = tags.first { t in
-                            t.id == tagStat.id
-                        }
-
-                        if let tag {
-                            modelContext.delete(tag)
-                        }
+            }
+            .onDelete(perform: { indexSet in
+                for index in indexSet {
+                    let tagStat = allUses[index]
+                    let tag = tags.first { t in
+                        t.id == tagStat.id
                     }
-                })
-            }
-            .navigationTitle("#\(title)")
-            .toolbar {
-                EditButton()
-            }
+
+                    if let tag {
+                        modelContext.delete(tag)
+                    }
+                }
+            })
+        }
+        .navigationTitle("#\(title)")
+        .toolbar {
+            EditButton()
         }
     }
 }
