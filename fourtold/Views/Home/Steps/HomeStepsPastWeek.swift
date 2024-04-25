@@ -31,7 +31,7 @@ struct HomeStepsPastWeek: View {
                     .foregroundStyle(isDone ? .move : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated(forWeek: true))k goal")
-                    .foregroundStyle(.move.opacity(0.7))
+                    .foregroundStyle(.secondary)
                     .fontWeight(.bold)
             }
             .font(.caption)

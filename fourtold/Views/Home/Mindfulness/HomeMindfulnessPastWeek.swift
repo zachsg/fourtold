@@ -28,7 +28,7 @@ struct HomeMindfulnessPastWeek: View {
                     .foregroundStyle(isDone ? .rest : .primary)
                 
                 Text("Minutes")
-                    .foregroundStyle(.rest.opacity(0.7))
+                    .foregroundStyle(.secondary)
                     .font(.footnote.bold())
             }
             
@@ -37,7 +37,7 @@ struct HomeMindfulnessPastWeek: View {
                     .foregroundStyle(isDone ? .rest : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated(forWeek: true))")
-                    .foregroundStyle(.rest.opacity(0.7))
+                    .foregroundStyle(.secondary)
                     .fontWeight(.bold)
             }
             .font(.caption)

@@ -40,8 +40,8 @@ struct HomeStatCard<Content: View>: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 inputView()
+                    .tint(.secondary)
             }
-            .padding(.top, 2)
         }
         .padding()
         .background(.regularMaterial)
@@ -64,7 +64,23 @@ struct HomeStatCard<Content: View>: View {
 }
 
 #Preview {
-    HomeStatCard(headerTitle: "Steps today", headerImage: stepsSystemImage, date: .now, color: .move, progress: 80) {
-        Text("Hello")
+    let hkController = HKController()
+    hkController.stepCountToday = 8000
+    
+    return HomeStatCard(headerTitle: "Steps today", headerImage: stepsSystemImage, date: .now, color: .move, progress: 80) {
+        Text(hkController.stepCountToday, format: .number)
+            .font(.title)
+            .fontWeight(.semibold)
+            .foregroundStyle(.primary)
+        
+        HStack(spacing: 0) {
+            Text("80%")
+                .foregroundStyle(.primary)
+                .fontWeight(.heavy)
+            Text(" of 10k")
+                .foregroundStyle(.secondary.opacity(0.7))
+                .fontWeight(.bold)
+        }
+        .font(.caption)
     }
 }

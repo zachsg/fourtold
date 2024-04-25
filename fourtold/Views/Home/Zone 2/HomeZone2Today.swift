@@ -28,7 +28,7 @@ struct HomeZone2Today: View {
                     .foregroundStyle(isDone ? .sweat : .primary)
                 
                 Text("Minutes")
-                    .foregroundStyle(.sweat.opacity(0.7))
+                    .foregroundStyle(.secondary)
                     .font(.footnote.bold())
             }
             
@@ -37,7 +37,7 @@ struct HomeZone2Today: View {
                     .foregroundStyle(isDone ? .sweat : .primary)
                     .fontWeight(.heavy)
                 Text(" of \(goalAbbreviated())")
-                    .foregroundStyle(.sweat.opacity(0.7))
+                    .foregroundStyle(.secondary)
                     .fontWeight(.bold)
             }
             .font(.caption)

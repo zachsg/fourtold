@@ -79,6 +79,8 @@ struct ContentView: View {
     hkController.stepCountWeek = 50000
     hkController.zone2Today = 5
     hkController.zone2Week = 60
+    hkController.mindfulMinutesToday = 5
+    hkController.mindfulMinutesWeek = 15
     
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([

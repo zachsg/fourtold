@@ -78,33 +78,24 @@ struct HomeView: View {
                 VStack {
                     HomeStepsCards(stepsTodayPercent: $stepsTodayPercent, stepsWeekPercent: $stepsWeekPercent)
                 }
-                .padding(2)
-                .background(.thickMaterial)
-                .background(.move.opacity(0.5))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal, 8)
+                .background(.regularMaterial)
+                .background(.move.opacity(0.2))
                 .padding(.vertical, 2)
 
                 /// Sweat
                 VStack {
                     HomeZone2Cards(zone2TodayPercent: $zone2TodayPercent, zone2WeekPercent: $zone2WeekPercent)
                 }
-                .padding(2)
-                .background(.thickMaterial)
-                .background(.sweat.opacity(0.5))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal, 8)
+                .background(.regularMaterial)
+                .background(.sweat.opacity(0.2))
                 .padding(.bottom, 2)
 
                 /// Rest
                 VStack {
                     HomeMindfulnessCards(mindfulTodayPercent: $mindfulTodayPercent, mindfulWeekPercent: $mindfulWeekPercent)
                 }
-                .padding(2)
-                .background(.thickMaterial)
-                .background(.rest.opacity(0.5))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal, 8)
+                .background(.regularMaterial)
+                .background(.rest.opacity(0.2))
             }
             .refreshable {
                 refresh()
