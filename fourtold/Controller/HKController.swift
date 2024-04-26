@@ -317,7 +317,7 @@ class HKController {
             options: .strictStartDate
         )
         
-        let sortDescriptors = [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)]
+        let sortDescriptors = [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: true)]
         
         let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: sortDescriptors, resultsHandler: { (query, results, error) in
             guard error == nil else {
@@ -325,31 +325,33 @@ class HKController {
                 return
             }
             
-            var total = TimeInterval()
-            var latest: Date = .distantPast
-            var usedComponents: [DateComponents] = []
+            var total = 0
+            var latest: Date?
             for (_, sample) in results!.enumerated() {
                 guard let currData:HKQuantitySample = sample as? HKQuantitySample else { return }
                 
                 let heartRate = currData.quantity.doubleValue(for: heartRateUnit)
                 if heartRate >= Double(zone2Threshold) {
-                    let components = sample.startDate.get(.minute, .hour)
-                    if !usedComponents.contains(components) {
-                        usedComponents.append(components)
-                        total += 60
+                    if let latest {
+                        let timeSinceLastZone2 = sample.startDate.timeIntervalSince(latest).second
+                        if timeSinceLastZone2 < 120 {
+                            total += timeSinceLastZone2
+                        } else {
+                            total += 1
+                        }
+                    } else {
+                        total += 1
                     }
-
-                    if sample.endDate > latest {
-                        latest = sample.endDate
-                    }
+                    
+                    latest = sample.startDate
                 }
             }
             
             DispatchQueue.main.async {
-                self.zone2Today = Int((total / 60).rounded())
+                self.zone2Today = Int((Double(total) / 60).rounded())
 
                 if latest != .distantPast {
-                    self.latestZone2 = latest
+                    self.latestZone2 = latest ?? .distantPast
                 }
             }
         })
@@ -396,7 +398,7 @@ class HKController {
         
         let heartRateUnit:HKUnit = HKUnit(from: "count/min")
         
-        let sortDescriptors = [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)]
+        let sortDescriptors = [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: true)]
         
         let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: sortDescriptors, resultsHandler: { (query, results, error) in
             guard error == nil else {
@@ -404,31 +406,33 @@ class HKController {
                 return
             }
             
-            var total = TimeInterval()
-            var latest: Date = .distantPast
-            var usedComponents: [DateComponents] = []
+            var total = 0
+            var latest: Date?
             for (_, sample) in results!.enumerated() {
                 guard let currData:HKQuantitySample = sample as? HKQuantitySample else { return }
                 
                 let heartRate = currData.quantity.doubleValue(for: heartRateUnit)
                 if heartRate >= Double(zone2Threshold) {
-                    let components = sample.startDate.get(.minute, .hour, .day)
-                    if !usedComponents.contains(components) {
-                        usedComponents.append(components)
-                        total += 60
+                    if let latest {
+                        let timeSinceLastZone2 = sample.startDate.timeIntervalSince(latest).second
+                        if timeSinceLastZone2 < 120 {
+                            total += timeSinceLastZone2
+                        } else {
+                            total += 1
+                        }
+                    } else {
+                        total += 1
                     }
                     
-                    if sample.endDate > latest {
-                        latest = sample.endDate
-                    }
+                    latest = sample.startDate
                 }
             }
             
             DispatchQueue.main.async {
-                self.zone2Week = Int((total / 60).rounded())
+                self.zone2Week = Int((Double(total) / 60).rounded())
 
                 if latest != .distantPast {
-                    self.latestZone2 = latest
+                    self.latestZone2 = latest ?? .distantPast
                 }
             }
         })
@@ -475,7 +479,7 @@ class HKController {
         
         let heartRateUnit:HKUnit = HKUnit(from: "count/min")
         
-        let sortDescriptors = [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)]
+        let sortDescriptors = [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: true)]
         
         let query = HKSampleQuery(sampleType: quantityType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: sortDescriptors, resultsHandler: { (query, results, error) in
             guard error == nil else {
@@ -483,26 +487,27 @@ class HKController {
                 return
             }
             
-            var latest: Date = .distantPast
-            var usedComponents: [DateComponents] = []
-            
+            var latest: Date?
             var zone2WeekByDayTemp: [Date: Int] = [:]
             for (_, sample) in results!.enumerated() {
                 guard let currData:HKQuantitySample = sample as? HKQuantitySample else { return }
                 
                 let heartRate = currData.quantity.doubleValue(for: heartRateUnit)
                 if heartRate >= Double(zone2Threshold) {
-                    let components = sample.startDate.get(.minute, .hour, .day)
-                    if !usedComponents.contains(components) {
-                        usedComponents.append(components)
-                        let date = calendar.startOfDay(for: sample.startDate)
-                        let value = zone2WeekByDayTemp[date] ?? 0
-                        zone2WeekByDayTemp[date] = value + 60
+                    let date = calendar.startOfDay(for: sample.startDate)
+                    let value = zone2WeekByDayTemp[date] ?? 0
+                    if let latest {
+                        let timeSinceLastZone2 = sample.startDate.timeIntervalSince(latest).second
+                        if timeSinceLastZone2 < 120 {
+                            zone2WeekByDayTemp[date] = value + timeSinceLastZone2
+                        } else {
+                            zone2WeekByDayTemp[date] = value + 1
+                        }
+                    } else {
+                        zone2WeekByDayTemp[date] = value + 1
                     }
                     
-                    if sample.endDate > latest {
-                        latest = sample.endDate
-                    }
+                    latest = sample.startDate
                 }
             }
             
@@ -519,7 +524,7 @@ class HKController {
             }
             
             DispatchQueue.main.async {
-                self.latestZone2 = latest
+                self.latestZone2 = latest ?? .distantPast
                 self.zone2WeekByDay = zone2WeekByDayTemp
             }
         })

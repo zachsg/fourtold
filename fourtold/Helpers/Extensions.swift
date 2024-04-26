@@ -38,6 +38,10 @@ extension TimeInterval {
     func secondsToMinutesRounded() -> Int {
         Int((self / 60.0).rounded()) * 60
     }
+    
+    var second: Int {
+        Int(truncatingRemainder(dividingBy: 60))
+    }
 }
 
 extension Date {

@@ -152,6 +152,8 @@
 		9213E9BF2BD96DAC00D4F6E5 /* SweatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9213E9BE2BD96DAC00D4F6E5 /* SweatView.swift */; };
 		922B6BD02BD97C110006AA9D /* FTTagData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9213E9BA2BD9589C00D4F6E5 /* FTTagData.swift */; };
 		922B6BD12BD97C140006AA9D /* FTActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9213E9BC2BD95A2000D4F6E5 /* FTActivityData.swift */; };
+		923B622A2BDC1B14003E8FA1 /* HomeOverall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B62292BDC1B14003E8FA1 /* HomeOverall.swift */; };
+		923B622C2BDC24F7003E8FA1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923B622B2BDC24F7003E8FA1 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -297,6 +299,8 @@
 		9213E9BA2BD9589C00D4F6E5 /* FTTagData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTTagData.swift; sourceTree = "<group>"; };
 		9213E9BC2BD95A2000D4F6E5 /* FTActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTActivityData.swift; sourceTree = "<group>"; };
 		9213E9BE2BD96DAC00D4F6E5 /* SweatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweatView.swift; sourceTree = "<group>"; };
+		923B62292BDC1B14003E8FA1 /* HomeOverall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOverall.swift; sourceTree = "<group>"; };
+		923B622B2BDC24F7003E8FA1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +369,7 @@
 				592E0F5E2BB396BA003DF532 /* fourtoldwatch-Watch-App-Info.plist */,
 				592E0F5D2BB396AC003DF532 /* fourtoldwatch Watch App.entitlements */,
 				592E0F342BB39431003DF532 /* ContentView.swift */,
+				923B62282BDC1B00003E8FA1 /* Home */,
 				5986B8FD2BB4EE64006E9F86 /* Rest */,
 				592E0F362BB39432003DF532 /* Assets.xcassets */,
 				592E0F382BB39432003DF532 /* Preview Content */,
@@ -697,6 +702,15 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		923B62282BDC1B00003E8FA1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				923B62292BDC1B14003E8FA1 /* HomeOverall.swift */,
+				923B622B2BDC24F7003E8FA1 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -902,6 +916,7 @@
 			files = (
 				594F59CC2BB77E4F0067F0D3 /* BoxingView.swift in Sources */,
 				5986B8FC2BB3D342006E9F86 /* MeditateStatus.swift in Sources */,
+				923B622A2BDC1B14003E8FA1 /* HomeOverall.swift in Sources */,
 				592E0F422BB39589003DF532 /* FTMeditateType.swift in Sources */,
 				594F59D02BB7844F0067F0D3 /* DoneBreathingView.swift in Sources */,
 				592E0F432BB39589003DF532 /* FTMood.swift in Sources */,
@@ -944,6 +959,7 @@
 				5986B8E42BB39D5F006E9F86 /* RestItemView.swift in Sources */,
 				592E0F4C2BB39589003DF532 /* FTActivity.swift in Sources */,
 				592E0F412BB39527003DF532 /* fourtoldApp.swift in Sources */,
+				923B622C2BDC24F7003E8FA1 /* HomeView.swift in Sources */,
 				5986B8F12BB3B713006E9F86 /* MeditateSetup.swift in Sources */,
 				592E0F352BB39431003DF532 /* ContentView.swift in Sources */,
 			);
@@ -1089,7 +1105,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 142;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1109,7 +1125,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.4.6;
+				MARKETING_VERSION = 2024.4.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1130,7 +1146,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = fourtold/fourtold.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 142;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtold/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1150,7 +1166,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.4.6;
+				MARKETING_VERSION = 2024.4.8;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1171,7 +1187,7 @@
 				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1188,7 +1204,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.4.4;
+				MARKETING_VERSION = 2024.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1209,7 +1225,7 @@
 				CODE_SIGN_ENTITLEMENTS = "fourtoldwatch Watch App/fourtoldwatch Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_ASSET_PATHS = "\"fourtoldwatch Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 9DTKH8BRLR;
 				ENABLE_PREVIEWS = YES;
@@ -1226,7 +1242,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2024.4.4;
+				MARKETING_VERSION = 2024.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.4told.fourtold.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
