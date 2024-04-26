@@ -12,17 +12,36 @@ struct HomeView: View {
     @Environment(HKController.self) private var hkController
     
     @AppStorage(dailyStepsGoalKey) var dailyStepsGoal: Int = dailyStepsGoalDefault
-
-    @State private var stepsTodayPercent = 0.0
-    @State private var stepsWeekPercent = 0.0
-    @State private var zone2TodayPercent = 0.0
-    @State private var zone2WeekPercent = 0.0
-    @State private var mindfulTodayPercent = 0.0
-    @State private var mindfulWeekPercent = 0.0
+    @AppStorage(dailyZone2GoalKey) var dailyZone2Goal: Int = dailyZone2GoalDefault
+    @AppStorage(dailyMindfulnessGoalKey) var dailyMindfulnessGoal: Int = dailyMindfulnessGoalDefault
 
     @State private var tagSheetIsShowing = false
     @State private var showToday = false
     @State private var animationAmount = 0.0
+    
+    var stepsTodayPercent: Double {
+        (Double(hkController.stepCountToday) / Double(dailyStepsGoal) * 100).rounded()
+    }
+    
+    var stepsWeekPercent: Double {
+        (Double(hkController.stepCountWeek) / Double(dailyStepsGoal * 7) * 100).rounded()
+    }
+    
+    var zone2TodayPercent: Double {
+        (Double(hkController.zone2Today) / Double(dailyZone2Goal / 60) * 100).rounded()
+    }
+    
+    var zone2WeekPercent: Double {
+        (Double(hkController.zone2Week) / Double((dailyZone2Goal * 7) / 60) * 100).rounded()
+    }
+    
+    var mindfulTodayPercent: Double {
+        (Double(hkController.mindfulMinutesToday) / Double(dailyMindfulnessGoal / 60) * 100).rounded()
+    }
+    
+    var mindfulWeekPercent: Double {
+        (Double(hkController.mindfulMinutesWeek) / Double((dailyMindfulnessGoal * 7) / 60) * 100).rounded()
+    }
     
     var todayProgress: (total: Double, steps: Double, zone2: Double, rest: Double) {
         let steps = stepsTodayPercent / 100
@@ -89,7 +108,7 @@ struct HomeView: View {
 
 #Preview {
     let hkController = HKController()
-    hkController.stepCountToday = 10000
+    hkController.stepCountToday = 7000
     hkController.stepCountWeek = 65000
     hkController.mindfulMinutesToday = 20
     hkController.mindfulMinutesWeek = 60

@@ -55,9 +55,7 @@ class HKController {
     var mindfulMinutesWeekByDay: [Date: Int] = [:]
     
     init() {
-        #if os(iOS)
         requestAuthorization()
-        #endif
     }
     
     // MARK: - Authorization

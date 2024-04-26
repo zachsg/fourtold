@@ -65,6 +65,7 @@ struct HomeOverall: View {
                     }
                 }
                 .font(.footnote.bold())
+                .padding()
                 
                 Spacer()
             }

@@ -34,7 +34,7 @@ struct ContentView: View {
 #Preview {
     let hkController = HKController()
     hkController.stepCountToday = 10000
-    hkController.stepCountWeek = 65000
+    hkController.stepCountWeek = 6500
     hkController.mindfulMinutesToday = 20
     hkController.mindfulMinutesWeek = 60
     hkController.zone2Today = 15
