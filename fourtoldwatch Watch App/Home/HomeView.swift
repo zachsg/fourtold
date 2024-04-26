@@ -68,6 +68,22 @@ struct HomeView: View {
                 showToday.toggle()
             }
         }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .active {
+                refresh()
+            }
+        }
+    }
+    
+    func refresh() {
+        hkController.getZone2Today()
+        hkController.getZone2Week()
+
+        hkController.getStepCountToday()
+        hkController.getStepCountWeek()
+        
+        hkController.getMindfulMinutesToday()
+        hkController.getMindfulMinutesWeek()
     }
 }
 
