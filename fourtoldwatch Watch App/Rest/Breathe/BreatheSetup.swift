@@ -17,7 +17,6 @@ struct BreatheSetup: View {
 
     @State private var mood: FTMood = .neutral
     @State private var endMood: FTMood = .neutral
-    @State private var rounds = 8
     @State private var elapsed: TimeInterval = 0
     @State private var date: Date = .now
 
@@ -35,30 +34,27 @@ struct BreatheSetup: View {
                     }
                 }
             }
-            .onChange(of: breathType, {
-                resetRounds()
-            })
 
             if breathType == .four78 {
-                Stepper(value: $rounds, in: 4...8) {
+                Stepper(value: $four78Rounds, in: 4...8) {
                     VStack {
                         Text("Rounds")
                             .font(.footnote.bold())
-                        Text(rounds, format: .number)
+                        Text(four78Rounds, format: .number)
                             .font(.title.bold())
                     }
                 }
             } else if breathType == .box {
-                Stepper(value: $rounds, in: 20...75, step: 5) {
+                Stepper(value: $boxRounds, in: 20...75, step: 5) {
                     VStack(alignment: .leading) {
                         VStack {
                             Text("Rounds")
                                 .font(.footnote.bold())
 
-                            Text(rounds, format: .number)
+                            Text(boxRounds, format: .number)
                                 .font(.title.bold())
 
-                            Text("\(rounds * 16 / 60) minutes")
+                            Text("\(boxRounds * 16 / 60) minutes")
                                 .font(.footnote.bold())
                                 .foregroundStyle(.secondary)
                         }
@@ -88,29 +84,15 @@ struct BreatheSetup: View {
             }
             .listRowBackground(Color.clear)
         }
-        .onAppear {
-            resetRounds()
-        }
         .navigationDestination(for: BreatheStatus.self) { option in
             switch option {
             case .four78:
-                Four78ingView(rounds: $rounds, elapsed: $elapsed, mood: $mood, endMood: $endMood, date: $date, type: $breathType, path: $path)
+                Four78ingView(rounds: $four78Rounds, elapsed: $elapsed, mood: $mood, endMood: $endMood, date: $date, type: $breathType, path: $path)
             case .box:
-                BoxingView(rounds: $rounds, elapsed: $elapsed, mood: $mood, endMood: $endMood, date: $date, type: $breathType, path: $path)
+                BoxingView(rounds: $boxRounds, elapsed: $elapsed, mood: $mood, endMood: $endMood, date: $date, type: $breathType, path: $path)
             case .done:
-                DoneBreathingView(date: date, elapsed: elapsed, type: $breathType, rounds: $rounds, mood: $mood, endMood: $endMood, path: $path)
+                DoneBreathingView(date: date, elapsed: elapsed, type: $breathType, rounds: breathType == .four78 ? $four78Rounds : $boxRounds, mood: $mood, endMood: $endMood, path: $path)
             }
-        }
-    }
-
-    private func resetRounds() {
-        rounds = switch breathType {
-        case .four78:
-            four78Rounds
-        case .box:
-            boxRounds
-        case .wimHof:
-            3
         }
     }
 }
